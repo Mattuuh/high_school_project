@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Materias')
+@section('title', 'Formas de pago')
 
 @section('content')
     @if(session('status'))
@@ -8,8 +8,8 @@
             {{ session('status') }}
         </div>
     @endif
-        <a href="{{ route('materias.create') }}" class="btn btn-success">Agregar nueva materia</a>
-    @if ($materias->count())
+        <a href="{{ route('formas_pago.create') }}" class="btn btn-success">Agregar nuevo forma de pago</a>
+    @if ($formas_pago->count())
         <table class="table table-striped mt-1">
             <thead class="table-dark">
                 <tr>
@@ -22,17 +22,17 @@
                 </tr>    
             </thead>
             <tbody>
-                @foreach ($materias as $materia)
+                @foreach ($formas_pago as $forma_pago)
                     <tr>
-                        <td>{{ $materia->id }}</td>
-                        <td>{{ $materia-> }}</td>
-                        <td>{{ $materia-> }}</td>
-                        <td>{{ $materia-> }}</td>
-                        <td>{{ $materia-> }}</td>
+                        <td>{{ $forma_pago->id }}</td>
+                        <td>{{ $forma_pago-> }}</td>
+                        <td>{{ $forma_pago-> }}</td>
+                        <td>{{ $forma_pago-> }}</td>
+                        <td>{{ $forma_pago-> }}</td>
                         <td>
-                            <a class="btn btn-success btn-sm" href="{{ route('materias.show', $materia->id) }}">Ver</a>
-                            <a href="{{ route('materias.edit', $materia->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <form action="{{ route('materias.destroy', $materia->id) }}" method="POST">
+                            <a class="btn btn-success btn-sm" href="{{ route('formas_pago.show', $forma_pago->id) }}">Ver</a>
+                            <a href="{{ route('formas_pago.edit', $forma_pago->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                            <form action="{{ route('formas_pago.destroy', $forma_pago->id) }}" method="POST">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                             </form>
@@ -42,9 +42,9 @@
             </tbody>
         </table>
         <div class="pagination">
-            {{ $materias->links() }}
+            {{ $formas_pago->links() }}
         </div>
     @else
-        <h4>No hay materias cargadas!</h4>
+        <h4>No hay formas de pago cargados!</h4>
     @endif
 @endsection
