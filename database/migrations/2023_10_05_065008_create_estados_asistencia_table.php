@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('estados_asistencia', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');                 
+            $table->string('descripcion_ea');                 
             $table->timestamps();                       
         });  
     }

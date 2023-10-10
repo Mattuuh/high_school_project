@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Periodos_lectivos;
+use App\Models\Periodos_lectivo;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +28,7 @@ class Periodos_lectivoController extends Controller
         ]);
 
         //Guardado de los datos
-        Periodos_lectivos::create($validated);
+        Periodos_lectivo::create($validated);
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('periodos_lectivo.index')->with('status','Periodo_lectivo creado satisfactoriamente!');
@@ -37,7 +37,7 @@ class Periodos_lectivoController extends Controller
     // Edit
     public function edit($id)
      {
-        $periodo_lectivo = Periodos_lectivos::findOrFail($id);
+        $periodo_lectivo = Periodos_lectivo::findOrFail($id);
         return view('periodos_lectivo.edit', ['periodo_lectivo'=>$periodo_lectivo]);
      }
     
@@ -45,7 +45,7 @@ class Periodos_lectivoController extends Controller
      public function update(Request $request,$id)
      {
         //Busqueda del periodo_lectivo
-        $periodo_lectivo = Periodos_lectivos::findOrFail($id);
+        $periodo_lectivo = Periodos_lectivo::findOrFail($id);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -61,7 +61,7 @@ class Periodos_lectivoController extends Controller
     // Destroy
     public function destroy($id) {
         //Busqueda del periodo_lectivo
-        $periodo_lectivo = Periodos_lectivos::findOrFail($id);
+        $periodo_lectivo = Periodos_lectivo::findOrFail($id);
 
         //Eliminacion del periodo_lectivo
         $periodo_lectivo->delete();
@@ -72,7 +72,7 @@ class Periodos_lectivoController extends Controller
     
     // Show
     public function show($id) {
-        $periodo_lectivo = Periodos_lectivos::findOrFail($id);
+        $periodo_lectivo = Periodos_lectivo::findOrFail($id);
         return view('periodos_lectivo.show', ['periodo_lectivo'=>$periodo_lectivo]);
     }
 }

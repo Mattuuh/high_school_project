@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->integer('legajo_emp')->primary();
-            $table->string('nomb_ape');
+            $table->string('nombre_emp');
+            $table->string('apellido_emp');
             $table->integer('dni_emp');
             $table->string('domicilio_emp');
             $table->integer('telefono_emp');

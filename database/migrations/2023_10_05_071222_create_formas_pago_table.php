@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('formas_pago', function (Blueprint $table) {
             $table->id();
-            $table->string('detalle');                             
+            $table->string('detalle_fp');                             
             $table->timestamps();           
         });  
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Formas_pagos;
+use App\Models\Formas_pago;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +28,7 @@ class Formas_pagoController extends Controller
         ]);
 
         //Guardado de los datos
-        Formas_pagos::create($validated);
+        Formas_pago::create($validated);
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('formas_pago.index')->with('status','forma_pago creado satisfactoriamente!');
@@ -37,7 +37,7 @@ class Formas_pagoController extends Controller
     // Edit
     public function edit($id)
      {
-        $forma_pago = Formas_pagos::findOrFail($id);
+        $forma_pago = Formas_pago::findOrFail($id);
         return view('formas_pago.edit', ['forma_pago'=>$forma_pago]);
      }
     
@@ -45,7 +45,7 @@ class Formas_pagoController extends Controller
      public function update(Request $request,$id)
      {
         //Busqueda del forma_pago
-        $forma_pago = Formas_pagos::findOrFail($id);
+        $forma_pago = Formas_pago::findOrFail($id);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -61,7 +61,7 @@ class Formas_pagoController extends Controller
     // Destroy
     public function destroy($id) {
         //Busqueda del forma_pago
-        $forma_pago = Formas_pagos::findOrFail($id);
+        $forma_pago = Formas_pago::findOrFail($id);
 
         //Eliminacion del forma_pago
         $forma_pago->delete();
@@ -72,7 +72,7 @@ class Formas_pagoController extends Controller
     
     // Show
     public function show($id) {
-        $forma_pago = Formas_pagos::findOrFail($id);
+        $forma_pago = Formas_pago::findOrFail($id);
         return view('formas_pago.show', ['forma_pago'=>$forma_pago]);
     }
 }

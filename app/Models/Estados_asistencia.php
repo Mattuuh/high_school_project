@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estados_asistencia extends Model
 {
     use HasFactory;
-    protected $fillable = [];
+    protected $fillable = [
+        'descripcion_ea',
+    ];
 }

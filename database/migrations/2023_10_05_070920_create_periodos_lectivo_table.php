@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('periodos_lectivo', function (Blueprint $table) {
             $table->integer('anio')->primary(); 
-            $table->string('plan_estudio');
-            $table->string('modalidad');                 
+            $table->string('plan_estudio_pl');
+            $table->string('modalidad_pl');                 
             $table->timestamps();           
         });  
     }

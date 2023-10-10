@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tipos_empleados;
+use App\Models\Tipos_empleado;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +28,7 @@ class Tipos_empleadoController extends Controller
         ]);
 
         //Guardado de los datos
-        Tipos_empleados::create($validated);
+        Tipos_empleado::create($validated);
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('tipos_empleado.index')->with('status','Tipo de empleado creado satisfactoriamente!');
@@ -37,7 +37,7 @@ class Tipos_empleadoController extends Controller
     // Edit
     public function edit($id)
      {
-        $tipo_empleado = Tipos_empleados::findOrFail($id);
+        $tipo_empleado = Tipos_empleado::findOrFail($id);
         return view('tipos_empleado.edit', ['tipo_empleado'=>$tipo_empleado]);
      }
     
@@ -45,7 +45,7 @@ class Tipos_empleadoController extends Controller
      public function update(Request $request,$id)
      {
         //Busqueda del empleado
-        $tipo_empleado = Tipos_empleados::findOrFail($id);
+        $tipo_empleado = Tipos_empleado::findOrFail($id);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -61,7 +61,7 @@ class Tipos_empleadoController extends Controller
     // Destroy
     public function destroy($id) {
         //Busqueda del empleado
-        $tipo_empleado = Tipos_empleados::findOrFail($id);
+        $tipo_empleado = Tipos_empleado::findOrFail($id);
 
         //Eliminacion del empleado
         $tipo_empleado->delete();
@@ -72,7 +72,7 @@ class Tipos_empleadoController extends Controller
     
     // Show
     public function show($id) {
-        $tipo_empleado = Tipos_empleados::findOrFail($id);
+        $tipo_empleado = Tipos_empleado::findOrFail($id);
         return view('tipos_empleado.show', ['tipo_empleado'=>$tipo_empleado]);
     }
 }
