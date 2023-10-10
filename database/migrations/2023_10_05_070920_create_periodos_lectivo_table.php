@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        Schema::create('periodos_lectivo', function (Blueprint $table) {
+            $table->integer('anio')->primary(); 
+            $table->string('plan_estudio');
+            $table->string('modalidad');                 
+            $table->timestamps();           
+        });  
     }
 
     /**
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('periodos_lectivo');
     }
 };

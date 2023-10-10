@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PeriodosLectivos extends Model
 {
     use HasFactory;
-    protected $table = 'periodos_lectivos';
+
+    protected $fillable = [];
+    protected $table = 'periodos_lectivo';
     protected $primaryKey= 'anio';
     
 }

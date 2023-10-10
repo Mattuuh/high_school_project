@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('tipo_emp')->references('id')
-            ->on('tipos_empleados');
+            ->on('tipos_empleado');
         });  
     }
 
