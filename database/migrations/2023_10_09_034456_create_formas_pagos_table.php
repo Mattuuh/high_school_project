@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipos_empleados', function (Blueprint $table) {
+        Schema::create('formas_pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');                     
-            $table->timestamps();
-        }); 
+            $table->string('detalle');                             
+            $table->timestamps();           
+        });  
     }
 
     /**
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipos_empleados');
+        Schema::dropIfExists('formas_pagos');
     }
 };
