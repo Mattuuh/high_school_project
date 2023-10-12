@@ -14,21 +14,14 @@
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Detalle</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($formas_pago as $forma_pago)
                     <tr>
                         <td>{{ $forma_pago->id }}</td>
-                        <td>{{ $forma_pago-> }}</td>
-                        <td>{{ $forma_pago-> }}</td>
-                        <td>{{ $forma_pago-> }}</td>
-                        <td>{{ $forma_pago-> }}</td>
+                        <td>{{ $forma_pago->detalle_fp }}</td>
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('formas_pago.show', $forma_pago->id) }}">Ver</a>
                             <a href="{{ route('formas_pago.edit', $forma_pago->id) }}" class="btn btn-dark btn-sm">Editar</a>

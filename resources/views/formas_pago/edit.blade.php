@@ -20,23 +20,8 @@
         <form action="{{ route('formas_pago.update', $forma_pago->id) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-', $forma_pago-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-', $forma_pago-> - ) }}</textarea>
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $forma_pago-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $forma_pago-> - ) }}" class="form-control">
+            <label for="detalle_fp" class="form-label"> Detalle : </label>
+            <input type="text" name="detalle_fp" value="{{ old('-', $forma_pago-> - ) }}" class="form-control">
 
             <br>
 

@@ -20,23 +20,18 @@
         <form action="{{ route('periodos_lectivo.update', $periodo_lectivo->id) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-', $periodo_lectivo-> - ) }}" class="form-control">
+            <label for="anio" class="form-label"> Año : </label>
+            <input type="text" name="anio" value="{{ old('-', $periodo_lectivo-> - ) }}" class="form-control">
 
             <br>
 
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-', $periodo_lectivo-> - ) }}</textarea>
+            <label for="plan_estudio_pl" class="form-label"> Plan de Estudio : </label><br>
+            <textarea name="plan_estudio_pl" cols="30" rows="4" class="form-control">{{ old('-', $periodo_lectivo-> - ) }}</textarea>
 
             <br>
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $periodo_lectivo-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $periodo_lectivo-> - ) }}" class="form-control">
+            <label for="modalidad_pl" class="form-label"> Modalidad : </label>
+            <input type="number" name="modalidad_pl" value="{{ old('-', $periodo_lectivo-> - ) }}" class="form-control">
 
             <br>
 

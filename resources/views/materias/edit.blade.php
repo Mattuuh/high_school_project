@@ -20,23 +20,13 @@
         <form action="{{ route('materias.update', $materia->id) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-', $materia-> - ) }}" class="form-control">
+            <label for="nom_materia" class="form-label"> Materia : </label>
+            <input type="text" name="nom_materia" value="{{ old('-', $materia-> - ) }}" class="form-control">
 
             <br>
 
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-', $materia-> - ) }}</textarea>
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $materia-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $materia-> - ) }}" class="form-control">
+            <label for="anio_materia" class="form-label"> Año : </label><br>
+            <textarea name="anio_materia" cols="30" rows="4" class="form-control">{{ old('-', $materia-> - ) }}</textarea>
 
             <br>
 

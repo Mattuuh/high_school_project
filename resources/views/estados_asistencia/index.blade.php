@@ -14,21 +14,14 @@
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Descripcion</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($estados_asistencia as $estado_asistencia)
                     <tr>
                         <td>{{ $estado_asistencia->id }}</td>
-                        <td>{{ $estado_asistencia-> }}</td>
-                        <td>{{ $estado_asistencia-> }}</td>
-                        <td>{{ $estado_asistencia-> }}</td>
-                        <td>{{ $estado_asistencia-> }}</td>
+                        <td>{{ $estado_asistencia->descripcion_ea }}</td>
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('estados_asistencia.show', $estado_asistencia->id) }}">Ver</a>
                             <a href="{{ route('estados_asistencia.edit', $estado_asistencia->id) }}" class="btn btn-dark btn-sm">Editar</a>

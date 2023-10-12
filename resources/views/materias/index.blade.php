@@ -14,19 +14,16 @@
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Materia</th>
+                    <th>Año</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($materias as $materia)
                     <tr>
                         <td>{{ $materia->id }}</td>
-                        <td>{{ $materia-> }}</td>
-                        <td>{{ $materia-> }}</td>
+                        <td>{{ $materia->nom_materia }}</td>
+                        <td>{{ $materia->anio_materia }}</td>
                         <td>{{ $materia-> }}</td>
                         <td>{{ $materia-> }}</td>
                         <td>

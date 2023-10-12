@@ -20,23 +20,8 @@
         <form action="{{ route('tipos_empleado.update', $tipo_empleado->id) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-', $tipo_empleado-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-', $tipo_empleado-> - ) }}</textarea>
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $tipo_empleado-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $tipo_empleado-> - ) }}" class="form-control">
+            <label for="nombre_te" class="form-label"> Cargo : </label>
+            <input type="text" name="nombre_te" value="{{ old('-', $tipo_empleado-> - ) }}" class="form-control">
 
             <br>
 

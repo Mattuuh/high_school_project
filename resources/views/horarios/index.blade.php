@@ -14,21 +14,16 @@
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Fecha de Alta</th>
+                    <th>Horario</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($horarios as $horario)
                     <tr>
                         <td>{{ $horario->id }}</td>
-                        <td>{{ $horario-> }}</td>
-                        <td>{{ $horario-> }}</td>
-                        <td>{{ $horario-> }}</td>
-                        <td>{{ $horario-> }}</td>
+                        <td>{{ $horario->fecha_alta_hor }}</td>
+                        <td>{{ $horario->horario_hor }}</td>
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('horarios.show', $horario->id) }}">Ver</a>
                             <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-dark btn-sm">Editar</a>

@@ -14,21 +14,14 @@
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Cargo</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($tipos_empleado as $tipo_empleado)
                     <tr>
                         <td>{{ $tipo_empleado->id }}</td>
-                        <td>{{ $tipo_empleado-> }}</td>
-                        <td>{{ $tipo_empleado-> }}</td>
-                        <td>{{ $tipo_empleado-> }}</td>
-                        <td>{{ $tipo_empleado-> }}</td>
+                        <td>{{ $tipo_empleado->nombre_te }}</td>
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('tipos_empleado.show', $tipo_empleado->id) }}">Ver</a>
                             <a href="{{ route('tipos_empleado.edit', $empleado->id) }}" class="btn btn-dark btn-sm">Editar</a>

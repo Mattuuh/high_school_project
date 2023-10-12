@@ -19,23 +19,8 @@
         <form action="{{ route('formas_pago.store') }}" method="POST" novalidate class="">
             @csrf
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-') }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-') }}</textarea>
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-') }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-') }}" class="form-control">
+            <label for="detalle_fp" class="form-label"> Detalle : </label>
+            <input type="text" name="detalle_fp" value="{{ old('-') }}" class="form-control">
 
             <br>
 

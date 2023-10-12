@@ -19,23 +19,18 @@
     <form action="{{ route('periodos_lectivo.store') }}" method="POST" novalidate class="">
         @csrf
 
-        <label for="-" class="form-label"> - : </label>
-        <input type="text" name="-" value="{{ old('-') }}" class="form-control">
+        <label for="anio" class="form-label"> Año : </label>
+        <input type="number" name="anio" value="{{ old('-') }}" class="form-control">
 
         <br>
 
-        <label for="-" class="form-label"> - : </label><br>
-        <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-') }}</textarea>
+        <label for="plan_estudio_pl" class="form-label"> Plan de Estudio : </label><br>
+        <textarea name="plan_estudio_pl" cols="30" rows="4" class="form-control">{{ old('-') }}</textarea>
 
         <br>
 
-        <label for="-" class="form-label"> - : </label>
-        <input type="number" name="-" value="{{ old('-') }}" class="form-control">
-
-        <br>
-
-        <label for="-" class="form-label"> - : </label>
-        <input type="number" name="-" value="{{ old('-') }}" class="form-control">
+        <label for="modalidad_pl" class="form-label"> Modalidad : </label>
+        <input type="text" name="modalidad_pl" value="{{ old('-') }}" class="form-control">
 
         <br>
 

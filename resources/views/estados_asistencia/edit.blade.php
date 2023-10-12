@@ -20,23 +20,8 @@
         <form action="{{ route('estados_asistencia.update', $estado_asistencia->id) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-', $estado_asistencia-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-', $estado_asistencia-> - ) }}</textarea>
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $estado_asistencia-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $estado_asistencia-> - ) }}" class="form-control">
+            <label for="descripcion_ea" class="form-label"> Descripcion : </label>
+            <input type="text" name="descripcion_ea" value="{{ old('-', $estado_asistencia-> - ) }}" class="form-control">
 
             <br>
 

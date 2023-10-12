@@ -20,23 +20,13 @@
         <form action="{{ route('horarios.update', $horario->id) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-', $horario-> - ) }}" class="form-control">
+            <label for="fecha_alta_hor" class="form-label"> Fecha de Alta : </label>
+            <input type="text" name="fecha_alta_hor" value="{{ old('-', $horario-> - ) }}" class="form-control">
 
             <br>
 
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-', $horario-> - ) }}</textarea>
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $horario-> - ) }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-', $horario-> - ) }}" class="form-control">
+            <label for="horario_hor" class="form-label"> Horario : </label><br>
+            <textarea name="horario_hor" cols="30" rows="4" class="form-control">{{ old('-', $horario-> - ) }}</textarea>
 
             <br>
 

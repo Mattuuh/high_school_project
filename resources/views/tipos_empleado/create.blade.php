@@ -19,23 +19,8 @@
         <form action="{{ route('tipos_empleado.store') }}" method="POST" novalidate class="">
             @csrf
 
-            <label for="-" class="form-label"> - : </label>
-            <input type="text" name="-" value="{{ old('-') }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label><br>
-            <textarea name="-" cols="30" rows="4" class="form-control">{{ old('-') }}</textarea>
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-') }}" class="form-control">
-
-            <br>
-
-            <label for="-" class="form-label"> - : </label>
-            <input type="number" name="-" value="{{ old('-') }}" class="form-control">
+            <label for="nombre_te" class="form-label"> Cargo : </label>
+            <input type="text" name="nombre_te" value="{{ old('-') }}" class="form-control">
 
             <br>
 

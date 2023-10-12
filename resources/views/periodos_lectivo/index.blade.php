@@ -14,21 +14,18 @@
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Año</th>
+                    <th>Plan de Estudio</th>
+                    <th>Modalidad</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($periodos_lectivo as $periodo_lectivo)
                     <tr>
                         <td>{{ $periodo_lectivo->id }}</td>
-                        <td>{{ $periodo_lectivo-> }}</td>
-                        <td>{{ $periodo_lectivo-> }}</td>
-                        <td>{{ $periodo_lectivo-> }}</td>
-                        <td>{{ $periodo_lectivo-> }}</td>
+                        <td>{{ $periodo_lectivo->anio }}</td>
+                        <td>{{ $periodo_lectivo->plan_estudio_pl }}</td>
+                        <td>{{ $periodo_lectivo->modalidad_pl }}</td>
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('periodos_lectivo.show', $periodo_lectivo->id) }}">Ver</a>
                             <a href="{{ route('periodos_lectivo.edit', $periodo_lectivo->id) }}" class="btn btn-dark btn-sm">Editar</a>
