@@ -13,6 +13,9 @@ class EmpleadosController extends Controller
         return view('empleados.index', [
             'empleados' => DB::table('empleados')->paginate(10)
         ]);
+
+        /* $empleados = Empleados::all();
+        return view('empleados.index', compact('empleados')); */
     }
     // Create
     public function create()

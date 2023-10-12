@@ -21,12 +21,12 @@
             @csrf @method('PUT')
 
             <label for="fecha_alta_hor" class="form-label"> Fecha de Alta : </label>
-            <input type="text" name="fecha_alta_hor" value="{{ old('-', $horario-> - ) }}" class="form-control">
+            <input type="text" name="fecha_alta_hor" value="{{ old('fecha_alta_hor', $horario->fecha_alta_hor ) }}" class="form-control">
 
             <br>
 
             <label for="horario_hor" class="form-label"> Horario : </label><br>
-            <textarea name="horario_hor" cols="30" rows="4" class="form-control">{{ old('-', $horario-> - ) }}</textarea>
+            <input type="text" name="horario_hor" class="form-control" value="{{ old('horario_hor', $horario->horario_hor ) }}">
 
             <br>
 

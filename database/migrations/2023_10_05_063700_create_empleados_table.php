@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('domicilio_emp');
             $table->integer('telefono_emp');
             $table->string('email_emp');
-            $table->date('fecha_ingreso');
-            $table->date('fecha_egreso');
-            $table->unsignedBigInteger('tipo_emp');      
+            $table->date('fecha_ingreso_emp');
+            $table->date('fecha_egreso_emp');
+            $table->unsignedBigInteger('tipo_emp')->nullable();      
             $table->timestamps();
 
             $table->foreign('tipo_emp')->references('id')

@@ -9,7 +9,7 @@
         </div>
     @endif
         <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
-    @if ($empleados->count())
+    @if (0)
         <table class="table table-striped mt-1">
             <thead class="table-dark">
                 <tr>
