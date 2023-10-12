@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\Estados_asistenciaController;
 use App\Http\Controllers\Formas_pagoController;
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('empleados.index');
 });
 
 Auth::routes();

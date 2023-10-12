@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('estados_asistencia', function (Blueprint $table) {
-            $table->id();
-            $table->string('descripcion_ea');                 
-            $table->timestamps();                       
-        });  
+        Schema::create('periodos_lectivo', function (Blueprint $table) {
+            $table->integer('anio')->primary(); 
+            $table->string('plan_estudio_pl');
+            $table->string('modalidad_pl');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('estados_asistencia');
+        Schema::dropIfExists('periodos_lectivo');
     }
 };

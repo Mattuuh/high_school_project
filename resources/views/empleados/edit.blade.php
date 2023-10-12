@@ -23,7 +23,7 @@
             <label for="nombre_emp" class="form-label">Nombre: </label>
             <input type="text" name="nombre_emp" value="{{ old('nombre_emp', $empleado->nombre_emp) }}" class="form-control">
 
-            <label for="apellido_emp" class="form-label"> Apellido : </label>
+            <label for="apellido_emp" class="form-label">Apellido : </label>
             <input type="text" name="apellido_emp" value="{{ old('apellido_emp', $empleado->apellido_emp) }}" class="form-control">
 
             <label for="dni_emp" class="form-label">Dni: </label>
