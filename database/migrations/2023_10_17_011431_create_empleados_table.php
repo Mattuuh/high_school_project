@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('empleados', function (Blueprint $table) {
-            $table->integer('legajo_emp')->primary();
+            $table->id();
             $table->string('nombre_emp');
             $table->string('apellido_emp');
             $table->integer('dni_emp');
@@ -25,8 +25,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('tipo_emp')->references('id')
-            ->on('tipos_empleado');
-        });  
+            ->on('tipos_empleados');
+        });
     }
 
     /**

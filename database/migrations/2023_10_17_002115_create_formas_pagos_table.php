@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('estados_asistencia', function (Blueprint $table) {
+        Schema::create('formas_pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion_ea');                 
-            $table->timestamps();                       
-        });  
+            $table->string('detalle_fp');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('estados_asistencia');
+        Schema::dropIfExists('formas_pagos');
     }
 };

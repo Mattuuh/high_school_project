@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periodos_lectivo', function (Blueprint $table) {
-            $table->integer('anio')->primary(); 
+        Schema::create('periodos_lectivos', function (Blueprint $table) {
+            $table->id();
             $table->string('plan_estudio_pl');
-            $table->string('modalidad_pl');                 
-            $table->timestamps();           
-        });  
+            $table->string('modalidad_pl');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periodos_lectivo');
+        Schema::dropIfExists('periodos_lectivos');
     }
 };

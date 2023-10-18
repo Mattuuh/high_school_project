@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Empleados>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Empleado>
  */
-class EmpleadosFactory extends Factory
+class EmpleadoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,7 +21,7 @@ class EmpleadosFactory extends Factory
             'apellido_emp' => fake()->lastName(),
             'dni_emp' => fake()->randomNumber(8, true),
             'domicilio_emp' => fake()->address(),
-            'telefono_emp' => fake()->randomNumber(9, true),
+            'telefono_emp' => fake()->randomNumber(8, true),
             'email_emp' => fake()->email(),
             'fecha_ingreso_emp' => fake()->date(),
             'fecha_egreso_emp' => fake()->date(),

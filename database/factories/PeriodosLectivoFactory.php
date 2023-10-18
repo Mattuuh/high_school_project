@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tipos_Empleado>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Periodos_lectivo>
  */
-class Tipos_EmpleadoFactory extends Factory
+class PeriodosLectivoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class Tipos_EmpleadoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre_te' => fake()->word()
+            //
         ];
     }
 }

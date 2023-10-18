@@ -6,7 +6,7 @@ use App\Models\Tipos_empleado;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class Tipos_empleadoSeeder extends Seeder
+class TiposEmpleadoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
