@@ -9,6 +9,7 @@ use App\Http\Controllers\MateriasController;
 use App\Http\Controllers\Periodos_lectivoController;
 use App\Http\Controllers\Tipos_empleadoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------

@@ -17,6 +17,7 @@
                     <th>Año</th>
                     <th>Plan de Estudio</th>
                     <th>Modalidad</th>
+                    <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>
