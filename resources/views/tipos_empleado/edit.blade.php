@@ -21,7 +21,7 @@
             @csrf @method('PUT')
 
             <label for="nombre_te" class="form-label"> Cargo : </label>
-            <input type="text" name="nombre_te" value="{{ old('-', $tipo_empleado-> - ) }}" class="form-control">
+            <input type="text" name="nombre_te" value="{{ old('nombre_te', $tipo_empleado->nombre_te ) }}" class="form-control">
 
             <br>
 

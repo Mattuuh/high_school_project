@@ -27,13 +27,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link active" aria-current="page" href="{{ url('/empleados') }}">Empleados</a>
                         </li>
                         <li class="nav-item">
+=======
+>>>>>>> ec62c5151bc7345eca670ee1f65656fe5b584d62
                             <a class="nav-link active" aria-current="page" href="{{ url('/estados_asistencia') }}">Estados de asistencias</a>
                         </li>
                         <li class="nav-item">

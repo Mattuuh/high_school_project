@@ -2,24 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Materias;
+use App\Models\Materia;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
-class MateriasController extends Controller
+class MateriaController extends Controller
 {
-    public function index() {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         return view('materias.index', [
             'materias' => DB::table('materias')->paginate(10)
         ]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('materias.create');
     }
-    
-    // Store
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         //Validacion de los datos
@@ -28,24 +37,37 @@ class MateriasController extends Controller
         ]);
 
         //Guardado de los datos
-        Materias::create($validated);
+        Materia::create($validated);
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('materias.index')->with('status','Materia creado satisfactoriamente!');
     }
-    
-    // Edit
-    public function edit($id)
-     {
-        $materia = Materias::findOrFail($id);
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Materia $materia)
+    {
+        $materia = Materia::findOrFail($materia);
+        return view('materias.show', ['materia'=>$materia]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Materia $materia)
+    {
+        $materia = Materia::findOrFail($materia);
         return view('materias.edit', ['materia'=>$materia]);
-     }
-    
-    // Update
-     public function update(Request $request,$id)
-     {
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Materia $materia)
+    {
         //Busqueda del materia
-        $materia = Materias::findOrFail($id);
+        $materia = Materia::findOrFail($materia);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -57,22 +79,20 @@ class MateriasController extends Controller
 
         //  Redireccion con un mensaje flash de sesion
         return redirect()->route('materias.index')->with('status', 'Materia actualizado satisfactoriamente!');
-     }
-    // Destroy
-    public function destroy($id) {
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Materia $materia)
+    {
         //Busqueda del materia
-        $materia = Materias::findOrFail($id);
+        $materia = Materia::findOrFail($materia);
 
         //Eliminacion del materia
         $materia->delete();
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('materias.index')->with('status', 'Materia eliminado satifactoriamente!');
-    }
-    
-    // Show
-    public function show($id) {
-        $materia = Materias::findOrFail($id);
-        return view('materias.show', ['materia'=>$materia]);
     }
 }

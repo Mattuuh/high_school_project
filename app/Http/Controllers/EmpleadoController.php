@@ -2,25 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empleados;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
-class EmpleadosController extends Controller
+class EmpleadoController extends Controller
 {
-    public function index() {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         return view('empleados.index', [
             'empleados' => DB::table('empleados')->paginate(10)
         ]);
     }
-    // Create
+
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('empleados.create');
     }
-    
-    // Store
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         //Validacion de los datos
@@ -29,24 +37,37 @@ class EmpleadosController extends Controller
         ]);
 
         //Guardado de los datos
-        Empleados::create($validated);
+        Empleado::create($validated);
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('empleados.index')->with('status','Empleado creado satisfactoriamente!');
     }
-    
-    // Edit
-    public function edit($id)
-     {
-        $empleado = Empleados::findOrFail($id);
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Empleado $empleado)
+    {
+        $empleado = Empleado::findOrFail($empleado);
+        return view('empleados.show', ['empleado'=>$empleado]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Empleado $empleado)
+    {
+        $empleado = Empleado::findOrFail($empleado);
         return view('empleados.edit', ['empleado'=>$empleado]);
-     }
-    
-    // Update
-     public function update(Request $request,$id)
-     {
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Empleado $empleado)
+    {
         //Busqueda del empleado
-        $empleado = Empleados::findOrFail($id);
+        $empleado = Empleado::findOrFail($empleado);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -58,22 +79,20 @@ class EmpleadosController extends Controller
 
         //  Redireccion con un mensaje flash de sesion
         return redirect()->route('empleados.index')->with('status', 'Empleado actualizado satisfactoriamente!');
-     }
-    // Destroy
-    public function destroy($id) {
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Empleado $empleado)
+    {
         //Busqueda del empleado
-        $empleado = Empleados::findOrFail($id);
+        $empleado = Empleado::findOrFail($empleado);
 
         //Eliminacion del empleado
         $empleado->delete();
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('empleados.index')->with('status', 'empleado eliminado satifactoriamente!');
-    }
-    
-    // Show
-    public function show($id) {
-        $empleado = Empleados::findOrFail($id);
-        return view('empleados.show', ['empleado'=>$empleado]);
     }
 }

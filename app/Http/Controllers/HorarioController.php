@@ -2,24 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Horarios;
+use App\Models\Horario;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
-class HorariosController extends Controller
+class HorarioController extends Controller
 {
-    public function index() {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         return view('horarios.index', [
             'horarios' => DB::table('horarios')->paginate(10)
         ]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('horarios.create');
     }
-    
-    // Store
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         //Validacion de los datos
@@ -28,24 +37,37 @@ class HorariosController extends Controller
         ]);
 
         //Guardado de los datos
-        Horarios::create($validated);
+        Horario::create($validated);
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('horarios.index')->with('status','Horario creado satisfactoriamente!');
     }
-    
-    // Edit
-    public function edit($id)
-     {
-        $horario = Horarios::findOrFail($id);
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Horario $horario)
+    {
+        $horario = Horario::findOrFail($horario);
+        return view('horarios.show', ['horario'=>$horario]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Horario $horario)
+    {
+        $horario = Horario::findOrFail($horario);
         return view('horarios.edit', ['horario'=>$horario]);
-     }
-    
-    // Update
-     public function update(Request $request,$id)
-     {
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Horario $horario)
+    {
         //Busqueda del horario
-        $horario = Horarios::findOrFail($id);
+        $horario = Horario::findOrFail($horario);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -57,22 +79,20 @@ class HorariosController extends Controller
 
         //  Redireccion con un mensaje flash de sesion
         return redirect()->route('horarios.index')->with('status', 'Horario actualizado satisfactoriamente!');
-     }
-    // Destroy
-    public function destroy($id) {
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Horario $horario)
+    {
         //Busqueda del horario
-        $horario = Horarios::findOrFail($id);
+        $horario = Horario::findOrFail($horario);
 
         //Eliminacion del horario
         $horario->delete();
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('horarios.index')->with('status', 'Horario eliminado satifactoriamente!');
-    }
-    
-    // Show
-    public function show($id) {
-        $horario = Horarios::findOrFail($id);
-        return view('horarios.show', ['horario'=>$horario]);
     }
 }

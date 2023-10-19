@@ -21,7 +21,7 @@
             @csrf @method('PUT')
 
             <label for="detalle_fp" class="form-label"> Detalle : </label>
-            <input type="text" name="detalle_fp" value="{{ old('-', $forma_pago-> - ) }}" class="form-control">
+            <input type="text" name="detalle_fp" value="{{ old('detalle_fp', $forma_pago->detalle_fp ) }}" class="form-control">
 
             <br>
 

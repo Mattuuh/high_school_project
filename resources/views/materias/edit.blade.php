@@ -21,12 +21,12 @@
             @csrf @method('PUT')
 
             <label for="nom_materia" class="form-label"> Materia : </label>
-            <input type="text" name="nom_materia" value="{{ old('-', $materia-> - ) }}" class="form-control">
+            <input type="text" name="nom_materia" value="{{ old('nom_materia', $materia->nom_materia ) }}" class="form-control">
 
             <br>
 
             <label for="anio_materia" class="form-label"> Año : </label><br>
-            <textarea name="anio_materia" cols="30" rows="4" class="form-control">{{ old('-', $materia-> - ) }}</textarea>
+            <input type="text" name="anio_materia" cols="30" rows="4" class="form-control" value="{{ old('anio_materia', $materia->anio_materia ) }}">
 
             <br>
 

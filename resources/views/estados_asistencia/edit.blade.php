@@ -21,7 +21,7 @@
             @csrf @method('PUT')
 
             <label for="descripcion_ea" class="form-label"> Descripcion : </label>
-            <input type="text" name="descripcion_ea" value="{{ old('-', $estado_asistencia-> - ) }}" class="form-control">
+            <input type="text" name="descripcion_ea" value="{{ old('descripcion_ea', $estado_asistencia->descripcion_ea ) }}" class="form-control">
 
             <br>
 
