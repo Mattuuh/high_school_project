@@ -2,8 +2,14 @@
 
 @can('registro-pago')
     @section('title', 'Registro de pagos')
+    @section('content_header')
+    <h1>Lista de alumnos y cuotas</h1>
+    @stop
 @elsecan('registro-alumno')
     @section('title', 'Registro de alumnos')
+    @section('content_header')
+    <h1>Lista de Alumnos</h1>
+    @stop
 @endcan
 
 @section('content')
@@ -59,3 +65,15 @@
         <h4>No hay empleados cargados!</h4>
     @endif
 @endsection
+
+{{-- Importacion de Archivos CSS --}}
+@section('css')
+    
+@stop
+
+{{-- Importacion de Archivos JS --}}
+@section('js')
+
+    {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
+    <script src="{{ asset('js/alumnos.js') }}"></script>
+@stop

@@ -303,6 +303,12 @@ return [
 
         // Sidebar items:
         [
+            'text' =>  'Empleados',
+            'route' =>  'empleados.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
