@@ -40,7 +40,7 @@
                                     <td>{{ $empleado->domicilio_emp }}</td>
                                     <td>{{ $empleado->telefono_emp }}</td>
                                     <td>{{ $empleado->email_emp }}</td>
-                                    <td>{{ $empleado->tipo_emp }}</td>
+                                    <td>{{ $empleado->tipo_empleado->nombre_te }}</td>
                                     <td>{{ $empleado->fecha_ingreso_emp }}</td>
                                     <td>{{ $empleado->fecha_egreso_emp }}</td>
                                     <td>
