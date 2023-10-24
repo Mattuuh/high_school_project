@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('title', 'Tipos de empleado')
 
@@ -15,6 +15,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Cargo</th>
+                    <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>
@@ -24,8 +25,8 @@
                         <td>{{ $tipo_empleado->nombre_te }}</td>
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('tipos_empleado.show', $tipo_empleado->id) }}">Ver</a>
-                            <a href="{{ route('tipos_empleado.edit', $empleado->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <form action="{{ route('tipos_empleado.destroy', $empleado->id) }}" method="POST">
+                            <a href="{{ route('tipos_empleado.edit', $tipo_empleado->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                            <form action="{{ route('tipos_empleado.destroy', $tipo_empleado->id) }}" method="POST">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                             </form>

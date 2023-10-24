@@ -15,7 +15,7 @@ class TiposEmpleadoController extends Controller
     public function index()
     {
         return view('tipos_empleado.index', [
-            'tipos_empleado' => DB::table('tipos_empleado')->paginate(10)
+            'tipos_empleado' => DB::table('tipos_empleados')->paginate(10)
         ]);
     }
 

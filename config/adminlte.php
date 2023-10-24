@@ -309,6 +309,40 @@ return [
             'can' =>  '',
         ],
         [
+            'text' =>  'Estados de asistencia',
+            'route' =>  'estados_asistencia.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
+            'text' =>  'Formas de pago',
+            'route' =>  'formas_pago.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
+            'text' =>  'Horarios',
+            'route' =>  'horarios.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
+            'text' =>  'Materias',
+            'route' =>  'materias.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],[
+            'text' =>  'Periodos lectivos',
+            'route' =>  'periodos_lectivo.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],[
+            'text' =>  'Tipos de empleado',
+            'route' =>  'tipos_empleado.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],

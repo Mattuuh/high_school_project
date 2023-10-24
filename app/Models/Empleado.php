@@ -19,4 +19,5 @@ class Empleado extends Model
         'fecha_egreso_emp',
         'tipo_emp',
     ];
+    protected $primaryKey = 'legajo_emp';
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('title', 'Horarios')
 
@@ -16,6 +16,7 @@
                     <th>Id</th>
                     <th>Fecha de Alta</th>
                     <th>Horario</th>
+                    <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>

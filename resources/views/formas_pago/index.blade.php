@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('title', 'Formas de pago')
 
@@ -15,6 +15,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Detalle</th>
+                    <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>

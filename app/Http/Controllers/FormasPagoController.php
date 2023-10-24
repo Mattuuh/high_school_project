@@ -14,7 +14,7 @@ class FormasPagoController extends Controller
     public function index()
     {
         return view('formas_pago.index', [
-            'formas_pago' => DB::table('formas_pago')->paginate(10)
+            'formas_pago' => DB::table('formas_pagos')->paginate(10)
         ]);
     }
 
