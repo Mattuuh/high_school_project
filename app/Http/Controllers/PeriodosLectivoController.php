@@ -14,7 +14,7 @@ class PeriodosLectivoController extends Controller
     public function index()
     {
         return view('periodos_lectivo.index', [
-            'periodos_lectivo' => DB::table('periodos_lectivo')->paginate(10)
+            'periodos_lectivo' => DB::table('periodos_lectivos')->paginate(10)
         ]);
     }
 

@@ -13,9 +13,12 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        return view('empleados.index', [
-            'empleados' => DB::table('empleados')->paginate(10)
-        ]);
+        $empleados = Empleado::all();
+
+        return view("empleados.index", compact("empleados"));
+        /* return view('empleados.index', [
+            'empleados' => DB::table('empleados')->simplePaginate(10)
+        ]); */
     }
 
     /**
@@ -57,7 +60,7 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-        $empleado = Empleado::findOrFail($empleado);
+        $empleado = Empleado::findOrFail($empleado->legajo_emp);
         return view('empleados.edit', ['empleado'=>$empleado]);
     }
 
@@ -75,7 +78,7 @@ class EmpleadoController extends Controller
         ]);
 
         //Actualizacion del empleado
-        $empleado->update($request->all());
+        $empleado->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
         return redirect()->route('empleados.index')->with('status', 'Empleado actualizado satisfactoriamente!');

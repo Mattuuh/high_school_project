@@ -11,4 +11,9 @@ class Tipos_empleado extends Model
     protected $fillable = [
         'nombre_te',
     ];
+
+    // INNER JOIN con la tabla Empleados por medio de la FK tipo_emp
+    public function empleados() {
+        return $this->hasMany( Empleado::class,'tipo_emp');
+    }
 }

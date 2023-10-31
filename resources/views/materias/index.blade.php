@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('title', 'Materias')
 
@@ -25,6 +25,8 @@
                         <td>{{ $materia->id }}</td>
                         <td>{{ $materia->nom_materia }}</td>
                         <td>{{ $materia->anio_materia }}</td>
+                        {{-- <td>{{ $materia-> }}</td>
+                        <td>{{ $materia-> }}</td> --}}
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('materias.show', $materia->id) }}">Ver</a>
                             <a href="{{ route('materias.edit', $materia->id) }}" class="btn btn-dark btn-sm">Editar</a>

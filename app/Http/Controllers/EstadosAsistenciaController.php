@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estados_asistencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EstadosAsistenciaController extends Controller
 {
@@ -12,7 +13,9 @@ class EstadosAsistenciaController extends Controller
      */
     public function index()
     {
-        //
+        return view('estados_asistencia.index', [
+            'estados_asistencia' => DB::table('estados_asistencias')->paginate(10)
+        ]);
     }
 
     /**
@@ -20,7 +23,7 @@ class EstadosAsistenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('estados_asistencia.create');
     }
 
     /**
@@ -28,7 +31,16 @@ class EstadosAsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Guardado de los datos
+        Estados_asistencia::create($validated);
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('estados_asistencia.index')->with('status','Estado de asistencia creado satisfactoriamente!');
     }
 
     /**
@@ -36,7 +48,8 @@ class EstadosAsistenciaController extends Controller
      */
     public function show(Estados_asistencia $estados_asistencia)
     {
-        //
+        $estados_asistencia = Estados_asistencia::findOrFail($estados_asistencia);
+        return view('estados_asistencia.show', ['estados_asistencia'=>$estados_asistencia]);
     }
 
     /**
@@ -44,7 +57,8 @@ class EstadosAsistenciaController extends Controller
      */
     public function edit(Estados_asistencia $estados_asistencia)
     {
-        //
+        $estados_asistencia = Estados_asistencia::findOrFail($estados_asistencia);
+        return view('estados_asistencia.edit', ['estados_asistencia'=>$estados_asistencia]);
     }
 
     /**
@@ -52,7 +66,19 @@ class EstadosAsistenciaController extends Controller
      */
     public function update(Request $request, Estados_asistencia $estados_asistencia)
     {
-        //
+        //Busqueda del estados_asistencia
+        $estados_asistencia = Estados_asistencia::findOrFail($estados_asistencia);
+
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Actualizacion del estados_asistencia
+        $estados_asistencia->update($request->all());
+
+        //  Redireccion con un mensaje flash de sesion
+        return redirect()->route('estados_asistencia.index')->with('status', 'Estado de asistencia actualizado satisfactoriamente!');
     }
 
     /**
@@ -60,6 +86,13 @@ class EstadosAsistenciaController extends Controller
      */
     public function destroy(Estados_asistencia $estados_asistencia)
     {
-        //
+        //Busqueda del estados_asistencia
+        $estados_asistencia = Estados_asistencia::findOrFail($estados_asistencia);
+
+        //Eliminacion del estados_asistencia
+        $estados_asistencia->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('estados_asistencia.index')->with('status', 'Estado de asistencia eliminado satifactoriamente!');
     }
 }
