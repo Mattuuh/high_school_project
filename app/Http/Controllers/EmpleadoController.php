@@ -15,7 +15,7 @@ class EmpleadoController extends Controller
     {
         $empleados = Empleado::all();
 
-        return view("empleados.index", compact("empleados"));
+        return view("panel.empleados.index", compact("empleados"));
         /* return view('empleados.index', [
             'empleados' => DB::table('empleados')->simplePaginate(10)
         ]); */
@@ -81,7 +81,7 @@ class EmpleadoController extends Controller
         $empleado->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
-        return redirect()->route('empleados.index')->with('status', 'Empleado actualizado satisfactoriamente!');
+        return redirect()->route('panel.empleados.index')->with('status', 'Empleado actualizado satisfactoriamente!');
     }
 
     /**
@@ -96,6 +96,6 @@ class EmpleadoController extends Controller
         $empleado->delete();
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('empleados.index')->with('status', 'empleado eliminado satifactoriamente!');
+        return redirect()->route('panel.empleados.index')->with('status', 'Empleado eliminado satifactoriamente!');
     }
 }

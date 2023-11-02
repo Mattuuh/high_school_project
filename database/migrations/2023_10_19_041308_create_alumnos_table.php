@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('fecha_inscrip_alu');            
             $table->unsignedBigInteger('id_curso')->nullable();      
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('id_curso')->references('id')
             ->on('cursos');

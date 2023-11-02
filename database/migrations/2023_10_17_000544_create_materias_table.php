@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nom_materia');
             $table->integer('anio_materia');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -18,8 +18,9 @@ return new class extends Migration
             $table->float('monto_cierre');
             $table->date('fecha_caja');                     
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->foreign('legajo_emp')->references('id')
+            $table->foreign('legajo_emp')->references('legajo_emp')
             ->on('empleados');
         });
     }

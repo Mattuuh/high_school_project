@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('interes');
             $table->date('fecha_creacion');                   
             $table->timestamps();
+            $table->softDeletes();
 
             
         });
