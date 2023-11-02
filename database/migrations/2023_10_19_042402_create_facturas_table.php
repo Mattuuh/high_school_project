@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_forma_pago')->nullable();
             $table->float('total');  
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('id_caja')->references('id')
             ->on('cajas');

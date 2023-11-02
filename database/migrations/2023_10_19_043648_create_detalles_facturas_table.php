@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_cuota');
             $table->float('subtotal');               
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('n_factura')->references('id')
             ->on('facturas');

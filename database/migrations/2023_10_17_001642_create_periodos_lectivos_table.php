@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('plan_estudio_pl');
             $table->string('modalidad_pl');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

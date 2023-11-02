@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('fecha_egreso_emp');
             $table->unsignedBigInteger('tipo_emp')->nullable();      
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('tipo_emp')->references('id')
             ->on('tipos_empleados');

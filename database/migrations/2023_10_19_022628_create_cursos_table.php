@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('anio_lectivo')->nullable();
             $table->unsignedBigInteger('id_horario')->nullable();      
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('anio_lectivo')->references('id')
             ->on('periodos_lectivos');

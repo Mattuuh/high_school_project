@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('fecha_alta_hor');
             $table->time('horario_hor');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
