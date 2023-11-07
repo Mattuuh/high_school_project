@@ -303,6 +303,12 @@ return [
 
         // Sidebar items:
         [
+            'text' =>  'Alumnos',
+            'route' =>  'alumnos.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
             'text' =>  'Empleados',
             'route' =>  'empleados.index',
             'icon' =>  'fas fa-fw fa-user',

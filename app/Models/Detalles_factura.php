@@ -10,7 +10,16 @@ class Detalles_factura extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-    'n_factura',
-    'subtotal', 
+        'n_factura',
+        'id_couta',
+        'subtotal', 
     ];
+    protected $primaryKey = ['n_factura', 'id_cuota'];
+    public $incrementing = false;
+    public function factura() {
+        return $this->belongsTo(Factura::class,'n_factura');
+    }
+    public function cuota() {
+        return $this->belongsTo(Cuota::class,'id_cuota');
+    }
 }

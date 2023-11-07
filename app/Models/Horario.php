@@ -13,4 +13,8 @@ class Horario extends Model
         'fecha_alta_hor',
         'horario_hor',
     ];
+
+    public function cursos() {
+        return $this->hasMany(Curso::class,'id_horario');
+    }
 }

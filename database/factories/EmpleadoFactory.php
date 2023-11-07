@@ -25,7 +25,7 @@ class EmpleadoFactory extends Factory
             'email_emp' => fake()->email(),
             'fecha_ingreso_emp' => fake()->date(),
             'fecha_egreso_emp' => fake()->date(),
-            'tipo_emp' => fake()->randomDigit(),
+            'tipo_emp' => fake()->numberBetween(1,9),
         ];
     }
 }

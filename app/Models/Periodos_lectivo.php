@@ -13,6 +13,9 @@ class Periodos_lectivo extends Model
         'plan_estudio_pl',
         'modalidad_pl',
     ];
-    protected $table = 'periodos_lectivo';
-    protected $primaryKey= 'anio';
+    protected $table = 'periodos_lectivos';
+    //protected $primaryKey= 'anio';
+    public function cursos() {
+        return $this->hasMany(Curso::class,'anio_lectivo');
+    }
 }
