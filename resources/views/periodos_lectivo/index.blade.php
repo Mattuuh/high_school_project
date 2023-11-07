@@ -24,7 +24,6 @@
                 @foreach ($periodos_lectivo as $periodo_lectivo)
                     <tr>
                         <td>{{ $periodo_lectivo->id }}</td>
-                        <td>{{ $periodo_lectivo->anio }}</td>
                         <td>{{ $periodo_lectivo->plan_estudio_pl }}</td>
                         <td>{{ $periodo_lectivo->modalidad_pl }}</td>
                         <td>

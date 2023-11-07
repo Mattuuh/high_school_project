@@ -16,4 +16,10 @@ class Caja extends Model
             'fecha_caja',
 
     ];
+    public function empleado() {
+        return $this->belongsTo(Empleado::class,'legajo_emp');
+    }
+    public function facturas() {
+        return $this->hasMany(Factura::class,'id_caja');
+    }
 }

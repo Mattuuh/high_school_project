@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('plugins.Datatables', true)
 
 @can('registro-pago')
     @section('title', 'Registro de pagos')
@@ -27,25 +29,25 @@
     </div>
         <a href="{{ route('alumnos.create') }}" class="btn btn-success">Agregar nuevo pago</a>
     @if ($alumnos->count())
-        <table class="table table-striped mt-1">
+        <table class="table table-striped mt-1" id="tabla-alumnos">
             <thead class="table-dark">
                 <tr>
                     <th>Legajo</th>
                     <th>Nombre y Apellido</th>
                     <th>Dni</th>
-                    <th>Cuota</th>
+                    {{-- <th>Cuota</th> --}}
                     <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($alumnos as $alumno)
                     <tr>
-                        <td>{{ $alumno->legajo_alum }}</td>
-                        <td>{{ $alumno->nombre_alum }} {{ $alumno->apellido_alum }}</td>
-                        <td>{{ $alumno->dni_alum }}</td>
-                        @can('registro-pago')
+                        <td>{{ $alumno->id }}</td>
+                        <td>{{ $alumno->nombre_alu }} {{ $alumno->apellido_alu }}</td>
+                        <td>{{ $alumno->dni_alu }}</td>
+                        {{-- @can('registro-pago')
                         <td>{{ $alumno->cuota }}</td>
-                        @endcan
+                        @endcan --}}
                         <td>
                             <a class="btn btn-success btn-sm" href="{{ route('alumnos.show', $alumno->id) }}">Ver</a>
                             <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
@@ -58,9 +60,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pagination">
-            {{ $empleados->links() }}
-        </div>
     @else
         <h4>No hay empleados cargados!</h4>
     @endif

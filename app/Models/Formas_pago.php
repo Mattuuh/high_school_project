@@ -12,4 +12,7 @@ class Formas_pago extends Model
     protected $fillable = [
         'detalle_fp',
     ];
+    public function facturas() {
+        return $this->hasMany(Factura::class,'id_forma_pago');
+    }
 }

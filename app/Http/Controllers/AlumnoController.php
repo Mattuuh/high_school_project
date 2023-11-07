@@ -12,7 +12,9 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        //
+        $alumnos = Alumno::all();
+
+        return view('panel.alumnos.index', compact('alumnos'));
     }
 
     /**
@@ -20,7 +22,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.alumnos.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Guardado de los datos
+        Alumno::create($validated);
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('panel.alumnos.index')->with('status','Alumno creado satisfactoriamente!');
     }
 
     /**
@@ -36,7 +47,8 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
-        //
+        $alumno = Alumno::findOrFail($alumno);
+        return view('panel.alumnos.show', ['alumno'=>$alumno]);
     }
 
     /**
@@ -44,7 +56,8 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        //
+        $alumno = Alumno::findOrFail($alumno->legajo_emp);
+        return view('panel.alumnos.edit', ['alumno'=>$alumno]);
     }
 
     /**
@@ -52,7 +65,19 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, Alumno $alumno)
     {
-        //
+        //Busqueda del alumno
+        $alumno = Alumno::findOrFail($alumno);
+
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Actualizacion del alumno
+        $alumno->update($validated);
+
+        //  Redireccion con un mensaje flash de sesion
+        return redirect()->route('panel.alumnos.index')->with('status', 'Alumno actualizado satisfactoriamente!');
     }
 
     /**
@@ -60,6 +85,13 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        //
+        //Busqueda del alumno
+        $alumno = Alumno::findOrFail($alumno);
+
+        //Eliminacion del alumno
+        $alumno->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('panel.alumnos.index')->with('status', 'Alumno eliminado satifactoriamente!');
     }
 }
