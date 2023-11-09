@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Colegio Secundario Divina Misericordia</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -302,6 +302,12 @@ return [
         ],
 
         // Sidebar items:
+        [
+            'text' =>  'Cuotas',
+            'route' =>  'cuotas.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
         [
             'text' =>  'Alumnos',
             'route' =>  'alumnos.index',

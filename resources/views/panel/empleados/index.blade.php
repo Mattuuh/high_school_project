@@ -49,13 +49,13 @@
                                             Ver
                                         </button>
                                         <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        {{-- <button type="button" class="btn btn-delete btn-sm btn-danger text-uppercase" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
+                                        <button type="button" class="btn btn-delete btn-sm btn-danger text-uppercase" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
                                             Eliminar
-                                        </button> --}}
-                                        <form action="{{ route('empleados.destroy', $empleado) }}" method="POST">
+                                        </button>
+                                        {{-- <form action="{{ route('empleados.destroy', $empleado) }}" method="POST">
                                             @csrf @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach
