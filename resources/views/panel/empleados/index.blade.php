@@ -10,7 +10,9 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="col-12 mb-3">
         <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
+    </div>
     @if ($empleados->count())
         <div class="col-12">
             <?php //var_dump($empleados);die; ?>
@@ -49,13 +51,13 @@
                                             Ver
                                         </button>
                                         <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        {{-- <button type="button" class="btn btn-delete btn-sm btn-danger text-uppercase" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
+                                        <button type="button" class="btn btn-delete btn-sm btn-danger text-uppercase" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
                                             Eliminar
-                                        </button> --}}
-                                        <form action="{{ route('empleados.destroy', $empleado) }}" method="POST">
+                                        </button>
+                                        {{-- <form action="{{ route('empleados.destroy', $empleado->legajo_emp) }}" method="POST">
                                             @csrf @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -112,19 +114,19 @@
                 $('#fecha_egreso').text(empleadoData.fecha_egreso_emp);
             });
         });
-
+    </script>
+    <script>
         $(document).ready(function(){
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 const button = $(event.relatedTarget) // Button that triggered the modal
                 const id = button.data('id') // Extract info from data-* attributes
                 const nombre = button.data('nombre') // Extract info from data-* attributes
-                
+                console.log(id, nombre)
                 const modal = $(this)
                 const form = $('#formDelete')
-                form.attr('action', `{{ url('empleados') }}/${id}`);
-
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el producto "${nombre}"?`)
+                form.attr('action', `{{ env('APP_URL') }}/panel/empleados/${id}`);
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el empleado "${nombre}"?`)
             })
         });
     </script>

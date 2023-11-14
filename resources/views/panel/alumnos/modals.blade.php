@@ -20,8 +20,6 @@
                 <p id="telefono" class="form-control"></p>
                 <label for="email" class="form-label">Email:</label>
                 <p id="email" class="form-control"></p>
-                <label for="tipo_emp" class="form-label">Tipo de Empleado:</label>
-                <p id="tipo_emp" class="form-control"></p>
                 @can('')
                     <label for="fecha_ingreso" class="form-label">Fecha de ingreso:</label>
                     <p id="fecha_ingreso" class="form-control"></p>

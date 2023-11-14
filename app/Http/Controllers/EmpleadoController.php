@@ -89,13 +89,15 @@ class EmpleadoController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
+        // dd($empleado);die;
         //Busqueda del empleado
-        $empleado = Empleado::findOrFail($empleado);
+        // No funciona
+        //$empleado = Empleado::findOrFail($empleado);
 
         //Eliminacion del empleado
         $empleado->delete();
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.empleados.index')->with('status', 'Empleado eliminado satifactoriamente!');
+        return redirect()->route('empleados.index')->with('status', 'Empleado eliminado satifactoriamente!');
     }
 }
