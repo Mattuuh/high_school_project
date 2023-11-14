@@ -12,7 +12,9 @@ class CajaController extends Controller
      */
     public function index()
     {
-        //
+        $cajas = Caja::all();
+
+        return view('panel.cajas.index', compact('cajas'));
     }
 
     /**
@@ -20,7 +22,7 @@ class CajaController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.cajas.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class CajaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Guardado de los datos
+        Caja::create($validated);
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('cajas.index')->with('status','Caja creada satisfactoriamente!');
     }
 
     /**
@@ -36,7 +47,8 @@ class CajaController extends Controller
      */
     public function show(Caja $caja)
     {
-        //
+        $caja = Caja::findOrFail($caja);
+        return view('panel.cajas.show', ['caja'=>$caja]);
     }
 
     /**
@@ -44,7 +56,8 @@ class CajaController extends Controller
      */
     public function edit(Caja $caja)
     {
-        //
+        $caja = Caja::findOrFail($caja->id);
+        return view('panel.cajas.edit', ['caja'=>$caja]);
     }
 
     /**
@@ -52,7 +65,19 @@ class CajaController extends Controller
      */
     public function update(Request $request, Caja $caja)
     {
-        //
+        //Busqueda del caja
+        $caja = Caja::findOrFail($caja);
+
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Actualizacion del caja
+        $caja->update($validated);
+
+        //  Redireccion con un mensaje flash de sesion
+        return redirect()->route('cajas.index')->with('status', 'Caja actualizado satisfactoriamente!');
     }
 
     /**
@@ -60,6 +85,13 @@ class CajaController extends Controller
      */
     public function destroy(Caja $caja)
     {
-        //
+        //Busqueda del caja
+        $caja = Caja::findOrFail($caja->id);
+
+        //Eliminacion del caja
+        $caja->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('cajas.index')->with('status', 'Caja eliminado satifactoriamente!');
     }
 }

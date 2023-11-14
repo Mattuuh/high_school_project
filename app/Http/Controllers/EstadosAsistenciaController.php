@@ -13,9 +13,9 @@ class EstadosAsistenciaController extends Controller
      */
     public function index()
     {
-        return view('estados_asistencia.index', [
-            'estados_asistencia' => DB::table('estados_asistencias')->paginate(10)
-        ]);
+        $estados_asistencia = Estados_asistencia::all();
+
+        return view('panel.estados_asistencia.index', compact('estados_asistencia'));
     }
 
     /**
@@ -23,7 +23,7 @@ class EstadosAsistenciaController extends Controller
      */
     public function create()
     {
-        return view('estados_asistencia.create');
+        return view('panel.estados_asistencia.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class EstadosAsistenciaController extends Controller
     public function show(Estados_asistencia $estados_asistencia)
     {
         $estados_asistencia = Estados_asistencia::findOrFail($estados_asistencia);
-        return view('estados_asistencia.show', ['estados_asistencia'=>$estados_asistencia]);
+        return view('panel.estados_asistencia.show', ['estados_asistencia'=>$estados_asistencia]);
     }
 
     /**
@@ -58,7 +58,7 @@ class EstadosAsistenciaController extends Controller
     public function edit(Estados_asistencia $estados_asistencia)
     {
         $estados_asistencia = Estados_asistencia::findOrFail($estados_asistencia);
-        return view('estados_asistencia.edit', ['estados_asistencia'=>$estados_asistencia]);
+        return view('panel.estados_asistencia.edit', ['estados_asistencia'=>$estados_asistencia]);
     }
 
     /**

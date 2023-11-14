@@ -30,11 +30,6 @@
                 @endcan
                 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">
-                    Cancelar
-                </button>
-            </div>
         </div>
     </div>
 </div>

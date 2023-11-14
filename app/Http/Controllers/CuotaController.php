@@ -39,7 +39,7 @@ class CuotaController extends Controller
         Cuota::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.cuotas.index')->with('status','Cuota creado satisfactoriamente!');
+        return redirect()->route('cuotas.index')->with('status','Cuota creada satisfactoriamente!');
     }
 
     /**
@@ -56,7 +56,7 @@ class CuotaController extends Controller
      */
     public function edit(Cuota $cuota)
     {
-        $cuota = Cuota::findOrFail($cuota);
+        $cuota = Cuota::findOrFail($cuota->id);
         return view('panel.cuotas.edit', ['cuota'=>$cuota]);
     }
 
@@ -77,7 +77,7 @@ class CuotaController extends Controller
         $cuota->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.cuotas.index')->with('status', 'Cuota actualizado satisfactoriamente!');
+        return redirect()->route('cuotas.index')->with('status', 'Cuota actualizado satisfactoriamente!');
     }
 
     /**
@@ -86,12 +86,12 @@ class CuotaController extends Controller
     public function destroy(Cuota $cuota)
     {
         //Busqueda del cuota
-        $cuota = Cuota::findOrFail($cuota);
+        $cuota = Cuota::findOrFail($cuota->id);
 
         //Eliminacion del cuota
         $cuota->delete();
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.cuotas.index')->with('status', 'Cuota eliminado satifactoriamente!');
+        return redirect()->route('cuotas.index')->with('status', 'Cuota eliminado satifactoriamente!');
     }
 }

@@ -49,13 +49,9 @@
                                             Ver
                                         </button>
                                         <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        <button type="button" class="btn btn-delete btn-sm btn-danger text-uppercase" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
+                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
                                             Eliminar
                                         </button>
-                                        {{-- <form action="{{ route('empleados.destroy', $empleado) }}" method="POST">
-                                            @csrf @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -122,7 +118,7 @@
                 
                 const modal = $(this)
                 const form = $('#formDelete')
-                form.attr('action', `{{ url('empleados') }}/${id}`);
+                form.attr('action', `{{ env('APP_URL') }}/panel/empleados/${id}`);
 
                 modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el producto "${nombre}"?`)
             })

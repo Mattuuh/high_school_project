@@ -39,7 +39,7 @@ class AlumnoController extends Controller
         Alumno::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.alumnos.index')->with('status','Alumno creado satisfactoriamente!');
+        return redirect()->route('alumnos.index')->with('status','Alumno creado satisfactoriamente!');
     }
 
     /**
@@ -47,7 +47,7 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
-        $alumno = Alumno::findOrFail($alumno);
+        $alumno = Alumno::findOrFail($alumno->id);
         return view('panel.alumnos.show', ['alumno'=>$alumno]);
     }
 
@@ -56,7 +56,7 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        $alumno = Alumno::findOrFail($alumno->legajo_emp);
+        $alumno = Alumno::findOrFail($alumno->id);
         return view('panel.alumnos.edit', ['alumno'=>$alumno]);
     }
 
@@ -66,7 +66,7 @@ class AlumnoController extends Controller
     public function update(Request $request, Alumno $alumno)
     {
         //Busqueda del alumno
-        $alumno = Alumno::findOrFail($alumno);
+        $alumno = Alumno::findOrFail($alumno->id);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -77,7 +77,7 @@ class AlumnoController extends Controller
         $alumno->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.alumnos.index')->with('status', 'Alumno actualizado satisfactoriamente!');
+        return redirect()->route('alumnos.index')->with('status', 'Alumno actualizado satisfactoriamente!');
     }
 
     /**
@@ -86,12 +86,12 @@ class AlumnoController extends Controller
     public function destroy(Alumno $alumno)
     {
         //Busqueda del alumno
-        $alumno = Alumno::findOrFail($alumno);
+        $alumno = Alumno::findOrFail($alumno->id);
 
         //Eliminacion del alumno
         $alumno->delete();
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.alumnos.index')->with('status', 'Alumno eliminado satifactoriamente!');
+        return redirect()->route('alumnos.index')->with('status', 'Alumno eliminado satifactoriamente!');
     }
 }

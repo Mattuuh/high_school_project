@@ -8,6 +8,7 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PeriodosLectivoController;
 use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\CuotaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,3 +23,4 @@ Route::resource('materias', MateriaController::class)->names('materias');
 Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('periodos_lectivo');
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
+Route::resource('cuotas', CuotaController::class)->names('cuotas');

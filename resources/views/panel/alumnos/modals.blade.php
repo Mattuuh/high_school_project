@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Ficha de Empleado con Legajo #</h5>
+                <h5 class="modal-title" id="modalTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -20,8 +20,6 @@
                 <p id="telefono" class="form-control"></p>
                 <label for="email" class="form-label">Email:</label>
                 <p id="email" class="form-control"></p>
-                <label for="tipo_emp" class="form-label">Tipo de Empleado:</label>
-                <p id="tipo_emp" class="form-control"></p>
                 @can('')
                     <label for="fecha_ingreso" class="form-label">Fecha de ingreso:</label>
                     <p id="fecha_ingreso" class="form-control"></p>

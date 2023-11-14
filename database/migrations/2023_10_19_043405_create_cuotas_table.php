@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('cuotas', function (Blueprint $table) {
             $table->id();           
-            $table->integer('mes');
+            $table->string('mes');
             $table->float('monto');
-            $table->decimal('interes');
-            $table->date('fecha_creacion');                   
+            $table->decimal('interes');            
             $table->timestamps();
             $table->softDeletes();
 

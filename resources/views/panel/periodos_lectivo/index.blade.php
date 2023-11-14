@@ -1,49 +1,37 @@
 @extends('adminlte::page')
 
-@section('plugins.Datatables', true)
-
-@section('title', 'Alumnos')
+@section('title', 'Periodos lectivo')
 
 @section('content')
-    @if(session('status'))
+    @if(session('status'))  
         <div class="alert alert-success">
             {{ session('status') }}
         </div>
     @endif
-    <div class="col-12 mb-3">
-        @can('registro-alumno')
-            <a href="{{ route('alumno.create') }}" class="btn btn-success text-uppercase">
-                Nuevo alumno
-            </a>
-        @endcan
-    </div>
-        <a href="{{ route('alumnos.create') }}" class="btn btn-success">Agregar nuevo pago</a>
-    @if ($alumnos->count())
-        <table class="table table-striped mt-1" id="tabla-alumnos">
+        <a href="{{ route('periodos_lectivo.create') }}" class="btn btn-success">Agregar nuevo periodo lectivo</a>
+    @if ($periodos_lectivo->count())
+        <table class="table table-striped mt-1">
             <thead class="table-dark">
                 <tr>
-                    <th>Legajo</th>
-                    <th>Nombre y Apellido</th>
-                    <th>Dni</th>
-                    {{-- <th>Cuota</th> --}}
+                    <th>Id</th>
+                    <th>Año</th>
+                    <th>Plan de Estudio</th>
+                    <th>Modalidad</th>
                     <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>
-                @foreach ($alumnos as $alumno)
+                @foreach ($periodos_lectivo as $periodo_lectivo)
                     <tr>
-                        <td>{{ $alumno->id }}</td>
-                        <td>{{ $alumno->nombre_alu }} {{ $alumno->apellido_alu }}</td>
-                        <td>{{ $alumno->dni_alu }}</td>
-                        {{-- @can('registro-pago')
-                        <td>{{ $alumno->cuota }}</td>
-                        @endcan --}}
+                        <td>{{ $periodo_lectivo->id }}</td>
+                        <td>{{ $periodo_lectivo->plan_estudio_pl }}</td>
+                        <td>{{ $periodo_lectivo->modalidad_pl }}</td>
                         <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $alumno }}">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $periodo_lectivo }}">
                                 Ver
                             </button>
-                            <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $alumno->id }}" data-nombre="{{ $alumno->nombre_alu }} {{ $alumno->apellido_alu }}">
+                            <a href="{{ route('periodos_lectivo.edit', $periodo_lectivo->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $periodo_lectivo->id }}" data-nombre="{{ $periodo_lectivo->plan_estudio_pl }}">
                                 Eliminar
                             </button>
                         </td>
@@ -52,7 +40,7 @@
             </tbody>
         </table>
     @else
-        <h4>No hay alumnos cargados!</h4>
+        <h4>No hay periodos lectivo cargados!</h4>
     @endif
 @endsection
 
@@ -70,7 +58,7 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
     {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
-    <script src="{{ asset('js/alumnos.js') }}"></script>
+    {{-- <script src="{{ asset('js/alumnos.js') }}"></script> --}}
 
     <script>
         $(document).ready(function () {
@@ -99,9 +87,9 @@
                 
                 const modal = $(this)
                 const form = $('#formDelete')
-                form.attr('action', `{{ env('APP_URL') }}/panel/alumnos/${id}`);
+                form.attr('action', `{{ env('APP_URL') }}/panel/periodos_lectivo/${id}`);
 
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la alumno "${nombre}"?`)
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el periodo lectivo "${nombre}"?`)
             })
         });
     </script>

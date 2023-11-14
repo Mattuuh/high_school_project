@@ -13,9 +13,9 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        return view('materias.index', [
-            'materias' => DB::table('materias')->paginate(10)
-        ]);
+        $materias = Materia::all();
+
+        return view('panel.materias.index', compact('materias'));
     }
 
     /**

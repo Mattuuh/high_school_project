@@ -12,7 +12,9 @@ class DetallesFacturaController extends Controller
      */
     public function index()
     {
-        //
+        $detalles_facturas = Detalles_factura::all();
+
+        return view('panel.detalles_facturas.index', compact('detalles_facturas'));
     }
 
     /**
@@ -20,7 +22,7 @@ class DetallesFacturaController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.detalles_facturas.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class DetallesFacturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Guardado de los datos
+        Detalles_factura::create($validated);
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('detalles_facturas.index')->with('status','Detalles creada satisfactoriamente!');
     }
 
     /**
@@ -36,7 +47,8 @@ class DetallesFacturaController extends Controller
      */
     public function show(Detalles_factura $detalles_factura)
     {
-        //
+        $detalles_factura = Detalles_factura::findOrFail($detalles_factura);
+        return view('panel.detalles_facturas.show', ['detalles_factura'=>$detalles_factura]);
     }
 
     /**
@@ -44,7 +56,8 @@ class DetallesFacturaController extends Controller
      */
     public function edit(Detalles_factura $detalles_factura)
     {
-        //
+        $detalles_factura = Detalles_factura::findOrFail($detalles_factura->id);
+        return view('panel.detalles_facturas.edit', ['detalles_factura'=>$detalles_factura]);
     }
 
     /**
@@ -52,7 +65,19 @@ class DetallesFacturaController extends Controller
      */
     public function update(Request $request, Detalles_factura $detalles_factura)
     {
-        //
+        //Busqueda del detalles_factura
+        $detalles_factura = Detalles_factura::findOrFail($detalles_factura);
+
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Actualizacion del detalles_factura
+        $detalles_factura->update($validated);
+
+        //  Redireccion con un mensaje flash de sesion
+        return redirect()->route('detalles_facturas.index')->with('status', 'Detalles actualizado satisfactoriamente!');
     }
 
     /**
@@ -60,6 +85,13 @@ class DetallesFacturaController extends Controller
      */
     public function destroy(Detalles_factura $detalles_factura)
     {
-        //
+        //Busqueda del detalles_factura
+        $detalles_factura = Detalles_factura::findOrFail($detalles_factura->id);
+
+        //Eliminacion del detalles_factura
+        $detalles_factura->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('detalles_facturas.index')->with('status', 'Detalle eliminado satifactoriamente!');
     }
 }

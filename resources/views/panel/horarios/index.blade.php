@@ -37,9 +37,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pagination">
-            {{ $horarios->links() }}
-        </div>
     @else
         <h4>No hay horarios cargados!</h4>
     @endif

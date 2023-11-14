@@ -12,7 +12,9 @@ class FacturaController extends Controller
      */
     public function index()
     {
-        //
+        $facturas = Factura::all();
+
+        return view('panel.facturas.index', compact('facturas'));
     }
 
     /**
@@ -20,7 +22,7 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.facturas.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Guardado de los datos
+        Factura::create($validated);
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('facturas.index')->with('status','Factura creada satisfactoriamente!');
     }
 
     /**
@@ -36,7 +47,8 @@ class FacturaController extends Controller
      */
     public function show(Factura $factura)
     {
-        //
+        $factura = Factura::findOrFail($factura);
+        return view('panel.facturas.show', ['factura'=>$factura]);
     }
 
     /**
@@ -44,7 +56,8 @@ class FacturaController extends Controller
      */
     public function edit(Factura $factura)
     {
-        //
+        $factura = Factura::findOrFail($factura->id);
+        return view('panel.facturas.edit', ['factura'=>$factura]);
     }
 
     /**
@@ -52,7 +65,19 @@ class FacturaController extends Controller
      */
     public function update(Request $request, Factura $factura)
     {
-        //
+        //Busqueda del factura
+        $factura = Factura::findOrFail($factura);
+
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Actualizacion del factura
+        $factura->update($validated);
+
+        //  Redireccion con un mensaje flash de sesion
+        return redirect()->route('facturas.index')->with('status', 'Factura actualizado satisfactoriamente!');
     }
 
     /**
@@ -60,6 +85,13 @@ class FacturaController extends Controller
      */
     public function destroy(Factura $factura)
     {
-        //
+        //Busqueda del factura
+        $factura = Factura::findOrFail($factura->id);
+
+        //Eliminacion del factura
+        $factura->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('facturas.index')->with('status', 'Factura eliminado satifactoriamente!');
     }
 }

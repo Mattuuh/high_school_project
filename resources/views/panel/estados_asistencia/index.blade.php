@@ -24,20 +24,18 @@
                         <td>{{ $estado_asistencia->id }}</td>
                         <td>{{ $estado_asistencia->descripcion_ea }}</td>
                         <td>
-                            <a class="btn btn-success btn-sm" href="{{ route('estados_asistencia.show', $estado_asistencia->id) }}">Ver</a>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $estados_asistencia }}">
+                                Ver
+                            </button>
                             <a href="{{ route('estados_asistencia.edit', $estado_asistencia->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <form action="{{ route('estados_asistencia.destroy', $estado_asistencia->id) }}" method="POST">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                            </form>
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $estados_asistencia->id }}" data-nombre="{{ $estados_asistencia->descripcion_ea }}">
+                                Eliminar
+                            </button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <div class="pagination">
-            {{ $estados_asistencia->links() }}
-        </div>
     @else
         <h4>No hay estado de asistencia cargados!</h4>
     @endif
