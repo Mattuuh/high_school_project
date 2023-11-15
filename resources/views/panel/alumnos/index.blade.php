@@ -51,6 +51,7 @@
                 @endforeach
             </tbody>
         </table>
+        @include('panel.alumnos.modals')
     @else
         <h4>No hay alumnos cargados!</h4>
     @endif

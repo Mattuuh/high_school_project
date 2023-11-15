@@ -24,11 +24,11 @@
                         <td>{{ $forma_pago->id }}</td>
                         <td>{{ $forma_pago->detalle_fp }}</td>
                         <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $formas_pago }}">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $forma_pago }}">
                                 Ver
                             </button>
                             <a href="{{ route('formas_pago.edit', $forma_pago->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $formas_pago->id }}" data-nombre="{{ $formas_pago->detalle_fp }}">
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $forma_pago->id }}" data-nombre="{{ $forma_pago->detalle_fp }}">
                                 Eliminar
                             </button>
                         </td>
