@@ -11,13 +11,10 @@
         </div>
     @endif
     <div class="col-12 mb-3">
-        @can('registro-alumno')
-            <a href="{{ route('alumno.create') }}" class="btn btn-success text-uppercase">
-                Nuevo alumno
-            </a>
-        @endcan
+        <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
+            Nuevo alumno
+        </a>
     </div>
-        <a href="{{ route('alumnos.create') }}" class="btn btn-success">Agregar nuevo pago</a>
     @if ($alumnos->count())
         <table class="table table-striped mt-1" id="tabla-alumnos">
             <thead class="table-dark">
@@ -51,6 +48,7 @@
                 @endforeach
             </tbody>
         </table>
+        @include('panel.alumnos.modals')
     @else
         <h4>No hay alumnos cargados!</h4>
     @endif
