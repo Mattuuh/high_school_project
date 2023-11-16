@@ -20,13 +20,13 @@
             @csrf
 
             <label for="mes" class="form-label">Mes: </label>
-            <input type="text" name="mes" value="{{ old('mes', $cuota->mes) }}" class="form-control">
+            <input type="text" name="mes" value="{{ old('mes') }}" class="form-control">
 
             <label for="monto" class="form-label">Monto: </label>
-            <input type="text" name="monto" value="{{ old('monto', $cuota->monto) }}" class="form-control">
+            <input type="text" name="monto" value="{{ old('monto') }}" class="form-control">
 
             <label for="interes" class="form-label">Interes: </label>
-            <input type="number" name="interes" value="{{ old('interes', $cuota->interes) }}" class="form-control">
+            <input type="number" name="interes" value="{{ old('interes') }}" class="form-control">
 
             <button type="submit" class="btn btn-success">Guardar Cuota</button>
             <a href="{{ route('cuotas.index') }}" class="btn btn-danger text-end">Cancelar</a>
