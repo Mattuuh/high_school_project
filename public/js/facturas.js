@@ -34,6 +34,7 @@ $(document).ready(function() {
     $('#search').on('change', function() {
         var selectedOption = $('#dniList option[value="' + $(this).val() + '"]');
         var elementDataAttr = selectedOption.attr('data-element-data');
+        console.log(elementDataAttr)
 
         // Acceder a otras propiedades y mostrar información en la página
         if (elementDataAttr !== undefined && elementDataAttr !== null) {
@@ -47,4 +48,21 @@ $(document).ready(function() {
             } 
         }
     });
+
+    // Cuota
+    $('#cuota').on('change', function() {
+        let selectedCuota = $('#cuota option[value="' + $(this).val() + '"]');
+        let elementDataAttr = selectedCuota.attr('data-element-data');
+
+        if (this.value != 0) {
+            var elementData = JSON.parse(elementDataAttr);
+            if (elementData) {
+                // Supongamos que tienes un elemento con id "otherInfo" para mostrar información adicional
+                $('#monto').text(elementData.monto);
+                $('#monto_group').removeAttr('hidden');
+            } 
+        } else {
+            $('#monto_group').attr('hidden', 'hidden');
+        }
+    })
 });

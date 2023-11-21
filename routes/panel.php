@@ -26,3 +26,6 @@ Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
 Route::resource('facturas', FacturaController::class)->names('facturas');
+
+Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
+Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');

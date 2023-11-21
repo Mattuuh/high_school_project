@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id('legajo_emp');
-            $table->string('nombre_emp');
-            $table->string('apellido_emp');
-            $table->integer('dni_emp');
-            $table->string('domicilio_emp');
-            $table->integer('telefono_emp');
-            $table->string('email_emp');
-            $table->date('fecha_ingreso_emp');
-            $table->date('fecha_egreso_emp');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->integer('dni');
+            $table->string('domicilio')->nullable();
+            $table->unsignedBigInteger('telefono')->nullable();
+            $table->string('email')->nullable();
             $table->unsignedBigInteger('tipo_emp')->nullable();      
             $table->timestamps();
             $table->softDeletes();
