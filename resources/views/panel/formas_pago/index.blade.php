@@ -36,6 +36,7 @@
                 @endforeach
             </tbody>
         </table>
+        @include('panel.formas_pago.modals')
     @else
         <h4>No hay formas de pago cargados!</h4>
     @endif

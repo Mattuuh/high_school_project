@@ -10,7 +10,13 @@
             {{ session('status') }}
         </div>
     @endif
-        <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
+    <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
+    <a href="{{ route('exportar-empleados-pdf') }}" class="btn btn-danger" title="PDF" target="_blank">
+        <i class="fas fa-file-pdf"></i> PDF
+    </a>
+    <a href="{{ route('exportar-empleados-excel') }}" class="btn btn-info" title="Excel" target="_blank">
+        <i class="fas fa-file-excel"></i> Excel
+    </a>
     @if ($empleados->count())
         <div class="col-12">
             <?php //var_dump($empleados);die; ?>
@@ -31,8 +37,8 @@
                             @foreach ($empleados as $empleado)
                                 <tr>
                                     <td>{{ $empleado->legajo_emp }}</td>
-                                    <td>{{ $empleado->nombre_emp }} {{ $empleado->apellido_emp }}</td>
-                                    <td>{{ $empleado->dni_emp }}</td>
+                                    <td>{{ $empleado->nombre }} {{ $empleado->apellido }}</td>
+                                    <td>{{ $empleado->dni }}</td>
                                     <td><?php  echo $empleado->imagen != '' ? '<img src="{{ $empleado->imagen }}" alt="imagen" width="100px" height="100px">' : '-' ?></td>
                                     <td>{{ $empleado->tipo_empleado->nombre_te }}</td>
                                     <td>
@@ -89,16 +95,14 @@
     
                 // Puedes actualizar el contenido del modal con los datos del empleado
                 $('#modalTitle').text('Ficha de Empleado con Legajo #' + empleadoData.legajo_emp);
-                $('#nombre').text(empleadoData.nombre_emp);
-                $('#apellido').text(empleadoData.apellido_emp);
-                $('#dni').text(empleadoData.dni_emp);
+                $('#nombre').text(empleadoData.nombre);
+                $('#apellido').text(empleadoData.apellido);
+                $('#dni').text(empleadoData.dni);
                 $('#imagen').imagen(empleadoData.imagen);
-                $('#domicilio').text(empleadoData.domicilio_emp);
-                $('#telefono').text(empleadoData.telefono_emp);
-                $('#email').text(empleadoData.email_emp);
+                $('#domicilio').text(empleadoData.domicilio);
+                $('#telefono').text(empleadoData.telefono);
+                $('#email').text(empleadoData.email);
                 $('#tipo_emp').text(empleadoData.tipo_empleado.nombre_te);
-                $('#fecha_ingreso').text(empleadoData.fecha_ingreso_emp);
-                $('#fecha_egreso').text(empleadoData.fecha_egreso_emp);
             });
         });
 

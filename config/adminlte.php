@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -302,6 +302,12 @@ return [
         ],
 
         // Sidebar items:
+        [
+            'text' =>  'Facturas',
+            'route' =>  'facturas.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
         [
             'text' =>  'Cuotas',
             'route' =>  'cuotas.index',

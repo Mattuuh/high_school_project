@@ -9,6 +9,7 @@ use App\Http\Controllers\PeriodosLectivoController;
 use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CuotaController;
+use App\Http\Controllers\FacturaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,3 +25,7 @@ Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('pe
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
+Route::resource('facturas', FacturaController::class)->names('facturas');
+
+Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
+Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');

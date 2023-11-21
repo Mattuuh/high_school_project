@@ -10,15 +10,14 @@ class Empleado extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'nombre_emp',
-        'apellido_emp',
-        'dni_emp',
+
+        'nombre',
+        'apellido',
+        'dni',
         'imagen',
-        'domicilio_emp',
-        'telefono_emp',
-        'email_emp',
-        'fecha_ingreso_emp',
-        'fecha_egreso_emp',
+        'domicilio',
+        'telefono',
+        'email',
         'tipo_emp',
     ];
     protected $primaryKey = 'legajo_emp';

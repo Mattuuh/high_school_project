@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuota;
 use App\Models\Factura;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        return view('panel.facturas.create');
+        $cuotas = Cuota::all();
+        return view('panel.facturas.create', compact('cuotas'));
     }
 
     /**
