@@ -21,11 +21,14 @@ class Empleado extends Model
         'tipo_emp',
     ];
     protected $primaryKey = 'legajo_emp';
-
+    
     // INNER JOIN con la tabla Tipos_empleados por medio de la FK tipo_emp
     public function tipo_empleado() {
         return $this->belongsTo( Tipos_empleado::class,'tipo_emp');
+        
     }
+
+    
 
     /* 
 

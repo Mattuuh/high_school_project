@@ -16,7 +16,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('empleados.store') }}" method="POST" novalidate class="">
+        <form action="{{ route('empleados.store') }}" method="POST" novalidate class="" enctype="multipart/form-data">
             @csrf
 
             <label for="nombre" class="form-label">Nombre: </label>
@@ -29,7 +29,7 @@
             <input type="number" name="dni" value="{{ old('dni') }}" class="form-control">
 
             <label for="imagen" class="form-label">Imagen </label>
-            <input type="imagen" name="imagen" value="{{ old('imagen') }}" class="form-control">
+            <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*">
 
             <label for="domicilio" class="form-label">Domicilio: </label>
             <input type="text" name="domicilio" value="{{ old('domicilio') }}" class="form-control">

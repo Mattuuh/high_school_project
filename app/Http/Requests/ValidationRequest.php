@@ -28,7 +28,7 @@ class ValidationRequest extends FormRequest
             'domicilio' => 'max:50',
             'telefono' => 'numeric|min:10',
             'email' => 'email',
-            'imagen' => 'image',
+            'imagen' => 'image|mimes:jpeg,png,jpg',
             'tipo_emp' => 'numeric'
         ];
     }
@@ -37,6 +37,7 @@ class ValidationRequest extends FormRequest
         return [
             'nombre.required' => 'El nombre es requerido',
             'apellido.required' => 'El apellido es requerido',
+            'imagen.image' => 'Coloque un formato correcto',
         ];
     }
 }

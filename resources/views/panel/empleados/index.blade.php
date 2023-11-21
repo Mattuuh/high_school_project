@@ -39,7 +39,7 @@
                                     <td>{{ $empleado->legajo_emp }}</td>
                                     <td>{{ $empleado->nombre }} {{ $empleado->apellido }}</td>
                                     <td>{{ $empleado->dni }}</td>
-                                    <td><?php  echo $empleado->imagen != '' ? '<img src="{{ $empleado->imagen }}" alt="imagen" width="100px" height="100px">' : '-' ?></td>
+                                    <td><?php  echo $empleado->imagen != '' ? '<img src="'.$empleado->imagen.'" alt="'.$empleado->nombre.'" class="img-fluid" style="width: 80px;">' : '-' ?></td>
                                     <td>{{ $empleado->tipo_empleado->nombre_te }}</td>
                                     <td>
                                         {{-- <a class="btn btn-success btn-sm" href="{{ route('empleados.show', $empleado->legajo_emp) }}">Ver</a> --}}
@@ -47,7 +47,7 @@
                                             Ver
                                         </button>
                                         <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
+                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre }}">
                                             Eliminar
                                         </button>
                                     </td>
@@ -117,7 +117,7 @@
                 const form = $('#formDelete')
                 form.attr('action', `{{ env('APP_URL') }}/panel/empleados/${id}`);
 
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el producto "${nombre}"?`)
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el empleado "${nombre}"?`)
             })
         });
     </script>

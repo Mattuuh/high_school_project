@@ -42,6 +42,15 @@ class EmpleadoController extends Controller
     {
         $validated = $request->validated();
 
+        if($request->hasFile('imagen')){
+            //subida de imagen al servidor 
+            $image_url = $request->file('imagen')->store('public/empleado');
+            $validated['imagen'] = asset(str_replace('public', 'storage', $image_url));
+        }
+        else{
+            $validated['imagen'] = '';
+        }
+
         //Guardado de los datos
         Empleado::create($validated);
 
@@ -74,6 +83,12 @@ class EmpleadoController extends Controller
     {
         //Busqueda del empleado
         $empleado = Empleado::findOrFail($empleado->legajo_emp);
+
+        if($request->hasFile('imagen')){
+            //subida de imagen al servidor 
+            $image_url = $request->file('imagen')->store('public/empleado');
+            $empleado['imagen'] = asset(str_replace('public', 'storage', $image_url));
+        }
 
         //Actualizacion del empleado
         $empleado->update($request);

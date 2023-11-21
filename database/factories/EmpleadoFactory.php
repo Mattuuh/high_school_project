@@ -20,6 +20,7 @@ class EmpleadoFactory extends Factory
             'nombre' => fake()->name(),
             'apellido' => fake()->lastName(),
             'dni' => fake()->randomNumber(8, true),
+            'imagen' => fake()->imageUrl(640, 480),
             'domicilio' => fake()->address(),
             'telefono' => fake()->randomNumber(8, true),
             'email' => fake()->email(),
