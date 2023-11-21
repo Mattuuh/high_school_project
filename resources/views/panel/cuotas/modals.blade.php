@@ -2,38 +2,23 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Ficha de Empleado con Legajo #</h5>
+                <h5 class="modal-title" id="modalTitle">Cuota #</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <label for="nombre" class="form-label">Nombre:</label>
-                <p id="nombre" class="form-control"></p>
-                <label for="apellido" class="form-label">Apellido:</label>
-                <p id="apellido" class="form-control"></p>
-                <label for="dni" class="form-label">Dni:</label>
-                <p id="dni" class="form-control"></p>
-                <label for="domicilio" class="form-label">Domicilio:</label>
-                <p id="domicilio" class="form-control"></p>
-                <label for="telefono" class="form-label">Telefono:</label>
-                <p id="telefono" class="form-control"></p>
-                <label for="email" class="form-label">Email:</label>
-                <p id="email" class="form-control"></p>
-                <label for="tipo_emp" class="form-label">Tipo de Empleado:</label>
-                <p id="tipo_emp" class="form-control"></p>
+                <label for="mes" class="form-label">Mes:</label>
+                <p id="mes" class="form-control"></p>
+                <label for="monto" class="form-label">Monto:</label>
+                <p id="monto" class="form-control"></p>
+                <label for="interes" class="form-label">Interes:</label>
+                <p id="interes" class="form-control"></p>
                 @can('')
-                    <label for="fecha_ingreso" class="form-label">Fecha de ingreso:</label>
+                    <label for="fecha_ingreso" class="form-label">Fecha de creación:</label>
                     <p id="fecha_ingreso" class="form-control"></p>
-                    <label for="fecha_egreso" class="form-label">Fecha de egreso:</label>
-                    <p id="fecha_egreso" class="form-control"></p>
                 @endcan
                 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">
-                    Cancelar
-                </button>
             </div>
         </div>
     </div>

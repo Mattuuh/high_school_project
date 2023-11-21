@@ -13,7 +13,6 @@ class Cuota extends Model
         'mes',
         'monto',
         'interes',
-        'fecha_creacion',   
     ];
     public function detalles_facturas() {
         return $this->hasMany(Detalles_factura::class,'id_couta');

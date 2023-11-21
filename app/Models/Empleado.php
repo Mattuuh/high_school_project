@@ -10,22 +10,25 @@ class Empleado extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'nombre_emp',
-        'apellido_emp',
-        'dni_emp',
-        'domicilio_emp',
-        'telefono_emp',
-        'email_emp',
-        'fecha_ingreso_emp',
-        'fecha_egreso_emp',
+
+        'nombre',
+        'apellido',
+        'dni',
+        'imagen',
+        'domicilio',
+        'telefono',
+        'email',
         'tipo_emp',
     ];
     protected $primaryKey = 'legajo_emp';
-
+    
     // INNER JOIN con la tabla Tipos_empleados por medio de la FK tipo_emp
     public function tipo_empleado() {
         return $this->belongsTo( Tipos_empleado::class,'tipo_emp');
+        
     }
+
+    
 
     /* 
 

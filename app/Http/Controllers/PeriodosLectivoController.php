@@ -13,9 +13,9 @@ class PeriodosLectivoController extends Controller
      */
     public function index()
     {
-        return view('periodos_lectivo.index', [
-            'periodos_lectivo' => DB::table('periodos_lectivos')->paginate(10)
-        ]);
+        $periodos_lectivo = Periodos_lectivo::all();
+
+        return view('panel.periodos_lectivo.index', compact('periodos_lectivo'));
     }
 
     /**
@@ -23,7 +23,7 @@ class PeriodosLectivoController extends Controller
      */
     public function create()
     {
-        return view('periodos_lectivo.create');
+        return view('panel.periodos_lectivo.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class PeriodosLectivoController extends Controller
     public function show(Periodos_lectivo $periodos_lectivo)
     {
         $periodo_lectivo = Periodos_lectivo::findOrFail($periodos_lectivo);
-        return view('periodos_lectivo.show', ['periodo_lectivo'=>$periodo_lectivo]);
+        return view('panel.periodos_lectivo.show', ['periodo_lectivo'=>$periodo_lectivo]);
     }
 
     /**
@@ -58,7 +58,7 @@ class PeriodosLectivoController extends Controller
     public function edit(Periodos_lectivo $periodos_lectivo)
     {
         $periodo_lectivo = Periodos_lectivo::findOrFail($periodos_lectivo);
-        return view('periodos_lectivo.edit', ['periodo_lectivo'=>$periodo_lectivo]);
+        return view('panel.periodos_lectivo.edit', ['periodo_lectivo'=>$periodo_lectivo]);
     }
 
     /**

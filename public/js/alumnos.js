@@ -7,7 +7,7 @@ let configurationDataTable = {
 	bLengthChange: true,
 	select: false,
     searching: true,
-	pageLength: 5,
+	pageLength: 10,
 	lengthMenu: [[5,10,20,-1],[5,10,20,'Todos']], 
 	language: {
 		"sProcessing": "Procesando...",

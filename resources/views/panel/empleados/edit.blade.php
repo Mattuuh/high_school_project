@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('title', 'Edicion del Empleado #' . $empleado->legajo_emp)
 
@@ -20,30 +20,30 @@
         <form action="{{ route('empleados.update', $empleado->legajo_emp) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="nombre_emp" class="form-label">Nombre: </label>
-            <input type="text" name="nombre_emp" value="{{ old('nombre_emp', $empleado->nombre_emp) }}" class="form-control">
+            <label for="nombre" class="form-label">Nombre: </label>
+            <input type="text" name="nombre" value="{{ old('nombre', $empleado->nombre) }}" class="form-control">
 
-            <label for="apellido_emp" class="form-label">Apellido : </label>
-            <input type="text" name="apellido_emp" value="{{ old('apellido_emp', $empleado->apellido_emp) }}" class="form-control">
+            <label for="apellido" class="form-label">Apellido : </label>
+            <input type="text" name="apellido" value="{{ old('apellido', $empleado->apellido) }}" class="form-control">
 
-            <label for="dni_emp" class="form-label">Dni: </label>
-            <input type="number" name="dni_emp" value="{{ old('dni_emp', $empleado->dni_emp) }}" class="form-control">
+            <label for="dni" class="form-label">Dni: </label>
+            <input type="number" name="dni" value="{{ old('dni', $empleado->dni) }}" class="form-control">
 
-            <label for="domicilio_emp" class="form-label">Domicilio: </label>
-            <input type="text" name="domicilio_emp" value="{{ old('domicilio_emp', $empleado->domicilio_emp) }}" class="form-control">
+            <label for="imagen" class="form-label">Imagen </label>
+            <input type="file" name="imagen" value="{{ old('imagen') }}" class="form-control">
 
-            <label for="telefono_emp" class="form-label">Telefono: </label>
-            <input type="number" name="telefono_emp" value="{{ old('telefono_emp', $empleado->telefono_emp) }}" class="form-control">
+            <label for="domicilio" class="form-label">Domicilio: </label>
+            <input type="text" name="domicilio" value="{{ old('domicilio', $empleado->domicilio) }}" class="form-control">
+
+            <label for="telefono" class="form-label">Telefono: </label>
+            <input type="number" name="telefono" value="{{ old('telefono', $empleado->telefono) }}" class="form-control">
 
             <label for="tipo_emp" class="form-label">Tipo: </label>
-            <input type="text" name="tipo_emp" value="{{ old('tipo_emp', $empleado->tipo_emp) }}" class="form-control">
-
-            <label for="fecha_ingreso_emp" class="form-label">Fecha de ingreso: </label>
-            <input type="text" name="fecha_ingreso_emp" value="{{ old('fecha_ingreso_emp', $empleado->fecha_ingreso_emp) }}" class="form-control">
-
-            <label for="fecha_egreso_emp" class="form-label">Fecha de egreso: </label>
-            <input type="text" name="fecha_egreso_emp" value="{{ old('fecha_egreso_emp', $empleado->fecha_egreso_emp) }}" class="form-control">
-            
+            {{-- <select name="tipo_emp" id="tipo_emp" class="form-control">
+            @foreach ($tiposEmp as $tipoEmp)
+                <option value="{{ $tipoEmp->id }}">{{ $tipoEmp->nombre_te }}</option>
+            @endforeach
+            </select> --}}
             <button type="submit" class="btn btn-success">Guardar Empleado</button>
             <a href="{{ route('empleados.index') }}" class="btn btn-danger text-end">Cancelar</a>
         </form>
