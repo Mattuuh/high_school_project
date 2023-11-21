@@ -29,6 +29,9 @@
             <label for="dni_emp" class="form-label">Dni: </label>
             <input type="number" name="dni_emp" value="{{ old('dni_emp', $empleado->dni_emp) }}" class="form-control">
 
+            <label for="imagen" class="form-label">Imagen </label>
+            <input type="imagen" name="imagen" value="{{ old('imagen') }}" class="form-control">
+
             <label for="domicilio_emp" class="form-label">Domicilio: </label>
             <input type="text" name="domicilio_emp" value="{{ old('domicilio_emp', $empleado->domicilio_emp) }}" class="form-control">
 

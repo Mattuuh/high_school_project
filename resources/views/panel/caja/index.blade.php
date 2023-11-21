@@ -22,6 +22,7 @@
                                 <th>Legajo</th>
                                 <th>Nombre y Apellido</th>
                                 <th>Dni</th>
+                                <th>Imagen</th>
                                 <th>Domicilio</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
@@ -37,6 +38,7 @@
                                     <td>{{ $empleado->legajo_emp }}</td>
                                     <td>{{ $empleado->nombre_emp }} {{ $empleado->apellido_emp }}</td>
                                     <td>{{ $empleado->dni_emp }}</td>
+                                    <td>{{ $empleado->imagen }}</td>
                                     <td>{{ $empleado->domicilio_emp }}</td>
                                     <td>{{ $empleado->telefono_emp }}</td>
                                     <td>{{ $empleado->email_emp }}</td>

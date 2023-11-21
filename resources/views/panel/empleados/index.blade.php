@@ -22,12 +22,8 @@
                                 <th>Legajo</th>
                                 <th>Nombre y Apellido</th>
                                 <th>Dni</th>
-                                <th>Domicilio</th>
-                                <th>Telefono</th>
-                                <th>Email</th>
+                                <th>Foto</th>
                                 <th>Tipo de empleado</th>
-                                <th>Fecha Ingreso</th>
-                                <th>Fecha Egreso</th>
                                 <th>Acciones</th>
                             </tr>    
                         </thead>
@@ -37,12 +33,8 @@
                                     <td>{{ $empleado->legajo_emp }}</td>
                                     <td>{{ $empleado->nombre_emp }} {{ $empleado->apellido_emp }}</td>
                                     <td>{{ $empleado->dni_emp }}</td>
-                                    <td>{{ $empleado->domicilio_emp }}</td>
-                                    <td>{{ $empleado->telefono_emp }}</td>
-                                    <td>{{ $empleado->email_emp }}</td>
+                                    <td><?php  echo $empleado->imagen != '' ? '<img src="{{ $empleado->imagen }}" alt="imagen" width="100px" height="100px">' : '-' ?></td>
                                     <td>{{ $empleado->tipo_empleado->nombre_te }}</td>
-                                    <td>{{ $empleado->fecha_ingreso_emp }}</td>
-                                    <td>{{ $empleado->fecha_egreso_emp }}</td>
                                     <td>
                                         {{-- <a class="btn btn-success btn-sm" href="{{ route('empleados.show', $empleado->legajo_emp) }}">Ver</a> --}}
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-emp="{{ $empleado }}">
@@ -100,6 +92,7 @@
                 $('#nombre').text(empleadoData.nombre_emp);
                 $('#apellido').text(empleadoData.apellido_emp);
                 $('#dni').text(empleadoData.dni_emp);
+                $('#imagen').imagen(empleadoData.imagen);
                 $('#domicilio').text(empleadoData.domicilio_emp);
                 $('#telefono').text(empleadoData.telefono_emp);
                 $('#email').text(empleadoData.email_emp);

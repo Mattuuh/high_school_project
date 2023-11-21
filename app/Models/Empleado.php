@@ -13,6 +13,7 @@ class Empleado extends Model
         'nombre_emp',
         'apellido_emp',
         'dni_emp',
+        'imagen',
         'domicilio_emp',
         'telefono_emp',
         'email_emp',

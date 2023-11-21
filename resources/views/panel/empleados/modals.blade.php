@@ -14,6 +14,8 @@
                 <p id="apellido" class="form-control"></p>
                 <label for="dni" class="form-label">Dni:</label>
                 <p id="dni" class="form-control"></p>
+                <label for="imagen" class="form-label">Imagen</label>
+                <p id="imagen" class="form-control"></p>
                 <label for="domicilio" class="form-label">Domicilio:</label>
                 <p id="domicilio" class="form-control"></p>
                 <label for="telefono" class="form-label">Telefono:</label>

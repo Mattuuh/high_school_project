@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre_emp');
             $table->string('apellido_emp');
             $table->integer('dni_emp');
+            $table->string('imagen', 100)->nullable();
             $table->string('domicilio_emp');
             $table->integer('telefono_emp');
             $table->string('email_emp');
