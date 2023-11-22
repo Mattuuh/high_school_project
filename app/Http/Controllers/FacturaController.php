@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidationRequest;
+use App\Models\Caja;
 use App\Models\Cuota;
 use App\Models\Factura;
+use App\Models\Formas_pago;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FacturaController extends Controller
 {
@@ -14,8 +18,9 @@ class FacturaController extends Controller
     public function index()
     {
         $facturas = Factura::all();
+        $caja = Caja::whereDate('created_at', now()->format('Y-m-d'))->first();
 
-        return view('panel.facturas.index', compact('facturas'));
+        return view('panel.facturas.index', compact('facturas', 'caja'));
     }
 
     /**
@@ -24,18 +29,20 @@ class FacturaController extends Controller
     public function create()
     {
         $cuotas = Cuota::all();
-        return view('panel.facturas.create', compact('cuotas'));
+        $forma_pagos = Formas_pago::all();
+        $caja = Caja::whereDate('created_at', now()->format('Y-m-d'))->first();
+        //var_dump($caja);die;
+        return view('panel.facturas.create', compact('cuotas', 'forma_pagos', 'caja'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ValidationRequest $request)
     {
+        var_dump($request->all());die;
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Guardado de los datos
         Factura::create($validated);

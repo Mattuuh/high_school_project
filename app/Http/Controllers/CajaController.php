@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidationRequest;
 use App\Models\Caja;
 use Illuminate\Http\Request;
 
@@ -28,18 +29,16 @@ class CajaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ValidationRequest $request)
     {
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Guardado de los datos
         Caja::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('cajas.index')->with('status','Caja creada satisfactoriamente!');
+        return redirect()->route('facturas.index')->with('status','Apertura registrada con exito!');
     }
 
     /**
@@ -63,21 +62,20 @@ class CajaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Caja $caja)
+    public function update(ValidationRequest $request, Caja $caja)
     {
         //Busqueda del caja
-        $caja = Caja::findOrFail($caja);
+        $caja = Caja::findOrFail($caja->id);
 
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
+        $validated['closed_at'] = now();
 
         //Actualizacion del caja
         $caja->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
-        return redirect()->route('cajas.index')->with('status', 'Caja actualizado satisfactoriamente!');
+        return redirect()->route('facturas.index')->with('status', 'Caja actualizada satisfactoriamente!');
     }
 
     /**
@@ -93,5 +91,10 @@ class CajaController extends Controller
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('cajas.index')->with('status', 'Caja eliminado satifactoriamente!');
+    }
+    public function close(Caja $caja)
+    {
+        $caja = Caja::findOrFail($caja->id);
+        return view('panel.cajas.close', ['caja'=>$caja]);
     }
 }

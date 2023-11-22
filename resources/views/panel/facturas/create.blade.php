@@ -22,6 +22,8 @@
         <form action="{{ route('facturas.store') }}" method="POST" novalidate class="">
             @csrf
 
+            <input type="number" name="id_emp" value="{{ $caja->id }}" hidden>
+
             <label for="dni_alu" class="form-label">Dni: </label>
             <div class="row">
                 <div class="col-9">
@@ -29,18 +31,18 @@
                     <datalist id="dniList"></datalist>
                 </div>
                 <div class="col-1">
-                    <button class="btn btn-success fs-1">+</button>
+                    <a class="btn btn-success fs-1" href="{{ route('alumnos.create') }}">+</a>
                 </div>
             </div>
 
-            <div id="nombre_group" hidden>
-                <label for="nombre_alu" class="form-label">Nombre: </label>
-                <p id="nombre_alu" type="text" name="nombre_alu" value="{{ old('nombre_alu') }}" class="form-control"></p>
+            <div id="name_group" hidden>
+                <label for="name" class="form-label">Nombre: </label>
+                <p id="name" type="text" name="name" value="{{ old('name') }}" class="form-control"></p>
             </div>
 
-            <div id="apellido_group" hidden>
-                <label for="apellido_alu" class="form-label">Apellido : </label>
-                <p id="apellido_alu" type="text" name="apellido_alu" value="{{ old('apellido_alu') }}" class="form-control"></p>
+            <div id="lastname_group" hidden>
+                <label for="lastname" class="form-label">Apellido : </label>
+                <p id="lastname" type="text" name="lastname" value="{{ old('lastname') }}" class="form-control"></p>
             </div>
 
             <label for="cuota" class="form-label">Cuota: </label>
@@ -55,6 +57,14 @@
                 <label for="monto" class="form-label">Monto : </label>
                 <p id="monto" type="text" name="monto" value="{{ old('monto') }}" class="form-control"></p>
             </div>
+
+            <label for="forma_pago" class="form-label">Forma de pago: </label>
+            <select name="forma_pago" id="forma_pago" class="form-control">
+                <option value="0" selected>---Seleccionar forma de pago---</option>
+            @foreach ($forma_pagos as $forma_pago)
+                <option value="{{ $forma_pago->nombre }}">{{ $forma_pago->nombre }}</option>
+            @endforeach
+            </select>
 
             <button type="submit" class="btn btn-success">Guardar Factura</button>
             <a href="{{ route('facturas.index') }}" class="btn btn-danger text-end">Cancelar</a>

@@ -17,8 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('empleado');
+
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('empleado')->references('legajo_emp')
+            ->on('empleados');
         });
     }
 

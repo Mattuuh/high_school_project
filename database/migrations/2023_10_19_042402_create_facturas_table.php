@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_pago');          
+            $table->dateTime('fecha_pago');          
             $table->unsignedBigInteger('id_caja')->nullable();
             $table->unsignedBigInteger('legajo_alu')->nullable();
             $table->unsignedBigInteger('id_forma_pago')->nullable();

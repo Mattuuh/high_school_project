@@ -39,7 +39,7 @@ class AlumnoController extends Controller
         Alumno::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('alumnos.index')->with('status','Alumno creado satisfactoriamente!');
+        return back()->with('status','Alumno creado satisfactoriamente!');
     }
 
     /**

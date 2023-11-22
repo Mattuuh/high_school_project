@@ -8,6 +8,7 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PeriodosLectivoController;
 use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\FacturaController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,9 @@ Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
 Route::resource('facturas', FacturaController::class)->names('facturas');
+Route::resource('cajas', CajaController::class)->names('cajas');
+Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
+
 
 Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
 Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');

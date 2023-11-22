@@ -10,7 +10,19 @@
             {{ session('status') }}
         </div>
     @endif
+    
+    
+    @if ($caja)
+        <a href="{{ route('cajas.create') }}" class="btn btn-success" hidden>Abrir caja</a>
         <a href="{{ route('facturas.create') }}" class="btn btn-success">Agregar nuevo pago</a>
+        <a href="{{ route('cajas.close', $caja->id) }}" class="btn btn-danger">Cerrar caja</a>
+    @else
+        <div class="alert alert-danger">
+            Se necesita abrir la caja!
+        </div>
+        <a href="{{ route('cajas.create') }}" class="btn btn-success">Abrir caja</a>
+    @endif
+    
     @if ($facturas->count())
         <div class="col-12">
             <?php //var_dump($facturas);die; ?>
@@ -19,39 +31,32 @@
                     <table class="table table-striped mt-1 nowrap w-100" id="tabla-facturas">
                         <thead class="table-dark">
                             <tr>
-                                <th>Legajo</th>
-                                <th>Nombre y Apellido</th>
-                                <th>Dni</th>
-                                <th>Domicilio</th>
-                                <th>Telefono</th>
-                                <th>Email</th>
-                                <th>Tipo de empleado</th>
-                                <th>Fecha Ingreso</th>
-                                <th>Fecha Egreso</th>
+                                <th>Id</th>
+                                <th>Fecha de Pago</th>
+                                <th>Caja</th>
+                                <th>Alumno</th>
+                                <th>Forma de Pago</th>
+                                <th>Total</th>
                                 <th>Acciones</th>
                             </tr>    
                         </thead>
                         <tbody>
-                            @foreach ($facturas as $empleado)
+                            @foreach ($facturas as $factura)
                                 <tr>
-                                    <td>{{ $empleado->legajo_emp }}</td>
-                                    <td>{{ $empleado->nombre_emp }} {{ $empleado->apellido_emp }}</td>
-                                    <td>{{ $empleado->dni_emp }}</td>
-                                    <td>{{ $empleado->domicilio_emp }}</td>
-                                    <td>{{ $empleado->telefono_emp }}</td>
-                                    <td>{{ $empleado->email_emp }}</td>
-                                    <td>{{ $empleado->tipo_empleado->nombre_te }}</td>
-                                    <td>{{ $empleado->fecha_ingreso_emp }}</td>
-                                    <td>{{ $empleado->fecha_egreso_emp }}</td>
+                                    <td>{{ $factura->id }}</td>
+                                    <td>{{ $factura->fecha_pago }}</td>
+                                    <td>{{ $factura->caja->id }}</td>
+                                    <td>{{ $factura->legajo_alu }}</td>
+                                    <td>{{ $factura->forma_pago->nombre }}</td>
+                                    <td>{{ $factura->total }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $factura }}">
                                             Ver
                                         </button>
-                                        <a href="{{ route('facturas.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        <form action="{{ route('facturas.destroy', $empleado->legajo_emp) }}" method="POST">
-                                            @csrf @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
+                                        <a href="{{ route('facturas.edit', $factura->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $factura->id }}">
+                                            Eliminar
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -83,5 +88,50 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
 
     {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
-    <script src="{{ asset('js/empleados.js') }}"></script>
+    <script src="{{ asset('js/facturas.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Escucha el evento de apertura del modal
+            $('#showModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var data = button.data('bs-dato');
+    
+                // Puedes actualizar el contenido del modal con los datos del empleado
+                $('#modalTitle').text('Factura #' + data.id);
+                $('#fecha').text(data.fecha_pago);
+                $('#caja').text(data.id_caja);
+                $('#legajo_alu').text(data.legajo_alu);
+                $('#forma_pago').text(data.id_forma_pago);
+                $('#total').text(data.total);
+            });
+        });
+
+        $(document).ready(function(){
+
+            $('#deleteModal').on('show.bs.modal', function (event) {
+                const button = $(event.relatedTarget) // Button that triggered the modal
+                const id = button.data('id') // Extract info from data-* attributes
+                //const nombre = button.data('nombre') // Extract info from data-* attributes
+                
+                const modal = $(this)
+                const form = $('#formDelete')
+                form.attr('action', `{{ env('APP_URL') }}/panel/facturas/${id}`);
+
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la factura "${id}"?`)
+            })
+        });
+        
+        /* $(document).ready(function () {
+            // Escucha el evento de apertura del modal
+            $('#abrir-caja').on('click', function (event) {
+                $('#abrir-caja').hide()
+                localStorage.setItem('abrir-caja', 'true');
+            });
+
+            if (localStorage.getItem('abrir-caja') === 'true') {
+                $("#abrir-caja").hide();
+            }
+        }); */
+    </script>
 @stop

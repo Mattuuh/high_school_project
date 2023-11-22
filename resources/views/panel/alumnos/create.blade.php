@@ -38,7 +38,7 @@
             <input type="number" name="email_alu" value="{{ old('email_alu') }}" class="form-control">
 
             <button type="submit" class="btn btn-success">Guardar alumno</button>
-            <a href="{{ route('alumnos.index') }}" class="btn btn-danger text-end">Cancelar</a>
+            <a href="javascript:history.back()" class="btn btn-danger text-end">Cancelar</a>
         </form>
         </div>
     </div>

@@ -41,10 +41,10 @@ $(document).ready(function() {
             var elementData = JSON.parse(elementDataAttr);
             if (elementData) {
                 // Supongamos que tienes un elemento con id "otherInfo" para mostrar información adicional
-                $('#nombre_alu').text(elementData.nombre_alu);
-                $('#nombre_group').removeAttr('hidden');
-                $('#apellido_alu').text(elementData.apellido_alu);
-                $('#apellido_group').removeAttr('hidden');
+                $('#name').text(elementData.nombre_alu);
+                $('#name_group').removeAttr('hidden');
+                $('#lastname').text(elementData.apellido_alu);
+                $('#lastname_group').removeAttr('hidden');
             } 
         }
     });
@@ -58,7 +58,7 @@ $(document).ready(function() {
             var elementData = JSON.parse(elementDataAttr);
             if (elementData) {
                 // Supongamos que tienes un elemento con id "otherInfo" para mostrar información adicional
-                $('#monto').text(elementData.monto);
+                $('#monto').text('$' + elementData.monto);
                 $('#monto_group').removeAttr('hidden');
             } 
         } else {

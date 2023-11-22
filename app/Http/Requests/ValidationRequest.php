@@ -29,7 +29,10 @@ class ValidationRequest extends FormRequest
             'telefono' => 'numeric|min:10',
             'email' => 'email',
             'imagen' => 'image|mimes:jpeg,png,jpg',
-            'tipo_emp' => 'numeric'
+            'tipo_emp' => 'numeric',
+            'monto_inicial' => 'numeric',
+            'monto_cierre' => 'numeric',
+            'legajo_emp' => 'numeric',
         ];
     }
     public function messages(): array

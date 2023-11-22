@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('formas_pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('detalle_fp');
+            $table->string('nombre');
             $table->timestamps();
             $table->softDeletes();
         });
