@@ -38,5 +38,5 @@ let configurationDataTable = {
 }
 
 $(function() {
-    table = $('#tabla-alumnos').DataTable(configurationDataTable);
+    table = $('#tabla-cuotas').DataTable(configurationDataTable);
 });

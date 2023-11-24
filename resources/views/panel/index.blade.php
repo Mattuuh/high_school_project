@@ -8,6 +8,9 @@
 
 @section('content')
     <p>HOLA MUNDO DE ADMIN LTE</p>
+    <div class="slider">Slider</div>
+    <div class="container">Imagenes con contenido de la sidebar</div>
+    <div class="container">Calendario</div>
 @stop
 
 

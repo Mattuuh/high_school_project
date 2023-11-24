@@ -35,13 +35,18 @@
             <input type="number" name="telefono_emp" value="{{ old('telefono_emp') }}" class="form-control">
 
             <label for="tipo_emp" class="form-label">Tipo: </label>
-            <input type="text" name="tipo_emp" value="{{ old('tipo_emp') }}" class="form-control">
+            <?php
+                use App\Models\Tipos_empleado;
+                $tiposEmp = Tipos_empleado::all();
+            ?>
+            <select name="tipo_emp" id="tipo_emp" class="form-control">
+            @foreach ($tiposEmp as $tipoEmp)
+                <option value="{{ $tipoEmp->id }}">{{ $tipoEmp->nombre_te }}</option>
+            @endforeach
+            </select>
 
             <label for="fecha_ingreso_emp" class="form-label">Fecha de ingreso: </label>
             <input type="text" name="fecha_ingreso_emp" value="{{ old('fecha_ingreso_emp') }}" class="form-control">
-
-            <label for="fecha_egreso_emp" class="form-label">Fecha de egreso: </label>
-            <input type="text" name="fecha_egreso_emp" value="{{ old('fecha_egreso_emp') }}" class="form-control">
 
             <button type="submit" class="btn btn-success">Guardar Empleado</button>
             <a href="{{ route('empleados.index') }}" class="btn btn-danger text-end">Cancelar</a>

@@ -12,7 +12,9 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        $cursos = Curso::all();
+
+        return view('panel.cursos.index', compact('cursos'));
     }
 
     /**
@@ -20,7 +22,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.cursos.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Guardado de los datos
+        Curso::create($validated);
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('cursos.index')->with('status','Curso creada satisfactoriamente!');
     }
 
     /**
@@ -36,7 +47,8 @@ class CursoController extends Controller
      */
     public function show(Curso $curso)
     {
-        //
+        $curso = Curso::findOrFail($curso);
+        return view('panel.cursos.show', ['curso'=>$curso]);
     }
 
     /**
@@ -44,7 +56,8 @@ class CursoController extends Controller
      */
     public function edit(Curso $curso)
     {
-        //
+        $curso = Curso::findOrFail($curso->id);
+        return view('panel.cursos.edit', ['curso'=>$curso]);
     }
 
     /**
@@ -52,7 +65,19 @@ class CursoController extends Controller
      */
     public function update(Request $request, Curso $curso)
     {
-        //
+        //Busqueda del curso
+        $curso = Curso::findOrFail($curso);
+
+        //Validacion de los datos
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        //Actualizacion del curso
+        $curso->update($validated);
+
+        //  Redireccion con un mensaje flash de sesion
+        return redirect()->route('cursos.index')->with('status', 'Curso actualizado satisfactoriamente!');
     }
 
     /**
@@ -60,6 +85,13 @@ class CursoController extends Controller
      */
     public function destroy(Curso $curso)
     {
-        //
+        //Busqueda del curso
+        $curso = Curso::findOrFail($curso->id);
+
+        //Eliminacion del curso
+        $curso->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('cursos.index')->with('status', 'Curso eliminado satifactoriamente!');
     }
 }

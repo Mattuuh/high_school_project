@@ -14,9 +14,9 @@ class TiposEmpleadoController extends Controller
      */
     public function index()
     {
-        return view('tipos_empleado.index', [
-            'tipos_empleado' => DB::table('tipos_empleados')->paginate(10)
-        ]);
+        $tipos_empleado = Tipos_empleado::all();
+
+        return view('panel.tipos_empleado.index', compact('tipos_empleado'));
     }
 
     /**
@@ -24,7 +24,7 @@ class TiposEmpleadoController extends Controller
      */
     public function create()
     {
-        return view('tipos_empleado.create');
+        return view('panel.tipos_empleado.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class TiposEmpleadoController extends Controller
     public function edit(Tipos_empleado $tipos_empleado)
     {
         $tipo_empleado = Tipos_empleado::findOrFail($tipos_empleado);
-        return view('tipos_empleado.edit', ['tipo_empleado'=>$tipo_empleado]);
+        return view('panel.tipos_empleado.edit', ['tipo_empleado'=>$tipo_empleado]);
     }
 
     /**

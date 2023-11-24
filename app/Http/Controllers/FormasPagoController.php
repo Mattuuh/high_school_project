@@ -13,9 +13,9 @@ class FormasPagoController extends Controller
      */
     public function index()
     {
-        return view('formas_pago.index', [
-            'formas_pago' => DB::table('formas_pagos')->paginate(10)
-        ]);
+        $formas_pago = Formas_pago::all();
+
+        return view('panel.formas_pago.index', compact('formas_pago'));
     }
 
     /**
@@ -23,7 +23,7 @@ class FormasPagoController extends Controller
      */
     public function create()
     {
-        return view('formas_pago.create');
+        return view('panel.formas_pago.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class FormasPagoController extends Controller
     public function show(Formas_pago $formas_pago)
     {
         $forma_pago = Formas_pago::findOrFail($formas_pago);
-        return view('formas_pago.show', ['forma_pago'=>$forma_pago]);
+        return view('panel.formas_pago.show', ['forma_pago'=>$forma_pago]);
     }
 
     /**
@@ -58,7 +58,7 @@ class FormasPagoController extends Controller
     public function edit(Formas_pago $formas_pago)
     {
         $forma_pago = Formas_pago::findOrFail($formas_pago);
-        return view('formas_pago.edit', ['forma_pago'=>$forma_pago]);
+        return view('panel.formas_pago.edit', ['forma_pago'=>$forma_pago]);
     }
 
     /**

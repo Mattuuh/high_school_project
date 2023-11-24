@@ -13,9 +13,9 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        return view('panel.horarios.index', [
-            'horarios' => DB::table('horarios')->paginate(10)
-        ]);
+        $horarios = Horario::all();
+
+        return view('panel.horarios.index', compact('horarios'));
     }
    
 

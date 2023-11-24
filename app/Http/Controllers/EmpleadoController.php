@@ -26,7 +26,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        return view('empleados.create');
+        return view('panel.empleados.create');
     }
 
     /**
@@ -51,8 +51,8 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        $empleado = Empleado::findOrFail($empleado);
-        return view('empleados.show', ['empleado'=>$empleado]);
+        $empleado = Empleado::findOrFail($empleado->legajo_emp);
+        return view('panel.empleados.modals', ['empleado'=>$empleado]);
     }
 
     /**
@@ -61,7 +61,7 @@ class EmpleadoController extends Controller
     public function edit(Empleado $empleado)
     {
         $empleado = Empleado::findOrFail($empleado->legajo_emp);
-        return view('empleados.edit', ['empleado'=>$empleado]);
+        return view('panel.empleados.edit', ['empleado'=>$empleado]);
     }
 
     /**
@@ -70,7 +70,7 @@ class EmpleadoController extends Controller
     public function update(Request $request, Empleado $empleado)
     {
         //Busqueda del empleado
-        $empleado = Empleado::findOrFail($empleado);
+        $empleado = Empleado::findOrFail($empleado->legajo_emp);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -93,6 +93,7 @@ class EmpleadoController extends Controller
         //Busqueda del empleado
         // No funciona
         //$empleado = Empleado::findOrFail($empleado);
+        $empleado = Empleado::findOrFail($empleado->legajo_emp);
 
         //Eliminacion del empleado
         $empleado->delete();

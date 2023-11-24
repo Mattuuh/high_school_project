@@ -1,8 +1,6 @@
 @extends('adminlte::page')
 
-@section('plugins.Datatables', true)
-
-@section('title', 'Alumnos')
+@section('title', 'Formas de pago')
 
 @section('content')
     @if(session('status'))
@@ -10,37 +8,27 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="col-12 mb-3">
-        <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
-            Nuevo alumno
-        </a>
-    </div>
-    @if ($alumnos->count())
-        <table class="table table-striped mt-1" id="tabla-alumnos">
+        <a href="{{ route('formas_pago.create') }}" class="btn btn-success">Agregar nuevo forma de pago</a>
+    @if ($formas_pago->count())
+        <table class="table table-striped mt-1">
             <thead class="table-dark">
                 <tr>
-                    <th>Legajo</th>
-                    <th>Nombre y Apellido</th>
-                    <th>Dni</th>
-                    {{-- <th>Cuota</th> --}}
+                    <th>Id</th>
+                    <th>Detalle</th>
                     <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>
-                @foreach ($alumnos as $alumno)
+                @foreach ($formas_pago as $forma_pago)
                     <tr>
-                        <td>{{ $alumno->id }}</td>
-                        <td>{{ $alumno->nombre_alu }} {{ $alumno->apellido_alu }}</td>
-                        <td>{{ $alumno->dni_alu }}</td>
-                        {{-- @can('registro-pago')
-                        <td>{{ $alumno->cuota }}</td>
-                        @endcan --}}
+                        <td>{{ $forma_pago->id }}</td>
+                        <td>{{ $forma_pago->detalle_fp }}</td>
                         <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $alumno }}">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $forma_pago }}">
                                 Ver
                             </button>
-                            <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $alumno->id }}" data-nombre="{{ $alumno->nombre_alu }} {{ $alumno->apellido_alu }}">
+                            <a href="{{ route('formas_pago.edit', $forma_pago->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $forma_pago->id }}" data-nombre="{{ $forma_pago->detalle_fp }}">
                                 Eliminar
                             </button>
                         </td>
@@ -48,9 +36,9 @@
                 @endforeach
             </tbody>
         </table>
-        @include('panel.alumnos.modals')
+        @include('panel.formas_pago.modals')
     @else
-        <h4>No hay alumnos cargados!</h4>
+        <h4>No hay formas de pago cargados!</h4>
     @endif
 @endsection
 
@@ -97,9 +85,9 @@
                 
                 const modal = $(this)
                 const form = $('#formDelete')
-                form.attr('action', `{{ env('APP_URL') }}/panel/alumnos/${id}`);
+                form.attr('action', `{{ env('APP_URL') }}/panel/formas_pago/${id}`);
 
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la alumno "${nombre}"?`)
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la forma de pago "${nombre}"?`)
             })
         });
     </script>

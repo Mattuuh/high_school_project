@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="bg-secondary-subtle min-vh-100 pt-4">
-        <div class="container w-25 pb-2 border rounded-2 bg-light p-3">
-        <h1>Crear nuevo Alumno</h1>
+        <div class="container w-25 pb-2 border rounded-2 bg-light">
+        <h1>Crear un nuevo alumno</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -33,11 +33,12 @@
 
             <label for="telefono_alu" class="form-label">Telefono: </label>
             <input type="number" name="telefono_alu" value="{{ old('telefono_alu') }}" class="form-control">
+            
+            <label for="email_alu" class="form-label">Email: </label>
+            <input type="number" name="email_alu" value="{{ old('email_alu') }}" class="form-control">
 
-            <div class="mt-3">
-                <button type="submit" class="btn btn-success">Guardar alumno</button>
-                <a href="{{ route('alumnos.index') }}" class="btn btn-danger text-end">Cancelar</a>
-            </div>
+            <button type="submit" class="btn btn-success">Guardar alumno</button>
+            <a href="{{ route('alumnos.index') }}" class="btn btn-danger text-end">Cancelar</a>
         </form>
         </div>
     </div>
