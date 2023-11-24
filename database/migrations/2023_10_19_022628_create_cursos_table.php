@@ -16,14 +16,15 @@ return new class extends Migration
             $table->integer('cupos');           
             $table->integer('disponibilidad');                        
             $table->unsignedBigInteger('anio_lectivo')->nullable();
-            $table->unsignedBigInteger('id_horario')->nullable();      
+            $table->unsignedBigInteger('id_horario')->nullable();  
+            $table->integer('grado');
+            $table->string('division');     
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('anio_lectivo')->references('id')
             ->on('periodos_lectivos');
-            $table->foreign('id_horario')->references('id')
-            ->on('horarios');
+            
         });
     }
 

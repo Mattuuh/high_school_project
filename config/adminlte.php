@@ -326,6 +326,19 @@ return [
             'icon' =>  'fas fa-fw fa-user',
             'can' =>  '',
         ],
+        
+        [
+            'text' =>  'Materias',
+            'route' =>  'materias.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
+            'text' =>  'Horas',
+            'route' =>  'horas.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
         [
             'text' =>  'Horarios',
             'route' =>  'horarios.index',
@@ -333,11 +346,6 @@ return [
             'can' =>  '',
         ],
         [
-            'text' =>  'Materias',
-            'route' =>  'materias.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
-        ],[
             'text' =>  'Periodos lectivos',
             'route' =>  'periodos_lectivo.index',
             'icon' =>  'fas fa-fw fa-user',

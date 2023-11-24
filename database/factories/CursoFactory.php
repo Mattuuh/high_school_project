@@ -21,6 +21,8 @@ class CursoFactory extends Factory
             'disponibilidad'=> fake()->numberBetween(1,30),
             'anio_lectivo'=> fake()->numberBetween(1,9),
             'id_horario'=> fake()->numberBetween(1,9),
+            'grado'=>fake()->numberBetween(1,5),
+            'division'=>fake()->randomElement(['a', 'b', 'c', 'd']),            
         ];
     }
 }
