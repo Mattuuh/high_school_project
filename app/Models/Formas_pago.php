@@ -10,7 +10,7 @@ class Formas_pago extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'detalle_fp',
+        'nombre',
     ];
     public function facturas() {
         return $this->hasMany(Factura::class,'id_forma_pago');

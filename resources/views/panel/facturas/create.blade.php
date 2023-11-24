@@ -22,32 +22,34 @@
         <form action="{{ route('facturas.store') }}" method="POST" novalidate class="">
             @csrf
 
-            <label for="dni_alu" class="form-label">Dni: </label>
+            <input type="number" name="id_caja" value="{{ $caja->id }}" hidden>
+
+            <label for="dni" class="form-label">Dni: </label>
             <div class="row">
                 <div class="col-9">
-                    <input list="dniList" id="search" type="text" name="dni_alu" value="{{ old('dni_alu') }}" class="form-control">
-                    <datalist id="dniList"></datalist>
+                    <select id="search" class="form-control form-control-lg p-0" ></select>
+
                 </div>
                 <div class="col-1">
-                    <button class="btn btn-success fs-1">+</button>
+                    <a class="btn btn-success fs-1" href="{{ route('facturas.createalumno') }}">+</a>
                 </div>
             </div>
 
-            <div id="nombre_group" hidden>
-                <label for="nombre_alu" class="form-label">Nombre: </label>
-                <p id="nombre_alu" type="text" name="nombre_alu" value="{{ old('nombre_alu') }}" class="form-control"></p>
+            <div id="name_group" hidden>
+                <label for="name" class="form-label">Nombre: </label>
+                <p id="name" type="text" name="name" value="{{ old('name') }}" class="form-control"></p>
             </div>
 
-            <div id="apellido_group" hidden>
-                <label for="apellido_alu" class="form-label">Apellido : </label>
-                <p id="apellido_alu" type="text" name="apellido_alu" value="{{ old('apellido_alu') }}" class="form-control"></p>
+            <div id="lastname_group" hidden>
+                <label for="lastname" class="form-label">Apellido : </label>
+                <p id="lastname" type="text" name="lastname" value="{{ old('lastname') }}" class="form-control"></p>
             </div>
 
-            <label for="cuota" class="form-label">Cuota: </label>
-            <select name="cuota" id="cuota" class="form-control">
+            <label for="id_cuota" class="form-label">Cuota: </label>
+            <select name="id_cuota" id="cuota" class="form-control">
                 <option value="0" selected>---Seleccionar cuota---</option>
             @foreach ($cuotas as $cuota)
-                <option value="{{ $cuota->mes }}" data-element-data={{ $cuota }}>{{ $cuota->mes }}</option>
+                <option value="{{ $cuota->id }}" data-element-data={{ $cuota }}>{{ $cuota->mes }}</option>
             @endforeach
             </select>
             
@@ -56,13 +58,28 @@
                 <p id="monto" type="text" name="monto" value="{{ old('monto') }}" class="form-control"></p>
             </div>
 
-            <button type="submit" class="btn btn-success">Guardar Factura</button>
-            <a href="{{ route('facturas.index') }}" class="btn btn-danger text-end">Cancelar</a>
+            <label for="forma_pago" class="form-label">Forma de pago: </label>
+            <select name="id_forma_pago" id="id_forma_pago" class="form-control">
+                <option value="" selected>---Seleccionar forma de pago---</option>
+            @foreach ($forma_pagos as $forma_pago)
+                <option value="{{ $forma_pago->id }}">{{ $forma_pago->nombre }}</option>
+            @endforeach
+            </select>
+
+            <div class="row p-2">
+                <button type="submit" class="btn btn-success">Guardar Factura</button>
+                <a href="{{ route('facturas.index') }}" class="btn btn-danger">Cancelar</a>
+            </div>
         </form>
         </div>
     </div>
 @endsection
 
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@stop
+
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('js/facturas.js') }}"></script>
 @stop

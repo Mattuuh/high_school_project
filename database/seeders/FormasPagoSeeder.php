@@ -13,9 +13,9 @@ class FormasPagoSeeder extends Seeder
      */
     public function run(): void
     {
-        Formas_pago::create(['detalle_fp'=>'Efectivo']);
-        Formas_pago::create(['detalle_fp'=>'Tarjeta de Credito']);
-        Formas_pago::create(['detalle_fp'=>'Tarjeta de Debito']);
-        Formas_pago::create(['detalle_fp'=>'Transferencia']);
+        Formas_pago::create(['nombre'=>'Efectivo']);
+        Formas_pago::create(['nombre'=>'Tarjeta de Credito']);
+        Formas_pago::create(['nombre'=>'Tarjeta de Debito']);
+        Formas_pago::create(['nombre'=>'Transferencia']);
     }
 }

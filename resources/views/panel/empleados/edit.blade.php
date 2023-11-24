@@ -39,11 +39,11 @@
             <input type="number" name="telefono" value="{{ old('telefono', $empleado->telefono) }}" class="form-control">
 
             <label for="tipo_emp" class="form-label">Tipo: </label>
-            {{-- <select name="tipo_emp" id="tipo_emp" class="form-control">
+            <select name="tipo_emp" id="tipo_emp" class="form-control">
             @foreach ($tiposEmp as $tipoEmp)
                 <option value="{{ $tipoEmp->id }}">{{ $tipoEmp->nombre_te }}</option>
             @endforeach
-            </select> --}}
+            </select>
             <button type="submit" class="btn btn-success">Guardar Empleado</button>
             <a href="{{ route('empleados.index') }}" class="btn btn-danger text-end">Cancelar</a>
         </form>

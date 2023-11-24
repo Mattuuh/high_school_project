@@ -20,7 +20,19 @@
             @csrf
 
             <label for="mes" class="form-label">Mes: </label>
-            <input type="text" name="mes" value="{{ old('mes') }}" class="form-control">
+            <select name="mes" id="mes" class="form-control">
+                <option value="enero">Enero</option>
+                <option value="febrero">febrero</option>
+                <option value="marzo">marzo</option>
+                <option value="abril">abril</option>
+                <option value="mayo">mayo</option>
+                <option value="junio">junio</option>
+                <option value="julio">julio</option>
+                <option value="agosto">agosto</option>
+                <option value="septiembre">septiembre</option>
+                <option value="septiembre">septiembre</option>
+                <option value="septiembre">septiembre</option>
+            </select>
 
             <label for="monto" class="form-label">Monto: </label>
             <input type="text" name="monto" value="{{ old('monto') }}" class="form-control">

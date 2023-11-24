@@ -8,26 +8,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <label for="nombre" class="form-label">Nombre:</label>
-                <p id="nombre" class="form-control"></p>
-                <label for="apellido" class="form-label">Apellido:</label>
-                <p id="apellido" class="form-control"></p>
-                <label for="dni" class="form-label">Dni:</label>
-                <p id="dni" class="form-control"></p>
-                <label for="domicilio" class="form-label">Domicilio:</label>
-                <p id="domicilio" class="form-control"></p>
-                <label for="telefono" class="form-label">Telefono:</label>
-                <p id="telefono" class="form-control"></p>
-                <label for="email" class="form-label">Email:</label>
-                <p id="email" class="form-control"></p>
-                <label for="tipo_emp" class="form-label">Tipo de Empleado:</label>
-                <p id="tipo_emp" class="form-control"></p>
-                @can('')
-                    <label for="fecha_ingreso" class="form-label">Fecha de ingreso:</label>
-                    <p id="fecha_ingreso" class="form-control"></p>
-                    <label for="fecha_egreso" class="form-label">Fecha de egreso:</label>
-                    <p id="fecha_egreso" class="form-control"></p>
-                @endcan
+                <label for="fecha" class="form-label">Fecha:</label>
+                <p id="fecha" class="form-control"></p>
+                <label for="caja" class="form-label">Caja:</label>
+                <p id="caja" class="form-control"></p>
+                <label for="legajo_alu" class="form-label">Alumno:</label>
+                <p id="legajo_alu" class="form-control"></p>
+                <label for="forma_pago" class="form-label">Forma de pago:</label>
+                <p id="forma_pago" class="form-control"></p>
+                <label for="total" class="form-label">Total:</label>
+                <p id="total" class="form-control"></p>
                 
             </div>
             <div class="modal-footer">

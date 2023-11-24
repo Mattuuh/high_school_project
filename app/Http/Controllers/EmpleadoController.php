@@ -73,7 +73,8 @@ class EmpleadoController extends Controller
     public function edit(Empleado $empleado)
     {
         $empleado = Empleado::findOrFail($empleado->legajo_emp);
-        return view('panel.empleados.edit', ['empleado'=>$empleado]);
+        $tiposEmp = Tipos_empleado::all();
+        return view('panel.empleados.edit', compact('empleado','tiposEmp'));
     }
 
     /**

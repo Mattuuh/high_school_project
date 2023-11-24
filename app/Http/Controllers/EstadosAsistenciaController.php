@@ -33,7 +33,7 @@ class EstadosAsistenciaController extends Controller
     {
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'name' => 'required|string|max:10',
         ]);
 
         //Guardado de los datos

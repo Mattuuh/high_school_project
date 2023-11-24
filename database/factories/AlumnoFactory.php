@@ -17,13 +17,12 @@ class AlumnoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre_alu' => fake()->name(),
-            'apellido_alu' => fake()->lastName(),
-            'dni_alu' => fake()->randomNumber(8, true),
-            'domicilio_alu' => fake()->address(),
-            'telefono_alu' => fake()->randomNumber(8, true),
-            'email_alu' => fake()->email(),
-            'fecha_inscrip_alu' => fake()->date(),
+            'nombre' => fake()->name(),
+            'apellido' => fake()->lastName(),
+            'dni' => fake()->randomNumber(8, true),
+            'domicilio' => fake()->address(),
+            'telefono' => fake()->randomNumber(8, true),
+            'email' => fake()->email(),
             'id_curso' => fake()->numberBetween(1,9),
         ];
     }

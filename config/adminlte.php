@@ -306,59 +306,60 @@ return [
             'text' =>  'Facturas',
             'route' =>  'facturas.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'registro_pago',
         ],
         [
             'text' =>  'Cuotas',
             'route' =>  'cuotas.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
         [
             'text' =>  'Alumnos',
             'route' =>  'alumnos.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'registro_alumno',
         ],
         [
             'text' =>  'Empleados',
             'route' =>  'empleados.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
-        [
-            'text' =>  'Estados de asistencia',
-            'route' =>  'estados_asistencia.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
-        ],
+        // [
+        //     'text' =>  'Estados de asistencia',
+        //     'route' =>  'estados_asistencia.index',
+        //     'icon' =>  'fas fa-fw fa-user',
+        //     'can' =>  'registro_alumno',
+        // ],
         [
             'text' =>  'Formas de pago',
             'route' =>  'formas_pago.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
+        // [
+        //     'text' =>  'Horarios',
+        //     'route' =>  'horarios.index',
+        //     'icon' =>  'fas fa-fw fa-user',
+        //     'can' =>  'admin',
+        // ],
+        // [
+        //     'text' =>  'Materias',
+        //     'route' =>  'materias.index',
+        //     'icon' =>  'fas fa-fw fa-user',
+        //     'can' =>  'admin',
+        // ],[
+        //     'text' =>  'Periodos lectivos',
+        //     'route' =>  'periodos_lectivo.index',
+        //     'icon' =>  'fas fa-fw fa-user',
+        //     'can' =>  'admin',
+        // ],
         [
-            'text' =>  'Horarios',
-            'route' =>  'horarios.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
-        ],
-        [
-            'text' =>  'Materias',
-            'route' =>  'materias.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
-        ],[
-            'text' =>  'Periodos lectivos',
-            'route' =>  'periodos_lectivo.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
-        ],[
             'text' =>  'Tipos de empleado',
             'route' =>  'tipos_empleado.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
         [
             'type' => 'sidebar-menu-search',
@@ -376,71 +377,7 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        
     ],
 
     /*
