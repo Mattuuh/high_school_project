@@ -34,6 +34,7 @@
                                 <th>Id</th>
                                 <th>Fecha de Pago</th>
                                 <th>Caja</th>
+                                <th>Detalle</th>
                                 <th>Alumno</th>
                                 <th>Forma de Pago</th>
                                 <th>Total</th>
@@ -44,9 +45,10 @@
                             @foreach ($facturas as $factura)
                                 <tr>
                                     <td>{{ $factura->id }}</td>
-                                    <td>{{ $factura->fecha_pago }}</td>
+                                    <td>{{ $factura->created_at }}</td>
                                     <td>{{ $factura->caja->id }}</td>
-                                    <td>{{ $factura->legajo_alu }}</td>
+                                    <td>{{ $factura->cuota->mes }}</td>
+                                    <td>{{ $factura->alumno->dni_alu }}</td>
                                     <td>{{ $factura->forma_pago->nombre }}</td>
                                     <td>{{ $factura->total }}</td>
                                     <td>

@@ -98,7 +98,6 @@
                 $('#nombre').text(empleadoData.nombre);
                 $('#apellido').text(empleadoData.apellido);
                 $('#dni').text(empleadoData.dni);
-                $('#imagen').imagen(empleadoData.imagen);
                 $('#domicilio').text(empleadoData.domicilio);
                 $('#telefono').text(empleadoData.telefono);
                 $('#email').text(empleadoData.email);

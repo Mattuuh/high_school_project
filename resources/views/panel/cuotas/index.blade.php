@@ -87,7 +87,15 @@
                 $('#mes').text(data.mes);
                 $('#monto').text(data.monto);
                 $('#interes').text(data.interes);
-                //$('#creado').text(data.created_at);
+
+                var fecha = new Date(data.created_at);
+                var dia = fecha.getDate();
+                var mes = fecha.getMonth() + 1;
+                var año = fecha.getFullYear();
+                var horas = fecha.getHours();
+                var minutos = fecha.getMinutes();
+                var fechaFormateada = dia + "/" + mes + "/" + año + " " + horas + ":" + (minutos < 10 ? '0' : '') + minutos;
+                $('#creado').text(fechaFormateada);
             });
         });
 

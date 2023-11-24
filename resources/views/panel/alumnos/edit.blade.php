@@ -20,23 +20,23 @@
         <form action="{{ route('alumnos.update', $alumno->id) }}" method="POST" novalidate>
             @csrf @method('PUT')
 
-            <label for="nombre_alu" class="form-label">Nombre: </label>
-            <input type="text" name="nombre_alu" value="{{ old('nombre_alu') }}" class="form-control">
+            <label for="nombre" class="form-label">Nombre: </label>
+            <input type="text" name="nombre" value="{{ $alumno->nombre }}" class="form-control">
 
-            <label for="apellido_alu" class="form-label">Apellido : </label>
-            <input type="text" name="apellido_alu" value="{{ old('apellido_alu') }}" class="form-control">
+            <label for="apellido" class="form-label">Apellido : </label>
+            <input type="text" name="apellido" value="{{ $alumno->apellido }}" class="form-control">
 
-            <label for="dni_alu" class="form-label">Dni: </label>
-            <input type="number" name="dni_alu" value="{{ old('dni_alu') }}" class="form-control">
+            <label for="dni" class="form-label">Dni: </label>
+            <input type="number" name="dni" value="{{ $alumno->dni }}" class="form-control">
 
-            <label for="domicilio_alu" class="form-label">Domicilio: </label>
-            <input type="text" name="domicilio_alu" value="{{ old('domicilio_alu') }}" class="form-control">
+            <label for="domicilio" class="form-label">Domicilio: </label>
+            <input type="text" name="domicilio" value="{{ $alumno->domicilio }}" class="form-control">
 
-            <label for="telefono_alu" class="form-label">Telefono: </label>
-            <input type="number" name="telefono_alu" value="{{ old('telefono_alu') }}" class="form-control">
+            <label for="telefono" class="form-label">Telefono: </label>
+            <input type="number" name="telefono" value="{{ $alumno->telefono }}" class="form-control">
             
-            <label for="email_alu" class="form-label">Email: </label>
-            <input type="number" name="email_alu" value="{{ old('email_alu') }}" class="form-control">
+            <label for="email" class="form-label">Email: </label>
+            <input type="email" name="email" value="{{ $alumno->email }}" class="form-control">
             
             <button type="submit" class="btn btn-success">Guardar alumno</button>
             <a href="{{ route('alumnos.index') }}" class="btn btn-danger text-end">Cancelar</a>

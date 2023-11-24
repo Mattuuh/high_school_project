@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlumnoRequest;
+use App\Http\Requests\ValidationRequest;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
 
@@ -28,18 +30,16 @@ class AlumnoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AlumnoRequest $request)
     {
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Guardado de los datos
         Alumno::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return back()->with('status','Alumno creado satisfactoriamente!');
+        return redirect()->route('alumnos.index')->with('status','Alumno creado satisfactoriamente!');
     }
 
     /**
@@ -63,15 +63,13 @@ class AlumnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(AlumnoRequest $request, Alumno $alumno)
     {
         //Busqueda del alumno
         $alumno = Alumno::findOrFail($alumno->id);
 
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Actualizacion del alumno
         $alumno->update($validated);

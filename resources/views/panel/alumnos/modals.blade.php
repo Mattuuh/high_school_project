@@ -20,12 +20,6 @@
                 <p id="telefono" class="form-control"></p>
                 <label for="email" class="form-label">Email:</label>
                 <p id="email" class="form-control"></p>
-                @can('')
-                    <label for="fecha_ingreso" class="form-label">Fecha de ingreso:</label>
-                    <p id="fecha_ingreso" class="form-control"></p>
-                    <label for="fecha_egreso" class="form-label">Fecha de egreso:</label>
-                    <p id="fecha_egreso" class="form-control"></p>
-                @endcan
                 
             </div>
             <div class="modal-footer">

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ValidationRequest;
+use App\Http\Requests\AlumnoRequest;
+use App\Http\Requests\FacturaRequest;
+use App\Models\Alumno;
 use App\Models\Caja;
 use App\Models\Cuota;
 use App\Models\Factura;
 use App\Models\Formas_pago;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FacturaController extends Controller
 {
@@ -17,7 +18,7 @@ class FacturaController extends Controller
      */
     public function index()
     {
-        $facturas = Factura::all();
+        $facturas = Factura::whereDate('created_at', now()->format('Y-m-d'));
         $caja = Caja::whereDate('created_at', now()->format('Y-m-d'))->first();
 
         return view('panel.facturas.index', compact('facturas', 'caja'));
@@ -31,18 +32,23 @@ class FacturaController extends Controller
         $cuotas = Cuota::all();
         $forma_pagos = Formas_pago::all();
         $caja = Caja::whereDate('created_at', now()->format('Y-m-d'))->first();
-        //var_dump($caja);die;
         return view('panel.facturas.create', compact('cuotas', 'forma_pagos', 'caja'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ValidationRequest $request)
+    public function store(FacturaRequest $request)
     {
-        var_dump($request->all());die;
+        //var_dump($request->all());die;
         //Validacion de los datos
-        $validated = $request->validated();
+        $validated = $request->all();
+        $monto = Cuota::where('id', $validated['cuota'])->first();
+        $validated['total'] = $monto['monto'];
+        $legajo_alu = Alumno::where('dni', $validated['dni'])->first();
+        $validated['legajo_alu'] = $legajo_alu['id'];
+        $validated['id_cuota'] = $validated['cuota'];
+        //var_dump($validated);die;
 
         //Guardado de los datos
         Factura::create($validated);
@@ -102,5 +108,21 @@ class FacturaController extends Controller
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('facturas.index')->with('status', 'Factura eliminado satifactoriamente!');
+    }
+
+    public function createalumno() {
+        return view('panel.facturas.createalumno');
+    }
+
+    public function storealumno(AlumnoRequest $request)
+    {
+        //Validacion de los datos
+        $validated = $request->validated();
+
+        //Guardado de los datos
+        Alumno::create($validated);
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('facturas.create')->with('status','Alumno creado satisfactoriamente!');
     }
 }

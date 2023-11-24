@@ -30,8 +30,8 @@
                 @foreach ($alumnos as $alumno)
                     <tr>
                         <td>{{ $alumno->id }}</td>
-                        <td>{{ $alumno->nombre_alu }} {{ $alumno->apellido_alu }}</td>
-                        <td>{{ $alumno->dni_alu }}</td>
+                        <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
+                        <td>{{ $alumno->dni }}</td>
                         {{-- @can('registro-pago')
                         <td>{{ $alumno->cuota }}</td>
                         @endcan --}}
@@ -40,7 +40,7 @@
                                 Ver
                             </button>
                             <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $alumno->id }}" data-nombre="{{ $alumno->nombre_alu }} {{ $alumno->apellido_alu }}">
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $alumno->id }}" data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
                                 Eliminar
                             </button>
                         </td>
@@ -79,12 +79,12 @@
     
                 // Puedes actualizar el contenido del modal con los datos del empleado
                 $('#modalTitle').text('Alumno #' + data.id);
-                $('#nombre').text(data.nombre_alu);
-                $('#apellido').text(data.apellido_alu);
-                $('#dni').text(data.dni_alu);
-                $('#domicilio').text(data.domicilio_alu);
-                $('#telefono').text(data.telefono_alu);
-                $('#email').text(data.email_alu);
+                $('#nombre').text(data.nombre);
+                $('#apellido').text(data.apellido);
+                $('#dni').text(data.dni);
+                $('#domicilio').text(data.domicilio = '' ? '-' : data.domicilio);
+                $('#telefono').text(data.telefono);
+                $('#email').text(data.email);
             });
         });
 

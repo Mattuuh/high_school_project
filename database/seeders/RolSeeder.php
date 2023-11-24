@@ -24,7 +24,8 @@ class RolSeeder extends Seeder
 
         // Permisos para cada Rol
         Permission::create(['name' => 'registro_pago'])->assignRole($rol_administrativo, $rol_admin);
-        Permission::create(['name' => 'registro_alumno'])->assignRole($rol_directivo, $rol_admin);
+        Permission::create(['name' => 'admin'])->assignRole($rol_admin);
+        Permission::create(['name' => 'registro_alumno'])->assignRole($rol_directivo, $rol_admin, $rol_preceptor);
         
         //Permission::create(['name' => 'lista_pagos'])->syncRoles([$rol_vendedor, $rol_cliente]);
 

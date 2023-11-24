@@ -22,7 +22,7 @@
                 @foreach ($formas_pago as $forma_pago)
                     <tr>
                         <td>{{ $forma_pago->id }}</td>
-                        <td>{{ $forma_pago->detalle_fp }}</td>
+                        <td>{{ $forma_pago->nombre }}</td>
                         <td>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $forma_pago }}">
                                 Ver

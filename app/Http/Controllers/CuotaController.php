@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CuotaRequest;
 use App\Models\Cuota;
 use Illuminate\Http\Request;
 
@@ -28,12 +29,10 @@ class CuotaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CuotaRequest $request)
     {
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Guardado de los datos
         Cuota::create($validated);
@@ -63,15 +62,13 @@ class CuotaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cuota $cuota)
+    public function update(CuotaRequest $request, Cuota $cuota)
     {
         //Busqueda del cuota
-        $cuota = Cuota::findOrFail($cuota);
+        $cuota = Cuota::findOrFail($cuota->id);
 
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Actualizacion del cuota
         $cuota->update($validated);

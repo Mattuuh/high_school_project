@@ -16,7 +16,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('alumnos.store') }}" method="POST" novalidate class="">
+        <form action="{{ route('facturas.storealumno') }}" method="POST" novalidate class="">
             @csrf
 
             <label for="nombre" class="form-label">Nombre: </label>

@@ -22,9 +22,9 @@ class ValidationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:50',
-            'apellido' => 'required|string|max:50',
-            'dni' => 'required|numeric|min:7',
+            'nombre' => 'string|max:50',
+            'apellido' => 'string|max:100',
+            'dni' => 'numeric|min:7',
             'domicilio' => 'max:50',
             'telefono' => 'numeric|min:10',
             'email' => 'email',
@@ -41,6 +41,9 @@ class ValidationRequest extends FormRequest
             'nombre.required' => 'El nombre es requerido',
             'apellido.required' => 'El apellido es requerido',
             'imagen.image' => 'Coloque un formato correcto',
+            'dni.required' => 'El dni es requerido',
+            'telefono.numeric' => 'El telefono tiene que ser numeros',
+            'email.email' => 'El email tiene que estar en un formato correcto',
         ];
     }
 }
