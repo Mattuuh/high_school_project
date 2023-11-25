@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('apellido');
             $table->integer('dni');
             $table->string('domicilio');
-            $table->unsignedBigInteger('telefono');
-            $table->string('email');       
+            $table->unsignedBigInteger('telefono')->nullable();
+            $table->string('email')->nullable();
+            $table->boolean('habilitado')->default(0);
             $table->unsignedBigInteger('id_curso')->nullable();      
             $table->timestamps();
             $table->softDeletes();

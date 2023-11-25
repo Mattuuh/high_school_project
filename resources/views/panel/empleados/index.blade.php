@@ -1,3 +1,4 @@
+@can('ver_admin')
 @extends('adminlte::page')
 
 @section('plugins.Datatables', true)
@@ -10,6 +11,8 @@
             {{ session('status') }}
         </div>
     @endif
+    
+        
     <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
     <a href="{{ route('exportar-empleados-pdf') }}" class="btn btn-danger" title="PDF" target="_blank">
         <i class="fas fa-file-pdf"></i> PDF
@@ -122,3 +125,4 @@
     </script>
     
 @stop
+@endcan

@@ -14,8 +14,8 @@ class Cuota extends Model
         'monto',
         'interes',
     ];
-    public function detalles_facturas() {
-        return $this->hasMany(Detalles_factura::class,'id_couta');
+    public function detalles_factura() {
+        return $this->hasMany(Detalles_factura::class,'id_cuota');
     }
     public function facturas() {
         return $this->hasMany(Factura::class,'id_cuota');

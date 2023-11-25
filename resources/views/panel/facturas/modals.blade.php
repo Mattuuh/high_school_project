@@ -14,6 +14,8 @@
                 <p id="caja" class="form-control"></p>
                 <label for="legajo_alu" class="form-label">Alumno:</label>
                 <p id="legajo_alu" class="form-control"></p>
+                <label for="mes" class="form-label">Mes:</label>
+                <p id="mes" class="form-control"></p>
                 <label for="forma_pago" class="form-label">Forma de pago:</label>
                 <p id="forma_pago" class="form-control"></p>
                 <label for="total" class="form-label">Total:</label>
@@ -21,9 +23,9 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">
-                    Cancelar
-                </button>
+                <a href="{{ route('factura-pdf', $factura->id) }}" class="btn btn-danger" title="PDF" target="_blank">
+                    <i class="fas fa-file-pdf"> Imprimir</i>
+                </a>
             </div>
         </div>
     </div>

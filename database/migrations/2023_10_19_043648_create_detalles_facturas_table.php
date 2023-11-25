@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalles_facturas', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('n_factura');
             $table->unsignedBigInteger('id_cuota');
             $table->float('subtotal');               

@@ -23,17 +23,10 @@
             @csrf
 
             <input type="number" name="id_caja" value="{{ $caja->id }}" hidden>
+            <input type="text" name="created_at" value="{{ now() }}" hidden>
 
             <label for="dni" class="form-label">Dni: </label>
-            <div class="row">
-                <div class="col-9">
-                    <select id="search" class="form-control form-control-lg p-0" ></select>
-
-                </div>
-                <div class="col-1">
-                    <a class="btn btn-success fs-1" href="{{ route('facturas.createalumno') }}">+</a>
-                </div>
-            </div>
+            <select id="search" name="legajo_alu" class="form-control form-control-lg"></select>
 
             <div id="name_group" hidden>
                 <label for="name" class="form-label">Nombre: </label>
@@ -47,10 +40,15 @@
 
             <label for="id_cuota" class="form-label">Cuota: </label>
             <select name="id_cuota" id="cuota" class="form-control">
-                <option value="0" selected>---Seleccionar cuota---</option>
-            @foreach ($cuotas as $cuota)
-                <option value="{{ $cuota->id }}" data-element-data={{ $cuota }}>{{ $cuota->mes }}</option>
-            @endforeach
+                @if ($cuotas != null)
+                    <option value="0" selected>---Seleccionar cuota---</option>
+                    @foreach ($cuotas as $cuota)
+                    <option value="{{ $cuota->id }}" data-element-data={{ $cuota }}>{{ $cuota->mes }}</option>
+                    @endforeach
+                @else
+                    <option value="0" selected>Todas las cuotas estan pagadas</option>
+                @endif
+                
             </select>
             
             <div id="monto_group" hidden>

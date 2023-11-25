@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CuotaRequest;
+use App\Models\Alumno;
 use App\Models\Cuota;
+use App\Models\Detalles_factura;
+use App\Models\Factura;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class CuotaController extends Controller
 {
@@ -13,9 +19,10 @@ class CuotaController extends Controller
      */
     public function index()
     {
-        $cuotas = Cuota::all();
-
-        return view('panel.cuotas.index', compact('cuotas'));
+        $cuotas = Cuota::all(); // WHERE id_factura = factura.id
+        $alumnos = Alumno::select('id','nombre','apellido','dni','habilitado')->get(); //WHERE id = factura.legajo_alu AND
+        //$alumnos = Alumno::all();
+        return view('panel.cuotas.index', compact('cuotas', 'alumnos'));
     }
 
     /**
@@ -46,8 +53,8 @@ class CuotaController extends Controller
      */
     public function show(Cuota $cuota)
     {
-        $cuota = Cuota::findOrFail($cuota);
-        return view('panel.cuotas.show', ['cuota'=>$cuota]);
+        $cuota = Cuota::findOrFail($cuota->id);
+        return view('panel.cuotas.modals', compact('cuota'));
     }
 
     /**
@@ -90,5 +97,71 @@ class CuotaController extends Controller
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('cuotas.index')->with('status', 'Cuota eliminado satifactoriamente!');
+    }
+    public function filtroalumno(Alumno $alumno) {
+        $alumno = Alumno::findOrFail($alumno->id);
+        /* $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        foreach ($facturas as $factura) {
+            $detalleF[] = Detalles_factura::where('id_factura', $factura->id)->get(); // WHERE id_factura == factura.id
+        }
+        
+        foreach ($detalleF as $detalle) {
+            $cuotasPag[] = Cuota::find('id', $detalle->id_cuota);
+            $cuotasImpag[] = Cuota::where('id', '!=', $detalle->id_cuota)->get();
+        } */
+        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+
+        if ($facturas->count() > 0) {
+            foreach ($facturas as $factura) {
+                // Utiliza find para obtener una cuota por su ID
+                $cuotasPag = Cuota::where('id',$factura->id_cuota)->get();
+    
+                // Utiliza where para obtener cuotas diferentes a la ID especificada
+                $cuotasImpag = Cuota::where('id', '!=', $factura->id_cuota)->get();
+                $cuotasImpag = $cuotasImpag->count() > 0 ? $cuotasImpag : null;
+            }
+        } else {
+            $cuotasPag = null;
+            $cuotasImpag = Cuota::all();
+        }
+        /* var_dump($cuotasPag);die;
+        var_dump($cuotasImpag);die; */
+
+        return view('panel.cuotas.filtroalumno', compact('alumno', 'cuotasPag', 'cuotasImpag'));
+    }
+    public function cuotasPagPDF(Alumno $alumno) {
+        $alumno = Alumno::findOrFail($alumno->id);
+        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+
+        if ($facturas->count() > 0) {
+            foreach ($facturas as $factura) {
+                $cuotas = Cuota::where('id',$factura->id_cuota)->get();
+            }
+        } else {
+            $cuotas = null;
+        }
+        $pdf = Pdf::loadView('panel.cuotas.pdf_cuotas_pag', compact('cuotas', 'alumno'));
+        // renderizamos la vista
+        $pdf->render();
+        // visualizaremos el pdf en el navegador
+        return $pdf->stream('cuotas.pdf');
+    }
+    public function cuotasImpPDF(Alumno $alumno) {
+        $alumno = Alumno::findOrFail($alumno->id);
+        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+
+        if ($facturas->count() > 0) {
+            foreach ($facturas as $factura) {
+                $cuotas = Cuota::where('id', '!=', $factura->id_cuota)->get();
+            }
+        } else {
+            $cuotas = Cuota::all();
+        }
+        // capturamos la vista y los datos que enviaremos a la misma
+        $pdf = Pdf::loadView('panel.cuotas.pdf_cuotas_imp', compact('cuotas', 'alumno'));
+        // renderizamos la vista
+        $pdf->render();
+        // visualizaremos el pdf en el navegador
+        return $pdf->stream('cuotas.pdf');
     }
 }

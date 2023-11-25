@@ -26,8 +26,10 @@ Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('pe
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
+Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
 Route::post('facturas/storealumno', [FacturaController::class, 'storealumno'])->name('facturas.storealumno');
 Route::get('facturas/createalumno', [FacturaController::class, 'createalumno'])->name('facturas.createalumno');
+Route::post('obtenerCuotas', [FacturaController::class, 'obtenerCuotas']);
 Route::resource('facturas', FacturaController::class)->names('facturas');
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
@@ -35,3 +37,10 @@ Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.
 
 Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
 Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');
+
+// Facturas
+Route::get('/factura-pdf/{factura}', [FacturaController::class, 'facturaPDF'])->name('factura-pdf');
+
+// Cuotas
+Route::get('/cuotas-pag-pdf/{alumno}', [CuotaController::class, 'cuotasPagPDF'])->name('cuotas-pag-pdf');
+Route::get('/cuotas-imp-pdf/{alumno}', [CuotaController::class, 'cuotasImpPDF'])->name('cuotas-imp-pdf');

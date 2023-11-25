@@ -8,7 +8,7 @@ let configurationDataTable = {
 	select: false,
     searching: true,
 	pageLength: 10,
-	lengthMenu: [[5,10,20,-1],[5,10,20,'Todos']], 
+	lengthMenu: [[5,10,20,-1],[5,10,20,'Todos']],
 	language: {
 		"sProcessing": "Procesando...",
 		"sLengthMenu": "Mostrar _MENU_ registros",
@@ -35,6 +35,9 @@ let configurationDataTable = {
 			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 		}
 	},
+	columnDefs: [
+		{'orderable': false, 'targets': [3,4]}
+	]
 }
 
 $(function() {

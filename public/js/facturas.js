@@ -1,3 +1,49 @@
+let configurationDataTable = {
+    responsive: true,
+	autoWidth: false,
+	paging: true,
+	destroy: true,
+	deferRender: false,
+	bLengthChange: true,
+	select: false,
+    searching: true,
+	pageLength: 10,
+	lengthMenu: [[5,10,20,-1],[5,10,20,'Todos']],
+	language: {
+		"sProcessing": "Procesando...",
+		"sLengthMenu": "Mostrar _MENU_ registros",
+		"sZeroRecords": "No se encontraron resultados",
+		"sEmptyTable": "Ningún dato disponible en esta tabla",
+		"sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		"sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+		"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+		"sInfoPostFix": "",
+		"sSearch": "Buscar:",
+		"search": "_INPUT_",
+		"searchPlaceholder": "...",
+		"sUrl": "",
+		"sInfoThousands": ",",
+		"sLoadingRecords": "Cargando...",
+		"oPaginate": {
+			"sFirst": "Primero",
+			"sLast": "Último",
+			"sNext": "Siguiente",
+			"sPrevious": "Anterior"
+		},
+		"oAria": {
+			"sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		}
+	},
+	columnDefs: [
+		{'orderable': false, 'targets': [2,5,7]}
+	]
+}
+
+$(function() {
+    table = $('#tabla-facturas').DataTable(configurationDataTable);
+});
+
 $(document).ready(function() {
     $('#search').select2({
         ajax: {
@@ -39,56 +85,32 @@ $(document).ready(function() {
         }
     });
 
+    $('#search').change(function() {
+        // Obtén el valor seleccionado
+        var legajo_alu = $(this).val();
 
-    // $('#search').on('input', function() {
-    //     var searchTerm = $(this).val();
+        // Realiza una solicitud AJAX al servidor para obtener las opciones relevantes para el segundo select
+        $.ajax({
+            url: '/factura/obtenerCuotas', // Reemplaza con la URL de tu controlador
+            method: 'POST', // Puedes ajustar el método según tus necesidades
+            data: { legajo_alu: legajo_alu },
+            success: function(data) {
+                // Limpia las opciones actuales del segundo select
+                $('#cuota').empty();
 
-    //     if (searchTerm.trim() === '') {
-    //         // Limpiar el datalist y cualquier información adicional si el campo está vacío
-    //         $('#dniList').empty();
-    //         $('#nombre_group').attr('hidden', 'hidden');
-    //         $('#apellido_group').attr('hidden', 'hidden');
-    //         return;
-    //     }
+                // Agrega la opción predeterminada
+                $('#cuota').append('<option value="0" selected>---Seleccionar cuota---</option>');
 
-    //     // Realizar la solicitud AJAX a Laravel
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: '/search', // Ruta definida en web.php
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         data: { query: searchTerm },
-    //         success: function(data) {
-    //             // Actualizar el datalist con las opciones recibidas del servidor
-    //             $('#dniList').empty();
-    //             data.forEach(function(item) {
-    //                 var option = $('<option value="' + item.dni + '">');
-    //                 option.attr('data-element-data', JSON.stringify(item));
-    //                 $('#dniList').append(option);
-    //             });
-    //         }
-    //     });
-    // });
-
-    // // Manejar el evento de selección de un elemento del datalist
-    // $('#search').on('change', function() {
-    //     var selectedOption = $('#dniList option[value="' + $(this).val() + '"]');
-    //     var elementDataAttr = selectedOption.attr('data-element-data');
-    //     console.log(elementDataAttr)
-
-    //     // Acceder a otras propiedades y mostrar información en la página
-    //     if (elementDataAttr !== undefined && elementDataAttr !== null) {
-    //         var elementData = JSON.parse(elementDataAttr);
-    //         if (elementData) {
-    //             // Supongamos que tienes un elemento con id "otherInfo" para mostrar información adicional
-    //             $('#name').text(elementData.nombre);
-    //             $('#name_group').removeAttr('hidden');
-    //             $('#lastname').text(elementData.apellido);
-    //             $('#lastname_group').removeAttr('hidden');
-    //         } 
-    //     }
-    // });
+                // Agrega las opciones obtenidas desde el servidor
+                $.each(data, function(index, cuota) {
+                    $('#cuota').append('<option value="' + cuota.id + '" data-element-data=' + JSON.stringify(cuota) + '>' + cuota.mes + '</option>');
+                });
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 
     // Cuota
     $('#cuota').on('change', function() {

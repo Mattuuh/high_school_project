@@ -24,7 +24,7 @@ class EmpleadoFactory extends Factory
             'domicilio' => fake()->address(),
             'telefono' => fake()->randomNumber(8, true),
             'email' => fake()->email(),
-            'tipo_emp' => fake()->numberBetween(1,9),
+            'tipo_emp' => fake()->numberBetween(1,6),
         ];
     }
 }

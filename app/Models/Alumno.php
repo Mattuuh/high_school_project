@@ -15,8 +15,9 @@ class Alumno extends Model
         'dni',
         'domicilio',
         'telefono',
-        'email',        
-        'id_curso',  
+        'email',
+        'habilitado',     
+        'id_curso',
     ];
     // factura -> detalle -> cuota
     public function curso() {

@@ -14,11 +14,6 @@
                 <p id="monto" class="form-control"></p>
                 <label for="interes" class="form-label">Interes:</label>
                 <p id="interes" class="form-control"></p>
-                {{-- @can('') --}}
-                    <label for="creado" class="form-label">Fecha de creación:</label>
-                    <p id="creado" class="form-control"></p>
-                {{-- @endcan --}}
-                
             </div>
         </div>
     </div>

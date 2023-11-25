@@ -312,7 +312,7 @@ return [
             'text' =>  'Cuotas',
             'route' =>  'cuotas.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  'admin',
+            'can' =>  'registro_pago',
         ],
         [
             'text' =>  'Alumnos',
@@ -360,22 +360,6 @@ return [
             'route' =>  'tipos_empleado.index',
             'icon' =>  'fas fa-fw fa-user',
             'can' =>  'admin',
-        ],
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
         ],
         
     ],

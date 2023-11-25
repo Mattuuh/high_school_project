@@ -25,7 +25,6 @@
     
     @if ($facturas->count())
         <div class="col-12">
-            <?php //var_dump($facturas);die; ?>
             <div class="card">
                 <div class="card-body">
                     <table class="table table-striped mt-1 nowrap w-100" id="tabla-facturas">
@@ -48,7 +47,7 @@
                                     <td>{{ $factura->created_at }}</td>
                                     <td>{{ $factura->caja->id }}</td>
                                     <td>{{ $factura->cuota->mes }}</td>
-                                    <td>{{ $factura->alumno->dni_alu }}</td>
+                                    <td>{{ $factura->alumno->dni }}</td>
                                     <td>{{ $factura->forma_pago->nombre }}</td>
                                     <td>{{ $factura->total }}</td>
                                     <td>
@@ -81,7 +80,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
 @stop
 
-
 {{-- Importacion de Archivos JS --}}
 @section('js')
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -101,10 +99,20 @@
     
                 // Puedes actualizar el contenido del modal con los datos del empleado
                 $('#modalTitle').text('Factura #' + data.id);
-                $('#fecha').text(data.fecha_pago);
+
+                var fecha = new Date(data.created_at);
+                var dia = fecha.getDate();
+                var mes = fecha.getMonth() + 1;
+                var año = fecha.getFullYear();
+                var horas = fecha.getHours();
+                var minutos = fecha.getMinutes();
+                var fechaFormateada = dia + "/" + mes + "/" + año + " " + horas + ":" + (minutos < 10 ? '0' : '') + minutos;
+                $('#fecha').text(fechaFormateada);
+                
                 $('#caja').text(data.id_caja);
-                $('#legajo_alu').text(data.legajo_alu);
-                $('#forma_pago').text(data.id_forma_pago);
+                $('#legajo_alu').text(data.alumno.dni);
+                $('#mes').text(data.cuota.mes);
+                $('#forma_pago').text(data.forma_pago.nombre);
                 $('#total').text(data.total);
             });
         });

@@ -34,7 +34,7 @@ class FacturaRequest extends FormRequest
         return [
             'id_caja.required' => 'La caja es requerido',
             'legajo_alu.required' => 'El dni de alumno es requerido',
-            'legajo_alu.required' => 'El dni tiene que ser numeros',
+            'legajo_alu.numeric' => 'El dni tiene que ser numeros',
             'id_forma_pago.required' => 'Se require una forma de pago',
             'id_cuota.required' => 'Se require una cuota',
         ];

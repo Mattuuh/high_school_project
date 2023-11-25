@@ -17,7 +17,7 @@ class Tipos_EmpleadoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre_te' => fake()->word()
+            //
         ];
     }
 }

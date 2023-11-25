@@ -29,4 +29,7 @@ class Factura extends Model
     public function cuota() {
         return $this->belongsTo(Cuota::class,'id_cuota');
     }
+    /* public function detalles_factura() {
+        return $this->hasMany(Detalles_factura::class,'n_factura');
+    } */
 }

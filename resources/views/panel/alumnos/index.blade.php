@@ -22,7 +22,7 @@
                     <th>Legajo</th>
                     <th>Nombre y Apellido</th>
                     <th>Dni</th>
-                    {{-- <th>Cuota</th> --}}
+                    <th>Cuota</th>
                     <th>Acciones</th>
                 </tr>    
             </thead>
@@ -32,16 +32,20 @@
                         <td>{{ $alumno->id }}</td>
                         <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
                         <td>{{ $alumno->dni }}</td>
-                        {{-- @can('registro-pago')
-                        <td>{{ $alumno->cuota }}</td>
-                        @endcan --}}
+                        <td>
+                            @if ($alumno->habilitado == 1)
+                            <div class="btn btn-success"><i class="fa fa-check-square"></i></div>
+                            @else
+                            <div class="btn btn-danger"><i class="fa fa-times"></i></div>
+                            @endif
+                            <?php //echo $alumno->habilitado ? '<div class="btn btn-success"><i class="fa fa-check-square"></i></div>' : '<div class="btn btn-danger"><i class="fa fa-times"></i></div>' ?></td>
                         <td>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $alumno }}">
-                                Ver
+                                <i class="fa fa-eye"></i>
                             </button>
                             <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
                             <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $alumno->id }}" data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
-                                Eliminar
+                                <i class="fa fa-trash"></i>
                             </button>
                         </td>
                     </tr>
