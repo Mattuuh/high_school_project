@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Colegio Secundario Divina Misericordia</b>',
+    'logo' => '<b>Colegio Secundario San Juan</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -303,28 +303,34 @@ return [
 
         // Sidebar items:
         [
-            'text' =>  'Facturas',
+            'text' =>  'Facturacion',
             'route' =>  'facturas.index',
-            'icon' =>  'fas fa-fw fa-user',
+            'icon' =>  'fas fa-dollar-sign',
             'can' =>  'registro_pago',
         ],
         [
-            'text' =>  'Cuotas',
+            'text' =>  'Estado de pago',
             'route' =>  'cuotas.index',
-            'icon' =>  'fas fa-fw fa-user',
+            'icon' =>  'fas fa-file-alt',
             'can' =>  'registro_pago',
         ],
         [
-            'text' =>  'Alumnos',
+            'text' =>  'Registro de Alumnos',
             'route' =>  'alumnos.index',
             'icon' =>  'fas fa-fw fa-user',
             'can' =>  'registro_alumno',
         ],
         [
-            'text' =>  'Empleados',
+            'text' =>  'Registro de Empleados',
             'route' =>  'empleados.index',
             'icon' =>  'fas fa-fw fa-user',
             'can' =>  'admin',
+        ],
+        [
+            'text' =>  'Cursos',
+            'route' =>  'cursos.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'ver_alumno',
         ],
         // [
         //     'text' =>  'Estados de asistencia',

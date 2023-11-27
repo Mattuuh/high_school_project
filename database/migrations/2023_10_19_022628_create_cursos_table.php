@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->integer('cupos');           
-            $table->integer('disponibilidad');                        
+            $table->integer('disponibilidad')->default(0);                        
             $table->unsignedBigInteger('anio_lectivo')->nullable();
             $table->unsignedBigInteger('id_horario')->nullable();      
             $table->timestamps();

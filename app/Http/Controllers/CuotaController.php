@@ -166,4 +166,93 @@ class CuotaController extends Controller
         // visualizaremos el pdf en el navegador
         return $pdf->stream('cuotas.pdf');
     }
+    /* public function coutasInformesPDF(Request $request) {
+        $alumnos = Alumno::all();
+        $legajos_alu = $alumnos->pluck('dni')->toArray();
+
+        $operacion = $request['operacion'];
+
+        if ($operacion == 'inscriptos') {
+            $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $alumnos_inscriptos = $facturas_ins;
+            
+            // capturamos la vista y los datos que enviaremos a la misma
+            $pdf = Pdf::loadView('panel.cuotas.pdf_inscriptos', compact('alumnos_inscriptos'));
+            // renderizamos la vista
+            $pdf->render();
+            // visualizaremos el pdf en el navegador
+            return $pdf->stream('inscriptos.pdf');
+        } 
+        elseif ($operacion == 'no_inscriptos') {
+            $facturas_no_ins = Factura::select('legajo_alu')->whereNotIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $alumnos_no_inscriptos = $facturas_no_ins;
+            
+            // capturamos la vista y los datos que enviaremos a la misma
+            $pdf = Pdf::loadView('panel.cuotas.pdf_no_inscriptos', compact('alumnos_no_inscriptos'));
+            // renderizamos la vista
+            $pdf->render();
+            // visualizaremos el pdf en el navegador
+            return $pdf->stream('no_inscriptos.pdf');
+        } else {
+            $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $alumnos_inscriptos = $facturas_ins;
+
+            $facturas_no_ins = Factura::select('legajo_alu')->whereNotIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $alumnos_no_inscriptos = $facturas_no_ins;
+
+            // capturamos la vista y los datos que enviaremos a la misma
+            $pdf = Pdf::loadView('panel.cuotas.pdf_ins_y_no_ins', compact('alumnos_inscriptos', 'alumnos_no_inscriptos'));
+            // renderizamos la vista
+            $pdf->render();
+            // visualizaremos el pdf en el navegador
+            return $pdf->stream('ins_y_no_ins.pdf');
+        }
+    } */
+    public function informeIncriptosPDF() {
+        $alumnos = Alumno::all();
+        $legajos_alu = $alumnos->pluck('id')->toArray();
+        $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+        $alumnos_inscriptos = $facturas_ins->pluck('legajo_alu')->toArray();
+        $alumnos = Alumno::whereIn('id',$alumnos_inscriptos)->orderBy('apellido','asc')->get();
+        
+        // capturamos la vista y los datos que enviaremos a la misma
+        $pdf = Pdf::loadView('panel.cuotas.pdf_inscriptos', compact('alumnos'));
+        // renderizamos la vista
+        $pdf->render();
+        // visualizaremos el pdf en el navegador
+        return $pdf->stream('inscriptos.pdf');
+    }
+    public function informeNoInscriptosPDF() {
+        $alumnos = Alumno::all();
+        $legajos_alu = $alumnos->pluck('id')->toArray();
+        $facturas_no_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->get();
+        $facturas_no_ins = Alumno::whereNotIn('id',$facturas_no_ins)->orderBy('apellido','asc')->get();
+        $alumnos_no_inscriptos = $facturas_no_ins;
+        
+        // capturamos la vista y los datos que enviaremos a la misma
+        $pdf = Pdf::loadView('panel.cuotas.pdf_no_inscriptos', compact('alumnos_no_inscriptos'));
+        // renderizamos la vista
+        $pdf->render();
+        // visualizaremos el pdf en el navegador
+        return $pdf->stream('no_inscriptos.pdf');
+    }
+    public function informeInsNoInsPDF() {
+        $alumnos = Alumno::all();
+        $legajos_alu = $alumnos->pluck('id')->toArray();
+        
+        $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+        $alumnos_inscriptos = $facturas_ins->pluck('legajo_alu')->toArray();
+        $alumnos_inscriptos = Alumno::whereIn('id',$alumnos_inscriptos)->orderBy('apellido','asc')->get();
+
+        $facturas_no_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->get();
+        $facturas_no_ins = Alumno::whereNotIn('id',$facturas_no_ins)->orderBy('apellido','asc')->get();
+        $alumnos_no_inscriptos = $facturas_no_ins;
+
+        // capturamos la vista y los datos que enviaremos a la misma
+        $pdf = Pdf::loadView('panel.cuotas.pdf_ins_no_ins', compact('alumnos_inscriptos', 'alumnos_no_inscriptos'));
+        // renderizamos la vista
+        $pdf->render();
+        // visualizaremos el pdf en el navegador
+        return $pdf->stream('ins_y_no_ins.pdf');
+    }
 }

@@ -31,9 +31,7 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->all();
 
         //Guardado de los datos
         Curso::create($validated);
@@ -66,12 +64,10 @@ class CursoController extends Controller
     public function update(Request $request, Curso $curso)
     {
         //Busqueda del curso
-        $curso = Curso::findOrFail($curso);
+        $curso = Curso::findOrFail($curso->id);
 
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->all();
 
         //Actualizacion del curso
         $curso->update($validated);

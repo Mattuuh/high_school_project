@@ -36,7 +36,7 @@
 
 <div class="ticket">
     <div class="header">
-        <h3>Colegio San Juan de las Flores</h3>
+        <h3>Colegio San Juan</h3>
         <p>Desde 2013</p>
     </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AlumnoRequest;
 use App\Http\Requests\ValidationRequest;
 use App\Models\Alumno;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
@@ -24,7 +25,8 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        return view('panel.alumnos.create');
+        $cursos = Curso::all();
+        return view('panel.alumnos.create', compact('cursos'));
     }
 
     /**
@@ -92,25 +94,4 @@ class AlumnoController extends Controller
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('alumnos.index')->with('status', 'Alumno eliminado satifactoriamente!');
     }
-
-    public function graficosProductosxCategoria()
-    {
-        // Si se hace una peticion AJAX
-        if (request()->ajax()) {
-            $labels = [];
-            $counts = [];
-            $anio = Alumno::get();
-            foreach ($anio as $anio) {
-                $labels[] = $anio->nombre;
-                $counts[] = Alumno::where('categoria_id', $anio->id)->count();
-            }
-            $response = [
-                'success' => true,
-                'data' => [$labels, $counts]
-            ];
-            return json_encode($response);
-        }
-        return view('panel.vendedor.lista_productos.graficos_productos');
-    }
-
 }

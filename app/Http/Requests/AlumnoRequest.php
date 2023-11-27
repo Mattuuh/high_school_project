@@ -28,6 +28,7 @@ class AlumnoRequest extends FormRequest
             'domicilio' => 'sometimes|max:50',
             'telefono' => 'sometimes|nullable|min:10',
             'email' => 'sometimes|nullable|email',
+            'id_curso' => 'numeric',
         ];
     }
 
@@ -48,6 +49,7 @@ class AlumnoRequest extends FormRequest
             'telefono.numeric' => 'El telefono tiene que ser numeros',
             'telefono.min' => 'El telefono tiene que tener un minimo de 10 caracteres',
             'email.email' => 'El email tiene que estar en un formato correcto',
+            'id_curso.numerix' => 'El curso tiene que estar seleccionado'
         ];
     }
 }

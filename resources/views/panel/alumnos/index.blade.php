@@ -23,7 +23,7 @@
                     <th>Legajo</th>
                     <th>Nombre y Apellido</th>
                     <th>Dni</th>
-                    {{-- <th>Cuota</th> --}}
+                    <th>Curso</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -33,9 +33,7 @@
                         <td>{{ $alumno->id }}</td>
                         <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
                         <td>{{ $alumno->dni }}</td>
-                        {{-- @can('registro-pago')
-                        <td>{{ $alumno->cuota }}</td>
-                        @endcan --}}
+                        <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre ?></td>
                         <td>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                 data-target="#showModal" data-bs-dato="{{ $alumno }}">

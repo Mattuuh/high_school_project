@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidationRequest;
 use App\Models\Caja;
+use App\Models\Factura;
 use Illuminate\Http\Request;
 
 class CajaController extends Controller
@@ -95,6 +96,12 @@ class CajaController extends Controller
     public function close(Caja $caja)
     {
         $caja = Caja::findOrFail($caja->id);
+        $facturas = Factura::where('created_at', now()->format('Y-m-d'))->get();
+        $monto_cierre = 0;
+        foreach ($facturas as $factura) {
+            $monto_cierre += $factura->total;
+        }
+        $caja['monto_cierre'] = $monto_cierre;
         return view('panel.cajas.close', ['caja'=>$caja]);
     }
 }

@@ -37,6 +37,16 @@
             <label for="email" class="form-label">Email: </label>
             <input type="email" name="email" value="{{ old('email') }}" class="form-control">
 
+            <label for="curso" class="form-label">Curso </label>
+            <select name="id_curso" id="curso" class="form-control">
+                <option value="0" selected>---Seleccionar curso---</option>
+                @foreach ($cursos as $curso)
+                <option value="{{ $curso->id }}">{{ $curso->nombre }}</option>
+                @endforeach
+            </select>
+            <input type="curso" name="curso" value="{{ old('curso') }}" class="form-control">
+
+
             <button type="submit" class="btn btn-success">Guardar alumno</button>
             <a href="javascript:history.back()" class="btn btn-danger text-end">Cancelar</a>
         </form>

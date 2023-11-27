@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informe de Cuotas Impagadas</title>
+    <title>Informe de Alumnos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -36,18 +36,23 @@
 
 <div class="ticket">
     <div class="header">
-        <h3>Colegio San Juan</h3>
+        <h3>Colegio San Juan de las Flores</h3>
         <p>Desde 2013</p>
     </div>
 
     <div class="info">
-        <p><strong>Alumno:</strong> {{ $alumno->nombre }} {{ $alumno->apellido }}</p>
-        <p><b>Dni:</b> {{ $alumno->dni }}</p>
         <p><strong>Fecha de Informe:</strong> {{ now()->format('d/m/Y H:i:s') }}</p>
-        <p><strong>Cuotas impagas:</strong></p>
+        <p><strong>Alumnos habilitados:</strong></p>
         <ul>
-            @foreach ($cuotas as $cuota)
-                <li>{{ $cuota->mes }}</li>
+            @foreach ($alumnos_inscriptos as $alumno)
+                <li>{{ $alumno->apellido }} {{ $alumno->nombre }}</li>
+            @endforeach
+        </ul>
+        
+        <p><strong>Alumnos pendientes de pago:</strong></p>
+        <ul>
+            @foreach ($alumnos_no_inscriptos as $alumno)
+                <li>{{ $alumno->apellido }} {{ $alumno->nombre }}</li>
             @endforeach
         </ul>
     </div>

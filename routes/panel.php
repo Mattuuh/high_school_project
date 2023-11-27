@@ -10,6 +10,7 @@ use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CuotaController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Requests\AlumnoRequest;
 use App\Models\Alumno;
@@ -34,6 +35,7 @@ Route::post('/obtenerCuotas', [FacturaController::class, 'obtenerCuotas'])->name
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
 Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');
+Route::resource('cursos', CursoController::class)->names('cursos');
 
 
 
@@ -46,3 +48,6 @@ Route::get('/factura-pdf/{factura}', [FacturaController::class, 'facturaPDF'])->
 // Cuotas
 Route::get('/cuotas-pag-pdf/{alumno}', [CuotaController::class, 'cuotasPagPDF'])->name('cuotas-pag-pdf');
 Route::get('/cuotas-imp-pdf/{alumno}', [CuotaController::class, 'cuotasImpPDF'])->name('cuotas-imp-pdf');
+Route::get('/informe-inscriptos-pdf', [CuotaController::class, 'informeIncriptosPDF'])->name('informe-inscriptos-pdf');
+Route::get('/informe-no-inscriptos-pdf', [CuotaController::class, 'informeNoInscriptosPDF'])->name('informe-no-inscriptos-pdf');
+Route::get('/infrome-ins-no-inscriptos-pdf', [CuotaController::class, 'informeInsNoInsPDF'])->name('infrome-ins-no-inscriptos-pdf');

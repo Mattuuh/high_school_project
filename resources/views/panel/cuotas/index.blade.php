@@ -11,6 +11,10 @@
         </div>
     @endif
     {{-- <a href="{{ route('cuotas.create') }}" class="btn btn-success">Agregar nuevo</a> --}}
+    <a href="{{ route('informe-inscriptos-pdf') }}" class="btn btn-info" title="PDF" target="_blank"><i class="fas fa-file-pdf"></i> PDF Habilitados</a>
+    <a href="{{ route('informe-no-inscriptos-pdf') }}" class="btn btn-info" title="PDF" target="_blank"><i class="fas fa-file-pdf"></i> PDF Pedientes</a>
+    <a href="{{ route('infrome-ins-no-inscriptos-pdf') }}" class="btn btn-info" title="PDF" target="_blank"><i class="fas fa-file-pdf"></i> PDF Habilitados y Pendientes</a>
+
     @if ($alumnos->count())
         <div class="col-12">
             <div class="card">

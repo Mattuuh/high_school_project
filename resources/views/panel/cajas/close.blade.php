@@ -34,7 +34,7 @@
             <input type="text" name="monto_inicial" value="{{ $caja->monto_inicial }}" class="form-control" readonly>
 
             <label for="monto_cierre" class="form-label">Monto cierre: </label>
-            <input type="text" name="monto_cierre" value="{{ old('monto_cierre') }}" class="form-control">
+            <input type="text" name="monto_cierre" value="{{ $caja->monto_cierre }}" class="form-control" readonly>
 
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="{{ route('facturas.index') }}" class="btn btn-danger text-end">Cancelar</a>

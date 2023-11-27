@@ -18,7 +18,6 @@ class CursoFactory extends Factory
     {
         return [
             'cupos' => fake()->numberBetween(20,30),
-            'disponibilidad'=> fake()->numberBetween(1,30),
             'anio_lectivo'=> fake()->numberBetween(1,9),
             'id_horario'=> fake()->numberBetween(1,9),
         ];

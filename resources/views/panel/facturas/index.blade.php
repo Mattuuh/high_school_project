@@ -51,7 +51,7 @@
                                     <td>{{ $factura->created_at }}</td>
                                     <td>{{ $factura->caja->id }}</td>
                                     <td>{{ $factura->cuota->mes }}</td>
-                                    <td>{{ $factura->alumno->dni }}</td>
+                                    <td>{{ $factura->alumno->dni }} </td>
                                     <td>{{ $factura->forma_pago->nombre }}</td>
                                     <td>{{ $factura->total }}</td>
                                     <td>
