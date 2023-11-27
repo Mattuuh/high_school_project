@@ -92,4 +92,25 @@ class AlumnoController extends Controller
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('alumnos.index')->with('status', 'Alumno eliminado satifactoriamente!');
     }
+
+    public function graficosProductosxCategoria()
+    {
+        // Si se hace una peticion AJAX
+        if (request()->ajax()) {
+            $labels = [];
+            $counts = [];
+            $anio = Alumno::get();
+            foreach ($anio as $anio) {
+                $labels[] = $anio->nombre;
+                $counts[] = Alumno::where('categoria_id', $anio->id)->count();
+            }
+            $response = [
+                'success' => true,
+                'data' => [$labels, $counts]
+            ];
+            return json_encode($response);
+        }
+        return view('panel.vendedor.lista_productos.graficos_productos');
+    }
+
 }

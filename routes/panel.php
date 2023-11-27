@@ -11,6 +11,8 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\FacturaController;
+use App\Http\Requests\AlumnoRequest;
+use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +35,8 @@ Route::post('obtenerCuotas', [FacturaController::class, 'obtenerCuotas']);
 Route::resource('facturas', FacturaController::class)->names('facturas');
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
+Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');
+
 
 
 Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');

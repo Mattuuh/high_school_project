@@ -5,7 +5,7 @@
 @section('title', 'Alumnos')
 
 @section('content')
-    @if(session('status'))
+    @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
         </div>
@@ -15,6 +15,7 @@
             Nuevo alumno
         </a>
     </div>
+    
     @if ($alumnos->count())
         <table class="table table-striped mt-1" id="tabla-alumnos">
             <thead class="table-dark">
@@ -22,9 +23,9 @@
                     <th>Legajo</th>
                     <th>Nombre y Apellido</th>
                     <th>Dni</th>
-                    <th>Cuota</th>
+                    {{-- <th>Cuota</th> --}}
                     <th>Acciones</th>
-                </tr>    
+                </tr>
             </thead>
             <tbody>
                 @foreach ($alumnos as $alumno)
@@ -32,20 +33,19 @@
                         <td>{{ $alumno->id }}</td>
                         <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
                         <td>{{ $alumno->dni }}</td>
+                        {{-- @can('registro-pago')
+                        <td>{{ $alumno->cuota }}</td>
+                        @endcan --}}
                         <td>
-                            @if ($alumno->habilitado == 1)
-                            <div class="btn btn-success"><i class="fa fa-check-square"></i></div>
-                            @else
-                            <div class="btn btn-danger"><i class="fa fa-times"></i></div>
-                            @endif
-                            <?php //echo $alumno->habilitado ? '<div class="btn btn-success"><i class="fa fa-check-square"></i></div>' : '<div class="btn btn-danger"><i class="fa fa-times"></i></div>' ?></td>
-                        <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $alumno }}">
-                                <i class="fa fa-eye"></i>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                data-target="#showModal" data-bs-dato="{{ $alumno }}">
+                                Ver
                             </button>
                             <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $alumno->id }}" data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
-                                <i class="fa fa-trash"></i>
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
+                                data-target="#deleteModal" data-id="{{ $alumno->id }}"
+                                data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
+                                Eliminar
                             </button>
                         </td>
                     </tr>
@@ -75,12 +75,12 @@
     <script src="{{ asset('js/alumnos.js') }}"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Escucha el evento de apertura del modal
-            $('#showModal').on('show.bs.modal', function (event) {
+            $('#showModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var data = button.data('bs-dato');
-    
+
                 // Puedes actualizar el contenido del modal con los datos del empleado
                 $('#modalTitle').text('Alumno #' + data.id);
                 $('#nombre').text(data.nombre);
@@ -92,13 +92,13 @@
             });
         });
 
-        $(document).ready(function(){
+        $(document).ready(function() {
 
-            $('#deleteModal').on('show.bs.modal', function (event) {
+            $('#deleteModal').on('show.bs.modal', function(event) {
                 const button = $(event.relatedTarget) // Button that triggered the modal
                 const id = button.data('id') // Extract info from data-* attributes
                 const nombre = button.data('nombre') // Extract info from data-* attributes
-                
+
                 const modal = $(this)
                 const form = $('#formDelete')
                 form.attr('action', `{{ env('APP_URL') }}/panel/alumnos/${id}`);
