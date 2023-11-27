@@ -11,6 +11,7 @@ use App\Models\Cuota;
 use App\Models\Detalles_factura;
 use App\Models\Factura;
 use App\Models\Formas_pago;
+use DateTime;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -22,6 +23,7 @@ class FacturaController extends Controller
     {
         $facturas = Factura::whereDate('created_at', now()->format('Y-m-d'))->get();
         $caja = Caja::whereDate('created_at', now()->format('Y-m-d'))->first();
+        $caja['closed_at'] = new DateTime($caja->closed_at);
 
         return view('panel.facturas.index', compact('facturas', 'caja'));
     }
@@ -134,11 +136,10 @@ class FacturaController extends Controller
         $facturas = Factura::where('legajo_alu', $alumno->id)->get();
 
         if ($facturas->count() > 0) {
-            foreach ($facturas as $factura) {
-                // Utiliza find para obtener una cuota por su ID
-                $cuotas = Cuota::where('id',$factura->id_cuota)->get();
-                $cuotas = $cuotas->count() > 0 ? $cuotas : null;
-            }
+            $idCuotas = $facturas->pluck('id_cuota')->toArray();
+
+                // Obtener las cuotas excluyendo los id_cuota de las facturas
+                $cuotas = Cuota::whereIn('id', $idCuotas)->get();
         } else {
             $cuotas = Cuota::all();
         }

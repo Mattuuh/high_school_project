@@ -44,7 +44,7 @@
         <p><strong>Alumno:</strong> {{ $alumno->nombre }} {{ $alumno->apellido }}</p>
         <p><b>Dni:</b> {{ $alumno->dni }}</p>
         <p><strong>Fecha de Informe:</strong> {{ now()->format('d/m/Y H:i:s') }}</p>
-        <p><strong>Cuotas pagadas:</strong></p>
+        <p><strong>Cuotas impagas:</strong></p>
         <ul>
             @foreach ($cuotas as $cuota)
                 <li>{{ $cuota->mes }}</li>

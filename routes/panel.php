@@ -29,10 +29,8 @@ Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
 Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
-Route::post('facturas/storealumno', [FacturaController::class, 'storealumno'])->name('facturas.storealumno');
-Route::get('facturas/createalumno', [FacturaController::class, 'createalumno'])->name('facturas.createalumno');
-Route::post('obtenerCuotas', [FacturaController::class, 'obtenerCuotas']);
 Route::resource('facturas', FacturaController::class)->names('facturas');
+Route::post('/obtenerCuotas', [FacturaController::class, 'obtenerCuotas'])->name('obtenerCuotas');
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
 Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');

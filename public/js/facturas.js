@@ -91,7 +91,7 @@ $(document).ready(function() {
 
         // Realiza una solicitud AJAX al servidor para obtener las opciones relevantes para el segundo select
         $.ajax({
-            url: '/factura/obtenerCuotas', // Reemplaza con la URL de tu controlador
+            url: '/obtenerCuotas', // Reemplaza con la URL de tu controlador
             method: 'POST', // Puedes ajustar el método según tus necesidades
             data: { legajo_alu: legajo_alu },
             success: function(data) {
