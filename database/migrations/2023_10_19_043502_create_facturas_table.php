@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreign('id_forma_pago')->references('id')
             ->on('formas_pagos');
             $table->foreign('id_cuota')->references('id')
-            ->on('formas_pagos');
+            ->on('cuotas');
         });
     }
 

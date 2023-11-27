@@ -24,43 +24,17 @@
                 <input id="dni" class="form-control" value="{{ $alumno->dni }}" readonly>
                 <label for="cuotasImpag" class="form-label">Cuotas Impagas:</label>
                 <div class="row">
-                    <div class="col-10">
-                        <select name="cuotasImpag" id="cuotasImpag" class="form-control">
-                            @if ($cuotasImpag != null)
-                                <option value="0" selected>--- Seleccionar opcion ---</option>
-                                @foreach ($cuotasImpag as $cuota)
-                                    <option value="{{ $cuota->id }}">{{ $cuota->mes }}</option>
-                                @endforeach
-                            @else
-                                <option value="0" selected>No hay cuotas impagas</option>
-                            @endif
-                            
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <a href="{{ route('cuotas-imp-pdf', $alumno) }}" class="btn btn-danger" title="PDF" target="_blank">
-                            <i class="fas fa-file-pdf"></i>
+                    <div class="col-12">
+                        <a href="{{ route('cuotas-imp-pdf', $alumno) }}" class="btn btn-info" title="PDF" target="_blank">
+                            <i class="fas fa-file-pdf"></i> Imprimir informe
                         </a>
                     </div>
                 </div>
                 <label for="cuotasPag" class="form-label">Cuotas Pagadas:</label>
                 <div class="row">
-                    <div class="col-10">
-                        <select name="cuotasPag" id="cuotasPag" class="form-control" >
-                            @if ($cuotasPag != null)
-                                <option value="0" selected>--- Seleccionar opcion ---</option>
-                                @foreach ($cuotasPag as $cuota)
-                                    <option value="{{ $cuota->id }}">{{ $cuota->mes }}</option>
-                                @endforeach
-                            @else
-                                <option value="0" selected>No hay cuotas pagadas    </option>
-                            @endif
-                            
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <a href="{{ route('cuotas-pag-pdf', $alumno) }}" class="btn btn-danger" title="PDF" target="_blank">
-                            <i class="fas fa-file-pdf"></i>
+                    <div class="col-12">
+                        <a href="{{ route('cuotas-pag-pdf', $alumno) }}" class="btn btn-info" title="PDF" target="_blank">
+                            <i class="fas fa-file-pdf"></i> Imprimir informe
                         </a>
                     </div>
                 </div>

@@ -109,7 +109,7 @@ class CuotaController extends Controller
             $cuotasPag[] = Cuota::find('id', $detalle->id_cuota);
             $cuotasImpag[] = Cuota::where('id', '!=', $detalle->id_cuota)->get();
         } */
-        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        /* $facturas = Factura::where('legajo_alu', $alumno->id)->get();
 
         if ($facturas->count() > 0) {
             foreach ($facturas as $factura) {
@@ -123,7 +123,7 @@ class CuotaController extends Controller
         } else {
             $cuotasPag = null;
             $cuotasImpag = Cuota::all();
-        }
+        } */
         /* var_dump($cuotasPag);die;
         var_dump($cuotasImpag);die; */
 
@@ -132,11 +132,12 @@ class CuotaController extends Controller
     public function cuotasPagPDF(Alumno $alumno) {
         $alumno = Alumno::findOrFail($alumno->id);
         $facturas = Factura::where('legajo_alu', $alumno->id)->get();
-
+        
         if ($facturas->count() > 0) {
-            foreach ($facturas as $factura) {
-                $cuotas = Cuota::where('id',$factura->id_cuota)->get();
-            }
+            $idCuotas = $facturas->pluck('id_cuota')->toArray();
+
+            // Obtener las cuotas excluyendo los id_cuota de las facturas
+            $cuotas = Cuota::whereIn('id', $idCuotas)->get();
         } else {
             $cuotas = null;
         }
@@ -149,11 +150,12 @@ class CuotaController extends Controller
     public function cuotasImpPDF(Alumno $alumno) {
         $alumno = Alumno::findOrFail($alumno->id);
         $facturas = Factura::where('legajo_alu', $alumno->id)->get();
-
+        
         if ($facturas->count() > 0) {
-            foreach ($facturas as $factura) {
-                $cuotas = Cuota::where('id', '!=', $factura->id_cuota)->get();
-            }
+            $idCuotas = $facturas->pluck('id_cuota')->toArray();
+
+            // Obtener las cuotas excluyendo los id_cuota de las facturas
+            $cuotas = Cuota::whereNotIn('id', $idCuotas)->get();
         } else {
             $cuotas = Cuota::all();
         }
