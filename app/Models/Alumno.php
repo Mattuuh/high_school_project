@@ -26,4 +26,7 @@ class Alumno extends Model
     public function facturas() {
         return $this->hasMany(Factura::class,'legajo_alu');
     }
+    public function asistencia_alumno() {
+        return $this->hasMany(Asistencia_alumno::class,'legajo_alu');
+    }
 }

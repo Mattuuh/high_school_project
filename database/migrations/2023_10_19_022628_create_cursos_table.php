@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('cupos');           
             $table->integer('disponibilidad')->default(0);                        
-            $table->unsignedBigInteger('anio_lectivo')->nullable();
-            $table->unsignedBigInteger('id_horario')->nullable();      
+            $table->unsignedBigInteger('anio_lectivo');
+            $table->unsignedBigInteger('id_horario');      
             $table->timestamps();
             $table->softDeletes();
 

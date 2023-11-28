@@ -12,4 +12,7 @@ class Estados_asistencia extends Model
     protected $fillable = [
         'descripcion_ea',
     ];
+    public function asistencia_alumno() {
+        return $this->hasMany(Asistencia_alumno::class,'id_estado');
+    }
 }

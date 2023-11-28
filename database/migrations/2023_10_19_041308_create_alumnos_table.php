@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('telefono')->nullable();
             $table->string('email')->nullable();
             $table->boolean('habilitado')->default(0);
-            $table->unsignedBigInteger('id_curso')->nullable();      
+            $table->unsignedBigInteger('id_curso');      
             $table->timestamps();
             $table->softDeletes();
 

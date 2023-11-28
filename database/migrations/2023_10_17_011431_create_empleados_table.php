@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('domicilio')->nullable();
             $table->unsignedBigInteger('telefono')->nullable();
             $table->string('email')->nullable();
-            $table->unsignedBigInteger('tipo_emp')->nullable();      
+            $table->unsignedBigInteger('tipo_emp');      
             $table->timestamps();
             $table->softDeletes();
 

@@ -17,6 +17,11 @@
     </div>
     
     @if ($alumnos->count())
+        <label for="filtroSelect">Filtrar por:</label>
+        <select id="filtroSelect">
+        <option value="">Todos</option>
+        <!-- Opciones se llenarán dinámicamente -->
+        </select>
         <table class="table table-striped mt-1" id="tabla-alumnos">
             <thead class="table-dark">
                 <tr>
@@ -104,5 +109,17 @@
                 modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la alumno "${nombre}"?`)
             })
         });
+
+        /* $(document).ready(function() {
+            tabla.column(3).data().unique().sort().each(function(value, index) {
+                $('#filtroSelect').append('<option value="' + value + '">' + value + '</option>');
+            });
+
+            // Manejar el cambio en el select para aplicar el filtro
+            $('#filtroSelect').on('change', function() {
+                var filtroValor = $(this).val();
+                tabla.column(3).search(filtroValor).draw();
+            });
+        }); */
     </script>
 @stop

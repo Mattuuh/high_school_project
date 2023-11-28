@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AlumnoSeeder::class);
         $this->call(CuotaSeeder::class);
         $this->call(FormasPagoSeeder::class);
+        $this->call(EstadosAsistenciaSeeder::class);
         
     }
 }

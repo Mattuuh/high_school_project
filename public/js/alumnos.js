@@ -40,3 +40,15 @@ let configurationDataTable = {
 $(function() {
     table = $('#tabla-alumnos').DataTable(configurationDataTable);
 });
+
+$(document).ready(function() {
+	tabla.column(0).data().unique().sort().each(function(value, index) {
+        $('#filtroSelect').append('<option value="' + value + '">' + value + '</option>');
+    });
+
+      // Manejar el cambio en el select para aplicar el filtro
+    $('#filtroSelect').on('change', function() {
+        var filtroValor = $(this).val();
+        tabla.column(0).search(filtroValor).draw();
+    });
+});
