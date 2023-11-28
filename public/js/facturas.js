@@ -85,16 +85,18 @@ $(document).ready(function() {
         }
     });
 
-    $('#search').change(function() {
+    $('#search').on('change', function() {
         // Obtén el valor seleccionado
         var legajo_alu = $(this).val();
+        console.log('change', legajo_alu);
 
         // Realiza una solicitud AJAX al servidor para obtener las opciones relevantes para el segundo select
         $.ajax({
             url: '/obtenerCuotas', // Reemplaza con la URL de tu controlador
-            method: 'POST', // Puedes ajustar el método según tus necesidades
+            method: 'GET', // Puedes ajustar el método según tus necesidades
             data: { legajo_alu: legajo_alu },
             success: function(data) {
+                console.log('success', data);
                 // Limpia las opciones actuales del segundo select
                 $('#cuota').empty();
 
@@ -107,7 +109,7 @@ $(document).ready(function() {
                 });
             },
             error: function(error) {
-                console.log(error);
+                console.log('error', error);
             }
         });
     });

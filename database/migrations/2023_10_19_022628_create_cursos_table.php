@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->integer('nombre');
+            $table->string('division');
             $table->integer('cupos');           
             $table->integer('disponibilidad')->default(0);                        
             $table->unsignedBigInteger('anio_lectivo');

@@ -332,6 +332,12 @@ return [
             'icon' =>  'fas fa-fw fa-user',
             'can' =>  'ver_alumno',
         ],
+        [
+            'text' =>  'Registro de asistencia',
+            'route' =>  'asistencia_alumno.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'ver_alumno',
+        ],
         // [
         //     'text' =>  'Estados de asistencia',
         //     'route' =>  'estados_asistencia.index',

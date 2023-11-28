@@ -95,9 +95,9 @@ class CajaController extends Controller
     }
     public function close(Caja $caja)
     {
+        $monto_cierre = 0;
         $caja = Caja::findOrFail($caja->id);
         $facturas = Factura::where('created_at', now()->format('Y-m-d'))->get();
-        $monto_cierre = 0;
         foreach ($facturas as $factura) {
             $monto_cierre += $factura->total;
         }

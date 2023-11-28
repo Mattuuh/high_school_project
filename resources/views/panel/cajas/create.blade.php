@@ -30,13 +30,13 @@
             <input type="text" name="apellido" value="{{ auth()->user()->empleados->apellido }}" class="form-control" readonly>
 
             <label for="monto_inicial" class="form-label">Monto inicial: </label>
-            <select name="monto" id="monto_inicial" class="form-control">
+            {{-- <select name="monto" id="monto_inicial" class="form-control">
                 <option value="10000">10000</option>
                 <option value="15000">15000</option>
                 <option value="20000">20000</option>
                 <option value="25000">25000</option>
-            {{-- </select>
-            <input type="number" name="monto_inicial" value="{{ old('monto_inicial') }}" class="form-control"> --}}
+            </select> --}}
+            <input type="number" name="monto_inicial" value="{{ old('monto_inicial') }}" class="form-control">
 
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="{{ route('facturas.index') }}" class="btn btn-danger text-end">Cancelar</a>

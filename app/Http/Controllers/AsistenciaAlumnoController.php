@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
 use App\Models\Asistencia_alumno;
+use App\Models\Estados_asistencia;
 use Illuminate\Http\Request;
 
 class AsistenciaAlumnoController extends Controller
@@ -12,7 +14,10 @@ class AsistenciaAlumnoController extends Controller
      */
     public function index()
     {
-        //
+        $alumnos = Alumno::all();
+        $estados_asistencia = Estados_asistencia::all();
+        
+        return view('panel.asistencia_alumno.index', compact('alumnos', 'estados_asistencia'));
     }
 
     /**
@@ -26,9 +31,9 @@ class AsistenciaAlumnoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        logger($id);
     }
 
     /**

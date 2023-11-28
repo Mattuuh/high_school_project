@@ -29,7 +29,7 @@
                             @foreach ($cursos as $curso)
                                 <tr>
                                     <td>{{ $curso->id }}</td>
-                                    <td>{{ $curso->nombre }}</td>
+                                    <td>{{ $curso->nombre }} {{ $curso->division }}</td>
                                     <td>{{ $curso->cupos }}</td>
                                     <td>{{ $curso->disponibilidad }}</td>
                                     <td>

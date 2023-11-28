@@ -8,12 +8,14 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PeriodosLectivoController;
 use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\AsistenciaAlumnoController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Requests\AlumnoRequest;
 use App\Models\Alumno;
+use App\Models\Asistencia_alumno;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,6 +38,9 @@ Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
 Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');
 Route::resource('cursos', CursoController::class)->names('cursos');
+Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
+Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
+// Route::resource('asistencia_alumno', AsistenciaAlumnoController::class)->names('asistencia_alumno');
 
 
 

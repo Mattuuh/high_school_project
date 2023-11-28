@@ -23,7 +23,10 @@ class FacturaController extends Controller
     {
         $facturas = Factura::whereDate('created_at', now()->format('Y-m-d'))->get();
         $caja = Caja::whereDate('created_at', now()->format('Y-m-d'))->first();
-        $caja['closed_at'] = new DateTime($caja->closed_at);
+        if ($caja != null) {
+            $caja->closed_at = new DateTime($caja->closed_at);
+        }
+        
 
         return view('panel.facturas.index', compact('facturas', 'caja'));
     }

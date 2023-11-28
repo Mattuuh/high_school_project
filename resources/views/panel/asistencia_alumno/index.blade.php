@@ -11,17 +11,17 @@
         </div>
     @endif
     <div class="col-12 mb-3">
-        <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
+        {{-- <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
             Nuevo alumno
-        </a>
+        </a> --}}
     </div>
     
     @if ($alumnos->count())
         <label for="filtroSelect">Filtrar por:</label>
         <select id="filtroSelect" class="form-control">
         <option value="">Todos</option>
-        <!-- Opciones se llenarán dinámicamente -->
         </select>
+
         <table class="table table-striped mt-1" id="tabla-alumnos">
             <thead class="table-dark">
                 <tr>
@@ -40,7 +40,7 @@
                         <td>{{ $alumno->dni }}</td>
                         <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
                         <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                            {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                 data-target="#showModal" data-bs-dato="{{ $alumno }}">
                                 Ver
                             </button>
@@ -49,13 +49,16 @@
                                 data-target="#deleteModal" data-id="{{ $alumno->id }}"
                                 data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
                                 Eliminar
+                            </button> --}}
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaModal" data-bs-dato="{{ $alumno }}">
+                                Asistencia
                             </button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        @include('panel.alumnos.modals')
+        @include('panel.asistencia_alumno.modals')
     @else
         <h4>No hay alumnos cargados!</h4>
     @endif
@@ -75,7 +78,7 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
     {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
-    <script src="{{ asset('js/alumnos.js') }}"></script>
+    <script src="{{ asset('js/asistencia_alumno.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -97,29 +100,20 @@
 
         $(document).ready(function() {
 
-            $('#deleteModal').on('show.bs.modal', function(event) {
+            $('#asistenciaModal').on('show.bs.modal', function(event) {
                 const button = $(event.relatedTarget) // Button that triggered the modal
-                const id = button.data('id') // Extract info from data-* attributes
-                const nombre = button.data('nombre') // Extract info from data-* attributes
+                var data = button.data('bs-dato');
 
                 const modal = $(this)
-                const form = $('#formDelete')
-                form.attr('action', `{{ env('APP_URL') }}/panel/alumnos/${id}`);
+                const form = $('#formAsistencia')
+                form.attr('action', `{{ env('APP_URL') }}/panel/asistencia_alumno/${data.id}`);
+                $('#nombre').text(data.nombre);
+                $('#apellido').text(data.apellido);
+                $('#dni').text(data.dni);
+                $('#id').val(data.id);
 
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la alumno "${nombre}"?`)
             })
         });
 
-        /* $(document).ready(function() {
-            tabla.column(3).data().unique().sort().each(function(value, index) {
-                $('#filtroSelect').append('<option value="' + value + '">' + value + '</option>');
-            });
-
-            // Manejar el cambio en el select para aplicar el filtro
-            $('#filtroSelect').on('change', function() {
-                var filtroValor = $(this).val();
-                tabla.column(3).search(filtroValor).draw();
-            });
-        }); */
     </script>
 @stop

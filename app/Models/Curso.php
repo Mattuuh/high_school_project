@@ -11,7 +11,8 @@ class Curso extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'nombre',
-        'cupos',          
+        'division',
+        'cupos',        
         'disponibilidad',                       
         'anio_lectivo',
         'id_horario',    

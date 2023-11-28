@@ -127,7 +127,7 @@ class CuotaController extends Controller
         /* var_dump($cuotasPag);die;
         var_dump($cuotasImpag);die; */
 
-        return view('panel.cuotas.filtroalumno', compact('alumno', 'cuotasPag', 'cuotasImpag'));
+        return view('panel.cuotas.filtroalumno', compact('alumno'));
     }
     public function cuotasPagPDF(Alumno $alumno) {
         $alumno = Alumno::findOrFail($alumno->id);
@@ -239,7 +239,7 @@ class CuotaController extends Controller
     public function informeInsNoInsPDF() {
         $alumnos = Alumno::all();
         $legajos_alu = $alumnos->pluck('id')->toArray();
-        
+
         $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
         $alumnos_inscriptos = $facturas_ins->pluck('legajo_alu')->toArray();
         $alumnos_inscriptos = Alumno::whereIn('id',$alumnos_inscriptos)->orderBy('apellido','asc')->get();
