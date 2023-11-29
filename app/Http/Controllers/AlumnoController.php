@@ -36,12 +36,20 @@ class AlumnoController extends Controller
     {
         //Validacion de los datos
         $validated = $request->validated();
+        $curso = Curso::where('id', $validated['id_curso'])->first();
 
-        //Guardado de los datos
-        Alumno::create($validated);
+        $curso->disponibilidad = $curso->disponibilidad - 1;
 
-        //Redireccion con un mensaje flash de sesion
-        return redirect()->route('alumnos.index')->with('status','Alumno creado satisfactoriamente!');
+        if ($curso->disponibilidad > 0) {
+            //Guardado de los datos
+            $curso->update(['disponibilidad' => $curso->disponibilidad]);
+            Alumno::create($validated);
+
+            //Redireccion con un mensaje flash de sesion
+            return redirect()->route('alumnos.index')->with('status','Alumno creado satisfactoriamente!');
+        } else {
+            return back()->with('status', 'No hay cupos disponibles');
+        }
     }
 
     /**

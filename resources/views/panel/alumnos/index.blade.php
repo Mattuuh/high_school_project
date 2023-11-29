@@ -17,11 +17,14 @@
     </div>
     
     @if ($alumnos->count())
-        <label for="filtroSelect">Filtrar por:</label>
-        <select id="filtroSelect" class="form-control">
-        <option value="">Todos</option>
-        <!-- Opciones se llenarán dinámicamente -->
-        </select>
+        <div class="row">
+            <div class="col-2">
+                <label for="filtroSelect">Filtrar por:</label>
+                <select id="filtroSelect" class="form-control">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+        </div>
         <table class="table table-striped mt-1" id="tabla-alumnos">
             <thead class="table-dark">
                 <tr>
