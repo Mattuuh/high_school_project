@@ -20,9 +20,9 @@ class Curso extends Model
     public function periodo_lectivo() {
         return $this->belongsTo(Periodos_lectivo::class,'anio_lectivo');
     }
-    public function horario()
+    public function horarios()
     {
-        return $this->hasMany(Horario::class);
+        return $this->hasMany(Horario::class,'curso');
     }
    
     public function alumnos() {

@@ -15,8 +15,8 @@ class Hora extends Model
         'hora_fin', 
     ];
     
-    public function horario()
+    public function horarios()
     {
-        return $this->hasMany(Horario::class);
+        return $this->hasMany(Horario::class,'hora_clase');
     }
 }

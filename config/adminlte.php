@@ -358,6 +358,12 @@ return [
             'can' =>  '',
         ],
         [
+            'text' =>  'Registro Academico',
+            'route' =>  'registro_academico.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  '',
+        ],
+        [
             'text' =>  'Periodos lectivos',
             'route' =>  'periodos_lectivo.index',
             'icon' =>  'fas fa-fw fa-user',

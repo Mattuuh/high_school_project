@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empleado;
 use App\Models\Horario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,9 +14,10 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        $horarios = Horario::all();
-
-        return view('panel.horarios.index', compact('horarios'));
+        //$horarios=Horario::with(['empleados','materias','cursos','horas'])->get();
+        $horarios = Horario::orderBy('hora_clase', 'asc')->get();
+      
+        return view('panel.horarios.index',compact('horarios'));
     }
    
 

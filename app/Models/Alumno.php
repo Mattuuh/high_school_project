@@ -23,4 +23,7 @@ class Alumno extends Model
     public function curso() {
         return $this->belongsTo(Curso::class,'id_curso');
     }
+    public function registrosacademicos(){
+        return $this->hasMany(RegistroAcademico::class,'legajo_alum');
+    }
 }

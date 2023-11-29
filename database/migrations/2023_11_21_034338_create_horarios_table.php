@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('docente');
             $table->unsignedBigInteger('materia');
-            $table->unsignedBigInteger('hora');
+            $table->unsignedBigInteger('hora_clase');
             $table->unsignedBigInteger('curso');
             $table->timestamps();
 
@@ -23,10 +23,11 @@ return new class extends Migration
             ->on('empleados');
             $table->foreign('materia')->references('id')
             ->on('materias');
-            $table->foreign('hora')->references('id')
+            $table->foreign('hora_clase')->references('id')
             ->on('horas');
             $table->foreign('curso')->references('id')
             ->on('cursos');
+            $table->softDeletes();
         });
     }
 
@@ -36,5 +37,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('horarios');
+        
     }
+
+   
 };

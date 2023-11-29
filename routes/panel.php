@@ -11,6 +11,8 @@ use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\RegistroAcademicoController;
+use App\Models\RegistroAcademico;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +24,7 @@ Route::resource('estados_asistencia', EstadosAsistenciaController::class)->names
 Route::resource('formas_pago', FormasPagoController::class)->names('formas_pago');
 Route::resource('horas', HoraController::class)->names('horas');
 Route::resource('horarios', HorarioController::class)->names('horarios');
+Route::resource('registro_academico', RegistroAcademicoController::class)->names('registro_academico');
 Route::resource('materias', MateriaController::class)->names('materias');
 Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('periodos_lectivo');
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');

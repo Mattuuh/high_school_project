@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('horas', function (Blueprint $table) {
+        Schema::create('instancias', function (Blueprint $table) {
             $table->id();
-            $table->string('hora');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
-
+            $table->string('descripcion');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('horas');
+        Schema::dropIfExists('instancias');
     }
 };
