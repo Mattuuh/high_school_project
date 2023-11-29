@@ -3,6 +3,11 @@
 @section('title', 'Crear un nuevo alumno')
 
 @section('content')
+@if (session('status'))
+    <div class="alert alert-danger">
+        {{ session('status') }}
+    </div>
+    @endif
     <div class="bg-secondary-subtle min-vh-100 pt-4">
         <div class="container w-25 pb-2 border rounded-2 bg-light">
         <h1>Crear un nuevo alumno</h1>
@@ -41,10 +46,9 @@
             <select name="id_curso" id="curso" class="form-control">
                 <option value="0" selected>---Seleccionar curso---</option>
                 @foreach ($cursos as $curso)
-                <option value="{{ $curso->id }}">{{ $curso->nombre }}</option>
+                <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
                 @endforeach
             </select>
-            <input type="curso" name="curso" value="{{ old('curso') }}" class="form-control">
 
 
             <button type="submit" class="btn btn-success">Guardar alumno</button>

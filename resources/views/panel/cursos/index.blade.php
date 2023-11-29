@@ -48,7 +48,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- @include('cursos.modals') --}}
+                    @include('panel.cursos.modals')
                 </div>
             </div>    
         </div>
