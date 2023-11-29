@@ -39,7 +39,6 @@ class AlumnoController extends Controller
         $curso = Curso::where('id', $validated['id_curso'])->first();
 
         $curso->disponibilidad = $curso->disponibilidad - 1;
-        //dd($curso->disponibilidad);
 
         if ($curso->disponibilidad > 0) {
             //Guardado de los datos

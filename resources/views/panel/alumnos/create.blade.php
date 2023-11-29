@@ -3,7 +3,7 @@
 @section('title', 'Crear un nuevo alumno')
 
 @section('content')
-@if (session('status'))
+    @if (session('status'))
     <div class="alert alert-danger">
         {{ session('status') }}
     </div>
@@ -49,7 +49,6 @@
                 <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
                 @endforeach
             </select>
-
 
             <button type="submit" class="btn btn-success">Guardar alumno</button>
             <a href="javascript:history.back()" class="btn btn-danger text-end">Cancelar</a>

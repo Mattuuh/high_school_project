@@ -6,6 +6,7 @@ use App\Models\Alumno;
 use App\Models\Asistencia_alumno;
 use App\Models\Estados_asistencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AsistenciaAlumnoController extends Controller
 {
@@ -33,7 +34,20 @@ class AsistenciaAlumnoController extends Controller
      */
     public function store(Request $request, $id)
     {
-        logger($id);
+        $validated = $request->validate([
+            'id_estado' => 'numeric'
+        ]);
+        $alumno = Alumno::findOrFail($id);
+        $validated['legajo_alu'] = intval($alumno->id);
+        $validated['fecha'] = strval(now()->format('Y-m-d'));
+        $estado = Estados_asistencia::findOrFail($request->id_estado);
+        $validated['id_estado'] = intval($estado->id);
+        //dd($validated);
+
+        //Asistencia_alumno::create($validated);
+        DB::table('asistencia_alumnos')->insert($validated);
+        
+        return redirect()->route('asistencia_alumno.index')->with('status','Asistencia registrada!');
     }
 
     /**

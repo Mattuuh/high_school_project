@@ -19,13 +19,11 @@
                 <label for="dni" class="form-label">Dni:</label>
                 <p id="dni" class="form-control"></p>
 
-                <input type="int" name="id" id="id" value="" class="form-control" hidden>
-
-                <input type="radio" id="presente" name="asistencia" value="1">
+                <input type="radio" id="presente" name="id_estado" value="1">
                 <label for="presente">Presente</label>
-                <input type="radio" id="ausente" name="asistencia" value="2">
+                <input type="radio" id="ausente" name="id_estado" value="2">
                 <label for="ausente">Ausente</label>
-                <input type="radio" id="tarde" name="asistencia" value="4">
+                <input type="radio" id="tarde" name="id_estado" value="4">
                 <label for="tarde">Tarde</label>
                 
             </div>
