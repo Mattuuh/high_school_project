@@ -13,10 +13,9 @@ class RegistroAcademicoController extends Controller
      */
     public function index()
     {
-        
-      $registro=RegistroAcademico::with('alumno','instancia','asignaturas')->get();
-      //dd($registro);
-       return view('panel.registro_academico.index',compact('registro'));
+        $registros = RegistroAcademico::with('alumno','instancia','asignaturas')->get();
+        //dd($registro);
+        return view('panel.registro_academico.index',compact('registros'));
     }
 
     /**
@@ -24,7 +23,7 @@ class RegistroAcademicoController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel.registro_academico.create');
     }
 
     /**
@@ -32,7 +31,11 @@ class RegistroAcademicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([]);
+
+        RegistroAcademico::create($validated);
+
+        return redirect()->route('registro_academico.index')->with('status','Registro cargado satisfactoriamente!');
     }
 
     /**
@@ -48,7 +51,8 @@ class RegistroAcademicoController extends Controller
      */
     public function edit(RegistroAcademico $registroAcademico)
     {
-        //
+        $registroAcademico = RegistroAcademico::findOrFail($registroAcademico->id);
+        return view('panel.registro_academico.edit', ['registroAcademico'=>$registroAcademico]);
     }
 
     /**
@@ -56,7 +60,13 @@ class RegistroAcademicoController extends Controller
      */
     public function update(Request $request, RegistroAcademico $registroAcademico)
     {
-        //
+        $registroAcademico = RegistroAcademico::findOrFail($registroAcademico->id);
+
+        $validated = $request->validate([]);
+
+        $registroAcademico->update($validated);
+
+        return redirect()->route('registro_academico.index')->with('status','Registro actualizado satisfactoriamente!');
     }
 
     /**
@@ -64,6 +74,13 @@ class RegistroAcademicoController extends Controller
      */
     public function destroy(RegistroAcademico $registroAcademico)
     {
-        //
+        //Busqueda del alumno
+        $registroAcademico = RegistroAcademico::findOrFail($registroAcademico->id);
+
+        //Eliminacion del alumno
+        $registroAcademico->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('registro_academico.index')->with('status', 'Registro eliminado satifactoriamente!');
     }
 }

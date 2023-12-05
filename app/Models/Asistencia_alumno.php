@@ -12,11 +12,11 @@ class Asistencia_alumno extends Model
 
     protected $guarded = [];
 
-    protected $primaryKey = ['legajo_alu', 'fecha'];
+    protected $primaryKey = ['id_alumno', 'fecha'];
 
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class, 'legajo_alu');
+        return $this->belongsTo(Alumno::class, 'id_alumno');
     }
 
     public function estadoAsistencia()

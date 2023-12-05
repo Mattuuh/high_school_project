@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('plugins.Datatables', true)
-@section('title', 'horarios')
+@section('title', 'Horarios')
 
 @section('content')
     @if(session('status'))
@@ -8,41 +8,42 @@
             {{ session('status') }}
         </div>
     @endif
+    @can('ver_admin')
+        <a href="{{ route('horarios.create') }}" class="btn btn-success">Crear nuevo horario</a>
+    @endcan
         
     @if ($horarios->count())
         <table class="table table-striped mt-1" id='tabla-horarios'>
             <thead class="table-dark">
                 <tr>
-                   <th>hora</th>
-                    <th>inicio</th>
-                    <th>fin</th>                    
-                    <th>docente</th>
-                    <th>materia</th>
-                    <th>curso</th>
-                    <th>division</th>
+                    <th>Hora</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>                    
+                    <th>Docente</th>
+                    <th>Materia</th>
+                    <th>Curso</th>
+                    <th>Division</th>
                     <th>Acciones</th>
                 </tr>    
             </thead>
             <tbody>
                 @foreach ($horarios as $horario)
                     <tr>
-                        <td>{{$horario->horas->hora}}</td>
-                        <td>{{$horario->horas->hora_inicio}}</td>
-                        <td>{{$horario->horas->hora_fin}}</td>
-                        <td>{{ $horario->empleados->nombre_emp}}
-                            {{ $horario->empleados->apellido_emp}}
-                        </td>
-                        <td>{{ $horario->materias->nom_materia}}</td>
-                        <td>{{ $horario->cursos->grado}}</td>
-                        <td>{{ $horario->cursos->division}}</td>
+                        <td>{{ $horario->horas->hora }}</td>
+                        <td>{{ $horario->horas->hora_inicio }}</td>
+                        <td>{{ $horario->horas->hora_fin }}</td>
+                        <td>{{ $horario->empleados->nombre }} {{ $horario->empleados->apellido }}</td>
+                        <td>{{ $horario->materias->nom_materia }}</td>
+                        <td>{{ $horario->cursos->nombre }}</td>
+                        <td>{{ $horario->cursos->division }}</td>
                         <td>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato='{{ $horario }}'>
-                                            Ver
-                                        </button>
-                                        <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $horario->id }}" data-nombre="{{ $horario->mes }}">
-                                            Eliminar
-                                        </button>
+                                Ver
+                            </button>
+                            <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $horario->id }}" data-nombre="{{ $horario->mes }}">
+                                Eliminar
+                            </button>
                          </td>                          
                     </tr>
                 @endforeach

@@ -26,7 +26,7 @@
             <input type="text" name="created_at" value="{{ now() }}" hidden>
 
             <label for="dni" class="form-label">Dni: </label>
-            <select id="search" name="legajo_alu" class="form-control form-control-lg"></select>
+            <select id="search" name="id_alumno" class="form-control form-control-lg"></select>
 
             <div id="name_group" hidden>
                 <label for="name" class="form-label">Nombre: </label>

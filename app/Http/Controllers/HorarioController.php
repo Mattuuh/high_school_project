@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use App\Models\Empleado;
+use App\Models\Hora;
 use App\Models\Horario;
+use App\Models\Materia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +29,11 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        return view('panel.horarios.create');
+        $horas = Hora::all();
+        $horarios_id = Horario::select('curso')->get();
+        $cursos = Curso::whereNotIn('id', $horarios_id)->get();
+        $materias = Materia::all();
+        return view('panel.horarios.create', compact('horas', 'cursos', 'materias'));
     }
 
     /**

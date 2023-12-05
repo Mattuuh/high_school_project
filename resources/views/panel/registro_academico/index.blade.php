@@ -2,7 +2,7 @@
 
 @section('plugins.Datatables', true)
 
-@section('title', 'regsitro_academico')
+@section('title', 'Registro academico')
     
 @section('content')
     @if(session('status'))
@@ -13,9 +13,8 @@
     <div class="col-12 mb-3">
         <a href="{{ route('registro_academico.create') }}" class="btn btn-success">Agregar nuevo </a>
     </div>
-    @if ($registro->count())
+    @if ($registros->count())
         <div class="col-12">
-            <?php //var_dump($empleados);die; ?>
             <div class="card">
                 <div class="card-body">
                     <table class="table table-striped mt-1 nowrap w-100" id="tabla-empleados">
@@ -31,27 +30,27 @@
                             </tr>    
                         </thead>
                         <tbody>
-                            @foreach ($registro as $registro)
+                            @foreach ($registros as $registro)
                                 <tr>
                                     
-                                    <td>{{$registro->alumno->nombre_alu}}{{ $registro->alumno->apellido_alu}}</td>
-                                    <td>{{$registro->alumno->dni_alu}}</td>
-                                    <td>{{$registro->asignaturas->materias->nom_materia}}</td>
-                                    <td>{{$registro->asignaturas->empleados->nombre_emp}}</td>
-                                    <td>{{$registro->nota}}</td>
-                                    <td>{{$registro->instancia->descripcion}}</td>
+                                    <td>{{ $registro->alumno->nombre }} {{ $registro->alumno->apellido }}</td>
+                                    <td>{{ $registro->alumno->dni }}</td>
+                                    <td>{{ $registro->asignaturas->materias->nom_materia }}</td>
+                                    <td>{{ $registro->asignaturas->empleados->nombre }}</td>
+                                    <td>{{ $registro->nota }}</td>
+                                    <td>{{ $registro->instancia->descripcion }}</td>
                                    
                                     
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    @include('panel.empleados.modals')
+                    @include('panel.registro_academico.modals')
                 </div>
             </div>    
         </div>
     @else
-        <h4>No hay empleados cargados!</h4>
+        <h4>No hay registros cargados!</h4>
     @endif
 @endsection
 
@@ -107,9 +106,9 @@
                 console.log(id, nombre)
                 const modal = $(this)
                 const form = $('#formDelete')
-                form.attr('action', `{{ env('APP_URL') }}/panel/empleados/${id}`);
+                form.attr('action', `{{ env('APP_URL') }}/panel/registro_academico/${id}`);
 
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el producto "${nombre}"?`)
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el registro "${nombre}"?`)
             })
         });
     </script>

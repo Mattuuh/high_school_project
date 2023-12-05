@@ -13,7 +13,7 @@ class CursoSeeder extends Seeder
      */
     public function run(): void
     {
-        curso::created([
+        curso::create([
             "nombre" => 1,
             'division' => "A",
             'cupos' => 26,
@@ -21,7 +21,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 5,
             'id_horario' => 2,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 1,
             'division' => "B",
             'cupos' => 22,
@@ -29,7 +29,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 2,
             'id_horario' => 2,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 1,
             'division' => "C",
             'cupos' => 25,
@@ -37,7 +37,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 9,
             'id_horario' => 6,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 2,
             'division' => "A",
             'cupos' => 28,
@@ -45,7 +45,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 9,
             'id_horario' => 1,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 2,
             'division' => "B",
             'cupos' => 28,
@@ -53,7 +53,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 9,
             'id_horario' => 1,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 3,
             'division' => "A",
             'cupos' => 25,
@@ -61,7 +61,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 2,
             'id_horario' => 8,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 3,
             'division' => "A",
             'cupos' => 2,
@@ -69,7 +69,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 5,
             'id_horario' => 2,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 3,
             'division' => "B",
             'cupos' => 28,
@@ -77,7 +77,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 5,
             'id_horario' => 8,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 4,
             'division' => "A",
             'cupos' => 21,
@@ -85,7 +85,7 @@ class CursoSeeder extends Seeder
             'anio_lectivo' => 5,
             'id_horario' => 1,
         ]);
-        curso::created([
+        curso::create([
             "nombre" => 5,
             'division' => "A",
             'cupos' => 20,
