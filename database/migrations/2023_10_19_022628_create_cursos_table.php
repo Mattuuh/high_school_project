@@ -24,8 +24,7 @@ return new class extends Migration
 
             $table->foreign('anio_lectivo')->references('id')
             ->on('periodos_lectivos');
-            $table->foreign('id_horario')->references('id')
-            ->on('horarios');
+            
         });
     }
 

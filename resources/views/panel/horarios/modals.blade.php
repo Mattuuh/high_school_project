@@ -2,32 +2,32 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Ficha de Empleado con Legajo #</h5>
+                <h5 class="modal-title" id="modalTitle">Ficha de Horarios #</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <label for="nombre" class="form-label">Nombre:</label>
-                <p id="nombre" class="form-control"></p>
-                <label for="apellido" class="form-label">Apellido:</label>
-                <p id="apellido" class="form-control"></p>
-                <label for="dni" class="form-label">Dni:</label>
-                <p id="dni" class="form-control"></p>
-                <label for="domicilio" class="form-label">Domicilio:</label>
-                <p id="domicilio" class="form-control"></p>
-                <label for="telefono" class="form-label">Telefono:</label>
-                <p id="telefono" class="form-control"></p>
-                <label for="email" class="form-label">Email:</label>
-                <p id="email" class="form-control"></p>
-                <label for="tipo_emp" class="form-label">Tipo de Empleado:</label>
-                <p id="tipo_emp" class="form-control"></p>
-                @can('')
-                    <label for="fecha_ingreso" class="form-label">Fecha de ingreso:</label>
-                    <p id="fecha_ingreso" class="form-control"></p>
-                    <label for="fecha_egreso" class="form-label">Fecha de egreso:</label>
-                    <p id="fecha_egreso" class="form-control"></p>
-                @endcan
+              
+                <label for="hora" class="form-label">Hora:</label>
+                <p id="hora" class="form-control"></p>
+                <label for="hora_inicio" class="form-label">Desde:</label>
+                <p id="hora_inicio" class="form-control"></p>
+                <label for="hora_fin" class="form-label">Hasta:</label>
+                <p id="hora_fin" class="form-control"></p>
+                <label for="docente" class="form-label">Docente:</label>
+                <p id="docente" class="form-control"></p>
+                <label for="materia" class="form-label">Materia:</label>
+                <p id="materia" class="form-control"></p>
+                <label for="grado" class="form-label">Grado:</label>
+                <p id="grado" class="form-control"></p>
+                <label for="division" class="form-label">Division:</label>
+                <p id="division" class="form-control"></p>
+                
+                
+
+                
+                
                 
             </div>
             <div class="modal-footer">

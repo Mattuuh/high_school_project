@@ -29,4 +29,7 @@ class Alumno extends Model
     public function asistencia_alumno() {
         return $this->hasMany(Asistencia_alumno::class,'legajo_alu');
     }
+    public function registrosacademicos(){
+        return $this->hasMany(RegistroAcademico::class,'legajo_alum');
+    }
 }

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Hora;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,6 +32,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CuotaSeeder::class);
         $this->call(FormasPagoSeeder::class);
         $this->call(EstadosAsistenciaSeeder::class);
+        $this->call(HoraSeeder::class);
+        $this->call(MateriaSeeder::class);
         
     }
 }

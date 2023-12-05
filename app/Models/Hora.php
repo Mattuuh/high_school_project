@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Materia extends Model
+class Hora extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes;
     protected $fillable = [
-        'nom_materia',
-        'anio_materia',
+        'hora',
+        'hora_inicio',
+        'hora_fin', 
     ];
-
-    public function horario()
+    
+    public function horarios()
     {
-        return $this->hasMany(Horario::class,'materia');
+        return $this->hasMany(Horario::class,'hora_clase');
     }
-   
 }

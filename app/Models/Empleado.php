@@ -27,6 +27,10 @@ class Empleado extends Model
         return $this->belongsTo( Tipos_empleado::class,'tipo_emp');
         
     }
+    public function horarios()
+    {
+        return $this->hasMany(Horario::class,'legajo_emp');
+    }
 
     public function users() {
         return $this->hasMany(User::class,'empleado');

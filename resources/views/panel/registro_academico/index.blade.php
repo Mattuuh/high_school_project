@@ -1,9 +1,8 @@
-@can('ver_admin')
 @extends('adminlte::page')
 
 @section('plugins.Datatables', true)
 
-@section('title', 'Empleados')
+@section('title', 'regsitro_academico')
     
 @section('content')
     @if(session('status'))
@@ -11,16 +10,10 @@
             {{ session('status') }}
         </div>
     @endif
-    
-        
-    <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
-    <a href="{{ route('exportar-empleados-pdf') }}" class="btn btn-danger" title="PDF" target="_blank">
-        <i class="fas fa-file-pdf"></i> PDF
-    </a>
-    <a href="{{ route('exportar-empleados-excel') }}" class="btn btn-info" title="Excel" target="_blank">
-        <i class="fas fa-file-excel"></i> Excel
-    </a>
-    @if ($empleados->count())
+    <div class="col-12 mb-3">
+        <a href="{{ route('registro_academico.create') }}" class="btn btn-success">Agregar nuevo </a>
+    </div>
+    @if ($registro->count())
         <div class="col-12">
             <?php //var_dump($empleados);die; ?>
             <div class="card">
@@ -28,32 +21,27 @@
                     <table class="table table-striped mt-1 nowrap w-100" id="tabla-empleados">
                         <thead class="table-dark">
                             <tr>
-                                <th>Legajo</th>
+                               
                                 <th>Nombre y Apellido</th>
                                 <th>Dni</th>
-                                <th>Foto</th>
-                                <th>Tipo de empleado</th>
-                                <th>Acciones</th>
+                                <th>Asignatura</th>
+                                <th>Docente</th>
+                                <th>Nota</th>
+                                <th>Instancia</th>
                             </tr>    
                         </thead>
                         <tbody>
-                            @foreach ($empleados as $empleado)
+                            @foreach ($registro as $registro)
                                 <tr>
-                                    <td>{{ $empleado->legajo_emp }}</td>
-                                    <td>{{ $empleado->nombre }} {{ $empleado->apellido }}</td>
-                                    <td>{{ $empleado->dni }}</td>
-                                    <td><?php  echo $empleado->imagen != '' ? '<img src="'.$empleado->imagen.'" alt="'.$empleado->nombre.'" class="img-fluid" style="width: 80px;">' : '-' ?></td>
-                                    <td>{{ $empleado->tipo_empleado->nombre_te }}</td>
-                                    <td>
-                                        {{-- <a class="btn btn-success btn-sm" href="{{ route('empleados.show', $empleado->legajo_emp) }}">Ver</a> --}}
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-emp="{{ $empleado }}">
-                                            Ver
-                                        </button>
-                                        <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre }}">
-                                            Eliminar
-                                        </button>
-                                    </td>
+                                    
+                                    <td>{{$registro->alumno->nombre_alu}}{{ $registro->alumno->apellido_alu}}</td>
+                                    <td>{{$registro->alumno->dni_alu}}</td>
+                                    <td>{{$registro->asignaturas->materias->nom_materia}}</td>
+                                    <td>{{$registro->asignaturas->empleados->nombre_emp}}</td>
+                                    <td>{{$registro->nota}}</td>
+                                    <td>{{$registro->instancia->descripcion}}</td>
+                                   
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
@@ -66,7 +54,6 @@
         <h4>No hay empleados cargados!</h4>
     @endif
 @endsection
-
 
 {{-- Importacion de Archivos CSS --}}
 @section('css')
@@ -98,13 +85,15 @@
     
                 // Puedes actualizar el contenido del modal con los datos del empleado
                 $('#modalTitle').text('Ficha de Empleado con Legajo #' + empleadoData.legajo_emp);
-                $('#nombre').text(empleadoData.nombre);
-                $('#apellido').text(empleadoData.apellido);
-                $('#dni').text(empleadoData.dni);
-                $('#domicilio').text(empleadoData.domicilio);
-                $('#telefono').text(empleadoData.telefono);
-                $('#email').text(empleadoData.email);
+                $('#nombre').text(empleadoData.nombre_emp);
+                $('#apellido').text(empleadoData.apellido_emp);
+                $('#dni').text(empleadoData.dni_emp);
+                $('#domicilio').text(empleadoData.domicilio_emp);
+                $('#telefono').text(empleadoData.telefono_emp);
+                $('#email').text(empleadoData.email_emp);
                 $('#tipo_emp').text(empleadoData.tipo_empleado.nombre_te);
+                $('#fecha_ingreso').text(empleadoData.fecha_ingreso_emp);
+                $('#fecha_egreso').text(empleadoData.fecha_egreso_emp);
             });
         });
     </script>
@@ -120,10 +109,9 @@
                 const form = $('#formDelete')
                 form.attr('action', `{{ env('APP_URL') }}/panel/empleados/${id}`);
 
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el empleado "${nombre}"?`)
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el producto "${nombre}"?`)
             })
         });
     </script>
     
 @stop
-@endcan

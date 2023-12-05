@@ -103,7 +103,10 @@ class EmpleadoController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
+        // dd($empleado);die;
         //Busqueda del empleado
+        // No funciona
+        //$empleado = Empleado::findOrFail($empleado);
         $empleado = Empleado::findOrFail($empleado->legajo_emp);
 
         //Eliminacion del empleado

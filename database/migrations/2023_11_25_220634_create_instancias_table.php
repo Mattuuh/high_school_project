@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materias', function (Blueprint $table) {
+        Schema::create('instancias', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_materia');
-            $table->string('anio_materia');
+            $table->string('descripcion');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materias');
+        Schema::dropIfExists('instancias');
     }
 };
