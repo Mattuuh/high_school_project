@@ -10,6 +10,7 @@ use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\AsistenciaAlumnoController;
 use App\Http\Controllers\CajaController;
+use App\Http\Controllers\CuotaBaseController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\FacturaController;
@@ -31,6 +32,7 @@ Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('pe
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
+Route::resource('cuotas_base', CuotaBaseController::class)->names('cuotasbase');
 Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
 Route::resource('facturas', FacturaController::class)->names('facturas');
 Route::post('/obtenerCuotas', [FacturaController::class, 'obtenerCuotas'])->name('obtenerCuotas');

@@ -315,6 +315,12 @@ return [
             'can' =>  'registro_pago',
         ],
         [
+            'text' =>  'Cuotas',
+            'route' =>  'cuotasbase.index',
+            'icon' =>  'fas fa-dollar-sign',
+            'can' =>  'ver_admin',
+        ],
+        [
             'text' =>  'Registro de Alumnos',
             'route' =>  'alumnos.index',
             'icon' =>  'fas fa-fw fa-user',
@@ -324,7 +330,7 @@ return [
             'text' =>  'Registro de Empleados',
             'route' =>  'empleados.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  'admin',
+            'can' =>  'ver_admin',
         ],
         [
             'text' =>  'Cursos',
@@ -348,7 +354,7 @@ return [
             'text' =>  'Formas de pago',
             'route' =>  'formas_pago.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  'admin',
+            'can' =>  'ver_admin',
         ],
         // [
         //     'text' =>  'Horarios',
