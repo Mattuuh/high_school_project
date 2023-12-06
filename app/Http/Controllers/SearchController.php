@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,15 +12,25 @@ class SearchController extends Controller
     {
         $searchTerm = $request->input('query');
 
-        // Consulta SQL para buscar coincidencias en la base de datos
-        if ($searchTerm != '') {
-            $results = DB::table('alumnos')
-                ->select('*')
-                ->where('dni_alu', 'LIKE', '%' . $searchTerm . '%')
-                ->limit(4)
-                ->get();
-            return response()->json($results);
+        $results = Alumno::where('dni', 'LIKE', '%' . $searchTerm . '%')
+                        ->whereNull('deleted_at')
+                        ->limit(4)
+                        ->get();
+
+        $formattedResults = [];
+        foreach ($results as $result) {
+            $formattedResults[] = [
+                'id' => $result->dni,
+                'text' => $result->dni,
+                'legajo_alu' => $result->dni,
+                'data-element-data' => json_encode([
+                    'nombre' => $result->nombre,
+                    'apellido' => $result->apellido,
+                    // Otros datos que desees incluir
+                ])
+            ];
         }
-        // Retornar las opciones como JSON
+
+        return response()->json($formattedResults);
     }
 }

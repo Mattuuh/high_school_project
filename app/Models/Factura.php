@@ -10,11 +10,11 @@ class Factura extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'fecha_pago',          
         'id_caja',
         'legajo_alu',
         'id_forma_pago',
-        'total', 
+        'id_cuota',
+        'total',
     ];
 
     public function caja() {
@@ -23,4 +23,13 @@ class Factura extends Model
     public function forma_pago() {
         return $this->belongsTo(Formas_pago::class,'id_forma_pago');
     }
+    public function alumno() {
+        return $this->belongsTo(Alumno::class,'legajo_alu');
+    }
+    public function cuota() {
+        return $this->belongsTo(Cuota::class,'id_cuota');
+    }
+    /* public function detalles_factura() {
+        return $this->hasMany(Detalles_factura::class,'n_factura');
+    } */
 }

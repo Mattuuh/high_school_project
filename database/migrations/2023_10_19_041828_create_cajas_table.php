@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('cajas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('legajo_emp')->nullable();              
+            $table->unsignedBigInteger('legajo_emp');              
             $table->float('monto_inicial');
-            $table->float('monto_cierre');
-            $table->date('fecha_caja');                     
+            $table->float('monto_cierre')->default('0.0');     
+            $table->dateTime('closed_at')->default('1900-01-01 00:00:00');            
             $table->timestamps();
             $table->softDeletes();
 

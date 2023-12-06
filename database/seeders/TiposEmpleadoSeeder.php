@@ -13,6 +13,11 @@ class TiposEmpleadoSeeder extends Seeder
      */
     public function run(): void
     {
-        Tipos_empleado::factory(10)->create();
+        Tipos_empleado::create(['nombre_te' => 'preceptor']);
+        Tipos_empleado::create(['nombre_te' => 'gerente']);
+        Tipos_empleado::create(['nombre_te' => 'ordenanza']);
+        Tipos_empleado::create(['nombre_te' => 'profesor']);
+        Tipos_empleado::create(['nombre_te' => 'secretario']);
+        Tipos_empleado::create(['nombre_te' => 'administrativo']);
     }
 }

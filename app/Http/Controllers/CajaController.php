@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidationRequest;
 use App\Models\Caja;
+use App\Models\Factura;
 use Illuminate\Http\Request;
 
 class CajaController extends Controller
@@ -28,18 +30,16 @@ class CajaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ValidationRequest $request)
     {
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Guardado de los datos
         Caja::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('cajas.index')->with('status','Caja creada satisfactoriamente!');
+        return redirect()->route('facturas.index')->with('status','Apertura registrada con exito!');
     }
 
     /**
@@ -63,21 +63,20 @@ class CajaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Caja $caja)
+    public function update(ValidationRequest $request, Caja $caja)
     {
         //Busqueda del caja
-        $caja = Caja::findOrFail($caja);
+        $caja = Caja::findOrFail($caja->id);
 
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
+        $validated['closed_at'] = now();
 
         //Actualizacion del caja
         $caja->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
-        return redirect()->route('cajas.index')->with('status', 'Caja actualizado satisfactoriamente!');
+        return redirect()->route('facturas.index')->with('status', 'Caja actualizada satisfactoriamente!');
     }
 
     /**
@@ -93,5 +92,16 @@ class CajaController extends Controller
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('cajas.index')->with('status', 'Caja eliminado satifactoriamente!');
+    }
+    public function close(Caja $caja)
+    {
+        $monto_cierre = 0;
+        $caja = Caja::findOrFail($caja->id);
+        $facturas = Factura::where('created_at', now()->format('Y-m-d'))->get();
+        foreach ($facturas as $factura) {
+            $monto_cierre += $factura->total;
+        }
+        $caja['monto_cierre'] = $monto_cierre;
+        return view('panel.cajas.close', ['caja'=>$caja]);
     }
 }

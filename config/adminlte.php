@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Colegio Secundario Divina Misericordia</b>',
+    'logo' => '<b>Colegio Secundario San Juan</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -303,40 +303,52 @@ return [
 
         // Sidebar items:
         [
-            'text' =>  'Facturas',
+            'text' =>  'Facturacion',
             'route' =>  'facturas.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'icon' =>  'fas fa-dollar-sign',
+            'can' =>  'registro_pago',
         ],
         [
-            'text' =>  'Cuotas',
+            'text' =>  'Estado de pago',
             'route' =>  'cuotas.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'icon' =>  'fas fa-file-alt',
+            'can' =>  'registro_pago',
         ],
         [
-            'text' =>  'Alumnos',
+            'text' =>  'Registro de Alumnos',
             'route' =>  'alumnos.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'registro_alumno',
         ],
         [
-            'text' =>  'Empleados',
+            'text' =>  'Registro de Empleados',
             'route' =>  'empleados.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
         [
-            'text' =>  'Estados de asistencia',
-            'route' =>  'estados_asistencia.index',
+            'text' =>  'Cursos',
+            'route' =>  'cursos.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'ver_alumno',
         ],
+        [
+            'text' =>  'Registro de asistencia',
+            'route' =>  'asistencia_alumno.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'ver_alumno',
+        ],
+        // [
+        //     'text' =>  'Estados de asistencia',
+        //     'route' =>  'estados_asistencia.index',
+        //     'icon' =>  'fas fa-fw fa-user',
+        //     'can' =>  'registro_alumno',
+        // ],
         [
             'text' =>  'Formas de pago',
             'route' =>  'formas_pago.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
         
         [
@@ -349,7 +361,7 @@ return [
             'text' =>  'Horas',
             'route' =>  'horas.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
         [
             'text' =>  'Horarios',
@@ -372,89 +384,9 @@ return [
             'text' =>  'Tipos de empleado',
             'route' =>  'tipos_empleado.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  '',
+            'can' =>  'admin',
         ],
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        
     ],
 
     /*

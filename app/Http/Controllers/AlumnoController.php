@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlumnoRequest;
+use App\Http\Requests\ValidationRequest;
 use App\Models\Alumno;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
@@ -22,18 +25,17 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        return view('panel.alumnos.create');
+        $cursos = Curso::all();
+        return view('panel.alumnos.create', compact('cursos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AlumnoRequest $request)
     {
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Guardado de los datos
         Alumno::create($validated);
@@ -63,15 +65,13 @@ class AlumnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(AlumnoRequest $request, Alumno $alumno)
     {
         //Busqueda del alumno
         $alumno = Alumno::findOrFail($alumno->id);
 
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $validated = $request->validated();
 
         //Actualizacion del alumno
         $alumno->update($validated);

@@ -1,11 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear un nuevo empleado')
+@section('title', 'Crear una nueva Factura')
+
+@section('header')
+@stop
 
 @section('content')
     <div class="bg-secondary-subtle min-vh-100 pt-4">
         <div class="container w-25 pb-2 border rounded-2 bg-light">
-        <h1>Crear un nuevo Empleado</h1>
+        <h1>Crear una nueva Factura</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -16,36 +19,65 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('empleados.store') }}" method="POST" novalidate class="">
+        <form action="{{ route('facturas.store') }}" method="POST" novalidate class="">
             @csrf
 
-            <label for="dni_emp" class="form-label">Dni: </label>
-            <input list="dniList" id="search" type="text" name="dni_emp" value="{{ old('dni_emp') }}" class="form-control">
-            <datalist id="dniList"></datalist>
+            <input type="number" name="id_caja" value="{{ $caja->id }}" hidden>
+            <input type="text" name="created_at" value="{{ now() }}" hidden>
 
-            <div id="nombre_group" hidden>
-                <label for="nombre_alu" class="form-label">Nombre: </label>
-                <p id="nombre_alu" type="text" name="nombre_alu" value="{{ old('nombre_alu') }}" class="form-control"></p>
+            <label for="dni" class="form-label">Dni: </label>
+            <select id="search" name="legajo_alu" class="form-control form-control-lg"></select>
+
+            <div id="name_group" hidden>
+                <label for="name" class="form-label">Nombre: </label>
+                <p id="name" type="text" name="name" value="{{ old('name') }}" class="form-control"></p>
             </div>
 
-            <div id="apellido_group" hidden>
-                <label for="apellido_alu" class="form-label">Apellido : </label>
-                <p id="apellido_alu" type="text" name="apellido_alu" value="{{ old('apellido_alu') }}" class="form-control"></p>
+            <div id="lastname_group" hidden>
+                <label for="lastname" class="form-label">Apellido : </label>
+                <p id="lastname" type="text" name="lastname" value="{{ old('lastname') }}" class="form-control"></p>
             </div>
 
-            <label for="domicilio_emp" class="form-label">Domicilio: </label>
-            <input type="text" name="domicilio_emp" value="{{ old('domicilio_emp') }}" class="form-control">
+            <label for="id_cuota" class="form-label">Cuota: </label>
+            <select name="id_cuota" id="cuota" class="form-control">
+                @if ($cuotas != null)
+                    <option value="0" selected>---Seleccionar cuota---</option>
+                    @foreach ($cuotas as $cuota)
+                    <option value="{{ $cuota->id }}" data-element-data={{ $cuota }}>{{ $cuota->mes }}</option>
+                    @endforeach
+                @else
+                    <option value="0" selected>Todas las cuotas estan pagadas</option>
+                @endif
+                
+            </select>
+            
+            <div id="monto_group" hidden>
+                <label for="monto" class="form-label">Monto : </label>
+                <p id="monto" type="text" name="monto" value="{{ old('monto') }}" class="form-control"></p>
+            </div>
 
-            <label for="telefono_emp" class="form-label">Telefono: </label>
-            <input type="number" name="telefono_emp" value="{{ old('telefono_emp') }}" class="form-control">
+            <label for="forma_pago" class="form-label">Forma de pago: </label>
+            <select name="id_forma_pago" id="id_forma_pago" class="form-control">
+                <option value="" selected>---Seleccionar forma de pago---</option>
+            @foreach ($forma_pagos as $forma_pago)
+                <option value="{{ $forma_pago->id }}">{{ $forma_pago->nombre }}</option>
+            @endforeach
+            </select>
 
-            <button type="submit" class="btn btn-success">Guardar Empleado</button>
-            <a href="{{ route('empleados.index') }}" class="btn btn-danger text-end">Cancelar</a>
+            <div class="row p-2">
+                <button type="submit" class="btn btn-success">Guardar Factura</button>
+                <a href="{{ route('facturas.index') }}" class="btn btn-danger">Cancelar</a>
+            </div>
         </form>
         </div>
     </div>
 @endsection
 
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@stop
+
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('js/facturas.js') }}"></script>
 @stop

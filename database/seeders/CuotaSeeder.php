@@ -14,12 +14,7 @@ class CuotaSeeder extends Seeder
     public function run(): void
     {
         Cuota::create([
-            'mes' => 'Enero',
-            'monto' => '27000',
-            'interes' => '0.0',
-        ]);
-        Cuota::create([
-            'mes' => 'Febrero',
+            'mes' => 'Inscripcion',
             'monto' => '27000',
             'interes' => '0.0',
         ]);

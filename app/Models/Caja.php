@@ -10,11 +10,10 @@ class Caja extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-            'legajo_emp',              
-            'monto_inicial',
-            'monto_cierre',
-            'fecha_caja',
-
+        'legajo_emp',              
+        'monto_inicial',
+        'monto_cierre',
+        'closed_at'
     ];
     public function empleado() {
         return $this->belongsTo(Empleado::class,'legajo_emp');

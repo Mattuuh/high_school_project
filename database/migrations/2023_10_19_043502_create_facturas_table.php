@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('facturas', function (Blueprint $table) {
-            $table->id();
-            $table->date('fecha_pago');          
-            $table->unsignedBigInteger('id_caja')->nullable();
-            $table->unsignedBigInteger('legajo_alu')->nullable();
-            $table->unsignedBigInteger('id_forma_pago')->nullable();
-            $table->float('total');  
+            $table->id();       
+            $table->unsignedBigInteger('id_caja');
+            $table->unsignedBigInteger('legajo_alu');
+            $table->unsignedBigInteger('id_forma_pago');
+            $table->unsignedBigInteger('id_cuota');
+            $table->float('total');
             $table->timestamps();
             $table->softDeletes();
 
@@ -27,6 +27,8 @@ return new class extends Migration
             ->on('alumnos');
             $table->foreign('id_forma_pago')->references('id')
             ->on('formas_pagos');
+            $table->foreign('id_cuota')->references('id')
+            ->on('cuotas');
         });
     }
 

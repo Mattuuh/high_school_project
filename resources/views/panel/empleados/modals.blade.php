@@ -14,6 +14,8 @@
                 <p id="apellido" class="form-control"></p>
                 <label for="dni" class="form-label">Dni:</label>
                 <p id="dni" class="form-control"></p>
+                {{-- <label for="imagen" class="form-label">Imagen</label>
+                <p id="imagen" class="form-control"></p> --}}
                 <label for="domicilio" class="form-label">Domicilio:</label>
                 <p id="domicilio" class="form-control"></p>
                 <label for="telefono" class="form-label">Telefono:</label>
@@ -22,12 +24,6 @@
                 <p id="email" class="form-control"></p>
                 <label for="tipo_emp" class="form-label">Tipo de Empleado:</label>
                 <p id="tipo_emp" class="form-control"></p>
-                @can('')
-                    <label for="fecha_ingreso" class="form-label">Fecha de ingreso:</label>
-                    <p id="fecha_ingreso" class="form-control"></p>
-                    <label for="fecha_egreso" class="form-label">Fecha de egreso:</label>
-                    <p id="fecha_egreso" class="form-control"></p>
-                @endcan
                 
             </div>
         </div>
