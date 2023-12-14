@@ -11,9 +11,9 @@
         </div>
     @endif
     <div class="col-12 mb-3">
-        {{-- <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
-            Nuevo alumno
-        </a> --}}
+        <a href="{{ route('asistencia_alumno.listadoalumno') }}" class="btn btn-success text-uppercase">
+            Listado de asistencia
+        </a>
     </div>
     
     @if ($alumnos->count())

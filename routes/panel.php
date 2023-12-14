@@ -41,10 +41,14 @@ Route::resource('facturas', FacturaController::class)->names('facturas');
 Route::resource('facturasbase', FacturaBaseController::class)->names('facturasbase');
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
-Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');
+// Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('graficos-salumnos');
 Route::resource('cursos', CursoController::class)->names('cursos');
+Route::get('graficos-alumnos',[CursoController::class,'graficosAlumnosxCurso'])->name('graficos-alumnos');
 Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
 Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
+Route::get('asistencia_alumno/listadoalumno', [AsistenciaAlumnoController::class, 'listadoalumno'])->name('asistencia_alumno.listadoalumno');
+
+
 Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_datos'])->name('asistencia_alumno.guardar_datos');
 // Route::resource('asistencia_alumno', AsistenciaAlumnoController::class)->names('asistencia_alumno');
 Route::resource('docentes_materia', DocentesMateriaController::class)->names('docentes_materia');

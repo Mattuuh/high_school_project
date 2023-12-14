@@ -118,7 +118,7 @@
                 $('#legajo_alu').text(data.alumno.dni);
                 $('#mes').text(data.cuota.mes);
                 $('#forma_pago').text(data.forma_pago.nombre);
-                $('#total').text(data.total);
+                $('#total').text('$' + data.total);
             });
         });
 

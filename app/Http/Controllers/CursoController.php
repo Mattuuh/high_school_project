@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 
@@ -90,4 +91,7 @@ class CursoController extends Controller
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('cursos.index')->with('status', 'Curso eliminado satifactoriamente!');
     }
+
+    
+       
 }
