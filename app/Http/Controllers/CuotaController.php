@@ -20,7 +20,7 @@ class CuotaController extends Controller
     public function index()
     {
         $cuotas = Cuota::all(); // WHERE id_factura = factura.id
-        $alumnos = Alumno::select('id','nombre','apellido','dni','habilitado')->get(); //WHERE id = factura.legajo_alu AND
+        $alumnos = Alumno::select('id','nombre','apellido','dni','habilitado')->get(); //WHERE id = factura.id_alumno AND
         //$alumnos = Alumno::all();
         return view('panel.cuotas.index', compact('cuotas', 'alumnos'));
     }
@@ -100,7 +100,7 @@ class CuotaController extends Controller
     }
     public function filtroalumno(Alumno $alumno) {
         $alumno = Alumno::findOrFail($alumno->id);
-        /* $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        /* $facturas = Factura::where('id_alumno', $alumno->id)->get();
         foreach ($facturas as $factura) {
             $detalleF[] = Detalles_factura::where('id_factura', $factura->id)->get(); // WHERE id_factura == factura.id
         }
@@ -109,7 +109,7 @@ class CuotaController extends Controller
             $cuotasPag[] = Cuota::find('id', $detalle->id_cuota);
             $cuotasImpag[] = Cuota::where('id', '!=', $detalle->id_cuota)->get();
         } */
-        /* $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        /* $facturas = Factura::where('id_alumno', $alumno->id)->get();
 
         if ($facturas->count() > 0) {
             foreach ($facturas as $factura) {
@@ -131,7 +131,7 @@ class CuotaController extends Controller
     }
     public function cuotasPagPDF(Alumno $alumno) {
         $alumno = Alumno::findOrFail($alumno->id);
-        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        $facturas = Factura::where('id_alumno', $alumno->id)->get();
         
         if ($facturas->count() > 0) {
             $idCuotas = $facturas->pluck('id_cuota')->toArray();
@@ -149,7 +149,7 @@ class CuotaController extends Controller
     }
     public function cuotasImpPDF(Alumno $alumno) {
         $alumno = Alumno::findOrFail($alumno->id);
-        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        $facturas = Factura::where('id_alumno', $alumno->id)->get();
         
         if ($facturas->count() > 0) {
             $idCuotas = $facturas->pluck('id_cuota')->toArray();
@@ -173,7 +173,7 @@ class CuotaController extends Controller
         $operacion = $request['operacion'];
 
         if ($operacion == 'inscriptos') {
-            $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $facturas_ins = Factura::select('id_alumno')->whereIn('id_alumno', $legajos_alu)->where('id_cuota', 1)->get();
             $alumnos_inscriptos = $facturas_ins;
             
             // capturamos la vista y los datos que enviaremos a la misma
@@ -184,7 +184,7 @@ class CuotaController extends Controller
             return $pdf->stream('inscriptos.pdf');
         } 
         elseif ($operacion == 'no_inscriptos') {
-            $facturas_no_ins = Factura::select('legajo_alu')->whereNotIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $facturas_no_ins = Factura::select('id_alumno')->whereNotIn('id_alumno', $legajos_alu)->where('id_cuota', 1)->get();
             $alumnos_no_inscriptos = $facturas_no_ins;
             
             // capturamos la vista y los datos que enviaremos a la misma
@@ -194,10 +194,10 @@ class CuotaController extends Controller
             // visualizaremos el pdf en el navegador
             return $pdf->stream('no_inscriptos.pdf');
         } else {
-            $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $facturas_ins = Factura::select('id_alumno')->whereIn('id_alumno', $legajos_alu)->where('id_cuota', 1)->get();
             $alumnos_inscriptos = $facturas_ins;
 
-            $facturas_no_ins = Factura::select('legajo_alu')->whereNotIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
+            $facturas_no_ins = Factura::select('id_alumno')->whereNotIn('id_alumno', $legajos_alu)->where('id_cuota', 1)->get();
             $alumnos_no_inscriptos = $facturas_no_ins;
 
             // capturamos la vista y los datos que enviaremos a la misma
@@ -211,8 +211,8 @@ class CuotaController extends Controller
     public function informeIncriptosPDF() {
         $alumnos = Alumno::all();
         $legajos_alu = $alumnos->pluck('id')->toArray();
-        $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
-        $alumnos_inscriptos = $facturas_ins->pluck('legajo_alu')->toArray();
+        $facturas_ins = Factura::select('id_alumno')->whereIn('id_alumno', $legajos_alu)->where('id_cuota', 1)->get();
+        $alumnos_inscriptos = $facturas_ins->pluck('id_alumno')->toArray();
         $alumnos = Alumno::whereIn('id',$alumnos_inscriptos)->orderBy('apellido','asc')->get();
         
         // capturamos la vista y los datos que enviaremos a la misma
@@ -225,7 +225,7 @@ class CuotaController extends Controller
     public function informeNoInscriptosPDF() {
         $alumnos = Alumno::all();
         $legajos_alu = $alumnos->pluck('id')->toArray();
-        $facturas_no_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->get();
+        $facturas_no_ins = Factura::select('id_alumno')->whereIn('id_alumno', $legajos_alu)->get();
         $facturas_no_ins = Alumno::whereNotIn('id',$facturas_no_ins)->orderBy('apellido','asc')->get();
         $alumnos_no_inscriptos = $facturas_no_ins;
         
@@ -240,11 +240,11 @@ class CuotaController extends Controller
         $alumnos = Alumno::all();
         $legajos_alu = $alumnos->pluck('id')->toArray();
 
-        $facturas_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->where('id_cuota', 1)->get();
-        $alumnos_inscriptos = $facturas_ins->pluck('legajo_alu')->toArray();
+        $facturas_ins = Factura::select('id_alumno')->whereIn('id_alumno', $legajos_alu)->where('id_cuota', 1)->get();
+        $alumnos_inscriptos = $facturas_ins->pluck('id_alumno')->toArray();
         $alumnos_inscriptos = Alumno::whereIn('id',$alumnos_inscriptos)->orderBy('apellido','asc')->get();
 
-        $facturas_no_ins = Factura::select('legajo_alu')->whereIn('legajo_alu', $legajos_alu)->get();
+        $facturas_no_ins = Factura::select('id_alumno')->whereIn('id_alumno', $legajos_alu)->get();
         $facturas_no_ins = Alumno::whereNotIn('id',$facturas_no_ins)->orderBy('apellido','asc')->get();
         $alumnos_no_inscriptos = $facturas_no_ins;
 

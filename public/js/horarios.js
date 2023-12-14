@@ -39,4 +39,14 @@ let configurationDataTable = {
 
 $(function() {
     table = $('#tabla-horarios').DataTable(configurationDataTable);
+
+	$('#consultar').on('click', function() {
+		// Realizar la búsqueda utilizando Ajax
+		console.log('ar')
+		$.get('/buscar', {filtro: $('#filtro').val()}, function(data) {
+			console.log(data)
+			// Limpiar la tabla y agregar los nuevos datos
+			//table.clear().rows.add(data).draw();
+		});
+	});
 });

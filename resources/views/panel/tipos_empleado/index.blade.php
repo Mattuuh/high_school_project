@@ -10,32 +10,38 @@
     @endif
         <a href="{{ route('tipos_empleado.create') }}" class="btn btn-success">Agregar nuevo tipo de empleado</a>
     @if ($tipos_empleado->count())
-        <table class="table table-striped mt-1">
-            <thead class="table-dark">
-                <tr>
-                    <th>Id</th>
-                    <th>Cargo</th>
-                    <th>Acciones</th>
-                </tr>    
-            </thead>
-            <tbody>
-                @foreach ($tipos_empleado as $tipo_empleado)
-                    <tr>
-                        <td>{{ $tipo_empleado->id }}</td>
-                        <td>{{ $tipo_empleado->nombre_te }}</td>
-                        <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $tipo_empleado }}">
-                                Ver
-                            </button>
-                            <a href="{{ route('tipos_empleado.edit', $tipo_empleado->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $tipo_empleado->id }}" data-nombre="{{ $tipo_empleado->nombre_te }}">
-                                Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped mt-1">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Cargo</th>
+                            <th>Acciones</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        @foreach ($tipos_empleado as $tipo_empleado)
+                            <tr>
+                                <td>{{ $tipo_empleado->id }}</td>
+                                <td>{{ $tipo_empleado->nombre_te }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $tipo_empleado }}">
+                                        Ver
+                                    </button>
+                                    <a href="{{ route('tipos_empleado.edit', $tipo_empleado->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                    <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $tipo_empleado->id }}" data-nombre="{{ $tipo_empleado->nombre_te }}">
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     @else
         <h4>No hay tipos de empleados cargados!</h4>
     @endif

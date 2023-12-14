@@ -9,7 +9,27 @@
         </div>
     @endif
     @can('ver_admin')
-        <a href="{{ route('horarios.create') }}" class="btn btn-success">Crear nuevo horario</a>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-1">
+                    <label for="filtro" class="fs-1">Curso: </label>
+                </div>
+                <div class="col-3">
+                    <select id="filtro" class="form-control">
+                        <option value="0">-- Seleccionar --</option>
+                        @foreach ($cursos as $curso)
+                            <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-1">
+                    <button id="consultar" class="btn btn-success">Consultar</button>
+                </div>
+    
+            </div>            
+            
+        </div>
+        {{-- <a href="{{ route('horarios.create') }}" class="btn btn-success">Crear nuevo horario</a> --}}
     @endcan
         
     @if ($horarios->count())
@@ -44,14 +64,60 @@
                             <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $horario->id }}" data-nombre="{{ $horario->mes }}">
                                 Eliminar
                             </button>
-                         </td>                          
+                        </td>       
                     </tr>
                 @endforeach
+                    
+            </tbody>
+        </table>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Lunes</th>
+                    <th scope="col">Martes</th>
+                    <th scope="col">Miércoles</th>
+                    <th scope="col">Jueves</th>
+                    <th scope="col">Viernes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{-- @foreach ($horarios as $horario)
+                    <tr>
+                        @switch($horarios->dia)
+                            @case('Lunes')
+                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
+                                <td>{{ $horario->materias->nom_materia }}</td>
+                                @break
+                            @case('Martes')
+                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
+                                <td>{{ $horario->materias->nom_materia }}</td>
+                                @break
+                            @case('Miercoles')
+                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
+                                <td>{{ $horario->materias->nom_materia }}</td>
+                                @break
+                            @case('Jueves')
+                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
+                                <td>{{ $horario->materias->nom_materia }}</td>
+                                @break
+                            @case('Viernes')
+                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
+                                <td>{{ $horario->materias->nom_materia }}</td>
+                                @break
+                        
+                            @default
+                                
+                        @endswitch
+                        <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
+                        <td>{{ $horario->materias->nom_materia }}</td>
+                    </tr>
+                @endforeach --}}
             </tbody>
         </table>
        @include('panel.horarios.modals')
     @else
-        <h4>No hay horas cargadas!</h4>
+        <h4>No hay horario cargado!</h4>
     @endif
 @endsection
 

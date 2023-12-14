@@ -10,35 +10,40 @@
     @endif
         <a href="{{ route('periodos_lectivo.create') }}" class="btn btn-success">Agregar nuevo periodo lectivo</a>
     @if ($periodos_lectivo->count())
-        <table class="table table-striped mt-1">
-            <thead class="table-dark">
-                <tr>
-                    <th>Id</th>
-                    <th>Año</th>
-                    <th>Plan de Estudio</th>
-                    <th>Modalidad</th>
-                    <th>Acciones</th>
-                </tr>    
-            </thead>
-            <tbody>
-                @foreach ($periodos_lectivo as $periodo_lectivo)
-                    <tr>
-                        <td>{{ $periodo_lectivo->id }}</td>
-                        <td>{{ $periodo_lectivo->plan_estudio_pl }}</td>
-                        <td>{{ $periodo_lectivo->modalidad_pl }}</td>
-                        <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $periodo_lectivo }}">
-                                Ver
-                            </button>
-                            <a href="{{ route('periodos_lectivo.edit', $periodo_lectivo->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $periodo_lectivo->id }}" data-nombre="{{ $periodo_lectivo->plan_estudio_pl }}">
-                                Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped mt-1">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Año</th>
+                            <th>Plan de Estudio</th>
+                            <th>Acciones</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        @foreach ($periodos_lectivo as $periodo_lectivo)
+                            <tr>
+                                <td>{{ $periodo_lectivo->id }}</td>
+                                <td>{{ $periodo_lectivo->plan_estudio_pl }}</td>
+                                <td>{{ $periodo_lectivo->modalidad_pl }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $periodo_lectivo }}">
+                                        Ver
+                                    </button>
+                                    <a href="{{ route('periodos_lectivo.edit', $periodo_lectivo->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                    <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $periodo_lectivo->id }}" data-nombre="{{ $periodo_lectivo->plan_estudio_pl }}">
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     @else
         <h4>No hay periodos lectivo cargados!</h4>
     @endif

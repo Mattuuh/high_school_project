@@ -13,11 +13,12 @@
     <div class="col-12 mb-3">
         <a href="{{ route('registro_academico.create') }}" class="btn btn-success">Agregar nuevo </a>
     </div>
-    @if ($registros->count())
+    {{-- @if ($registros->count()) --}}
+    @if ($alumnos->count())
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped mt-1 nowrap w-100" id="tabla-empleados">
+                    {{-- <table class="table table-striped mt-1 nowrap w-100" id="tabla-empleados">
                         <thead class="table-dark">
                             <tr>
                                
@@ -32,15 +33,39 @@
                         <tbody>
                             @foreach ($registros as $registro)
                                 <tr>
-                                    
                                     <td>{{ $registro->alumno->nombre }} {{ $registro->alumno->apellido }}</td>
                                     <td>{{ $registro->alumno->dni }}</td>
                                     <td>{{ $registro->asignaturas->materias->nom_materia }}</td>
                                     <td>{{ $registro->asignaturas->empleados->nombre }}</td>
                                     <td>{{ $registro->nota }}</td>
                                     <td>{{ $registro->instancia->descripcion }}</td>
-                                   
-                                    
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table> --}}
+                    <table class="table table-striped mt-1" id="tabla-alumnos">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Legajo</th>
+                                <th>Nombre y Apellido</th>
+                                <th>Dni</th>
+                                <th>Curso</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($alumnos as $alumno)
+                                <tr>
+                                    <td>{{ $alumno->id }}</td>
+                                    <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
+                                    <td>{{ $alumno->dni }}</td>
+                                    <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#notasModal" data-bs-dato="{{ $alumno }}">
+                                            Registrar Nota
+                                        </button>
+                                        <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success">Registrar nota</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -73,43 +98,41 @@
     <script src="{{ asset('js/empleados.js') }}"></script>
 
     <script>
-        $(document).ready(function () {
-            // Escucha el evento de apertura del modal
-            $('#showModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var empleadoData = button.data('bs-emp');
-                
-                // Aquí puedes acceder a los datos del empleado y hacer lo que necesites
-                //console.log(empleadoData);
-    
-                // Puedes actualizar el contenido del modal con los datos del empleado
-                $('#modalTitle').text('Ficha de Empleado con Legajo #' + empleadoData.legajo_emp);
-                $('#nombre').text(empleadoData.nombre_emp);
-                $('#apellido').text(empleadoData.apellido_emp);
-                $('#dni').text(empleadoData.dni_emp);
-                $('#domicilio').text(empleadoData.domicilio_emp);
-                $('#telefono').text(empleadoData.telefono_emp);
-                $('#email').text(empleadoData.email_emp);
-                $('#tipo_emp').text(empleadoData.tipo_empleado.nombre_te);
-                $('#fecha_ingreso').text(empleadoData.fecha_ingreso_emp);
-                $('#fecha_egreso').text(empleadoData.fecha_egreso_emp);
-            });
+        $(document).ready(function() {
+            $('#notasModal').on('show.bs.modal', function(event) {
+                const button = $(event.relatedTarget) // Button that triggered the modal
+                var data = button.data('bs-dato');
+
+                const modal = $(this)
+                const form = $('#formNotas')
+                form.attr('action', `{{ env('APP_URL') }}/panel/registro_academico/${data.id}`);
+                $('#nombre').text(data.nombre);
+                $('#apellido').text(data.apellido);
+                $('#dni').text(data.dni);
+                $('#id').val(data.id);
+
+            })
         });
     </script>
     <script>
-        $(document).ready(function(){
-
-            $('#deleteModal').on('show.bs.modal', function (event) {
-                const button = $(event.relatedTarget) // Button that triggered the modal
-                const id = button.data('id') // Extract info from data-* attributes
-                const nombre = button.data('nombre') // Extract info from data-* attributes
-                console.log(id, nombre)
-                const modal = $(this)
-                const form = $('#formDelete')
-                form.attr('action', `{{ env('APP_URL') }}/panel/registro_academico/${id}`);
-
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el registro "${nombre}"?`)
-            })
+        document.getElementById('notasModal').addEventListener('click', function () {
+            // Recopilar datos específicos del modal
+            var datoEspecifico = "AlgunDatoEspecifico"; // Puedes obtener este dato del modal
+    
+            // Realizar la solicitud AJAX con datos
+            $.ajax({
+                url: '{{ url("/obtener-datos-modal") }}',
+                type: 'POST',
+                dataType: 'json',
+                data: { dato: datoEspecifico }, // Enviar datos al controlador
+                success: function (data) {
+                    // Mostrar los datos en el cuerpo del modal
+                    $('#modalBody').html(data.html);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         });
     </script>
     

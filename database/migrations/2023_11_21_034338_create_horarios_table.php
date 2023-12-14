@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('materia');
             $table->unsignedBigInteger('hora_clase');
             $table->unsignedBigInteger('curso');
+            $table->unsignedBigInteger('id_dia');
             $table->timestamps();
 
             $table->foreign('docente')->references('legajo_emp')
@@ -27,6 +28,8 @@ return new class extends Migration
             ->on('horas');
             $table->foreign('curso')->references('id')
             ->on('cursos');
+            $table->foreign('id_dia')->references('id')
+            ->on('dias');
             $table->softDeletes();
         });
     }

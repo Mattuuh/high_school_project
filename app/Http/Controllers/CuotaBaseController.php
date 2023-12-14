@@ -57,20 +57,20 @@ class CuotaBaseController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cuota $cuota)
+    public function edit(Cuota $cuotas_base)
     {
-        dd($cuota->id);
-        $cuota = Cuota::findOrFail($cuota->id);
+        //dd($cuotas_base->id);
+        $cuota = Cuota::findOrFail($cuotas_base->id);
         return view('panel.cuotas_base.edit', ['cuota'=>$cuota]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CuotaRequest $request, Cuota $cuota)
+    public function update(CuotaRequest $request, Cuota $cuotas_base)
     {
         //Busqueda del cuota
-        $cuota = Cuota::findOrFail($cuota->id);
+        $cuota = Cuota::findOrFail($cuotas_base->id);
 
         //Validacion de los datos
         $validated = $request->validated();
@@ -85,10 +85,10 @@ class CuotaBaseController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cuota $cuota)
+    public function destroy(Cuota $cuotas_base)
     {
         //Busqueda del cuota
-        $cuota = Cuota::findOrFail($cuota->id);
+        $cuota = Cuota::findOrFail($cuotas_base->id);
 
         //Eliminacion del cuota
         $cuota->delete();

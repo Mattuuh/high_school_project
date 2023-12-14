@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\obtenerCuotasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
@@ -24,4 +25,5 @@ Auth::routes();
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/obtenerCuotas', [obtenerCuotasController::class, 'index'])->name('obtenerCuotas');
+Route::get('/buscar', [HorarioController::class, 'buscar']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

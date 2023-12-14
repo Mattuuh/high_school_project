@@ -30,6 +30,10 @@ class Curso extends Model
     public function alumnos() {
         return $this->hasMany(Alumno::class,'id_curso');
     }
+    public function docentes_materia()
+    {
+        return $this->hasMany(Docentes_materia::class,'id_curso');
+    }
 
 
 }

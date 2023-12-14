@@ -20,6 +20,9 @@
     <a href="{{ route('exportar-empleados-excel') }}" class="btn btn-info" title="Excel" target="_blank">
         <i class="fas fa-file-excel"></i> Excel
     </a>
+    <a href="{{ route('grafico')}}" class="btn btn-primary" title="ChartJs">
+        <i class="fas fa-chart-pie"></i>
+    </a>
     @if ($empleados->count())
         <div class="col-12">
             <?php //var_dump($empleados);die; ?>

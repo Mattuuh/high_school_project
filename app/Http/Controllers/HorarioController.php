@@ -19,8 +19,10 @@ class HorarioController extends Controller
     {
         //$horarios=Horario::with(['empleados','materias','cursos','horas'])->get();
         $horarios = Horario::orderBy('hora_clase', 'asc')->get();
+        //$horarios = null;
+        $cursos = Curso::all();
       
-        return view('panel.horarios.index',compact('horarios'));
+        return view('panel.horarios.index',compact('horarios', 'cursos'));
     }
    
 
@@ -50,7 +52,7 @@ class HorarioController extends Controller
        Horario::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.horarios.index')->with('status','Horario creado satisfactoriamente!');
+        return redirect()->route('horarios.index')->with('status','Horario creado satisfactoriamente!');
     }
 
     /**
@@ -88,7 +90,7 @@ class HorarioController extends Controller
         $horario->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.horarios.index')->with('status', 'horario actualizado satisfactoriamente!');
+        return redirect()->route('horarios.index')->with('status', 'horario actualizado satisfactoriamente!');
     }
 
     /**
@@ -103,6 +105,11 @@ class HorarioController extends Controller
         $horario->delete();
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.horarios.index')->with('status', 'horario eliminado satifactoriamente!');
+        return redirect()->route('horarios.index')->with('status', 'horario eliminado satifactoriamente!');
+    }
+    public function buscar(Request $request) {
+        //dd($request);
+        $horarios = Horario::where('curso', $request->filtro)->get();
+        return compact('horarios');
     }
 }

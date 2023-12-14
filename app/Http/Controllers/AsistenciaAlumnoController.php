@@ -38,7 +38,7 @@ class AsistenciaAlumnoController extends Controller
             'id_estado' => 'numeric'
         ]);
         $alumno = Alumno::findOrFail($id);
-        $validated['legajo_alu'] = intval($alumno->id);
+        $validated['id_alumno'] = intval($alumno->id);
         $validated['fecha'] = strval(now()->format('Y-m-d'));
         $estado = Estados_asistencia::findOrFail($request->id_estado);
         $validated['id_estado'] = intval($estado->id);
@@ -80,5 +80,22 @@ class AsistenciaAlumnoController extends Controller
     public function destroy(Asistencia_alumno $asistencia_alumno)
     {
         //
+    }
+    public function guardar_datos(Request $request)
+    {
+        // Procesa los datos enviados por el formulario
+        $datosSeleccionados = $request->input('seleccion');
+        foreach ($datosSeleccionados as $alumnoId => $asistenciaId) {
+            echo 'Alumno: '.$alumnoId.' Asistencia: '.$asistenciaId.'<br>';
+            $create['id_alumno'] = Alumno::findOrFail($alumnoId)->id;
+            $create['id_estado'] = Estados_asistencia::findOrFail($asistenciaId)->id;
+            $create['fecha'] = strval(now()->format('Y-m-d'));
+            Asistencia_alumno::create($create);
+        }
+
+        // Realiza las acciones necesarias con los datos seleccionados
+
+        // Redirige o realiza alguna otra acción
+        return redirect()->back()->with('success', 'Datos guardados exitosamente');
     }
 }

@@ -18,5 +18,9 @@ class Materia extends Model
     {
         return $this->hasMany(Horario::class,'materia');
     }
+    public function docentes_materia()
+    {
+        return $this->hasMany(Docentes_materia::class,'id_materia');
+    }
    
 }

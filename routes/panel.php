@@ -14,6 +14,8 @@ use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CuotaBaseController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\DocentesMateriaController;
+use App\Http\Controllers\FacturaBaseController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\RegistroAcademicoController;
 use Illuminate\Support\Facades\Route;
@@ -36,14 +38,16 @@ Route::resource('cuotas', CuotaController::class)->names('cuotas');
 Route::resource('cuotas_base', CuotaBaseController::class)->names('cuotasbase');
 Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
 Route::resource('facturas', FacturaController::class)->names('facturas');
-Route::post('/obtenerCuotas', [FacturaController::class, 'obtenerCuotas'])->name('obtenerCuotas');
+Route::resource('facturasbase', FacturaBaseController::class)->names('facturasbase');
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
 Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');
 Route::resource('cursos', CursoController::class)->names('cursos');
 Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
 Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
+Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_datos'])->name('asistencia_alumno.guardar_datos');
 // Route::resource('asistencia_alumno', AsistenciaAlumnoController::class)->names('asistencia_alumno');
+Route::resource('docentes_materia', DocentesMateriaController::class)->names('docentes_materia');
 
 
 
@@ -59,3 +63,9 @@ Route::get('/cuotas-imp-pdf/{alumno}', [CuotaController::class, 'cuotasImpPDF'])
 Route::get('/informe-inscriptos-pdf', [CuotaController::class, 'informeIncriptosPDF'])->name('informe-inscriptos-pdf');
 Route::get('/informe-no-inscriptos-pdf', [CuotaController::class, 'informeNoInscriptosPDF'])->name('informe-no-inscriptos-pdf');
 Route::get('/infrome-ins-no-inscriptos-pdf', [CuotaController::class, 'informeInsNoInsPDF'])->name('infrome-ins-no-inscriptos-pdf');
+
+// Registro academico
+Route::get('registro_academico/{alumno}/registro_nota', [RegistroAcademicoController::class, 'registro_nota'])->name('registro_academico.registro_nota');
+
+// Empleados
+Route::get('grafico',[EmpleadoController::class,'graficosEmpleadosxTipo'])->name('grafico');

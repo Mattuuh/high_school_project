@@ -12,7 +12,10 @@ class Asistencia_alumno extends Model
 
     protected $guarded = [];
 
-    protected $primaryKey = ['id_alumno', 'fecha'];
+    protected function primaryKey()
+    {
+        return ['id_alumno', 'fecha'];
+    }
 
     public function alumno()
     {

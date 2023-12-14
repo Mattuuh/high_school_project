@@ -11,12 +11,12 @@
         </div>
     @endif
     <div class="col-12 mb-3">
-        <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
-            Nuevo alumno
+        <a href="{{ route('docentes_materia.create') }}" class="btn btn-success text-uppercase">
+            Añadir nuevo
         </a>
     </div>
     
-    @if ($alumnos->count())
+    @if ($docxmat->count())
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -28,32 +28,32 @@
                         </select>
                     </div>
                 </div>
-                <table class="table table-striped mt-1" id="tabla-alumnos">
+                <table class="table table-striped mt-1" id="tabla-docxmat">
                     <thead class="table-dark">
                         <tr>
-                            <th>Legajo</th>
-                            <th>Nombre y Apellido</th>
-                            <th>Dni</th>
+                            <th>Id</th>
+                            <th>Docente</th>
+                            <th>Materia</th>
                             <th>Curso</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($alumnos as $alumno)
+                        @foreach ($docxmat as $dxm)
                             <tr>
-                                <td>{{ $alumno->id }}</td>
-                                <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
-                                <td>{{ $alumno->dni }}</td>
-                                <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
+                                <td>{{ $dxm->id }}</td>
+                                <td>{{ $dxm->docentes->nombre }} {{ $dxm->docentes->apellido }}</td>
+                                <td>{{ $dxm->materias->nom_materia }}</td>
+                                <td>{{ $dxm->cursos->nombre }} {{ $dxm->cursos->division }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                        data-target="#showModal" data-bs-dato="{{ $alumno }}">
+                                        data-target="#showModal" data-bs-dato="{{ $dxm }}">
                                         Ver
                                     </button>
-                                    <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                    <a href="{{ route('docentes_materia.edit', $dxm->id) }}" class="btn btn-dark btn-sm">Editar</a>
                                     <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal" data-id="{{ $alumno->id }}"
-                                        data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
+                                        data-target="#deleteModal" data-id="{{ $dxm->id }}"
+                                        data-nombre="{{ $dxm->docentes->nombre }} {{ $dxm->docentes->apellido }}">
                                         Eliminar
                                     </button>
                                 </td>
@@ -64,9 +64,9 @@
             </div>
         </div>
     </div>
-        @include('panel.alumnos.modals')
+        @include('panel.docentes_materia.modals')
     @else
-        <h4>No hay alumnos cargados!</h4>
+        <h4>No hay docentes cargados!</h4>
     @endif
 @endsection
 
@@ -113,22 +113,11 @@
 
                 const modal = $(this)
                 const form = $('#formDelete')
-                form.attr('action', `{{ env('APP_URL') }}/panel/alumnos/${id}`);
+                form.attr('action', `{{ env('APP_URL') }}/panel/docentes_materia/${id}`);
 
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la alumno "${nombre}"?`)
+                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar el docente "${nombre}"?`)
             })
         });
 
-        /* $(document).ready(function() {
-            tabla.column(3).data().unique().sort().each(function(value, index) {
-                $('#filtroSelect').append('<option value="' + value + '">' + value + '</option>');
-            });
-
-            // Manejar el cambio en el select para aplicar el filtro
-            $('#filtroSelect').on('change', function() {
-                var filtroValor = $(this).val();
-                tabla.column(3).search(filtroValor).draw();
-            });
-        }); */
     </script>
 @stop

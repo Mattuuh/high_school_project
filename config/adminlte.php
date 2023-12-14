@@ -303,6 +303,12 @@ return [
 
         // Sidebar items:
         [
+            'text' =>  'Facturas',
+            'route' =>  'facturasbase.index',
+            'icon' =>  'fas fa-dollar-sign',
+            'can' =>  'registro_pago',
+        ],
+        [
             'text' =>  'Facturacion',
             'route' =>  'facturas.index',
             'icon' =>  'fas fa-dollar-sign',
@@ -375,9 +381,30 @@ return [
             'can' =>  'ver_admin',
         ],
         [
+            'text' =>  'Docentes',
+            'route' =>  'docentes_materia.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'ver_admin',
+        ],
+        /* [
             'text' =>  'Horarios',
             'route' =>  'horarios.index',
             'icon' =>  'fas fa-clock',
+            'can' =>  'ver_admin',
+        ], */
+        [
+            'text'    => 'Horarios',
+            'icon'    => 'fas fa-clock',
+            'submenu' => [
+                [
+                    'text' => 'Crear nuevo',
+                    'route'  => 'horarios.create',
+                ],
+                [
+                    'text' => 'Consultar',
+                    'route'  => 'horarios.index',
+                ],
+            ],
             'can' =>  'ver_admin',
         ],
         [
