@@ -17,8 +17,7 @@ class HorarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'fecha_alta_hor' => fake()->date(),
-            'horario_hor'=> fake()->time(),
+            //
         ];
     }
 }

@@ -22,7 +22,7 @@ class SearchController extends Controller
             $formattedResults[] = [
                 'id' => $result->dni,
                 'text' => $result->dni,
-                'legajo_alu' => $result->dni,
+                'id_alumno' => $result->dni,
                 'data-element-data' => json_encode([
                     'nombre' => $result->nombre,
                     'apellido' => $result->apellido,

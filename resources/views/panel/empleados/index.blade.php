@@ -107,14 +107,15 @@
                 $('#tipo_emp').text(empleadoData.tipo_empleado.nombre_te);
             });
         });
-
+    </script>
+    <script>
         $(document).ready(function(){
 
             $('#deleteModal').on('show.bs.modal', function (event) {
                 const button = $(event.relatedTarget) // Button that triggered the modal
                 const id = button.data('id') // Extract info from data-* attributes
                 const nombre = button.data('nombre') // Extract info from data-* attributes
-                
+                console.log(id, nombre)
                 const modal = $(this)
                 const form = $('#formDelete')
                 form.attr('action', `{{ env('APP_URL') }}/panel/empleados/${id}`);

@@ -13,4 +13,10 @@ class Materia extends Model
         'nom_materia',
         'anio_materia',
     ];
+
+    public function horario()
+    {
+        return $this->hasMany(Horario::class,'materia');
+    }
+   
 }

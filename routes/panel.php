@@ -4,18 +4,18 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EstadosAsistenciaController;
 use App\Http\Controllers\FormasPagoController;
 use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\HoraController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PeriodosLectivoController;
 use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\AsistenciaAlumnoController;
 use App\Http\Controllers\CajaController;
+use App\Http\Controllers\CuotaBaseController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\FacturaController;
-use App\Http\Requests\AlumnoRequest;
-use App\Models\Alumno;
-use App\Models\Asistencia_alumno;
+use App\Http\Controllers\RegistroAcademicoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,12 +25,15 @@ Route::get('/', function () {
 Route::resource('empleados', EmpleadoController::class)->names('empleados');
 Route::resource('estados_asistencia', EstadosAsistenciaController::class)->names('estados_asistencia');
 Route::resource('formas_pago', FormasPagoController::class)->names('formas_pago');
+Route::resource('horas', HoraController::class)->names('horas');
 Route::resource('horarios', HorarioController::class)->names('horarios');
+Route::resource('registro_academico', RegistroAcademicoController::class)->names('registro_academico');
 Route::resource('materias', MateriaController::class)->names('materias');
 Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('periodos_lectivo');
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
+Route::resource('cuotas_base', CuotaBaseController::class)->names('cuotasbase');
 Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
 Route::resource('facturas', FacturaController::class)->names('facturas');
 Route::post('/obtenerCuotas', [FacturaController::class, 'obtenerCuotas'])->name('obtenerCuotas');

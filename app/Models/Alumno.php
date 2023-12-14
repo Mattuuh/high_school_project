@@ -24,9 +24,12 @@ class Alumno extends Model
         return $this->belongsTo(Curso::class,'id_curso');
     }
     public function facturas() {
-        return $this->hasMany(Factura::class,'legajo_alu');
+        return $this->hasMany(Factura::class,'id_alumno');
     }
     public function asistencia_alumno() {
-        return $this->hasMany(Asistencia_alumno::class,'legajo_alu');
+        return $this->hasMany(Asistencia_alumno::class,'id_alumno');
+    }
+    public function registrosacademicos(){
+        return $this->hasMany(RegistroAcademico::class,'id_alumno');
     }
 }

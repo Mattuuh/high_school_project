@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Colegio Secundario San Juan</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -167,11 +167,11 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
-    'classes_auth_header' => '',
+    'classes_auth_card' => '',
+    'classes_auth_header' => 'bg-gradient-info',
     'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-lg text-info',
     'classes_auth_btn' => 'btn-flat btn-primary',
 
     /*
@@ -321,6 +321,18 @@ return [
             'can' =>  'registro_pago',
         ],
         [
+            'text' =>  'Cuotas',
+            'route' =>  'cuotasbase.index',
+            'icon' =>  'fas fa-file-alt',
+            'can' =>  'ver_admin',
+        ],
+        [
+            'text' =>  'Formas de pago',
+            'route' =>  'formas_pago.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'ver_admin',
+        ],
+        [
             'text' =>  'Registro de Alumnos',
             'route' =>  'alumnos.index',
             'icon' =>  'fas fa-fw fa-user',
@@ -330,54 +342,67 @@ return [
             'text' =>  'Registro de Empleados',
             'route' =>  'empleados.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  'admin',
+            'can' =>  'ver_admin',
         ],
         [
             'text' =>  'Cursos',
             'route' =>  'cursos.index',
-            'icon' =>  'fas fa-fw fa-user',
+            'icon' =>  'fas fa-pen',
             'can' =>  'ver_alumno',
         ],
         [
             'text' =>  'Registro de asistencia',
             'route' =>  'asistencia_alumno.index',
-            'icon' =>  'fas fa-fw fa-user',
+            'icon' =>  'fas fa-user-clock',
             'can' =>  'ver_alumno',
         ],
-        // [
-        //     'text' =>  'Estados de asistencia',
-        //     'route' =>  'estados_asistencia.index',
-        //     'icon' =>  'fas fa-fw fa-user',
-        //     'can' =>  'registro_alumno',
-        // ],
         [
-            'text' =>  'Formas de pago',
-            'route' =>  'formas_pago.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  'admin',
+            'text' =>  'Estados de asistencia',
+            'route' =>  'estados_asistencia.index',
+            'icon' =>  'fas fa-user-clock',
+            'can' =>  'ver_admin',
         ],
-        // [
-        //     'text' =>  'Horarios',
-        //     'route' =>  'horarios.index',
-        //     'icon' =>  'fas fa-fw fa-user',
-        //     'can' =>  'admin',
-        // ],
-        // [
-        //     'text' =>  'Materias',
-        //     'route' =>  'materias.index',
-        //     'icon' =>  'fas fa-fw fa-user',
-        //     'can' =>  'admin',
-        // ],[
-        //     'text' =>  'Periodos lectivos',
-        //     'route' =>  'periodos_lectivo.index',
-        //     'icon' =>  'fas fa-fw fa-user',
-        //     'can' =>  'admin',
-        // ],
+        [
+            'text' =>  'Registro Academico',
+            'route' =>  'registro_academico.index',
+            'icon' =>  'fas fa-file-signature',
+            'can' =>  'ver_admin',
+        ],
+        [
+            'text' =>  'Materias',
+            'route' =>  'materias.index',
+            'icon' =>  'fas fa-pencil-ruler',
+            'can' =>  'ver_admin',
+        ],
+        [
+            'text' =>  'Horas',
+            'route' =>  'horas.index',
+            'icon' =>  'fas fa-clock',
+            'can' =>  'ver_admin',
+        ],
+        [
+            'text' =>  'Horarios',
+            'route' =>  'horarios.index',
+            'icon' =>  'fas fa-clock',
+            'can' =>  'ver_admin',
+        ],
+        [
+            'text' =>  'Registro Academico',
+            'route' =>  'registro_academico.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'registro_nota',
+        ],
+        [
+            'text' =>  'Periodos lectivos',
+            'route' =>  'periodos_lectivo.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'ver_admin',
+        ],
         [
             'text' =>  'Tipos de empleado',
             'route' =>  'tipos_empleado.index',
             'icon' =>  'fas fa-fw fa-user',
-            'can' =>  'admin',
+            'can' =>  'ver_admin',
         ],
         
     ],

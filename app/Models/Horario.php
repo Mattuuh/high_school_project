@@ -8,13 +8,39 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Horario extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes;
     protected $fillable = [
-        'fecha_alta_hor',
-        'horario_hor',
+        'docente',
+        'materia',
+        'hora_clase',
+        'curso', 
     ];
 
-    public function cursos() {
-        return $this->hasMany(Curso::class,'id_horario');
+    public function registroacademico(){
+        return $this->hasMany(RegistroAcademico::class,'asignatura');
+    }
+
+    // Relación muchos a uno con Empleado (Docente)
+    public function empleados()
+    {
+        return $this->belongsTo(Empleado::class,'docente');
+    }
+
+    // Relación muchos a uno con Materia
+    public function materias()
+    {
+        return $this->belongsTo(Materia::class,'materia');
+    }
+
+    // Relación muchos a uno con Modulo
+    public function horas()
+    {
+        return $this->belongsTo(Hora::class,'hora_clase');
+    }
+
+    // Relación muchos a uno con Curso
+    public function cursos()
+    {
+        return $this->belongsTo(Curso::class,'curso');
     }
 }

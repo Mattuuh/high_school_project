@@ -14,17 +14,22 @@ class Curso extends Model
         'division',
         'cupos',        
         'disponibilidad',                       
-        'anio_lectivo',
-        'id_horario',    
+        'anio_lectivo',       
+        'grado',
+        'division',    
     ];
 
     public function periodo_lectivo() {
         return $this->belongsTo(Periodos_lectivo::class,'anio_lectivo');
     }
-    public function horario() {
-        return $this->belongsTo(Horario::class,'id_horario');
+    public function horarios()
+    {
+        return $this->hasMany(Horario::class,'curso');
     }
+   
     public function alumnos() {
         return $this->hasMany(Alumno::class,'id_curso');
     }
+
+
 }

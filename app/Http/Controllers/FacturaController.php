@@ -49,8 +49,8 @@ class FacturaController extends Controller
     {
         //Validacion de los datos
         $validated = $request->all();
-        $alumno = Alumno::where('dni', $validated['legajo_alu'])->first();
-        $validated['legajo_alu'] = $alumno->id;
+        $alumno = Alumno::where('dni', $validated['id_alumno'])->first();
+        $validated['id_alumno'] = $alumno->id;
         $cuota = Cuota::where('id', $validated['id_cuota'])->first();
         $validated['id_cuota'] = $cuota->id;
         $validated['total'] = $cuota->monto;
@@ -133,10 +133,10 @@ class FacturaController extends Controller
     }
 
     public function obtenerCuotas(Request $request) {
-        // Obtén las cuotas relevantes según el legajo_alu
-        $legajo_alu = $request->input('legajo_alu');
-        $alumno = Alumno::where('dni', $legajo_alu)->first();
-        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        // Obtén las cuotas relevantes según el id_alumno
+        $id_alumno = $request->input('id_alumno');
+        $alumno = Alumno::where('dni', $id_alumno)->first();
+        $facturas = Factura::where('id_alumno', $alumno->id)->get();
 
         if ($facturas->count() > 0) {
             $idCuotas = $facturas->pluck('id_cuota')->toArray();

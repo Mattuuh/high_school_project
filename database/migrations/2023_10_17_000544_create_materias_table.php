@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('materias', function (Blueprint $table) {
             $table->id();
             $table->string('nom_materia');
-            $table->integer('anio_materia');
+            $table->string('anio_materia');
             $table->timestamps();
             $table->softDeletes();
         });

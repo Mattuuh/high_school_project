@@ -10,15 +10,13 @@ class Asistencia_alumno extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'legajo_alu',
-        'fecha',
-        'id_estado'
-    ];
+    protected $guarded = [];
+
+    protected $primaryKey = ['id_alumno', 'fecha'];
 
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class, 'legajo_alu');
+        return $this->belongsTo(Alumno::class, 'id_alumno');
     }
 
     public function estadoAsistencia()
