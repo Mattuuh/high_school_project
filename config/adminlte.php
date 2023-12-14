@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Colegio Privado',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/colegio.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -302,6 +302,12 @@ return [
         ],
 
         // Sidebar items:
+        [
+            'text' =>  'Historial de Cajas',
+            'route' =>  'cajas.index',
+            'icon' =>  'fas fa-fw fa-user',
+            'can' =>  'ver_admin',
+        ],
         [
             'text' =>  'Facturacion',
             'route' =>  'facturas.index',

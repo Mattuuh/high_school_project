@@ -29,8 +29,8 @@
                             @foreach ($cajas as $caja)
                                 <tr>
                                     <td>{{ $caja->id }}</td>
-                                    <td>{{ $caja->monto_incial }}</td>
-                                    <td>{{ $caja->monto_final }}</td>
+                                    <td>{{ $caja->monto_inicial }}</td>
+                                    <td><?php echo $caja->monto_cierre == 0 ? 'Pendiente' : $caja->monto_cierre ?></td>
                                     <td>{{ $caja->created_at }}</td>
                                     <td><?php echo $caja->closed_at == '0000-00-00 00:00:00' ? '<span class="text-danger">'.$caja->closed_at.'</span>' : $caja->closed_at ?></td>
                                     <td>

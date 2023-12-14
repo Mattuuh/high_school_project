@@ -101,7 +101,7 @@ class CajaController extends Controller
         foreach ($facturas as $factura) {
             $monto_cierre += $factura->total;
         }
-        $caja['monto_cierre'] = $monto_cierre;
+        $caja['monto_cierre'] = $monto_cierre + $caja->monto_inicial;
         return view('panel.cajas.close', ['caja'=>$caja]);
     }
 }

@@ -36,10 +36,14 @@ Route::resource('facturas', FacturaController::class)->names('facturas');
 Route::post('/obtenerCuotas', [FacturaController::class, 'obtenerCuotas'])->name('obtenerCuotas');
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
-Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');
+// Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('graficos-salumnos');
 Route::resource('cursos', CursoController::class)->names('cursos');
+Route::get('graficos-alumnos',[CursoController::class,'graficosAlumnosxCurso'])->name('graficos-alumnos');
 Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
 Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
+Route::get('asistencia_alumno/listadoalumno', [AsistenciaAlumnoController::class, 'listadoalumno'])->name('asistencia_alumno.listadoalumno');
+
+
 // Route::resource('asistencia_alumno', AsistenciaAlumnoController::class)->names('asistencia_alumno');
 
 

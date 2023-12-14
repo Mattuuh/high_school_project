@@ -42,9 +42,6 @@
             <select name="id_cuota" id="cuota" class="form-control">
                 @if ($cuotas != null)
                     <option value="0" selected>---Seleccionar cuota---</option>
-                    @foreach ($cuotas as $cuota)
-                    <option value="{{ $cuota->id }}" data-element-data={{ $cuota }}>{{ $cuota->mes }}</option>
-                    @endforeach
                 @else
                     <option value="0" selected>Todas las cuotas estan pagadas</option>
                 @endif

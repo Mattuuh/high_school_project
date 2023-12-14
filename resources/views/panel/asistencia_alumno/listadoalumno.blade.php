@@ -11,21 +11,21 @@
         </div>
     @endif
     <div class="col-12 mb-3">
-    @can('ver_secretario')
-        <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
+        {{-- <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
             Nuevo alumno
-        </a>
-    @endcan
-        
+        </a> --}}
     </div>
     
-    @if ($alumnos->count())
+    @if ($asistencias->count())
         <div class="row">
             <div class="col-2">
                 <label for="filtroSelect">Filtrar por:</label>
                 <select id="filtroSelect" class="form-control">
                     <option value="">Todos</option>
                 </select>
+            </div>
+            <div class="col-12">
+                <label for="fecha" class="form-label fs-1">Fecha: {{ now()->format('d-m-Y') }}</label>
             </div>
             <div class="col-12">
                 <div class="card">
@@ -37,29 +37,22 @@
                                     <th>Nombre y Apellido</th>
                                     <th>Dni</th>
                                     <th>Curso</th>
+                                    <th>Asistencia</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($alumnos as $alumno)
+                                @foreach ($asistencias as $asistencia)
                                     <tr>
-                                        <td>{{ $alumno->id }}</td>
-                                        <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
-                                        <td>{{ $alumno->dni }}</td>
-                                        <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
+                                        <td>{{ $asistencia->legajo_alu }}</td>
+                                        <td>{{ $asistencia->alumno->nombre }} {{ $asistencia->alumno->apellido }}</td>
+                                        <td>{{ $asistencia->alumno->dni }}</td>
+                                        <td>{{ $asistencia->alumno->curso->nombre }} {{ $asistencia->alumno->curso->division }}</td>
+                                        <td><?php echo $asistencia->id_estado == null ? '-' : $asistencia->estadoAsistencia->descripcion_ea ?></td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                                data-target="#showModal" data-bs-dato="{{ $alumno }}">
-                                                Ver
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}">
+                                                Editar Asistencia
                                             </button>
-                                            @can('ver_secretario')
-                                            <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
-                                                data-target="#deleteModal" data-id="{{ $alumno->id }}"
-                                                data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
-                                                Eliminar
-                                            </button>
-                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
@@ -69,7 +62,7 @@
                 </div>
             </div>
         </div>
-        @include('panel.alumnos.modals')
+        @include('panel.asistencia_alumno.modals')
     @else
         <h4>No hay alumnos cargados!</h4>
     @endif
@@ -94,18 +87,18 @@
     <script>
         $(document).ready(function() {
             // Escucha el evento de apertura del modal
-            $('#showModal').on('show.bs.modal', function(event) {
+            $('#asistenciaEditModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var data = button.data('bs-dato');
+                console.log(data.nombre)
 
-                // Puedes actualizar el contenido del modal con los datos del empleado
-                $('#modalTitle').text('Alumno #' + data.id);
+                const modal = $(this)
+                const form = $('#formAsistencia')
+                form.attr('action', `{{ env('APP_URL') }}/panel/asistencia_alumno/${data.id}`);
                 $('#nombre').text(data.nombre);
                 $('#apellido').text(data.apellido);
                 $('#dni').text(data.dni);
-                $('#domicilio').text(data.domicilio = '' ? '-' : data.domicilio);
-                $('#telefono').text(data.telefono);
-                $('#email').text(data.email);
+                $('#id').val(data.id);
             });
         });
 
@@ -124,16 +117,5 @@
             })
         });
 
-        /* $(document).ready(function() {
-            tabla.column(3).data().unique().sort().each(function(value, index) {
-                $('#filtroSelect').append('<option value="' + value + '">' + value + '</option>');
-            });
-
-            // Manejar el cambio en el select para aplicar el filtro
-            $('#filtroSelect').on('change', function() {
-                var filtroValor = $(this).val();
-                tabla.column(3).search(filtroValor).draw();
-            });
-        }); */
     </script>
 @stop

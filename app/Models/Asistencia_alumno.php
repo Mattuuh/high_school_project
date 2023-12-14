@@ -10,9 +10,11 @@ class Asistencia_alumno extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
-
-    protected $primaryKey = ['legajo_alu', 'fecha'];
+    protected $fillable = [
+        'legajo_alu',
+        'fecha',
+        'id_estado'
+    ];
 
     public function alumno()
     {

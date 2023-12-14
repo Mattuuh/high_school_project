@@ -44,8 +44,8 @@ class AsistenciaAlumnoController extends Controller
         $validated['id_estado'] = intval($estado->id);
         //dd($validated);
 
-        //Asistencia_alumno::create($validated);
-        DB::table('asistencia_alumnos')->insert($validated);
+        Asistencia_alumno::create($validated);
+        //DB::table('asistencia_alumnos')->insert($validated);
         
         return redirect()->route('asistencia_alumno.index')->with('status','Asistencia registrada!');
     }
@@ -80,5 +80,12 @@ class AsistenciaAlumnoController extends Controller
     public function destroy(Asistencia_alumno $asistencia_alumno)
     {
         //
+    }
+
+    public function listadoalumno() {
+        $alumnos = Alumno::select('id', 'nombre', 'apellido', 'dni')->get();
+        $asistencias = Asistencia_alumno::whereDate('fecha',now()->format('Y-m-d'))->get();
+        //dd($asistencias);
+        return view('panel.asistencia_alumno.listadoalumno', compact('asistencias'));
     }
 }
