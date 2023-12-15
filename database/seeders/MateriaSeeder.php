@@ -20,7 +20,6 @@ class MateriaSeeder extends Seeder
         Materia::create(['nom_materia'=>'Quimica', 'anio_materia' => '2023']);
         Materia::create(['nom_materia'=>'Biologia', 'anio_materia' => '2023']);
         Materia::create(['nom_materia'=>'Educacion Fisica', 'anio_materia' => '2023']);
-        Materia::create(['nom_materia'=>'Recreo', 'anio_materia' => '2023']);
 
     }
 }

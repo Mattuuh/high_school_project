@@ -60,6 +60,9 @@
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $factura }}">
                                             Ver
                                         </button>
+                                        <a href="{{ route('factura-pdf', $factura->id) }}" class="btn btn-danger" title="PDF" target="_blank">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </a>
                                         <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $factura->id }}">
                                             Eliminar
                                         </button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
+use App\Models\Docentes_materia;
 use App\Models\Empleado;
 use App\Models\Hora;
 use App\Models\Horario;
@@ -21,8 +22,30 @@ class HorarioController extends Controller
         $horarios = Horario::orderBy('hora_clase', 'asc')->get();
         //$horarios = null;
         $cursos = Curso::all();
+        $dataHora = Hora::all();
+
+        $horariosAgrupados = [];
+
+        // Agrupa los horarios por hora y día
+        foreach ($horarios as $horario) {
+            $hora = $horario['hora_clase'];
+            $dia = $horario['id_dia'];
+
+            // Crea una entrada para la hora si aún no existe
+            if (!isset($horariosAgrupados[$hora])) {
+                $horariosAgrupados[$hora] = [];
+            }
+
+            // Añade la información del horario para el día correspondiente
+            $horariosAgrupados[$hora][$dia] = [
+                'docente' => $horario->empleados->nombre.' '.$horario->empleados->apellido,
+                'materia' => $horario->materias->nom_materia,
+                'curso' => $horario->cursos->nombre . ' "' . $horario->cursos->division. '"',
+            ];
+        }
+        //dd($horariosAgrupados);
       
-        return view('panel.horarios.index',compact('horarios', 'cursos'));
+        return view('panel.horarios.index',compact('horarios','horariosAgrupados', 'cursos', 'dataHora'));
     }
    
 
@@ -44,12 +67,33 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         //Validacion de los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:20',
-        ]);
+        $data = $request->all();
 
+        $id_curso = $data['id_curso'];
+        $id_materia = $data['materias'];
+        $id_docente = $data['docentes'];
+
+        $modulos = [];
+        for ($i=1; $i <= 11; $i++) {
+            for ($e=1; $e <= 5; $e++) {
+                if (intval($id_materia[$i][$e]) != 0) {
+                    Horario::create([
+                        'docente' => $id_docente[$i][$e],
+                        'materia' => $id_materia[$i][$e],
+                        'hora_clase' => $i,
+                        'curso' => $id_curso,
+                        'id_dia' => $e,
+                    ]);
+                }
+                
+            }
+            
+        }/* 
+        //dd($id_materia);
+        dd($modulos);
+        dd($data);
         //Guardado de los datos
-       Horario::create($validated);
+       Horario::create($validated); */
 
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('horarios.index')->with('status','Horario creado satisfactoriamente!');
@@ -111,5 +155,27 @@ class HorarioController extends Controller
         //dd($request);
         $horarios = Horario::where('curso', $request->filtro)->get();
         return compact('horarios');
+    }
+    public function obtenerDocentes(Request $request)
+    {
+        $id_materia = $request->input('id');
+
+        $docentes = Docentes_materia::where('id_materia', $id_materia)->select('id_docente')->get();
+
+        $results = [];
+        foreach ($docentes as $docente) {
+            $results[] = [
+                'id' => $docente->docentes->legajo_emp,
+                'nombre' => $docente->docentes->nombre,
+                'apellido' => $docente->docentes->apellido,
+                'data-element-data' => json_encode([
+                    'nombre' => $docente->docentes->nombre,
+                    'apellido' => $docente->docentes->apellido,
+                    // Otros datos que desees incluir
+                ])
+            ];
+        }
+
+        return response()->json($results);
     }
 }

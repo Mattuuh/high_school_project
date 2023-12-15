@@ -414,12 +414,6 @@ return [
             'can' =>  'ver_admin',
         ],
         [
-            'text' =>  'Registro Academico',
-            'route' =>  'registro_academico.index',
-            'icon' =>  'fas fa-fw fa-user',
-            'can' =>  'registro_nota',
-        ],
-        [
             'text' =>  'Periodos lectivos',
             'route' =>  'periodos_lectivo.index',
             'icon' =>  'fas fa-fw fa-user',

@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_materia');
             $table->unsignedBigInteger('id_docente');
-            $table->unsignedBigInteger('id_curso');
-            $table->string('horario')->nullable();
             $table->timestamps();
             $table->softDeletes();
             
@@ -24,8 +22,6 @@ return new class extends Migration
             ->on('materias');
             $table->foreign('id_docente')->references('legajo_emp')
             ->on('empleados');
-            $table->foreign('id_curso')->references('id')
-            ->on('cursos');
         });
     }
 

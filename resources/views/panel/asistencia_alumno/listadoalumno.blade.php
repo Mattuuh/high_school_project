@@ -14,18 +14,32 @@
         {{-- <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
             Nuevo alumno
         </a> --}}
+        <a href="{{ route('grafico')}}" class="btn btn-primary" title="ChartJs">
+            <i class="fas fa-chart-pie"></i> Informes {{-- Curso, Alumnos libre, alumnos casi libres -> formulario -> alumnos con su falta y la condicion, Imprimir o informar('email') --}}
+        </a>
+        <a href="{{ route('grafico')}}" class="btn btn-primary" title="ChartJs">
+            <i class="fas fa-chart-pie"></i> Inasistencias Alumnos {{-- Inasistencias de alumnos por curso (grafico) --}}
+        </a>
     </div>
     
     @if ($asistencias->count())
         <div class="row">
             <div class="col-2">
-                <label for="filtroSelect">Filtrar por:</label>
+                <label for="filtroSelect">Filtrar curso:</label>
                 <select id="filtroSelect" class="form-control">
                     <option value="">Todos</option>
                 </select>
             </div>
             <div class="col-12">
                 <label for="fecha" class="form-label fs-1">Fecha: {{ now()->format('d-m-Y') }}</label>
+                <div class="col-2">
+                    <label for="filtroSelect">Filtrar fecha:</label>
+                    {{-- <select id="filtroSelect" class="form-control">
+                        <option value="">Todos</option>
+                    </select> --}}
+                    <input type="date" name="fecha" id="fecha">
+                </div>
+                
             </div>
             <div class="col-12">
                 <div class="card">
@@ -44,7 +58,7 @@
                             <tbody>
                                 @foreach ($asistencias as $asistencia)
                                     <tr>
-                                        <td>{{ $asistencia->legajo_alu }}</td>
+                                        <td>{{ $asistencia->alumno->id }}</td>
                                         <td>{{ $asistencia->alumno->nombre }} {{ $asistencia->alumno->apellido }}</td>
                                         <td>{{ $asistencia->alumno->dni }}</td>
                                         <td>{{ $asistencia->alumno->curso->nombre }} {{ $asistencia->alumno->curso->division }}</td>
@@ -52,6 +66,9 @@
                                         <td>
                                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}">
                                                 Editar Asistencia
+                                            </button>
+                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}">
+                                                Detalle {{-- Contador de asistencias e inasistencias y sus fechas --}}
                                             </button>
                                         </td>
                                     </tr>

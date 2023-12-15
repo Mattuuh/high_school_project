@@ -40,6 +40,7 @@
                 @endforeach
             </tbody>
         </table>
+        @include('panel.materias.modals')
     @else
         <h4>No hay materias cargadas!</h4>
     @endif

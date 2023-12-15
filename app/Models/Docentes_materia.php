@@ -13,8 +13,6 @@ class Docentes_materia extends Model
     protected $fillable = [
         'id_materia',
         'id_docente',
-        'id_curso',
-        'horario'
     ];
     public function materias()
     {
@@ -23,9 +21,5 @@ class Docentes_materia extends Model
     public function docentes()
     {
         return $this->belongsTo(Empleado::class,'id_docente');
-    }
-    public function cursos()
-    {
-        return $this->belongsTo(Curso::class,'id_curso');
     }
 }

@@ -20,85 +20,106 @@
 
         <div class="container">
 
-            <div class="row mb-3">
-                <div class="col-2">
-                    <label for="curso" class="form-label">Curso: </label>
-                    <select name="id_curso" id="curso" class="form-control">
-                        <option value="0" selected>-Seleccionar curso-</option>
-                        @foreach ($cursos as $curso)
-                        <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
-                        @endforeach
-                    </select>
+            <form action="{{ route('horarios.store') }}" method="POST" novalidate class="">
+                @csrf
+    
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="curso" class="form-label">Curso: </label>
+                        <select name="id_curso" id="curso" class="form-control">
+                            <option value="0" selected>-Seleccionar curso-</option>
+                            @foreach ($cursos as $curso)
+                            <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Hora</th>
-                        <th scope="col">Lunes</th>
-                        <th scope="col">Martes</th>
-                        <th scope="col">Miércoles</th>
-                        <th scope="col">Jueves</th>
-                        <th scope="col">Viernes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($horas as $hora)
+                <table class="table table-bordered">
+                    <thead class="thead-light">
                         <tr>
-                            <td>{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}</td>
-                            <td>
-                                <select name="materia" id="materia" class="form-control">
-                                    <option value="0" selected>-Seleccionar materia-</option>
-                                    @foreach ($materias as $materia)
-                                    <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select name="materia" id="materia" class="form-control">
-                                    <option value="0" selected>-Seleccionar materia-</option>
-                                    @foreach ($materias as $materia)
-                                    <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select name="materia" id="materia" class="form-control">
-                                    <option value="0" selected>-Seleccionar materia-</option>
-                                    @foreach ($materias as $materia)
-                                    <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select name="materia" id="materia" class="form-control">
-                                    <option value="0" selected>-Seleccionar materia-</option>
-                                    @foreach ($materias as $materia)
-                                    <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select name="materia" id="materia" class="form-control">
-                                    <option value="0" selected>-Seleccionar materia-</option>
-                                    @foreach ($materias as $materia)
-                                    <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Lunes</th>
+                            <th scope="col">Martes</th>
+                            <th scope="col">Miércoles</th>
+                            <th scope="col">Jueves</th>
+                            <th scope="col">Viernes</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($horas as $hora)
+                            <tr>
+                                <td>{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}</td>
+                                <td>
+                                    <select name="materias[{{ $hora->id }}][1]" id="materia[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control materia" dia="1">
+                                        <option value="0" selected>-Seleccionar materia-</option>
+                                        @foreach ($materias as $materia)
+                                        <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select name="docentes[{{ $hora->id }}][1]" id="docente[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control docente" dia="1" hidden>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="materias[{{ $hora->id }}][2]" id="materia[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control materia" dia="2">
+                                        <option value="0" selected>-Seleccionar materia-</option>
+                                        @foreach ($materias as $materia)
+                                        <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select name="docentes[{{ $hora->id }}][2]" id="docente[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control docente" dia="2" hidden>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="materias[{{ $hora->id }}][3]" id="materia[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control materia" dia="3">
+                                        <option value="0" selected>-Seleccionar materia-</option>
+                                        @foreach ($materias as $materia)
+                                        <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select name="docentes[{{ $hora->id }}][3]" id="docente[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control docente" dia="3" hidden>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="materias[{{ $hora->id }}][4]" id="materia[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control materia" dia="4">
+                                        <option value="0" selected>-Seleccionar materia-</option>
+                                        @foreach ($materias as $materia)
+                                        <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select name="docentes[{{ $hora->id }}][4]" id="docente[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control docente" dia="4" hidden>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="materias[{{ $hora->id }}][5]" id="materia[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control materia" dia="5">
+                                        <option value="0" selected>-Seleccionar materia-</option>
+                                        @foreach ($materias as $materia)
+                                        <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select name="docentes[{{ $hora->id }}][5]" id="docente[{{ $hora->hora_inicio }} - {{ $hora->hora_fin }}]" class="form-control docente" dia="5" hidden>
+                                    </select>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{{ route('horarios.index') }}" class="btn btn-danger">Cancelar</a>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success">Guardar Horario</button>
+                    </div>
+                    
+                </div>
+            </form>
         </div>
 
-        <form action="{{ route('horarios.store') }}" method="POST" novalidate class="">
-            @csrf
-
-            <button type="submit" class="btn btn-success">Guardar Horario</button>
-            <a href="{{ route('horarios.index') }}" class="btn btn-danger text-end">Cancelar</a>
-        </form>
         </div>
     </div>
 @endsection
+
+@section('js')
+    <script src="{{ asset('js/horarios.js') }}"></script>
+@stop

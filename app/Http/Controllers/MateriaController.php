@@ -23,7 +23,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        return view('materias.create');
+        return view('panel.materias.create');
     }
 
     /**
@@ -48,8 +48,8 @@ class MateriaController extends Controller
      */
     public function show(Materia $materia)
     {
-        $materia = Materia::findOrFail($materia);
-        return view('materias.show', ['materia'=>$materia]);
+        $materia = Materia::findOrFail($materia->id);
+        return view('panel.materias.show', ['materia'=>$materia]);
     }
 
     /**
@@ -57,8 +57,8 @@ class MateriaController extends Controller
      */
     public function edit(Materia $materia)
     {
-        $materia = Materia::findOrFail($materia);
-        return view('materias.edit', ['materia'=>$materia]);
+        $materia = Materia::findOrFail($materia->id);
+        return view('panel.materias.edit', ['materia'=>$materia]);
     }
 
     /**
@@ -67,7 +67,7 @@ class MateriaController extends Controller
     public function update(Request $request, Materia $materia)
     {
         //Busqueda del materia
-        $materia = Materia::findOrFail($materia);
+        $materia = Materia::findOrFail($materia->id);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -87,7 +87,7 @@ class MateriaController extends Controller
     public function destroy(Materia $materia)
     {
         //Busqueda del materia
-        $materia = Materia::findOrFail($materia);
+        $materia = Materia::findOrFail($materia->id);
 
         //Eliminacion del materia
         $materia->delete();

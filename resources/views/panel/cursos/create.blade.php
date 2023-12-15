@@ -32,11 +32,11 @@
             <input type="number" name="disponibilidad" value="{{ old('disponibilidad') }}" class="form-control">
 
             <label for="anio_lectivo" class="form-label">Año lectivo: </label>
-            <input type="number" name="anio_lectivo" value="{{ old('anio_lectivo') }}" class="form-control">
-
-            <label for="id_horario" class="form-label">Horario: </label>
-            <input type="text" name="id_horario" value="{{ old('id_horario') }}" class="form-control">
-
+            <select name="anio_lectivo" id="anio_lectivo" class="form-control">
+                @foreach ($periodos_lectivo as $periodo_lectivo)
+                    <option value="{{ $periodo_lectivo->id }}">{{ $periodo_lectivo->modalidad }} - {{ $periodo_lectivo->anio }}</option>
+                @endforeach
+            </select><br>
 
             <button type="submit" class="btn btn-success">Guardar Curso</button>
             <a href="{{ route('cursos.index') }}" class="btn btn-danger text-end">Cancelar</a>

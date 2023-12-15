@@ -25,6 +25,7 @@
                                 <th>Seccion</th>
                                 <th>Cupo</th>
                                 <th>Disponibilidad</th>
+                                <th>Orientacion</th>
                                 @can('ver_secretario')
                                     <th>Acciones</th>
                                 @endcan
@@ -37,6 +38,7 @@
                                     <td>{{ $curso->nombre }} {{ $curso->division }}</td>
                                     <td>{{ $curso->cupos }}</td>
                                     <td>{{ $curso->disponibilidad }}</td>
+                                    <td>{{ $curso->periodo_lectivo->modalidad }}</td>
                                     
                                     <td>@can('ver_secretario')
                                         {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal"

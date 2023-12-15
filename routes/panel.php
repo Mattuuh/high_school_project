@@ -73,3 +73,7 @@ Route::get('registro_academico/{alumno}/registro_nota', [RegistroAcademicoContro
 
 // Empleados
 Route::get('grafico',[EmpleadoController::class,'graficosEmpleadosxTipo'])->name('grafico');
+Route::get('grafico-axc',[AlumnoController::class,'graficosAlumnosxCurso'])->name('grafico-axc');
+
+// Horarios
+Route::get('/obtenerDocentes', [HorarioController::class, 'obtenerDocentes'])->name('obtenerDocentes');

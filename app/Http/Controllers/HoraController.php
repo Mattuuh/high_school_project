@@ -41,7 +41,7 @@ class HoraController extends Controller
         Hora::create($validated);
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.horas.index')->with('status','Hora creado satisfactoriamente!');
+        return redirect()->route('horas.index')->with('status','Hora creado satisfactoriamente!');
     }
 
     /**
@@ -58,7 +58,7 @@ class HoraController extends Controller
      */
     public function edit(Hora $hora)
     {
-        $Hora = Hora::findOrFail($hora);
+        $Hora = Hora::findOrFail($hora->id);
         return view('panel.horas.edit', ['hora'=>$hora]);
     }
 
@@ -68,7 +68,7 @@ class HoraController extends Controller
     public function update(Request $request, Hora $hora)
     {
         //Busqueda del materia
-        $materia = Hora::findOrFail($hora);
+        $materia = Hora::findOrFail($hora->id);
 
         //Validacion de los datos
         $validated = $request->validate([
@@ -79,7 +79,7 @@ class HoraController extends Controller
         $materia->update($request->all());
 
         //  Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.horas.index')->with('status', 'Hora actualizada satisfactoriamente!');
+        return redirect()->route('horas.index')->with('status', 'Hora actualizada satisfactoriamente!');
     }
 
     /**
@@ -88,12 +88,12 @@ class HoraController extends Controller
     public function destroy(Hora $hora)
     {
         //Busqueda del materia
-        $materia = Hora::findOrFail($hora);
+        $materia = Hora::findOrFail($hora->id);
 
         //Eliminacion del materia
         $materia->delete();
 
         //Redireccion con un mensaje flash de sesion
-        return redirect()->route('panel.horas.index')->with('status', 'Hora eliminada satifactoriamente!');
+        return redirect()->route('horas.index')->with('status', 'Hora eliminada satifactoriamente!');
     }
 }

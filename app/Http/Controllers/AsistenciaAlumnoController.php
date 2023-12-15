@@ -82,6 +82,24 @@ class AsistenciaAlumnoController extends Controller
         //
     }
 
+    public function guardar_datos(Request $request)
+    {
+        // Procesa los datos enviados por el formulario
+        $datosSeleccionados = $request->input('seleccion');
+        foreach ($datosSeleccionados as $alumnoId => $asistenciaId) {
+            echo 'Alumno: '.$alumnoId.' Asistencia: '.$asistenciaId.'<br>';
+            $create['id_alumno'] = Alumno::findOrFail($alumnoId)->id;
+            $create['id_estado'] = Estados_asistencia::findOrFail($asistenciaId)->id;
+            $create['fecha'] = strval(now()->format('Y-m-d'));
+            Asistencia_alumno::create($create);
+        }
+
+        // Realiza las acciones necesarias con los datos seleccionados
+
+        // Redirige o realiza alguna otra acción
+        return redirect()->back()->with('success', 'Datos guardados exitosamente');
+    }
+
     public function listadoalumno() {
         $alumnos = Alumno::select('id', 'nombre', 'apellido', 'dni')->get();
         $asistencias = Asistencia_alumno::whereDate('fecha',now()->format('Y-m-d'))->get();

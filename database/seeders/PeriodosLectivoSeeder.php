@@ -13,6 +13,26 @@ class PeriodosLectivoSeeder extends Seeder
      */
     public function run(): void
     {
-        Periodos_lectivo::factory()->count(9)->create();
+        //Periodos_lectivo::factory()->count(9)->create();
+        Periodos_lectivo::create([
+            'plan_estudio' => 'Ciclo basico',
+            'modalidad' => 'Basico',
+            'anio' => '2023',
+        ]);
+        Periodos_lectivo::create([
+            'plan_estudio' => 'Ciclo Orientado',
+            'modalidad' => 'Ciencias Sociales',
+            'anio' => '2023',
+        ]);
+        Periodos_lectivo::create([
+            'plan_estudio' => 'Ciclo Orientado',
+            'modalidad' => 'Ciencias Naturales',
+            'anio' => '2023',
+        ]);
+        Periodos_lectivo::create([
+            'plan_estudio' => 'Ciclo Orientado',
+            'modalidad' => 'Economia',
+            'anio' => '2023',
+        ]);
     }
 }

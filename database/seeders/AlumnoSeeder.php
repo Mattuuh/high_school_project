@@ -13,6 +13,6 @@ class AlumnoSeeder extends Seeder
      */
     public function run(): void
     {
-        Alumno::factory()->count(30)->create();
+        Alumno::factory()->count(90)->create();
     }
 }

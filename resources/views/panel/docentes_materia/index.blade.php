@@ -2,7 +2,7 @@
 
 @section('plugins.Datatables', true)
 
-@section('title', 'Alumnos')
+@section('title', 'Docentes')
 
 @section('content')
     @if (session('status'))
@@ -44,7 +44,6 @@
                                 <td>{{ $dxm->id }}</td>
                                 <td>{{ $dxm->docentes->nombre }} {{ $dxm->docentes->apellido }}</td>
                                 <td>{{ $dxm->materias->nom_materia }}</td>
-                                <td>{{ $dxm->cursos->nombre }} {{ $dxm->cursos->division }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                         data-target="#showModal" data-bs-dato="{{ $dxm }}">

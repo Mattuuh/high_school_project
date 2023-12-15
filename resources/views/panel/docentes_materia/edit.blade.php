@@ -30,14 +30,6 @@
                 <option value="{{ $materia->id }}">{{ $materia->nom_materia }}</option>
                 @endforeach
             </select>
-
-            <label for="curso" class="form-label">Curso </label>
-            <select name="id_curso" id="curso" class="form-control">
-                <option value="0" selected>---Seleccionar curso---</option>
-                @foreach ($cursos as $curso)
-                <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
-                @endforeach
-            </select>
             
             <button type="submit" class="btn btn-success">Guardar registro</button>
             <a href="{{ route('docentes_materia.index') }}" class="btn btn-danger text-end">Cancelar</a>

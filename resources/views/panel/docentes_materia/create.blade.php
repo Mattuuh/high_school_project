@@ -40,14 +40,6 @@
                 @endforeach
             </select>
 
-            <label for="curso" class="form-label">Curso </label>
-            <select name="id_curso" id="curso" class="form-control">
-                <option value="0" selected>---Seleccionar curso---</option>
-                @foreach ($cursos as $curso)
-                <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
-                @endforeach
-            </select>
-
             <button type="submit" class="btn btn-success">Guardar registro</button>
             <a href="javascript:history.back()" class="btn btn-danger text-end">Cancelar</a>
         </form>

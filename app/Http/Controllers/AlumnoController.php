@@ -102,4 +102,22 @@ class AlumnoController extends Controller
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('alumnos.index')->with('status', 'Alumno eliminado satifactoriamente!');
     }
+    public function graficosAlumnosxCurso() {
+        // Si se hace una peticion AJAX
+        if(request()->ajax()) {
+            $labels = [];
+            $counts = [];
+            $cursos = Curso::get();
+            foreach($cursos as $curso) {
+                $labels[] = $curso->nombre. ' "' . $curso->division . '"';
+                $counts[] = Alumno::where('id_curso', $curso->id)->count();
+            }
+            $response = [
+                'success' => true,
+                'data' => [$labels, $counts]
+            ];
+            return json_encode($response);
+        }
+        return view('panel.alumnos.grafico-axc');
+       }
 }

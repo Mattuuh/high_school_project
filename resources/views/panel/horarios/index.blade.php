@@ -33,7 +33,7 @@
     @endcan
         
     @if ($horarios->count())
-        <table class="table table-striped mt-1" id='tabla-horarios'>
+        {{-- <table class="table table-striped mt-1" id='tabla-horarios'>
             <thead class="table-dark">
                 <tr>
                     <th>Hora</th>
@@ -69,7 +69,7 @@
                 @endforeach
                     
             </tbody>
-        </table>
+        </table> --}}
         <table class="table table-bordered">
             <thead class="thead-light">
                 <tr>
@@ -82,37 +82,19 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($horarios as $horario)
+                @foreach ($horariosAgrupados as $hora => $dias)
                     <tr>
-                        @switch($horarios->dia)
-                            @case('Lunes')
-                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
-                                <td>{{ $horario->materias->nom_materia }}</td>
-                                @break
-                            @case('Martes')
-                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
-                                <td>{{ $horario->materias->nom_materia }}</td>
-                                @break
-                            @case('Miercoles')
-                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
-                                <td>{{ $horario->materias->nom_materia }}</td>
-                                @break
-                            @case('Jueves')
-                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
-                                <td>{{ $horario->materias->nom_materia }}</td>
-                                @break
-                            @case('Viernes')
-                                <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
-                                <td>{{ $horario->materias->nom_materia }}</td>
-                                @break
-                        
-                            @default
-                                
-                        @endswitch
-                        <td>{{ $horario->horas->hora_inicio }} - {{ $horario->horas->hora_fin }}</td>
-                        <td>{{ $horario->materias->nom_materia }}</td>
+                        <td>{{-- {{ $hora }} <br>  --}}{{ $dataHora[$hora]['hora_inicio'] }} - {{ $dataHora[$hora]['hora_fin'] }}</td>
+                        @for ($i = 1; $i <= 5; $i++) 
+                            <td>
+                                @if (isset($dias[$i]))
+                                    {{ $dias[$i]['materia'] }} <br>
+                                    {{ $dias[$i]['docente'] }}
+                                @endif
+                            </td>
+                        @endfor
                     </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
         </table>
        @include('panel.horarios.modals')

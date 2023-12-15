@@ -24,11 +24,11 @@
                         <td>{{ $estado_asistencia->id }}</td>
                         <td>{{ $estado_asistencia->descripcion_ea }}</td>
                         <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $estados_asistencia }}">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $estado_asistencia }}">
                                 Ver
                             </button>
                             <a href="{{ route('estados_asistencia.edit', $estado_asistencia->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $estados_asistencia->id }}" data-nombre="{{ $estados_asistencia->descripcion_ea }}">
+                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $estado_asistencia->id }}" data-nombre="{{ $estado_asistencia->descripcion_ea }}">
                                 Eliminar
                             </button>
                         </td>

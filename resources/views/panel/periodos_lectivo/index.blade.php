@@ -19,6 +19,7 @@
                             <th>Id</th>
                             <th>Año</th>
                             <th>Plan de Estudio</th>
+                            <th>Año</th>
                             <th>Acciones</th>
                         </tr>    
                     </thead>
@@ -26,8 +27,9 @@
                         @foreach ($periodos_lectivo as $periodo_lectivo)
                             <tr>
                                 <td>{{ $periodo_lectivo->id }}</td>
-                                <td>{{ $periodo_lectivo->plan_estudio_pl }}</td>
-                                <td>{{ $periodo_lectivo->modalidad_pl }}</td>
+                                <td>{{ $periodo_lectivo->plan_estudio }}</td>
+                                <td>{{ $periodo_lectivo->modalidad }}</td>
+                                <td>{{ $periodo_lectivo->anio }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $periodo_lectivo }}">
                                         Ver

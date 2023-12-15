@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('title', 'Crear una nueva Materia')
 
@@ -20,12 +20,12 @@
             @csrf
 
             <label for="nom_materia" class="form-label"> Materia : </label>
-            <input type="text" name="nom_materia" value="{{ old('-') }}" class="form-control">
+            <input type="text" name="nom_materia" value="{{ old('anio_materia') }}" class="form-control">
 
             <br>
 
             <label for="anio_materia" class="form-label"> Año : </label><br>
-            <textarea name="anio_materia" cols="30" rows="4" class="form-control">{{ old('-') }}</textarea>
+            <input name="anio_materia" class="form-control" value="{{ old('anio_materia') }}">
 
             <br>
 

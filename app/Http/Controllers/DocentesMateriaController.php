@@ -26,8 +26,8 @@ class DocentesMateriaController extends Controller
     {
         $docentes = Empleado::where('tipo_emp', 4)->get();
         $materias = Materia::all();
-        $cursos = Curso::all();
-        return view('panel.docentes_materia.create', compact('docentes', 'materias', 'cursos'));
+        
+        return view('panel.docentes_materia.create', compact('docentes', 'materias'));
     }
 
     /**
@@ -57,8 +57,8 @@ class DocentesMateriaController extends Controller
     {
         $dxm = Docentes_materia::findOrFail($docentes_materia->id);
         $materias = Materia::all();
-        $cursos = Curso::all();
-        return view('panel.docentes_materia.edit', compact('dxm', 'materias', 'cursos'));
+
+        return view('panel.docentes_materia.edit', compact('dxm', 'materias'));
     }
 
     /**
