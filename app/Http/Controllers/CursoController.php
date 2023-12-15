@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
 use App\Models\Curso;
+use App\Models\Periodos_lectivo;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
@@ -22,7 +24,8 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('panel.cursos.create');
+        $periodos_lectivo = Periodos_lectivo::all();
+        return view('panel.cursos.create', compact('periodos_lectivo'));
     }
 
     /**
@@ -90,4 +93,7 @@ class CursoController extends Controller
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('cursos.index')->with('status', 'Curso eliminado satifactoriamente!');
     }
+
+    
+       
 }

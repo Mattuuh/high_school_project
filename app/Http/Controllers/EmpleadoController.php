@@ -129,6 +129,22 @@ class EmpleadoController extends Controller
     public function exportarEmpleadosExcel() {
         return Excel::download(new EmpleadoExportExcel, 'empleados.xlsx');
     }
-   
-
+    public function graficosEmpleadosxTipo() {
+        // Si se hace una peticion AJAX
+        if(request()->ajax()) {
+            $labels = [];
+            $counts = [];
+            $tipos = Tipos_empleado::get();
+            foreach($tipos as $tipo) {
+                $labels[] = $tipo->nombre_te;
+                $counts[] = Empleado::where('tipo_emp', $tipo->id)->count();
+            }
+            $response = [
+                'success' => true,
+                'data' => [$labels, $counts]
+            ];
+            return json_encode($response);
+        }
+        return view('panel.empleados.grafico');
+       }
 }

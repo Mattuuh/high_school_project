@@ -11,14 +11,13 @@ use App\Http\Controllers\TiposEmpleadoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\AsistenciaAlumnoController;
 use App\Http\Controllers\CajaController;
+use App\Http\Controllers\CuotaBaseController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\DocentesMateriaController;
+use App\Http\Controllers\FacturaBaseController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\RegistroAcademicoController;
-use App\Models\RegistroAcademico;
-use App\Http\Requests\AlumnoRequest;
-use App\Models\Alumno;
-use App\Models\Asistencia_alumno;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,21 +36,20 @@ Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
 Route::get('graficosAlumnos',[AlumnoController::class,'graficosAlumnos'])->name('graficosAlumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
+Route::resource('cuotas_base', CuotaBaseController::class)->names('cuotasbase');
 Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
 Route::resource('facturas', FacturaController::class)->names('facturas');
-Route::post('/obtenerCuotas', [FacturaController::class, 'obtenerCuotas'])->name('obtenerCuotas');
+Route::resource('facturasbase', FacturaBaseController::class)->names('facturasbase');
 Route::resource('cajas', CajaController::class)->names('cajas');
 Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.close');
-Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('grafico-salumnos');
+// Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('graficos-salumnos');
 Route::resource('cursos', CursoController::class)->names('cursos');
-Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
-Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
+Route::get('graficos-alumnos',[CursoController::class,'graficosAlumnosxCurso'])->name('graficos-alumnos');
+
+
 // Route::resource('asistencia_alumno', AsistenciaAlumnoController::class)->names('asistencia_alumno');
+Route::resource('docentes_materia', DocentesMateriaController::class)->names('docentes_materia');
 
-
-
-Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
-Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');
 
 // Facturas
 Route::get('/factura-pdf/{factura}', [FacturaController::class, 'facturaPDF'])->name('factura-pdf');
@@ -62,3 +60,26 @@ Route::get('/cuotas-imp-pdf/{alumno}', [CuotaController::class, 'cuotasImpPDF'])
 Route::get('/informe-inscriptos-pdf', [CuotaController::class, 'informeIncriptosPDF'])->name('informe-inscriptos-pdf');
 Route::get('/informe-no-inscriptos-pdf', [CuotaController::class, 'informeNoInscriptosPDF'])->name('informe-no-inscriptos-pdf');
 Route::get('/infrome-ins-no-inscriptos-pdf', [CuotaController::class, 'informeInsNoInsPDF'])->name('infrome-ins-no-inscriptos-pdf');
+
+// Registro academico
+Route::get('registro_academico/{alumno}/registro_nota', [RegistroAcademicoController::class, 'registro_nota'])->name('registro_academico.registro_nota');
+
+// Empleados
+Route::get('grafico',[EmpleadoController::class,'graficosEmpleadosxTipo'])->name('grafico');
+Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
+Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');
+
+// Alumnos
+Route::get('grafico-axc',[AlumnoController::class,'graficosAlumnosxCurso'])->name('grafico-axc');
+
+// Horarios
+Route::get('/obtenerDocentes', [HorarioController::class, 'obtenerDocentes'])->name('obtenerDocentes');
+
+// Asistencia-Alumnos
+Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
+Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
+Route::get('asistencia_alumno/listadoalumno', [AsistenciaAlumnoController::class, 'listadoalumno'])->name('asistencia_alumno.listadoalumno');
+Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_datos'])->name('asistencia_alumno.guardar_datos');
+Route::put('asistencia_alumno/{id_alumno}/{fecha}', [AsistenciaAlumnoController::class, 'update'])->name('asistencia_alumno.update');
+Route::get('asistencia_alumno/{alumno}/detalleAsistencia', [AsistenciaAlumnoController::class, 'detalleAsistencia'])->name('asistencia_alumno.detalleAsistencia');
+

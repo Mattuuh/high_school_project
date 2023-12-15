@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('periodos_lectivos', function (Blueprint $table) {
             $table->id();
-            $table->string('plan_estudio_pl');
-            $table->string('modalidad_pl');
+            $table->string('plan_estudio');
+            $table->string('modalidad');
+            $table->year('anio');
             $table->timestamps();
             $table->softDeletes();
         });

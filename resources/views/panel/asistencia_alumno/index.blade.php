@@ -11,53 +11,76 @@
         </div>
     @endif
     <div class="col-12 mb-3">
-        {{-- <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
-            Nuevo alumno
-        </a> --}}
+        <a href="{{ route('asistencia_alumno.listadoalumno') }}" class="btn btn-success text-uppercase">
+            Listado de asistencia
+        </a>
     </div>
     
     @if ($alumnos->count())
-        <label for="filtroSelect">Filtrar por:</label>
-        <select id="filtroSelect" class="form-control">
-        <option value="">Todos</option>
-        </select>
-
-        <table class="table table-striped mt-1" id="tabla-alumnos">
-            <thead class="table-dark">
-                <tr>
-                    <th>Legajo</th>
-                    <th>Nombre y Apellido</th>
-                    <th>Dni</th>
-                    <th>Curso</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($alumnos as $alumno)
-                    <tr>
-                        <td>{{ $alumno->id }}</td>
-                        <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
-                        <td>{{ $alumno->dni }}</td>
-                        <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
-                        <td>
-                            {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                data-target="#showModal" data-bs-dato="{{ $alumno }}">
-                                Ver
-                            </button>
-                            <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
-                                data-target="#deleteModal" data-id="{{ $alumno->id }}"
-                                data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
-                                Eliminar
-                            </button> --}}
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaModal" data-bs-dato="{{ $alumno }}">
-                                Asistencia
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="filtroSelect">Filtrar por:</label>
+                        <select id="filtroSelect" class="form-control">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('asistencia_alumno.guardar_datos') }}" method="POST">
+                    @csrf
+                    <table class="table table-striped mt-1" id="tabla-alumnos">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Legajo</th>
+                                <th>Nombre y Apellido</th>
+                                <th>Dni</th>
+                                <th>Curso</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($alumnos as $alumno)
+                                <tr>
+                                    <td>{{ $alumno->id }}</td>
+                                    <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
+                                    <td>{{ $alumno->dni }}</td>
+                                    <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
+                                    <td>
+                                        {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#showModal" data-bs-dato="{{ $alumno }}">
+                                            Ver
+                                        </button>
+                                        <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
+                                            data-target="#deleteModal" data-id="{{ $alumno->id }}"
+                                            data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
+                                            Eliminar
+                                        </button> --}}
+                                        {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaModal" data-bs-dato="{{ $alumno }}">
+                                            Asistencia
+                                        </button> --}}
+                                        <input type="radio" id="presente" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="1"> <label for="presente">Presente</label>
+                                        <input type="radio" id="ausente" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="2"> <label for="ausente">Ausente</label>
+                                        <input type="radio" id="tarde" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="4"> <label for="tarde">Tarde</label> 
+                                        <button class="btn btn-danger btn-sm limpiarSeleccion" type="button" data-alumno-id="{{ $alumno->id }}">Limpíar</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-end mt-2">
+                        <button type="submit" class="btn btn-success btn-lg">Guardar</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
         @include('panel.asistencia_alumno.modals')
     @else
         <h4>No hay alumnos cargados!</h4>
@@ -113,6 +136,13 @@
                 $('#id').val(data.id);
 
             })
+        });
+
+        $(document).ready(function() {
+            $('.limpiarSeleccion').on('click', function() {
+                var alumnoId = $(this).data('alumno-id');
+                $('input[id-alumno="' + alumnoId + '"]').prop('checked', false);
+            });
         });
 
     </script>

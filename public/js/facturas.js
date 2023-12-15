@@ -87,14 +87,14 @@ $(document).ready(function() {
 
     $('#search').on('change', function() {
         // Obtén el valor seleccionado
-        var legajo_alu = $(this).val();
-        console.log('change', legajo_alu);
+        var id_alumno = $(this).val();
+        console.log('change', id_alumno);
 
         // Realiza una solicitud AJAX al servidor para obtener las opciones relevantes para el segundo select
         $.ajax({
             url: '/obtenerCuotas', // Reemplaza con la URL de tu controlador
             method: 'GET', // Puedes ajustar el método según tus necesidades
-            data: { legajo_alu: legajo_alu },
+            data: { id_alumno: id_alumno },
             success: function(data) {
                 console.log('success', data);
                 // Limpia las opciones actuales del segundo select

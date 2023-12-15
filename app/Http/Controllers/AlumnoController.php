@@ -36,12 +36,20 @@ class AlumnoController extends Controller
     {
         //Validacion de los datos
         $validated = $request->validated();
+        $curso = Curso::where('id', $validated['id_curso'])->first();
 
-        //Guardado de los datos
-        Alumno::create($validated);
+        $curso->disponibilidad = $curso->disponibilidad - 1;
 
-        //Redireccion con un mensaje flash de sesion
-        return redirect()->route('alumnos.index')->with('status','Alumno creado satisfactoriamente!');
+        if ($curso->disponibilidad > 0) {
+            //Guardado de los datos
+            $curso->update(['disponibilidad' => $curso->disponibilidad]);
+            Alumno::create($validated);
+
+            //Redireccion con un mensaje flash de sesion
+            return redirect()->route('alumnos.index')->with('status','Alumno creado satisfactoriamente!');
+        } else {
+            return back()->with('status', 'No hay cupos disponibles');
+        }
     }
 
     /**
@@ -94,22 +102,22 @@ class AlumnoController extends Controller
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('alumnos.index')->with('status', 'Alumno eliminado satifactoriamente!');
     }
-
-    public function graficosAlumnos() {
+    public function graficosAlumnosxCurso() {
         // Si se hace una peticion AJAX
         if(request()->ajax()) {
-        $labels = [];
-        $counts = [];
-        $alumnos = Alumno::get();
-        foreach($alumnos as $alumno) {
-        $labels[] = $alumno->id_curso;
-        $counts[] = Alumno::where('id_curso', $alumno->id)->count();
+            $labels = [];
+            $counts = [];
+            $cursos = Curso::get();
+            foreach($cursos as $curso) {
+                $labels[] = $curso->nombre. ' "' . $curso->division . '"';
+                $counts[] = Alumno::where('id_curso', $curso->id)->count();
+            }
+            $response = [
+                'success' => true,
+                'data' => [$labels, $counts]
+            ];
+            return json_encode($response);
         }
-        $response = [
-        'success' => true,
-        'data' => [$labels, $counts]
-        ];
-        return json_encode($response);
-        }
-        return view('panel.alumnos.charts');}
+        return view('panel.alumnos.grafico-axc');
+       }
 }

@@ -13,7 +13,8 @@
     {{-- <a href="{{ route('cuotas.create') }}" class="btn btn-success">Agregar nuevo</a> --}}
     <a href="{{ route('informe-inscriptos-pdf') }}" class="btn btn-info" title="PDF" target="_blank"><i class="fas fa-file-pdf"></i> PDF Habilitados</a>
     <a href="{{ route('informe-no-inscriptos-pdf') }}" class="btn btn-info" title="PDF" target="_blank"><i class="fas fa-file-pdf"></i> PDF Pedientes</a>
-    <a href="{{ route('infrome-ins-no-inscriptos-pdf') }}" class="btn btn-info" title="PDF" target="_blank"><i class="fas fa-file-pdf"></i> PDF Habilitados y Pendientes</a>
+    {{-- <a href="{{ route('infrome-ins-no-inscriptos-pdf') }}" class="btn btn-info" title="PDF" target="_blank"><i class="fas fa-file-pdf"></i> PDF Habilitados y Pendientes</a> --}}
+    {{-- <a href="{{ route() }}" class="btn btn-success">Editar Cuotas</a> --}}
 
     @if ($alumnos->count())
         <div class="col-12">
@@ -37,17 +38,17 @@
                                     <td>{{ $alumno->dni }}</td>
                                     <td><?php echo $alumno->habilitado ? '<div class="btn btn-success" title="Habilitado"><i class="fa fa-check-square"></i> Pagado</div>' : '<div class="btn btn-danger" title="Inhabilitado"><i class="fa fa-times"></i> Pendiente</div>' ?></td>
                                     <td>
-                                        @can('ver_admin')
+                                        {{-- @can('ver_admin')
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $alumno }}">
                                             Ver
                                         </button>
-                                        @endcan
+                                        @endcan --}}
                                         <a href="{{ route('cuotas.filtroalumno', $alumno->id) }}" class="btn btn-primary btn-sm">Ver Cuotas</a>
-                                        @can('ver_admin')
+                                        {{-- @can('ver_admin')
                                         <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $alumno->id }}" data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
                                             Eliminar
                                         </button>
-                                        @endcan
+                                        @endcan --}}
                                     </td>
                                 </tr>
                             @endforeach

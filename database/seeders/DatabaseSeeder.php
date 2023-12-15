@@ -31,9 +31,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AlumnoSeeder::class);
         $this->call(CuotaSeeder::class);
         $this->call(FormasPagoSeeder::class);
-        $this->call(HoraSeeder::class);
-        $this->call(MateriaSeeder::class);
         $this->call(EstadosAsistenciaSeeder::class);
+        $this->call(HoraSeeder::class);
+        $this->call(DiaSeeder::class);
+        $this->call(MateriaSeeder::class);
         
     }
 }

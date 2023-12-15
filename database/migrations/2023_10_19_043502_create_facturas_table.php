@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();       
             $table->unsignedBigInteger('id_caja');
-            $table->unsignedBigInteger('legajo_alu');
+            $table->unsignedBigInteger('id_alumno');
             $table->unsignedBigInteger('id_forma_pago');
             $table->unsignedBigInteger('id_cuota');
             $table->float('total');
@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->foreign('id_caja')->references('id')
             ->on('cajas');
-            $table->foreign('legajo_alu')->references('id')
+            $table->foreign('id_alumno')->references('id')
             ->on('alumnos');
             $table->foreign('id_forma_pago')->references('id')
             ->on('formas_pagos');

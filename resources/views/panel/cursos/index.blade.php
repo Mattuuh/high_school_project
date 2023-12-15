@@ -11,6 +11,9 @@
         </div>
     @endif
         <a href="{{ route('cursos.create') }}" class="btn btn-success">Agregar nuevo curso</a>
+        <a href="{{ route('graficos-alumnos')}}" class="btn btn-primary" title="ChartJs">
+            <i class="fas fa-chart-pie"></i>
+        </a>
     @if ($cursos->count())
         <div class="col-12">
             <div class="card">
@@ -22,7 +25,10 @@
                                 <th>Seccion</th>
                                 <th>Cupo</th>
                                 <th>Disponibilidad</th>
-                                <th>Acciones</th>
+                                <th>Orientacion</th>
+                                @can('ver_secretario')
+                                    <th>Acciones</th>
+                                @endcan
                             </tr>    
                         </thead>
                         <tbody>
@@ -32,23 +38,26 @@
                                     <td>{{ $curso->nombre }} {{ $curso->division }}</td>
                                     <td>{{ $curso->cupos }}</td>
                                     <td>{{ $curso->disponibilidad }}</td>
-                                    <td>
+                                    <td>{{ $curso->periodo_lectivo->modalidad }}</td>
+                                    
+                                    <td>@can('ver_secretario')
                                         {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target="#showModal" data-bs-dato="{{ $curso }}">
                                             Ver
                                         </button> --}}
-                                        <a href="{{ route('cursos.edit', $curso->id) }}" class="btn btn-dark btn-sm">Editar</a>
-                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
-                                            data-target="#deleteModal" data-id="{{ $curso->id }}"
-                                            data-nombre="{{ $curso->nombre }}">
-                                            Eliminar
-                                        </button>
+                                            <a href="{{ route('cursos.edit', $curso->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#deleteModal" data-id="{{ $curso->id }}"
+                                                data-nombre="{{ $curso->nombre }}">
+                                                Eliminar
+                                            </button>@endcan
                                     </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- @include('cursos.modals') --}}
+                    @include('panel.cursos.modals')
                 </div>
             </div>    
         </div>

@@ -31,6 +31,10 @@ class Empleado extends Model
     {
         return $this->hasMany(Horario::class,'legajo_emp');
     }
+    public function docentes_materia()
+    {
+        return $this->hasMany(Docentes_materia::class,'id_docente');
+    }
 
     public function users() {
         return $this->hasMany(User::class,'empleado');

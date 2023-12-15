@@ -12,9 +12,17 @@
         </div>
     @endif
     
-    <div class="col-12 mb-3">
-        <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
-    </div>
+        
+    <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
+    <a href="{{ route('exportar-empleados-pdf') }}" class="btn btn-danger" title="PDF" target="_blank">
+        <i class="fas fa-file-pdf"></i> PDF
+    </a>
+    <a href="{{ route('exportar-empleados-excel') }}" class="btn btn-info" title="Excel" target="_blank">
+        <i class="fas fa-file-excel"></i> Excel
+    </a>
+    <a href="{{ route('grafico')}}" class="btn btn-primary" title="ChartJs">
+        <i class="fas fa-chart-pie"></i>
+    </a>
     @if ($empleados->count())
         <div class="col-12">
             <?php //var_dump($empleados);die; ?>
@@ -44,7 +52,7 @@
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-emp="{{ $empleado }}">
                                             Ver
                                         </button>
-                                        <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
+                                        <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-primary btn-sm">Editar</a>
                                         <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre }}">
                                             Eliminar
                                         </button>

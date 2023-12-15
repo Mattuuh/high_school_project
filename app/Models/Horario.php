@@ -13,7 +13,8 @@ class Horario extends Model
         'docente',
         'materia',
         'hora_clase',
-        'curso', 
+        'curso',
+        'id_dia',
     ];
 
     public function registroacademico(){
@@ -42,5 +43,9 @@ class Horario extends Model
     public function cursos()
     {
         return $this->belongsTo(Curso::class,'curso');
+    }
+    public function dias()
+    {
+        return $this->belongsTo(Dia::class,'id_dia');
     }
 }

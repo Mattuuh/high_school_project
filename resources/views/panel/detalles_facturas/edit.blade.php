@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('title', 'Edicion del Empleado #' . $empleado->legajo_emp)
 

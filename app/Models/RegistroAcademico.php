@@ -10,7 +10,7 @@ class RegistroAcademico extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable =[
-        'legajo_alum',
+        'id_alumno',
         'asignatura',
         'nota',
         'fecha',
@@ -21,7 +21,7 @@ public function instancia(){
     return $this->belongsTo( Instancia::class,'id_instancia'); 
 }     
 public function alumno(){
-    return $this->belongsTo( Alumno::class,'legajo_alum'); 
+    return $this->belongsTo( Alumno::class,'id_alumno'); 
 }  
 public function asignaturas(){
     return $this->belongsTo( Horario::class,'asignatura'); 

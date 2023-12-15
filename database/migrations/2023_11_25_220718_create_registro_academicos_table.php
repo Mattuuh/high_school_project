@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('registro_academicos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('legajo_alum');
-            $table->unsignedBigInteger('asignatura');
+            $table->unsignedBigInteger('id_alumno');
+            $table->unsignedBigInteger('id_docxmat');
             $table->integer('nota');
             $table->date('fecha');
             $table->unsignedBigInteger('id_instancia');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('legajo_alum')->references('id')
+            $table->foreign('id_alumno')->references('id')
             ->on('alumnos');
-            $table->foreign('asignatura')->references('id')
-            ->on('horarios');
+            $table->foreign('id_docxmat')->references('id')
+            ->on('docentes_materias');
             $table->foreign('id_instancia')->references('id')
             ->on('instancias');
             

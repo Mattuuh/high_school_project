@@ -12,9 +12,9 @@ class obtenerCuotasController extends Controller
 {
     public function index(Request $request) {
         // Obtén las cuotas relevantes según el legajo_alu
-        $legajo_alu = $request->input('legajo_alu');
-        $alumno = Alumno::where('dni', $legajo_alu)->first();
-        $facturas = Factura::where('legajo_alu', $alumno->id)->get();
+        $id_alumno = $request->input('id_alumno');
+        $alumno = Alumno::where('dni', $id_alumno)->first();
+        $facturas = Factura::where('id_alumno', $alumno->id)->get();
 
         if ($facturas->count() > 0) {
             $idCuotas = $facturas->pluck('id_cuota')->toArray();
