@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Colegio Secundario San Juan</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/colegio1.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/colegio.png',
+            'path' => 'vendor/adminlte/dist/img/colegio1.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/colegio1.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -167,12 +167,12 @@ return [
     |
     */
 
-    'classes_auth_card' => '',
-    'classes_auth_header' => 'bg-gradient-info',
-    'classes_auth_body' => '',
+    'classes_auth_card' => 'bg-gradient-dark',
+    'classes_auth_header' => '',
+    'classes_auth_body' => 'bg-gradient-dark',
     'classes_auth_footer' => 'text-center',
-    'classes_auth_icon' => 'fa-lg text-info',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_btn' => 'btn-flat btn-light',
 
     /*
     |--------------------------------------------------------------------------
