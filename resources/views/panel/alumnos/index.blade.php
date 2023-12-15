@@ -15,6 +15,9 @@
             Nuevo alumno
         </a>
     </div>
+    <div class="col-12 mb-3">
+        <a href="{{ route('graficosAlumnos') }}" class="btn btn-success">ver graficos</a>
+    </div>
     
     @if ($alumnos->count())
         <label for="filtroSelect">Filtrar por:</label>

@@ -35,6 +35,7 @@ Route::resource('materias', MateriaController::class)->names('materias');
 Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('periodos_lectivo');
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
+Route::get('graficosAlumnos',[AlumnoController::class,'graficosAlumnos'])->name('graficosAlumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
 Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
 Route::resource('facturas', FacturaController::class)->names('facturas');

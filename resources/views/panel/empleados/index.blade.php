@@ -11,9 +11,7 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="col-12 mb-3">
-        <a href="{{ route('empleados.charts') }}" class="btn btn-success">ver graficos</a>
-    </div>
+    
     <div class="col-12 mb-3">
         <a href="{{ route('empleados.create') }}" class="btn btn-success">Agregar nuevo empleado</a>
     </div>
