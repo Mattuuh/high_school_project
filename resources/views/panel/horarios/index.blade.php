@@ -60,7 +60,7 @@
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato='{{ $horario }}'>
                                 Ver
                             </button>
-                            <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                            <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-primary btn-sm">Editar</a>
                             <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $horario->id }}" data-nombre="{{ $horario->mes }}">
                                 Eliminar
                             </button>

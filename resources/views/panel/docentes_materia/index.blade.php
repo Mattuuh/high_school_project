@@ -20,21 +20,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-2">
-                        <label for="filtroSelect">Filtrar por:</label>
-                        <select id="filtroSelect" class="form-control">
-                            <option value="">Todos</option>
-                        </select>
-                    </div>
-                </div>
                 <table class="table table-striped mt-1" id="tabla-docxmat">
                     <thead class="table-dark">
                         <tr>
                             <th>Id</th>
                             <th>Docente</th>
                             <th>Materia</th>
-                            <th>Curso</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -45,11 +36,7 @@
                                 <td>{{ $dxm->docentes->nombre }} {{ $dxm->docentes->apellido }}</td>
                                 <td>{{ $dxm->materias->nom_materia }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                        data-target="#showModal" data-bs-dato="{{ $dxm }}">
-                                        Ver
-                                    </button>
-                                    <a href="{{ route('docentes_materia.edit', $dxm->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                    <a href="{{ route('docentes_materia.edit', $dxm->id) }}" class="btn btn-primary btn-sm">Editar</a>
                                     <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
                                         data-target="#deleteModal" data-id="{{ $dxm->id }}"
                                         data-nombre="{{ $dxm->docentes->nombre }} {{ $dxm->docentes->apellido }}">
@@ -60,10 +47,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                @include('panel.docentes_materia.modals')
             </div>
         </div>
     </div>
-        @include('panel.docentes_materia.modals')
     @else
         <h4>No hay docentes cargados!</h4>
     @endif
@@ -83,26 +70,9 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
     {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
-    <script src="{{ asset('js/alumnos.js') }}"></script>
+    <script src="{{ asset('js/docentes_materia.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
-            // Escucha el evento de apertura del modal
-            $('#showModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget);
-                var data = button.data('bs-dato');
-
-                // Puedes actualizar el contenido del modal con los datos del empleado
-                $('#modalTitle').text('Alumno #' + data.id);
-                $('#nombre').text(data.nombre);
-                $('#apellido').text(data.apellido);
-                $('#dni').text(data.dni);
-                $('#domicilio').text(data.domicilio = '' ? '-' : data.domicilio);
-                $('#telefono').text(data.telefono);
-                $('#email').text(data.email);
-            });
-        });
-
         $(document).ready(function() {
 
             $('#deleteModal').on('show.bs.modal', function(event) {

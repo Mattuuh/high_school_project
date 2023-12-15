@@ -27,21 +27,27 @@
             <div class="col-2">
                 <label for="filtroSelect">Filtrar curso:</label>
                 <select id="filtroSelect" class="form-control">
-                    <option value="">Todos</option>
+                    <option value="todos">Todos</option>
                 </select>
             </div>
-            <div class="col-12">
-                <label for="fecha" class="form-label fs-1">Fecha: {{ now()->format('d-m-Y') }}</label>
-                <div class="col-2">
-                    <label for="filtroSelect">Filtrar fecha:</label>
-                    {{-- <select id="filtroSelect" class="form-control">
-                        <option value="">Todos</option>
-                    </select> --}}
-                    <input type="date" name="fecha" id="fecha">
+            <div class="col-3">
+                <label for="filtroFecha">Filtrar fecha:</label>
+                <div class="row">
+                    <div class="col-8 pr-0">
+                        <input type="date" name="fecha" id="filtroFecha" class="form-control">
+                    </div>
+                    <div class="col-2 p-0">
+                        <button type="button" class="btn btn-success" id="botonFecha"><i class='fas fa-search'></i></button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger" id="limpiarFiltros" title="Limpiar filtros"><i class="fas fa-times"></i></button>
+                    </div>
                 </div>
+            </div>
+            <div class="col-2">
                 
             </div>
-            <div class="col-12">
+            <div class="col-12 mt-2">
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-striped mt-1" id="tabla-alumnos">
@@ -52,6 +58,7 @@
                                     <th>Dni</th>
                                     <th>Curso</th>
                                     <th>Asistencia</th>
+                                    <th>Fecha</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -63,13 +70,14 @@
                                         <td>{{ $asistencia->alumno->dni }}</td>
                                         <td>{{ $asistencia->alumno->curso->nombre }} {{ $asistencia->alumno->curso->division }}</td>
                                         <td><?php echo $asistencia->id_estado == null ? '-' : $asistencia->estadoAsistencia->descripcion_ea ?></td>
+                                        <td>{{ $asistencia->fecha }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}">
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}" data-id-estado="{{ $asistencia->id_estado }}">
                                                 Editar Asistencia
                                             </button>
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}">
+                                            <a href="{{ route('asistencia_alumno.detalleAsistencia', $asistencia->alumno->id) }}" class="btn btn-info btn-sm">
                                                 Detalle {{-- Contador de asistencias e inasistencias y sus fechas --}}
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -99,7 +107,7 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
     {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
-    <script src="{{ asset('js/alumnos.js') }}"></script>
+    <script src="{{ asset('js/asistencia_alumno.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -107,7 +115,7 @@
             $('#asistenciaEditModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var data = button.data('bs-dato');
-                console.log(data.nombre)
+                var id_estado = button.data('id-estado');
 
                 const modal = $(this)
                 const form = $('#formAsistencia')
@@ -116,6 +124,24 @@
                 $('#apellido').text(data.apellido);
                 $('#dni').text(data.dni);
                 $('#id').val(data.id);
+                $('input[name="id_estado"]').filter(`[value="${id_estado}"]`).prop('checked', true);
+
+                /* var idEstado = $('input[name="id_estado"]:checked').val();
+
+                // Realizar una petición AJAX para enviar el valor al controlador de Laravel
+                $.ajax({
+                    url: '/tu/ruta/controlador',
+                    method: 'POST',
+                    data: { id_estado: idEstado },
+                    success: function(response) {
+                        // Manejar la respuesta del controlador si es necesario
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        // Manejar errores si es necesario
+                        console.error(error);
+                    }
+                }); */
             });
         });
 

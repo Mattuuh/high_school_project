@@ -52,7 +52,7 @@
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-emp="{{ $empleado }}">
                                             Ver
                                         </button>
-                                        <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
+                                        <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-primary btn-sm">Editar</a>
                                         <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre }}">
                                             Eliminar
                                         </button>

@@ -45,7 +45,7 @@
                                             data-target="#showModal" data-bs-dato="{{ $curso }}">
                                             Ver
                                         </button> --}}
-                                            <a href="{{ route('cursos.edit', $curso->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                            <a href="{{ route('cursos.edit', $curso->id) }}" class="btn btn-primary btn-sm">Editar</a>
                                             <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
                                                 data-target="#deleteModal" data-id="{{ $curso->id }}"
                                                 data-nombre="{{ $curso->nombre }}">

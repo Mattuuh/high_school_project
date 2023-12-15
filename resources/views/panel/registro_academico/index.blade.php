@@ -43,7 +43,7 @@
                             @endforeach
                         </tbody>
                     </table> --}}
-                    <table class="table table-striped mt-1" id="tabla-alumnos">
+                    <table class="table table-striped mt-1" id="tabla-registro-academico">
                         <thead class="table-dark">
                             <tr>
                                 <th>Legajo</th>
@@ -61,10 +61,10 @@
                                     <td>{{ $alumno->dni }}</td>
                                     <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#notasModal" data-bs-dato="{{ $alumno }}">
+                                        {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#notasModal" data-bs-dato="{{ $alumno }}">
                                             Registrar Nota
-                                        </button>
-                                        <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success">Registrar nota</a>
+                                        </button> --}}
+                                        <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success btn-sm">Registrar nota</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -95,7 +95,7 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
 
     {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
-    <script src="{{ asset('js/empleados.js') }}"></script>
+    <script src="{{ asset('js/registro_academico.js') }}"></script>
 
     <script>
         $(document).ready(function() {

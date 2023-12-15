@@ -44,19 +44,11 @@ Route::get('cajas/{caja}/close', [CajaController::class, 'close'])->name('cajas.
 // Route::get('graficos-alumnos',[AlumnoController::class,'graficosalumnosincriptos'])->name('graficos-salumnos');
 Route::resource('cursos', CursoController::class)->names('cursos');
 Route::get('graficos-alumnos',[CursoController::class,'graficosAlumnosxCurso'])->name('graficos-alumnos');
-Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
-Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
-Route::get('asistencia_alumno/listadoalumno', [AsistenciaAlumnoController::class, 'listadoalumno'])->name('asistencia_alumno.listadoalumno');
 
 
-Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_datos'])->name('asistencia_alumno.guardar_datos');
 // Route::resource('asistencia_alumno', AsistenciaAlumnoController::class)->names('asistencia_alumno');
 Route::resource('docentes_materia', DocentesMateriaController::class)->names('docentes_materia');
 
-
-
-Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
-Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');
 
 // Facturas
 Route::get('/factura-pdf/{factura}', [FacturaController::class, 'facturaPDF'])->name('factura-pdf');
@@ -73,7 +65,20 @@ Route::get('registro_academico/{alumno}/registro_nota', [RegistroAcademicoContro
 
 // Empleados
 Route::get('grafico',[EmpleadoController::class,'graficosEmpleadosxTipo'])->name('grafico');
+Route::get('/exportar-empleados-pdf', [EmpleadoController::class, 'exportarEmpleadosPDF'])->name('exportar-empleados-pdf');
+Route::get('/exportar-empleados-excel', [EmpleadoController::class, 'exportarEmpleadosExcel'])->name('exportar-empleados-excel');
+
+// Alumnos
 Route::get('grafico-axc',[AlumnoController::class,'graficosAlumnosxCurso'])->name('grafico-axc');
 
 // Horarios
 Route::get('/obtenerDocentes', [HorarioController::class, 'obtenerDocentes'])->name('obtenerDocentes');
+
+// Asistencia-Alumnos
+Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
+Route::post('asistencia_alumno/{id_alumno}', [AsistenciaAlumnoController::class, 'store'])->name('asistencia_alumno.store');
+Route::get('asistencia_alumno/listadoalumno', [AsistenciaAlumnoController::class, 'listadoalumno'])->name('asistencia_alumno.listadoalumno');
+Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_datos'])->name('asistencia_alumno.guardar_datos');
+Route::put('asistencia_alumno/{id_alumno}/{fecha}', [AsistenciaAlumnoController::class, 'update'])->name('asistencia_alumno.update');
+Route::get('asistencia_alumno/{alumno}/detalleAsistencia', [AsistenciaAlumnoController::class, 'detalleAsistencia'])->name('asistencia_alumno.detalleAsistencia');
+

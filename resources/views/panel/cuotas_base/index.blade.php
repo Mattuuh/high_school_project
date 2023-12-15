@@ -34,9 +34,6 @@
                                     <td>{{ $cuota->monto }}</td>
                                     <td>{{ $cuota->interes }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato="{{ $cuota }}">
-                                            Ver
-                                        </button>
                                         <a href="{{ route('cuotasbase.edit', $cuota->id) }}" class="btn btn-primary btn-sm">Editar</a>
                                         <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $cuota->id }}" data-nombre="{{ $cuota->mes }}">
                                             Eliminar
@@ -75,30 +72,6 @@
     <script src="{{ asset('js/cuotas.js') }}"></script>
     
     <script>
-        $(document).ready(function () {
-            // Escucha el evento de apertura del modal
-            $('#showModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var data = button.data('bs-dato');
-    
-                // Puedes actualizar el contenido del modal con los datos del empleado
-                $('#modalTitle').text('Cuota #' + data.id);
-                $('#mes').text(data.mes);
-                $('#monto').text(data.monto);
-                $('#interes').text(data.interes);
-
-                var fecha = new Date(data.created_at);
-                var dia = fecha.getDate();
-                var mes = fecha.getMonth() + 1;
-                var año = fecha.getFullYear();
-                var horas = fecha.getHours();
-                var minutos = fecha.getMinutes();
-                var fechaFormateada = dia + "/" + mes + "/" + año + " " + horas + ":" + (minutos < 10 ? '0' : '') + minutos;
-                $('#creado').text(fechaFormateada);
-            });
-            
-        });
-
         $(document).ready(function(){
 
             $('#deleteModal').on('show.bs.modal', function (event) {

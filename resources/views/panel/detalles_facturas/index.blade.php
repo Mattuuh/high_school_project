@@ -48,7 +48,7 @@
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-id="{{ $empleado->legajo_emp }}" data-nombre="{{ $empleado->nombre_emp }}">
                                             Ver
                                         </button>
-                                        <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-dark btn-sm">Editar</a>
+                                        <a href="{{ route('empleados.edit', $empleado->legajo_emp) }}" class="btn btn-primary btn-sm">Editar</a>
                                         <form action="{{ route('empleados.destroy', $empleado->legajo_emp) }}" method="POST">
                                             @csrf @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

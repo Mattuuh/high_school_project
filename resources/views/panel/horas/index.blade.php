@@ -33,7 +33,7 @@
                                 <td>{{ $hora->hora_inicio }}</td>
                                 <td>{{ $hora->hora_fin }}</td>
                                 <td>
-                                    <a href="{{ route('horas.edit', $hora->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                    <a href="{{ route('horas.edit', $hora->id) }}" class="btn btn-primary btn-sm">Editar</a>
                                     <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $hora->id }}" data-nombre="{{ $hora->hora }}">
                                         Eliminar
                                     </button>

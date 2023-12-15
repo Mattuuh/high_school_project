@@ -36,11 +36,10 @@ let configurationDataTable = {
 		}
 	},
 	columnDefs: [
-		{'orderable': false, 'targets': [4]}
+		{'orderable': false, 'targets': [2]}
 	]
 }
 
 $(function() {
-    table = $('#tabla-horas').DataTable(configurationDataTable);
-	
+    table = $('#tabla-tipos-empleado').DataTable(configurationDataTable);
 });

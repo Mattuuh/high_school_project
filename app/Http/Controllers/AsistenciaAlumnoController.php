@@ -15,7 +15,7 @@ class AsistenciaAlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumno::all();
+        $alumnos = Alumno::orderBy('id_curso', 'asc')->get();
         $estados_asistencia = Estados_asistencia::all();
         
         return view('panel.asistencia_alumno.index', compact('alumnos', 'estados_asistencia'));
@@ -69,9 +69,19 @@ class AsistenciaAlumnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Asistencia_alumno $asistencia_alumno)
+    public function update(Request $request, $id_alumno, $fecha)
     {
-        //
+        $asistencia = Asistencia_alumno::where('id_alumno', $id_alumno)->where('fecha', $fecha)->first();
+        $id_estado = intval($request->input('id_estado'));
+        //$asistencia->update($request->all());
+
+        DB::table('asistencia_alumnos')
+            ->where('id_alumno', $id_alumno)
+            ->where('fecha', $fecha)
+            ->update(['id_estado' => $id_estado]);
+        
+
+        return back()->with('status','Asistencia actualizada!');
     }
 
     /**
@@ -105,5 +115,30 @@ class AsistenciaAlumnoController extends Controller
         $asistencias = Asistencia_alumno::whereDate('fecha',now()->format('Y-m-d'))->get();
         //dd($asistencias);
         return view('panel.asistencia_alumno.listadoalumno', compact('asistencias'));
+    }
+    public function detalleAsistencia(Alumno $alumno) {
+        $alumno = Alumno::findOrFail($alumno->id);
+        $asistencias = Asistencia_alumno::where('id_alumno',$alumno->id)->get();
+        $presente = 0;
+        $ausente = 0;
+        $justificado = 0;
+        $tarde = 0;
+        foreach ($asistencias as $asistencia) {
+            switch ($asistencia->id_estado) {
+                case 1:
+                    $presente++;
+                    break;
+                case 2:
+                    $ausente++;
+                    break;
+                case 3:
+                    $justificado++;
+                    break;
+                case 4:
+                    $tarde++;
+                    break;
+            }
+        }
+        return view('panel.asistencia_alumno.detalle-asistencia', compact('alumno', 'asistencias', 'presente', 'ausente', 'justificado', 'tarde'));
     }
 }

@@ -55,7 +55,7 @@
                                             data-target="#showModal" data-bs-dato="{{ $alumno }}">
                                             Ver
                                         </button>
-                                        <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                        <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-primary btn-sm">Editar</a>
                                         <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
                                             data-target="#deleteModal" data-id="{{ $alumno->id }}"
                                             data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
@@ -64,9 +64,10 @@
                                         {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaModal" data-bs-dato="{{ $alumno }}">
                                             Asistencia
                                         </button> --}}
-                                        <input type="radio" id="presente" name="seleccion[{{ $alumno->id }}]" value="1"> <label for="presente">Presente</label>
-                                        <input type="radio" id="ausente" name="seleccion[{{ $alumno->id }}]" value="2"> <label for="ausente">Ausente</label>
-                                        <input type="radio" id="tarde" name="seleccion[{{ $alumno->id }}]" value="4"> <label for="tarde">Tarde</label>
+                                        <input type="radio" id="presente" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="1"> <label for="presente">Presente</label>
+                                        <input type="radio" id="ausente" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="2"> <label for="ausente">Ausente</label>
+                                        <input type="radio" id="tarde" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="4"> <label for="tarde">Tarde</label> 
+                                        <button class="btn btn-danger btn-sm limpiarSeleccion" type="button" data-alumno-id="{{ $alumno->id }}">Limpíar</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -135,6 +136,13 @@
                 $('#id').val(data.id);
 
             })
+        });
+
+        $(document).ready(function() {
+            $('.limpiarSeleccion').on('click', function() {
+                var alumnoId = $(this).data('alumno-id');
+                $('input[id-alumno="' + alumnoId + '"]').prop('checked', false);
+            });
         });
 
     </script>

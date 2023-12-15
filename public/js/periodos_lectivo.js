@@ -41,6 +41,5 @@ let configurationDataTable = {
 }
 
 $(function() {
-    table = $('#tabla-horas').DataTable(configurationDataTable);
-	
+    table = $('#tabla-periodo-lectivo').DataTable(configurationDataTable);
 });

@@ -59,7 +59,7 @@
                                                                 Ver
                                                             </button>
                                                             @can('ver_secretario')
-                                                                <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-dark btn-sm">Editar</a>
+                                                                <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-primary btn-sm">Editar</a>
                                                                 <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
                                                                     data-target="#deleteModal" data-id="{{ $alumno->id }}"
                                                                     data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">

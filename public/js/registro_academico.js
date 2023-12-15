@@ -41,6 +41,5 @@ let configurationDataTable = {
 }
 
 $(function() {
-    table = $('#tabla-horas').DataTable(configurationDataTable);
-	
+    table = $('#tabla-registro-academico').DataTable(configurationDataTable);
 });
