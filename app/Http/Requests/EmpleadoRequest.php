@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AlumnoRequest extends FormRequest
+class EmpleadoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,12 @@ class AlumnoRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:50|min:3',
             'apellido' => 'required|string|max:100|min:3',
-            'dni' => 'required|numeric|min:7|unique:alumnos,dni',
+            'dni' => 'required|numeric|min:7|unique:empleados,dni',
+            'imagen' => 'image|mimes:jpeg,png,jpg',
             'domicilio' => 'sometimes|max:50',
             'telefono' => 'sometimes|nullable|min:10',
             'email' => 'sometimes|nullable|email',
-            'id_curso' => 'numeric',
+            'tipo_emp' => 'numeric',
         ];
     }
 
@@ -45,11 +46,12 @@ class AlumnoRequest extends FormRequest
             'apellido.min' => 'El apellido tiene un minimo de 3 caracteres',
             'dni.required' => 'El dni es requerido',
             'dni.unique' => 'El dni ya existe en la base de datos',
+            'imagen.image' => 'Coloque un formato correcto',
             'domicilio.max' => 'El domicilio tiene un maximo de 50 caracteres',
             'telefono.numeric' => 'El telefono tiene que ser numeros',
             'telefono.min' => 'El telefono tiene que tener un minimo de 10 caracteres',
             'email.email' => 'El email tiene que estar en un formato correcto',
-            'id_curso.numeric' => 'El curso tiene que estar seleccionado'
+            'tipo_emp.numeric' => 'Tiene que seleccionar una categoria'
         ];
     }
 }
