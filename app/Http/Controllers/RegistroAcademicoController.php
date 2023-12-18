@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\Curso;
 use App\Models\Docentes_materia;
+use App\Models\Horario;
 use App\Models\Materia;
 use App\Models\RegistroAcademico;
 use Illuminate\Http\Request;
@@ -91,8 +92,7 @@ class RegistroAcademicoController extends Controller
     {
         $alumno = Alumno::findOrFail($alumno->id);
         $idCurso = Curso::findOrFail($alumno->id_curso)->id;
-        $docXmat = Docentes_materia::where('id_curso', $idCurso)->get();
-        $idMaterias = $docXmat->pluck('id_materia')->toArray();
+        $idMaterias = Horario::where('curso', $idCurso)->select('materia')->get();
         $materias = Materia::whereIn('id', $idMaterias)->get();
 
         return view('panel.registro_academico.registro_nota', compact('alumno', 'materias'));

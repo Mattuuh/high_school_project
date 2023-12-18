@@ -59,8 +59,8 @@
                         @foreach ($materias as $materia)
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="notas-{{ $materia->id }}" class="form-label">{{ $materia->nombre }}:</label>
-                                    <select name="notas[{{ $materia->id }}]" id="notas[{{ $materia->nombre }}]" class="form-control">
+                                    <label for="notas-{{ $materia->id }}" class="form-label">{{ $materia->nom_materia }}:</label>
+                                    <select name="notas[{{ $materia->id }}]" id="notas[{{ $materia->nom_materia }}]" class="form-control">
                                         <option value="0" selected>0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
