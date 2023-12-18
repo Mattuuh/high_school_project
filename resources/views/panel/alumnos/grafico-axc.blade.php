@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         <div class="d-flex justify-content-between align-items-center">
-                            <strong>Bar Chart</strong>
+                            <strong>Cantidad de Alumnos de cada curso</strong>
                         </div>
                     </div>
                     <div class="card-body">
@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-header bg-danger text-white">
                         <div class="d-flex justify-content-between align-items-center">
-                            <strong>Pie Chart</strong>
+                            <strong>Distribucion de Alumnos</strong>
                         </div>
                     </div>
                     <div class="card-body h-50">
@@ -93,11 +93,15 @@
                             "data": ${ JSON.stringify(count) },
                             "backgroundColor": [
                                 "rgba(255, 99, 132, 0.2)",
-                                "rgba(54, 162, 235, 0.2)"
+                                "rgba(54, 162, 235, 0.2)",
+                                "rgba(53, 62, 135, 0.2)"
+                                
+
                             ],
                             "borderColor": [
                                 "rgba(255, 99, 132, 1)",
-                                "rgba(54, 162, 235, 1)"
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(53, 62, 135, 0.2)"
                             ],
                             "borderWidth": 2
                         }]
