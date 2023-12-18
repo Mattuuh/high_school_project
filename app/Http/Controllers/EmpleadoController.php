@@ -7,6 +7,7 @@ use App\Models\Empleado;
 use App\Models\Tipos_empleado;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\EmpleadoExportExcel;
+use App\Http\Requests\EmpleadoRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,7 @@ class EmpleadoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ValidationRequest $request)
+    public function store(EmpleadoRequest $request)
     {
         $validated = $request->validated();
 
@@ -80,7 +81,7 @@ class EmpleadoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ValidationRequest $request, Empleado $empleado)
+    public function update(EmpleadoRequest $request, Empleado $empleado)
     {
         //Busqueda del empleado
         $empleado = Empleado::findOrFail($empleado->legajo_emp);

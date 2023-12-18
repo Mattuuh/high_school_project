@@ -36,9 +36,13 @@
 
             <label for="telefono" class="form-label">Telefono: </label>
             <input type="number" name="telefono" value="{{ old('telefono') }}" class="form-control">
+            
+            <label for="email" class="form-label">Email: </label>
+            <input type="email" name="email" value="{{ old('email') }}" class="form-control">
 
             <label for="tipo_emp" class="form-label">Tipo: </label>
             <select name="tipo_emp" id="tipo_emp" class="form-control">
+                <option value="nada">--Seleccion una opcion--</option>
             @foreach ($tiposEmp as $tipoEmp)
                 <option value="{{ $tipoEmp->id }}">{{ $tipoEmp->nombre_te }}</option>
             @endforeach
