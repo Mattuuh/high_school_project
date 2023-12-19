@@ -11,6 +11,12 @@
 
 @section('content')
     <div class="container-fluid">
+    <div class="col-2">
+                <label for="filtroSelect">Filtrar curso:</label>
+                <select id="filtroSelect" class="form-control">
+                    <option value="todos">Todos</option>
+                </select>
+            </div>
         <div class="row">
 
             <!-- BAR CHART -->
@@ -68,7 +74,7 @@
                     let count = response.data[1];
 
                     // Para Graficar el Diagrama de Barras (BarChart)
-                    graficar(barChart, 'bar', labels, count, 'Cantidad de Alumnos por Curso', configDataBarChart);
+                    graficar(barChart, 'bar', labels, count, 'Cantidad de faltas', configDataBarChart);
 
                     // Para Graficar el Diagrama de Torta (PieChart)
                     graficar(pieChart, 'pie', labels, count, 'Cantidad de Alumnos por Curso', configDataPieChart);

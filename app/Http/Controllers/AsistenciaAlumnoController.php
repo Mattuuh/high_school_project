@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use App\Models\Asistencia_alumno;
+use App\Models\Curso;
 use App\Models\Estados_asistencia;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf as WriterPdf;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use Dompdf\Adapter\PDFLib;
 
 class AsistenciaAlumnoController extends Controller
 {
@@ -123,6 +130,7 @@ class AsistenciaAlumnoController extends Controller
         $ausente = 0;
         $justificado = 0;
         $tarde = 0;
+        $inasistencia=0;
         foreach ($asistencias as $asistencia) {
             switch ($asistencia->id_estado) {
                 case 1:
@@ -130,15 +138,142 @@ class AsistenciaAlumnoController extends Controller
                     break;
                 case 2:
                     $ausente++;
+                   
                     break;
                 case 3:
                     $justificado++;
                     break;
                 case 4:
                     $tarde++;
+                     
                     break;
             }
+            $inasistencia=$ausente+$tarde/2;
         }
-        return view('panel.asistencia_alumno.detalle-asistencia', compact('alumno', 'asistencias', 'presente', 'ausente', 'justificado', 'tarde'));
+        return view('panel.asistencia_alumno.detalle-asistencia', compact('alumno', 'asistencias', 'presente', 'ausente', 'justificado', 'tarde','inasistencia'));
     }
+
+    public function graficosAsistencia() {
+
+        // Si se hace una peticion AJAX
+        if(request()->ajax()) {
+            $labels = [];
+            $counts = [];
+
+            $alumnos = Alumno::where();
+            $asistenciaAlumnos = [];
+            foreach ($alumnos as $alumno) {
+                $presenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 1)->get();
+                $presente = $presenteConsulta->count();
+                $ausenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 2)->get();
+                $ausente = $ausenteConsulta->count();
+                $tardeConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 3)->get();
+                $tarde = $tardeConsulta->count();
+                $justificadoConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 4)->get();
+                $justificado = $justificadoConsulta->count();
+
+                $asistenciaAlumnos[] = [
+                    'alumno' => $alumno->nombre .' '. $alumno->apellido,
+                    'presente' => $presente,
+                    'ausente' => $ausente,
+                    'tarde' => $tarde,
+                    'justificado' => $justificado,
+                ];
+                
+            }
+
+            foreach($asistenciaAlumnos as $asistenciaAlumno) {
+
+                $labels[] = $asistenciaAlumno['alumno'];
+                $counts[] = $asistenciaAlumno['presente'];
+            }
+            $response = [
+                'success' => true,
+                'data' => [$labels, $counts]
+            ];
+            return json_encode($response);
+        }
+        return view('panel.asistencia_alumno.grafico-asistencia');
+        
+       }
+       // En tu controlador
+// En tu controlador
+public function obtenerDatosAsistencia() {
+    $alumnos = Alumno::with('curso')->orderBy('id_curso')->get();
+    $asistenciaAlumnos = [];
+
+    foreach ($alumnos as $alumno) {
+        $ausenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 2)->count();
+        $tardeConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 4)->count();
+        $faltas = $ausenteConsulta + $tardeConsulta / 2;
+
+        if ($faltas > 14) {
+            $presenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 1)->count();
+            $justificadoConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 3)->count();
+
+            $asistenciaAlumnos[] = [
+                'alumno' => $alumno->nombre .' '. $alumno->apellido,
+                'dni' => $alumno->dni,
+                'curso' => $alumno->curso->nombre,
+                'division' => $alumno->curso->division,
+                'presente' => $presenteConsulta,
+                'ausente' => $ausenteConsulta,
+                'tarde' => $tardeConsulta,
+                'justificado' => $justificadoConsulta,
+                'faltas' => $faltas,
+            ];
+        }
+    }
+
+    return $asistenciaAlumnos;
+}
+
+
+// Luego, en la función que genera el PDF
+public function alumnolibrePDF() {
+    $fechaInforme = now();
+    $datosAsistencia = $this->obtenerDatosAsistencia();
+
+    $pdf = FacadePdf::loadView('panel.asistencia_alumno.pdf_alumnos_libres', compact('datosAsistencia', 'fechaInforme'));
+    return $pdf->download('alumnos_libres');
+}
+public function obtenerDatosAsistencia2() {
+    $alumnos = Alumno::with('curso')->orderBy('id_curso')->get();
+    $asistenciaAlumnos = [];
+
+    foreach ($alumnos as $alumno) {
+        $ausenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 2)->count();
+        $tardeConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 4)->count();
+        $faltas = $ausenteConsulta + $tardeConsulta / 2;
+
+        if ($faltas > 9) {
+            $presenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 1)->count();
+            $justificadoConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 3)->count();
+
+            $asistenciaAlumnos[] = [
+                'alumno' => $alumno->nombre .' '. $alumno->apellido,
+                'dni' => $alumno->dni,
+                'curso' => $alumno->curso->nombre,
+                'division' => $alumno->curso->division,
+                'presente' => $presenteConsulta,
+                'ausente' => $ausenteConsulta,
+                'tarde' => $tardeConsulta,
+                'justificado' => $justificadoConsulta,
+                'faltas' => $faltas,
+            ];
+        }
+    }
+
+    return $asistenciaAlumnos;
+}
+
+
+public function alumnocasilibrePDF() {
+    $fechaInforme = now();
+    $datosAsistencia = $this->obtenerDatosAsistencia2();
+
+    $pdf = FacadePdf::loadView('panel.asistencia_alumno.pdf_alumnos_casilibres', compact('datosAsistencia', 'fechaInforme'));
+    return $pdf->download('alumnos_casi_libres');
+}
+
 }

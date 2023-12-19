@@ -21,9 +21,7 @@
     @endcan
         
     </div>
-    <div class="col-12 mb-3">
-        <a href="{{ route('graficosAlumnos') }}" class="btn btn-success">ver graficos</a>
-    </div>
+   
     
     @if ($alumnos->count())
     <div class="col-12">

@@ -14,10 +14,13 @@
         {{-- <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
             Nuevo alumno
         </a> --}}
-        <a href="{{ route('grafico')}}" class="btn btn-primary" title="ChartJs">
-            <i class="fas fa-chart-pie"></i> Informes {{-- Curso, Alumnos libre, alumnos casi libres -> formulario -> alumnos con su falta y la condicion, Imprimir o informar('email') --}}
+        <a href="{{ route('alumnos-libres-pdf')}}" class="btn btn-danger" title="PDF">
+            <i class="fas fa-file-pdf"></i> Alumnos libres {{-- Curso, Alumnos libre, alumnos casi libres -> formulario -> alumnos con su falta y la condicion, Imprimir o informar('email') --}}
         </a>
-        <a href="{{ route('grafico')}}" class="btn btn-primary" title="ChartJs">
+        <a href="{{ route('alumnos-casilibres-pdf')}}" class="btn btn-warning" title="PDF">
+            <i class="fas fa-file-pdf"></i> Alumnos proximos a quedar libres {{-- Curso, Alumnos libre, alumnos casi libres -> formulario -> alumnos con su falta y la condicion, Imprimir o informar('email') --}}
+        </a>
+        <a href="{{ route('grafico-asistencia')}}" class="btn btn-primary" title="ChartJs">
             <i class="fas fa-chart-pie"></i> Inasistencias Alumnos {{-- Inasistencias de alumnos por curso (grafico) --}}
         </a>
     </div>
