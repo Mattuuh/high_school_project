@@ -312,7 +312,7 @@ return [
             'text' =>  'Facturas',
             'route' =>  'facturasbase.index',
             'icon' =>  'fas fa-dollar-sign',
-            'can' =>  'registro_pago',
+            'can' =>  'ver_admin',
         ],
         [
             'text' =>  'Facturacion',
@@ -330,7 +330,7 @@ return [
             'text' =>  'Cuotas',
             'route' =>  'cuotasbase.index',
             'icon' =>  'fas fa-file-alt',
-            'can' =>  'ver_admin',
+            'can' =>  'registro_pago',
         ],
         [
             'text' =>  'Formas de pago',
@@ -356,10 +356,27 @@ return [
             'icon' =>  'fas fa-pen',
             'can' =>  'ver_alumno',
         ],
-        [
+        /* [
             'text' =>  'Registro de asistencia',
             'route' =>  'asistencia_alumno.index',
             'icon' =>  'fas fa-user-clock',
+            'can' =>  'ver_alumno',
+        ], */
+        [
+            'text'    => 'Registro de asistencia',
+            'icon'    => 'fas fa-user-clock',
+            'submenu' => [
+                [
+                    'text' => 'Registrar Asistencia',
+                    'route'  => 'asistencia_alumno.index',
+                    'can' =>  'ver_alumno',
+                ],
+                [
+                    'text' => 'Listado Asistencia',
+                    'route'  => 'asistencia_alumno.listadoalumno',
+                    'can' =>  'ver_alumno',
+                ],
+            ],
             'can' =>  'ver_alumno',
         ],
         [
@@ -372,7 +389,7 @@ return [
             'text' =>  'Registro Academico',
             'route' =>  'registro_academico.index',
             'icon' =>  'fas fa-file-signature',
-            'can' =>  'ver_admin',
+            'can' =>  'ver_alumno',
         ],
         [
             'text' =>  'Materias',

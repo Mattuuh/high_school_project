@@ -13,6 +13,6 @@ class Instancia extends Model
         'descripcion',
     ];
     public function registrosacademicos(){
-        return $this->hasMany(RegistrosAcademicos::class,'id_instancia');
+        return $this->hasMany(RegistroAcademico::class,'id_instancia');
     }
 }

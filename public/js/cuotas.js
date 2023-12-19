@@ -36,7 +36,7 @@ let configurationDataTable = {
 		}
 	},
 	columnDefs: [
-		{'orderable': false, 'targets': [3,4]}
+		{'orderable': false, 'targets': [3]}
 	]
 }
 

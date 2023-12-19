@@ -14,7 +14,7 @@
         <div class="row">
 
             <!-- BAR CHART -->
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         <div class="d-flex justify-content-between align-items-center">
@@ -68,7 +68,7 @@
                     let count = response.data[1];
 
                     // Para Graficar el Diagrama de Barras (BarChart)
-                    graficar(barChart, 'bar', labels, count, 'Cantidad de Alumnos por Curso', configDataBarChart);
+                    graficar(barChart, 'bar', labels, count, 'Cantidad de faltas', configDataBarChart);
 
                     // Para Graficar el Diagrama de Torta (PieChart)
                     graficar(pieChart, 'pie', labels, count, 'Cantidad de Alumnos por Curso', configDataPieChart);

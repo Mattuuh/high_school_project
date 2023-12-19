@@ -22,4 +22,7 @@ class Docentes_materia extends Model
     {
         return $this->belongsTo(Empleado::class,'id_docente');
     }
+    public function registros_academico(){
+        return $this->hasMany(RegistroAcademico::class,'id_docxmat');
+    }
 }

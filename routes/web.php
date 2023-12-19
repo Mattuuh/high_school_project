@@ -26,4 +26,5 @@ Auth::routes();
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/obtenerCuotas', [obtenerCuotasController::class, 'index'])->name('obtenerCuotas');
 Route::get('/buscar', [HorarioController::class, 'buscar']);
+Route::get('/obtener-horario', [HorarioController::class, 'obtenerHorario'])->name('obtenerHorario');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

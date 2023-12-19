@@ -21,6 +21,7 @@
     @endcan
         
     </div>
+   
     
     @if ($alumnos->count())
     <div class="col-12">
@@ -36,41 +37,41 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                        <table class="table table-striped mt-1" id="tabla-alumnos">
-                                            <thead class="table-dark">
-                                                <tr>
-                                                    <th>Legajo</th>
-                                                    <th>Nombre y Apellido</th>
-                                                    <th>Dni</th>
-                                                    <th>Curso</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($alumnos as $alumno)
-                                                    <tr>
-                                                        <td>{{ $alumno->id }}</td>
-                                                        <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
-                                                        <td>{{ $alumno->dni }}</td>
-                                                        <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                                                data-target="#showModal" data-bs-dato="{{ $alumno }}">
-                                                                Ver
-                                                            </button>
-                                                            @can('ver_secretario')
-                                                                <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                                                                <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
-                                                                    data-target="#deleteModal" data-id="{{ $alumno->id }}"
-                                                                    data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
-                                                                    Eliminar
-                                                                </button>
-                                                            @endcan
+                                <table class="table table-striped mt-1" id="tabla-alumnos">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Legajo</th>
+                                            <th>Nombre y Apellido</th>
+                                            <th>Dni</th>
+                                            <th>Curso</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($alumnos as $alumno)
+                                            <tr>
+                                                <td>{{ $alumno->id }}</td>
+                                                <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
+                                                <td>{{ $alumno->dni }}</td>
+                                                <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                                        data-target="#showModal" data-bs-dato="{{ $alumno }}">
+                                                        Ver
+                                                    </button>
+                                                    @can('ver_secretario')
+                                                        <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
+                                                            data-target="#deleteModal" data-id="{{ $alumno->id }}"
+                                                            data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
+                                                            Eliminar
+                                                        </button>
+                                                    @endcan
                                                 </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

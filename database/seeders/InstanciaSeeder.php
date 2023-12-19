@@ -17,6 +17,5 @@ class InstanciaSeeder extends Seeder
         Instancia::create(['descripcion'=>'Segundo Trimestre']);
         Instancia::create(['descripcion'=>'Tercer Trimestre']);
         Instancia::create(['descripcion'=>'Examen']);
-      
     }
 }

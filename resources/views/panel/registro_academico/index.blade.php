@@ -10,70 +10,55 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="col-12 mb-3">
-        <a href="{{ route('registro_academico.create') }}" class="btn btn-success">Agregar nuevo </a>
-    </div>
-    {{-- @if ($registros->count()) --}}
     @if ($alumnos->count())
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    {{-- <table class="table table-striped mt-1 nowrap w-100" id="tabla-empleados">
-                        <thead class="table-dark">
-                            <tr>
-                               
-                                <th>Nombre y Apellido</th>
-                                <th>Dni</th>
-                                <th>Asignatura</th>
-                                <th>Docente</th>
-                                <th>Nota</th>
-                                <th>Instancia</th>
-                            </tr>    
-                        </thead>
-                        <tbody>
-                            @foreach ($registros as $registro)
-                                <tr>
-                                    <td>{{ $registro->alumno->nombre }} {{ $registro->alumno->apellido }}</td>
-                                    <td>{{ $registro->alumno->dni }}</td>
-                                    <td>{{ $registro->asignaturas->materias->nom_materia }}</td>
-                                    <td>{{ $registro->asignaturas->empleados->nombre }}</td>
-                                    <td>{{ $registro->nota }}</td>
-                                    <td>{{ $registro->instancia->descripcion }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table> --}}
-                    <table class="table table-striped mt-1" id="tabla-registro-academico">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Legajo</th>
-                                <th>Nombre y Apellido</th>
-                                <th>Dni</th>
-                                <th>Curso</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($alumnos as $alumno)
-                                <tr>
-                                    <td>{{ $alumno->id }}</td>
-                                    <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
-                                    <td>{{ $alumno->dni }}</td>
-                                    <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
-                                    <td>
-                                        {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#notasModal" data-bs-dato="{{ $alumno }}">
-                                            Registrar Nota
-                                        </button> --}}
-                                        <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success btn-sm">Registrar nota</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @include('panel.registro_academico.modals')
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2 mb-2">
+                        <label for="filtroSelect">Filtrar por:</label>
+                        <select id="filtroSelect" class="form-control">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-striped mt-1" id="tabla-registro-academico">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Legajo</th>
+                                            <th>Nombre y Apellido</th>
+                                            <th>Dni</th>
+                                            <th>Curso</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($alumnos as $alumno)
+                                            <tr>
+                                                <td>{{ $alumno->id }}</td>
+                                                <td>{{ $alumno->nombre }} {{ $alumno->apellido }}</td>
+                                                <td>{{ $alumno->dni }}</td>
+                                                <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
+                                                <td>
+                                                    <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success btn-sm">Registrar nota</a>
+                                                    <a href="{{ route('registro_academico.listadoNotas', $alumno->id) }}" class="btn btn-info btn-sm">
+                                                        Detalle
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                @include('panel.registro_academico.modals')
+                            </div>
+                        </div>    
+                    </div>
                 </div>
-            </div>    
+            </div>
         </div>
+    </div>
     @else
         <h4>No hay registros cargados!</h4>
     @endif

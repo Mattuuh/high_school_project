@@ -25,9 +25,9 @@ class RolSeeder extends Seeder
 
         // Permisos para cada Rol
         Permission::create(['name' => 'registro_pago'])->assignRole($rol_cajero, $rol_admin);
-        Permission::create(['name' => 'registro_alumno'])->assignRole($rol_preceptor, $rol_admin);
-        Permission::create(['name' => 'registro_nota'])->assignRole($rol_preceptor, $rol_admin);
-        Permission::create(['name' => 'ver_alumno'])->assignRole($rol_preceptor, $rol_directivo, $rol_admin);
+        Permission::create(['name' => 'registro_alumno'])->assignRole($rol_preceptor, $rol_secretario, $rol_admin);
+        Permission::create(['name' => 'registro_nota'])->assignRole($rol_preceptor, $rol_secretario, $rol_admin);
+        Permission::create(['name' => 'ver_alumno'])->assignRole($rol_preceptor, $rol_secretario, $rol_directivo, $rol_admin);
         Permission::create(['name' => 'ver_pago'])->assignRole($rol_cajero, $rol_admin);
         Permission::create(['name' => 'ver_secretario'])->assignRole($rol_secretario, $rol_admin);
         Permission::create(['name' => 'ver_admin'])->assignRole($rol_administrativo, $rol_admin);

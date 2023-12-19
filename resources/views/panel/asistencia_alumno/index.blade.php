@@ -51,19 +51,6 @@
                                     <td>{{ $alumno->dni }}</td>
                                     <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
                                     <td>
-                                        {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                            data-target="#showModal" data-bs-dato="{{ $alumno }}">
-                                            Ver
-                                        </button>
-                                        <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
-                                            data-target="#deleteModal" data-id="{{ $alumno->id }}"
-                                            data-nombre="{{ $alumno->nombre }} {{ $alumno->apellido }}">
-                                            Eliminar
-                                        </button> --}}
-                                        {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaModal" data-bs-dato="{{ $alumno }}">
-                                            Asistencia
-                                        </button> --}}
                                         <input type="radio" id="presente" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="1"> <label for="presente">Presente</label>
                                         <input type="radio" id="ausente" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="2"> <label for="ausente">Ausente</label>
                                         <input type="radio" id="tarde" name="seleccion[{{ $alumno->id }}]" id-alumno="{{ $alumno->id }}" value="4"> <label for="tarde">Tarde</label> 

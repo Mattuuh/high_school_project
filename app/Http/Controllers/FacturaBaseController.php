@@ -6,6 +6,7 @@ use App\Http\Requests\FacturaRequest;
 use App\Models\Alumno;
 use App\Models\Caja;
 use App\Models\Cuota;
+use App\Models\Curso;
 use App\Models\Factura;
 use App\Models\Formas_pago;
 use Illuminate\Http\Request;
@@ -15,8 +16,9 @@ class FacturaBaseController extends Controller
     public function index()
     {
         $facturas = Factura::all();
+        $cursos = Curso::all();
         
-        return view('panel.facturasbase.index', compact('facturas'));
+        return view('panel.facturasbase.index', compact('facturas', 'cursos'));
     }
 
     /**

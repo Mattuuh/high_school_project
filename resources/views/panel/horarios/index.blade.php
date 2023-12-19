@@ -18,88 +18,37 @@
                     <select id="filtro" class="form-control">
                         <option value="0">-- Seleccionar --</option>
                         @foreach ($cursos as $curso)
-                            <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }}</option>
+                            <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }} - {{ $curso->periodo_lectivo->modalidad }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-1">
-                    <button id="consultar" class="btn btn-success">Consultar</button>
+                <div class="col-2">
+                    <button id="consultar" class="btn btn-success" onclick="consultarHorario()">Consultar</button>
                 </div>
-    
-            </div>            
+                <div class="col-3">
+                    <a id="pdf-horario" class="btn btn-danger ml-0" title="PDF" target="_blank" hidden>
+                        <i class="fas fa-file-pdf"></i> Imprimir
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a id="editar" class="btn btn-info mr-0" title="Editar" hidden>
+                        <i class="fas fa-pen"></i> Editar
+                    </a>
+                </div>
+
+            </div>
             
         </div>
-        {{-- <a href="{{ route('horarios.create') }}" class="btn btn-success">Crear nuevo horario</a> --}}
+        {{-- <a href="{{ route('horario-pdf') }}" class="btn btn-success">Crear nuevo horario</a> --}}
     @endcan
         
     @if ($horarios->count())
-        {{-- <table class="table table-striped mt-1" id='tabla-horarios'>
-            <thead class="table-dark">
-                <tr>
-                    <th>Hora</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>                    
-                    <th>Docente</th>
-                    <th>Materia</th>
-                    <th>Curso</th>
-                    <th>Division</th>
-                    <th>Acciones</th>
-                </tr>    
-            </thead>
-            <tbody>
-                @foreach ($horarios as $horario)
-                    <tr>
-                        <td>{{ $horario->horas->hora }}</td>
-                        <td>{{ $horario->horas->hora_inicio }}</td>
-                        <td>{{ $horario->horas->hora_fin }}</td>
-                        <td>{{ $horario->empleados->nombre }} {{ $horario->empleados->apellido }}</td>
-                        <td>{{ $horario->materias->nom_materia }}</td>
-                        <td>{{ $horario->cursos->nombre }}</td>
-                        <td>{{ $horario->cursos->division }}</td>
-                        <td>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showModal" data-bs-dato='{{ $horario }}'>
-                                Ver
-                            </button>
-                            <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $horario->id }}" data-nombre="{{ $horario->mes }}">
-                                Eliminar
-                            </button>
-                        </td>       
-                    </tr>
-                @endforeach
-                    
-            </tbody>
-        </table> --}}
-        <table class="table table-bordered">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Lunes</th>
-                    <th scope="col">Martes</th>
-                    <th scope="col">Miércoles</th>
-                    <th scope="col">Jueves</th>
-                    <th scope="col">Viernes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($horariosAgrupados as $hora => $dias)
-                    <tr>
-                        <td>{{-- {{ $hora }} <br>  --}}{{ $dataHora[$hora]['hora_inicio'] }} - {{ $dataHora[$hora]['hora_fin'] }}</td>
-                        @for ($i = 1; $i <= 5; $i++) 
-                            <td>
-                                @if (isset($dias[$i]))
-                                    {{ $dias[$i]['materia'] }} <br>
-                                    {{ $dias[$i]['docente'] }}
-                                @endif
-                            </td>
-                        @endfor
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div id="resultados-horario" >
+            
+        </div>
        @include('panel.horarios.modals')
     @else
-        <h4>No hay horario cargado!</h4>
+        <h4>No hay horarios cargado!</h4>
     @endif
 @endsection
 
@@ -123,39 +72,30 @@
     <script src="{{ asset('js/horarios.js') }}"></script>
     
     <script>
-        $(document).ready(function () {
-            // Escucha el evento de apertura del modal
-            $('#showModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var data = button.data('bs-dato');
-                console.log(data);
-                // Puedes actualizar el contenido del modal con los datos del empleado
-                $('#modalTitle').text('Horario #' + data.id);
+        function consultarHorario() {
+            var cursoSeleccionado = $('#filtro').val();
 
-                $('#hora').text(data.horas.hora);
-                $('#hora_inicio').text(data.horas.hora_inicio);
-                $('#hora_fin').text(data.horas.hora_fin);
-                $('#docente').text(data.empleados.nombre_emp +" "+data.empleados.apellido_emp);
-                $('#materia').text(data.materias.nom_materia);
-                $('#grado').text(data.cursos.grado);
-                $('#division').text(data.cursos.division);
-                        
-                //$('#creado').text(data.created_at);
+            // Realiza la solicitud Ajax al servidor
+            $.ajax({
+                url: '/obtener-horario', // Reemplaza con la ruta real de tu controlador
+                method: 'GET',
+                data: { curso_id: cursoSeleccionado },
+                success: function(data) {
+                    if (data.mensaje) {
+                        $('#resultados-horario').html('<p>' + data.mensaje + '</p>');
+                        $('#pdf-horario').attr('hidden', 'hidden');
+                        $('#editar').attr('hidden', 'hidden');
+                    } else {
+                        $('#resultados-horario').html(data);
+                        $('#pdf-horario').attr('href',`{{ env('APP_URL') }}/panel/horarios/horario-pdf/${cursoSeleccionado}`);
+                        $('#pdf-horario').removeAttr('hidden');
+                        $('#editar').attr('href',`{{ env('APP_URL') }}/panel/horarios/${cursoSeleccionado}/edit`);
+                        $('#editar').removeAttr('hidden');
+                    }
+                },
+                error: function(error) {
+                    console.error(error);
+                }
             });
-        });
-
-        $(document).ready(function(){
-
-            $('#deleteModal').on('show.bs.modal', function (event) {
-                const button = $(event.relatedTarget) // Button that triggered the modal
-                const id = button.data('id') // Extract info from data-* attributes
-                const nombre = button.data('nombre') // Extract info from data-* attributes
-                
-                const modal = $(this)
-                const form = $('#formDelete')
-                form.attr('action', `{{ env('APP_URL') }}/panel/cuotas/${id}`);
-
-                modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la cuota "${nombre}"?`)
-            })
-        });
+        }
     </script>

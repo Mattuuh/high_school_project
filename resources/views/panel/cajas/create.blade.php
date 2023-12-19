@@ -36,11 +36,23 @@
                 <option value="20000">20000</option>
                 <option value="25000">25000</option>
             </select> --}}
-            <input type="number" name="monto_inicial" value="{{ old('monto_inicial') }}" class="form-control">
+            <input type="number" name="monto_inicial" value="{{ old('monto_inicial') }}" class="form-control" oninput="validarMontoInicial(this)">
 
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="{{ route('facturas.index') }}" class="btn btn-danger text-end">Cancelar</a>
         </form>
         </div>
     </div>
+
+    <script>
+        function validarMontoInicial(input) {
+            var valor = input.value;
+            
+            // Verifica si el valor es negativo
+            if (valor < 0) {
+                alert('El monto inicial no puede ser negativo.');               
+                input.value = ''; // Limpiar el valor 
+            }
+        }
+    </script>
 @endsection

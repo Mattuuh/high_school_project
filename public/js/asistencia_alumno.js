@@ -57,7 +57,11 @@ $(document).ready(function() {
       // Manejar el cambio en el select para aplicar el filtro
     $('#filtroSelect').on('change', function() {
         var filtroValor = $(this).val();
-		console.log(filtroValor)
+        table.column(3).search(filtroValor).draw();
+    });
+	
+	$('#filtroSelect2').on('change', function() {
+        var filtroValor = $(this).val();
         table.column(3).search(filtroValor).draw();
     });
 	
@@ -67,7 +71,7 @@ $(document).ready(function() {
     });
 
 	$('#limpiarFiltros').on('click', function() {
-		$('#filtroSelect').val('todos');
+		$('#filtroSelect2').val('0');
 		$('#filtroFecha').val('');
 		table.columns().search('').draw();
 		/* filtroCurso = $('#filtroSelect').val();
