@@ -35,7 +35,7 @@ class HorarioSeeder extends Seeder
             'id_dia' => 3
         ]);
         Horario::create([
-            'docente' => 2,
+            'docente' => 1,
             'materia' => 1,
             'hora_clase' => 1,
             'curso' => 1,
@@ -194,7 +194,7 @@ class HorarioSeeder extends Seeder
         ]);
         
         Horario::create([
-            'docente' => 18,
+            'docente' => 16,
             'materia' => 5,
             'hora_clase' => 6,
             'curso' => 1,

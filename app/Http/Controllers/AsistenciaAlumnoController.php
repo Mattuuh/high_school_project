@@ -112,7 +112,7 @@ class AsistenciaAlumnoController extends Controller
 
     public function listadoalumno() {
         $alumnos = Alumno::select('id', 'nombre', 'apellido', 'dni')->get();
-        $asistencias = Asistencia_alumno::whereDate('fecha',now()->format('Y-m-d'))->get();
+        $asistencias = Asistencia_alumno::all();
         //dd($asistencias);
         return view('panel.asistencia_alumno.listadoalumno', compact('asistencias'));
     }
@@ -141,4 +141,45 @@ class AsistenciaAlumnoController extends Controller
         }
         return view('panel.asistencia_alumno.detalle-asistencia', compact('alumno', 'asistencias', 'presente', 'ausente', 'justificado', 'tarde'));
     }
+    /* public function graficosAsistencia() {
+
+        // Si se hace una peticion AJAX
+        if(request()->ajax()) {
+            $labels = [];
+            $counts = [];
+
+            $alumnos = Alumno::all();
+            $asistenciaAlumnos = [];
+            foreach ($alumnos as $alumno) {
+                $presenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 1)->get();
+                $presente = $presenteConsulta->count();
+                $ausenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 2)->get();
+                $ausente = $ausenteConsulta->count();
+                $tardeConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 3)->get();
+                $tarde = $tardeConsulta->count();
+                $justificadoConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 4)->get();
+                $justificado = $justificadoConsulta->count();
+
+                $asistenciaAlumnos[] = [
+                    'alumno' => $alumno->nombre .' '. $alumno->apellido,
+                    'presente' => $presente,
+                    'ausente' => $ausente,
+                    'tarde' => $tarde,
+                    'justificado' => $justificado,
+                ];
+            }
+
+            foreach($asistenciaAlumnos as $asistenciaAlumno) {
+
+                $labels[] =  $asistenciaAlumno->alumno;
+                $counts[] = $asistenciaAlumno->presente;
+            }
+            $response = [
+                'success' => true,
+                'data' => [$labels, $counts]
+            ];
+            return json_encode($response);
+        }
+        return view('panel.asistencia_alumno.grafico-asistencia');
+       } */
 }

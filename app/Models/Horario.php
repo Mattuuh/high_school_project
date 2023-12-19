@@ -16,11 +16,6 @@ class Horario extends Model
         'curso',
         'id_dia',
     ];
-
-    public function registroacademico(){
-        return $this->hasMany(RegistroAcademico::class,'asignatura');
-    }
-
     // Relación muchos a uno con Empleado (Docente)
     public function empleados()
     {

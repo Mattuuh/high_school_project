@@ -6,6 +6,7 @@ use App\Models\Alumno;
 use App\Models\Curso;
 use App\Models\Docentes_materia;
 use App\Models\Horario;
+use App\Models\Instancia;
 use App\Models\Materia;
 use App\Models\RegistroAcademico;
 use Illuminate\Http\Request;
@@ -17,10 +18,10 @@ class RegistroAcademicoController extends Controller
      */
     public function index()
     {
-        $registros = RegistroAcademico::with('alumno','instancia','asignaturas')->get();
+        //$registros = RegistroAcademico::with('alumno','instancia','asignaturas')->get();
         $alumnos = Alumno::all();
         //dd($registro);
-        return view('panel.registro_academico.index',compact('registros', 'alumnos'));
+        return view('panel.registro_academico.index',compact('alumnos'));
     }
 
     /**
@@ -36,9 +37,22 @@ class RegistroAcademicoController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([]);
+        $validated = $request->all();
+        $materias = $request->input('notas');
+        $instancias = $request->input('instancia');
+        $id_alumno = $request->input('id_alumno');
+        $fecha = now()->format('Y-m-d');
+        //dd($validated);
 
-        RegistroAcademico::create($validated);
+        foreach ($materias as $idDocxMat => $nota) {
+            RegistroAcademico::create([
+                'id_alumno' => $id_alumno,
+                'id_docxmat' => $idDocxMat,
+                'nota' => $nota,
+                'fecha' => $fecha,
+                'id_instancia' => $instancias[$idDocxMat]
+            ]);
+        }
 
         return redirect()->route('registro_academico.index')->with('status','Registro cargado satisfactoriamente!');
     }
@@ -67,11 +81,11 @@ class RegistroAcademicoController extends Controller
     {
         $registroAcademico = RegistroAcademico::findOrFail($registroAcademico->id);
 
-        $validated = $request->validate([]);
+        $validated = $request->all();
 
         $registroAcademico->update($validated);
 
-        return redirect()->route('registro_academico.index')->with('status','Registro actualizado satisfactoriamente!');
+        return back()->with('status','Registro actualizado satisfactoriamente!');
     }
 
     /**
@@ -92,9 +106,19 @@ class RegistroAcademicoController extends Controller
     {
         $alumno = Alumno::findOrFail($alumno->id);
         $idCurso = Curso::findOrFail($alumno->id_curso)->id;
-        $idMaterias = Horario::where('curso', $idCurso)->select('materia')->get();
-        $materias = Materia::whereIn('id', $idMaterias)->get();
+        $idMaterias = Horario::where('curso', $idCurso)->distinct()->get(['materia']);
+        $idDocentes = Horario::where('curso', $idCurso)->distinct()->get(['docente']);
+        $materias = Docentes_materia::whereIn('id_materia', $idMaterias)->whereIn('id_docente', $idDocentes)->get();
+        $instancias = Instancia::all();
 
-        return view('panel.registro_academico.registro_nota', compact('alumno', 'materias'));
+        return view('panel.registro_academico.registro_nota', compact('alumno', 'materias', 'instancias'));
+    }
+    public function listadoNotas(Alumno $alumno)
+    {
+        $alumno = Alumno::findOrFail($alumno->id);
+        $registros_academico = RegistroAcademico::where('id_alumno', $alumno->id)->get();
+        $instancias = Instancia::all();
+
+        return view('panel.registro_academico.listado_nota',compact('alumno', 'registros_academico', 'instancias'));
     }
 }

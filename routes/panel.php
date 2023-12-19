@@ -73,6 +73,7 @@ Route::get('grafico-axc',[AlumnoController::class,'graficosAlumnosxCurso'])->nam
 
 // Horarios
 Route::get('/obtenerDocentes', [HorarioController::class, 'obtenerDocentes'])->name('obtenerDocentes');
+Route::get('horarios/horario-pdf/{curso}', [HorarioController::class,'horarioPDF'])->name('horario-pdf');
 
 // Asistencia-Alumnos
 Route::get('asistencia_alumno', [AsistenciaAlumnoController::class, 'index'])->name('asistencia_alumno.index');
@@ -82,3 +83,5 @@ Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_da
 Route::put('asistencia_alumno/{id_alumno}/{fecha}', [AsistenciaAlumnoController::class, 'update'])->name('asistencia_alumno.update');
 Route::get('asistencia_alumno/{alumno}/detalleAsistencia', [AsistenciaAlumnoController::class, 'detalleAsistencia'])->name('asistencia_alumno.detalleAsistencia');
 
+// Registro Academico
+Route::get('registro_academico/listado_nota/{alumno}', [RegistroAcademicoController::class, 'listadoNotas'])->name('registro_academico.listadoNotas');

@@ -23,79 +23,57 @@
         th {
             background-color: #f2f2f2;
         }
+
+        #titulo {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+        }
+        
+        @page { size: 40cm landscape; }
     </style>
     <title>Horario Colegial</title>
+    <link rel="stylesheet" href="{{ public_path('vendor/adminlte/dist/css/adminlte.min.css') }}">
 </head>
 <body>
 
-    <h2>Horario Colegial</h2>
+    <div id="titulo">
+        <div class="">
+            <h2>Horario</h2>
+            <h3>Curso: {{ $curso->nombre }} "{{ $curso->division }}" - Ciclo {{ $curso->periodo_lectivo->modalidad }}</h3>    
+        </div>
+    </div>
 
-    <table>
+    <table class="table table-bordered">
+    <thead class="thead-light">
         <tr>
-            <th>Hora</th>
-            <th>Lunes</th>
-            <th>Martes</th>
-            <th>Miércoles</th>
-            <th>Jueves</th>
-            <th>Viernes</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Lunes</th>
+            <th scope="col">Martes</th>
+            <th scope="col">Miércoles</th>
+            <th scope="col">Jueves</th>
+            <th scope="col">Viernes</th>
         </tr>
-        <tr>
-            <td>7:30 - 8:20</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>8:30 - 9:20</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>9:30 - 10:20</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>10:30 - 11:20</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>11:30 - 12:20</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>12:30 - 13:20</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>13:30 - 14:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    </thead>
+    <tbody>
+        @foreach ($horariosAgrupados as $hora => $dias)
+            <tr>
+                <td>{{ $dataHora[$hora]['hora_inicio'] }} - {{ $dataHora[$hora]['hora_fin'] }}</td>
+                @for ($i = 1; $i <= 5; $i++) 
+                    <td>
+                        @if (isset($dias[$i]))
+                            <b>{{ $dias[$i]['materia'] }}</b><br>
+                            {{ $dias[$i]['docente'] }}
+                        @endif
+                    </td>
+                @endfor
+            </tr>
+        @endforeach
+        {{-- @foreach ($horarios as $horario)
+            <td>{{ $horario->id }}</td>
+        @endforeach --}}
+    </tbody>
+</table>
 
 </body>
 </html>

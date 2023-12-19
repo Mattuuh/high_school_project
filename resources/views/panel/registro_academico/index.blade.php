@@ -10,10 +10,6 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="col-12 mb-3">
-        <a href="{{ route('registro_academico.create') }}" class="btn btn-success">Agregar nuevo </a>
-    </div>
-    {{-- @if ($registros->count()) --}}
     @if ($alumnos->count())
     <div class="col-12">
         <div class="card">
@@ -46,10 +42,10 @@
                                                 <td>{{ $alumno->dni }}</td>
                                                 <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
                                                 <td>
-                                                    {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#notasModal" data-bs-dato="{{ $alumno }}">
-                                                        Registrar Nota
-                                                    </button> --}}
                                                     <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success btn-sm">Registrar nota</a>
+                                                    <a href="{{ route('registro_academico.listadoNotas', $alumno->id) }}" class="btn btn-info btn-sm">
+                                                        Detalle
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach

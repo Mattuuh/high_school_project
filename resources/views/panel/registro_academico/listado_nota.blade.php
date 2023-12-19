@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Registro de Asistencias')
+@section('title', 'Notas de Alumno')
 
 @section('content')
     @if (session('status'))
@@ -21,34 +21,27 @@
                 <input id="dni" class="form-control" value="{{ $alumno->dni }}" readonly>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <label for="resumen" class="form-label d-block ">Resumen:</label>
-                <label for="presente" class="pl-2">Presente: </label> {{ $presente }}
-                <label for="ausente" class="pl-2">Ausente: </label> {{ $ausente }}
-                <label for="justificado" class="pl-2">Justificado: </label> {{ $justificado }}
-                <label for="tarde" class="pl-2">Tarde: </label> {{ $tarde }}
-            </div>
-        </div>
 
         <div class="col-12 mt-2">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped mt-1" id="tabla-asistencia">
+                    <table class="table table-striped mt-1" id="tabla-">
                         <thead class="table-dark">
                             <tr>
-                                <th>Fecha</th>
-                                <th>Asistencia</th>
+                                <th>Materia</th>
+                                <th>Nota</th>
+                                <th>Instancia</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($asistencias as $asistencia)
+                            @foreach ($registros_academico as $registro_academico)
                                 <tr>
-                                    <td>{{ $asistencia->fecha }}</td>
-                                    <td><?php echo $asistencia->id_estado == null ? '-' : $asistencia->estadoAsistencia->descripcion_ea ?></td>
+                                    <td>{{ $registro_academico->docentes_materia->materias->nom_materia }}</td>
+                                    <td>{{ $registro_academico->nota }}</td>
+                                    <td>{{ $registro_academico->instancia->descripcion }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#asistenciaDetalleEditModal" data-bs-dato="{{ $asistencia }}" data-id-estado="{{ $asistencia->id_estado }}">
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#registroAcademicoModal" data-bs-dato="{{ $registro_academico }}">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                     </td>
@@ -56,10 +49,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    @include('panel.asistencia_alumno.modals')
+                    @include('panel.registro_academico.modals')
                 </div>
             </div>
-        <a href="{{ route('asistencia_alumno.listadoalumno') }}" class="btn btn-danger text-light">Volver</a>
+        <a href="{{ route('registro_academico.index') }}" class="btn btn-danger text-light">Volver</a>
         </div>
         </div>
     </div>
@@ -79,22 +72,27 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
     {{-- La funcion asset() es una funcion de Laravel PHP que nos dirige a la carpeta "public" --}}
-    <script src="{{ asset('js/asistencia_alumno.js') }}"></script>
+    <script src="{{ asset('js/registro_academico.js') }}"></script>
 
     <script>
         $(document).ready(function() {
             // Escucha el evento de apertura del modal
-            $('#asistenciaDetalleEditModal').on('show.bs.modal', function(event) {
+            $('#registroAcademicoModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var data = button.data('bs-dato');
-                var id_estado = button.data('id-estado');
 
                 const modal = $(this)
-                const form = $('#formAsistenciaDetalle')
-                form.attr('action', `{{ env('APP_URL') }}/panel/asistencia_alumno/${data.id_alumno}/${data.fecha}`);
+                const form = $('#formRegistroAcademico')
+                form.attr('action', `{{ env('APP_URL') }}/panel/registro_academico/${data.id}`);
                 
-                $('#fecha').val(data.fecha);
-                $('input[name="id_estado"]').filter(`[value="${id_estado}"]`).prop('checked', true);
+                $('#id').val(data.id);
+                $('#materia').val(data.docentes_materia.materias.nom_materia);
+                $('#nota option').filter(function() {
+                    return $(this).val() == data.nota;
+                }).prop('selected', true);
+                $('#instancia option').filter(function() {
+                    return $(this).val() == data.id_instancia;
+                }).prop('selected', true);
             });
         });
     </script>
