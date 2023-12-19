@@ -369,7 +369,7 @@ return [
                 [
                     'text' => 'Registrar Asistencia',
                     'route'  => 'asistencia_alumno.index',
-                    'can' =>  'ver_alumno',
+                    'can' =>  'ver_preceptor',
                 ],
                 [
                     'text' => 'Listado Asistencia',

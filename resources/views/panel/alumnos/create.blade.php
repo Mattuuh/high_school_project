@@ -44,7 +44,7 @@
 
             <label for="curso" class="form-label">Curso </label>
             <select name="id_curso" id="curso" class="form-control">
-                <option value="0" selected>---Seleccionar curso---</option>
+                <option value="todos" selected>---Seleccionar curso---</option>
                 @foreach ($cursos as $curso)
                 <option value="{{ $curso->id }}">{{ $curso->nombre }} {{ $curso->division }} "{{ $curso->periodo_lectivo->modalidad }}"</option>
                 @endforeach

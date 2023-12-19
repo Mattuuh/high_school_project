@@ -52,6 +52,7 @@ $(document).ready(function() {
 		// }
 		// $('#filtroSelect').append(option);
         $('#filtroSelect').append('<option value="' + value + '">' + value + '</option>');
+        $('#filtroSelect2').append('<option value="' + value + '">' + value + '</option>');
     });
 
       // Manejar el cambio en el select para aplicar el filtro
@@ -62,6 +63,7 @@ $(document).ready(function() {
 	
 	$('#filtroSelect2').on('change', function() {
         var filtroValor = $(this).val();
+		console.log(filtroValor)
         table.column(3).search(filtroValor).draw();
     });
 	

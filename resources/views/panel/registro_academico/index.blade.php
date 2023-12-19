@@ -42,7 +42,9 @@
                                                 <td>{{ $alumno->dni }}</td>
                                                 <td><?php echo $alumno->curso == null ? '-' : $alumno->curso->nombre.' '.$alumno->curso->division ?></td>
                                                 <td>
-                                                    <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success btn-sm">Registrar nota</a>
+                                                    @can('ver_preceptor')
+                                                        <a href="{{ route('registro_academico.registro_nota', $alumno->id) }}" class="btn btn-success btn-sm">Registrar nota</a>
+                                                    @endcan
                                                     <a href="{{ route('registro_academico.listadoNotas', $alumno->id) }}" class="btn btn-info btn-sm">
                                                         Detalle
                                                     </a>

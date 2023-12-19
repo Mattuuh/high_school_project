@@ -31,9 +31,6 @@
                 <label for="filtroSelect2">Filtrar curso:</label>
                 <select id="filtroSelect2" class="form-control">
                     <option value="0">Todos</option>
-                    @foreach ($cursos as $curso)
-                        <option value="{{ $curso->id }}">{{ $curso->nombre }} "{{ $curso->division }}" - Ciclo {{ $curso->periodo_lectivo->modalidad }}</option>
-                    @endforeach
                 </select>
             </div>
             <div class="col-3">
@@ -78,9 +75,12 @@
                                         <td><?php echo $asistencia->id_estado == null ? '-' : $asistencia->estadoAsistencia->descripcion_ea ?></td>
                                         <td>{{ $asistencia->fecha }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}" data-id-estado="{{ $asistencia->id_estado }}">
-                                                Editar Asistencia
-                                            </button>
+                                            @can('ver_preceptor')
+                                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#asistenciaEditModal" data-bs-dato="{{ $asistencia->alumno }}" data-id-estado="{{ $asistencia->id_estado }}">
+                                                    Editar Asistencia
+                                                </button>
+                                            @endcan
+                                            
                                             <a href="{{ route('asistencia_alumno.detalleAsistencia', $asistencia->alumno->id) }}" class="btn btn-info btn-sm">
                                                 Detalle {{-- Contador de asistencias e inasistencias y sus fechas --}}
                                             </a>

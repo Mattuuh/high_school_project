@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AlumnoRequest;
+use App\Http\Requests\AlumnoUpdateRequest;
 use App\Http\Requests\ValidationRequest;
 use App\Models\Alumno;
 use App\Models\Curso;
@@ -37,7 +38,6 @@ class AlumnoController extends Controller
         //Validacion de los datos
         $validated = $request->validated();
         $curso = Curso::where('id', $validated['id_curso'])->first();
-
         $curso->disponibilidad = $curso->disponibilidad - 1;
 
         if ($curso->disponibilidad > 0) {
@@ -73,13 +73,34 @@ class AlumnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AlumnoRequest $request, Alumno $alumno)
+    public function update(Request $request, Alumno $alumno)
     {
         //Busqueda del alumno
         $alumno = Alumno::findOrFail($alumno->id);
 
         //Validacion de los datos
-        $validated = $request->validated();
+        if ($alumno->dni == $request->input('input')) {
+            $validated = $request->validate([
+                'nombre' => 'required|string|max:50|min:3',
+                'apellido' => 'required|string|max:100|min:3',
+                'dni' => 'required|numeric|min:7',
+                'domicilio' => 'sometimes|max:50',
+                'telefono' => 'sometimes|nullable|min:9',
+                'email' => 'sometimes|nullable|email',
+                'id_curso' => 'numeric',
+            ]);
+        } else {
+            $validated = $request->validate([
+                'nombre' => 'required|string|max:50|min:3',
+                'apellido' => 'required|string|max:100|min:3',
+                'dni' => 'required|numeric|min:7|unique:alumnos,dni',
+                'domicilio' => 'sometimes|max:50',
+                'telefono' => 'sometimes|nullable|min:9',
+                'email' => 'sometimes|nullable|email',
+                'id_curso' => 'numeric',
+            ]);
+        }
+        
 
         //Actualizacion del alumno
         $alumno->update($validated);

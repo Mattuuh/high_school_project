@@ -57,7 +57,8 @@
                                 </select> 
                             </div>
                         </div> --}}
-                        @foreach ($materias as $materia)
+                        @if ($materias->count())
+                            @foreach ($materias as $materia)
                             <div class="row">
                                 <div class="col-6">
                                     <label for="notas-{{ $materia->id }}" class="form-label">{{ $materia->materias->nom_materia }}:</label>
@@ -85,7 +86,11 @@
                                     </select> 
                                 </div>
                             </div>
-                        @endforeach
+                            @endforeach
+                        @else
+                            <h3>No hay materias compatibles!</h3>
+                        @endif
+                        
                         
                     </div>
                     <button type="submit" class="btn btn-success text-uppercase">

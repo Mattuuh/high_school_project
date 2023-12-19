@@ -110,7 +110,7 @@ class RegistroAcademicoController extends Controller
         $idDocentes = Horario::where('curso', $idCurso)->distinct()->get(['docente']);
         $materias = Docentes_materia::whereIn('id_materia', $idMaterias)->whereIn('id_docente', $idDocentes)->get();
         $instancias = Instancia::all();
-
+        
         return view('panel.registro_academico.registro_nota', compact('alumno', 'materias', 'instancias'));
     }
     public function listadoNotas(Alumno $alumno)

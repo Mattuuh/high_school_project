@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AlumnoRequest extends FormRequest
+class AlumnoUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -44,7 +44,6 @@ class AlumnoRequest extends FormRequest
             'apellido.max' => 'El apellido tiene un maximo de 100 caracteres',
             'apellido.min' => 'El apellido tiene un minimo de 3 caracteres',
             'dni.required' => 'El dni es requerido',
-            'dni.unique' => 'El dni ya existe en la base de datos',
             'domicilio.max' => 'El domicilio tiene un maximo de 50 caracteres',
             'telefono.numeric' => 'El telefono tiene que ser numeros',
             'telefono.min' => 'El telefono tiene que tener un minimo de 9 caracteres',

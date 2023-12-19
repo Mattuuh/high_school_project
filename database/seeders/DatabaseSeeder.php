@@ -35,7 +35,10 @@ class DatabaseSeeder extends Seeder
         $this->call(HoraSeeder::class);
         $this->call(DiaSeeder::class);
         $this->call(MateriaSeeder::class);
+        $this->call(DocentesMateriaSeeder::class);
         $this->call(HorarioSeeder::class);
+        $this->call(AsistenciaAlumnoSeeder::class);
+        $this->call(CajaSeeder::class);
         
     }
 }

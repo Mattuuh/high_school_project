@@ -34,7 +34,7 @@ class TiposEmpleadoController extends Controller
     {
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'nombre_te' => 'required|string|max:20',
         ]);
 
         //Guardado de los datos
@@ -58,7 +58,7 @@ class TiposEmpleadoController extends Controller
      */
     public function edit(Tipos_empleado $tipos_empleado)
     {
-        $tipo_empleado = Tipos_empleado::findOrFail($tipos_empleado);
+        $tipo_empleado = Tipos_empleado::findOrFail($tipos_empleado->id);
         return view('panel.tipos_empleado.edit', ['tipo_empleado'=>$tipo_empleado]);
     }
 
@@ -68,11 +68,11 @@ class TiposEmpleadoController extends Controller
     public function update(Request $request, Tipos_empleado $tipos_empleado)
     {
         //Busqueda del empleado
-        $tipo_empleado = Tipos_empleado::findOrFail($tipos_empleado);
+        $tipo_empleado = Tipos_empleado::findOrFail($tipos_empleado->id);
 
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'nombre_te' => 'required|string|max:20',
         ]);
 
         //Actualizacion del empleado
@@ -88,7 +88,7 @@ class TiposEmpleadoController extends Controller
     public function destroy(Tipos_empleado $tipos_empleado)
     {
         //Busqueda del empleado
-        $tipo_empleado = Tipos_empleado::findOrFail($tipos_empleado);
+        $tipo_empleado = Tipos_empleado::findOrFail($tipos_empleado->id);
 
         //Eliminacion del empleado
         $tipo_empleado->delete();

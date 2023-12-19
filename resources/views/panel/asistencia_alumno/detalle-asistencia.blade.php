@@ -35,12 +35,15 @@
         <div class="col-12 mt-2">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped mt-1" id="tabla-asistencia">
+                    <table class="table table-striped mt-1" id="tabla-asistenci">
                         <thead class="table-dark">
                             <tr>
                                 <th>Fecha</th>
                                 <th>Asistencia</th>
-                                <th>Acciones</th>
+                                @can('ver_preceptor')
+                                    <th>Acciones</th>
+                                @endcan
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -48,11 +51,14 @@
                                 <tr>
                                     <td>{{ $asistencia->fecha }}</td>
                                     <td><?php echo $asistencia->id_estado == null ? '-' : $asistencia->estadoAsistencia->descripcion_ea ?></td>
-                                    <td>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#asistenciaDetalleEditModal" data-bs-dato="{{ $asistencia }}" data-id-estado="{{ $asistencia->id_estado }}">
-                                            <i class="fas fa-pen"></i>
-                                        </button>
-                                    </td>
+                                    @can('ver_preceptor')
+                                        <td>
+                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#asistenciaDetalleEditModal" data-bs-dato="{{ $asistencia }}" data-id-estado="{{ $asistencia->id_estado }}">
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                        </td>
+                                    @endcan
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
