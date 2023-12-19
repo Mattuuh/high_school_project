@@ -28,6 +28,7 @@
                 <label for="ausente" class="pl-2">Ausente: </label> {{ $ausente }}
                 <label for="justificado" class="pl-2">Justificado: </label> {{ $justificado }}
                 <label for="tarde" class="pl-2">Tarde: </label> {{ $tarde }}
+                <label for="tarde" class="pl-2">Faltas:</label> {{ $inasistencia }}
             </div>
         </div>
 

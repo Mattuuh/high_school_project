@@ -34,6 +34,7 @@ Route::resource('materias', MateriaController::class)->names('materias');
 Route::resource('periodos_lectivo', PeriodosLectivoController::class)->names('periodos_lectivo');
 Route::resource('tipos_empleado', TiposEmpleadoController::class)->names('tipos_empleado');
 Route::resource('alumnos', AlumnoController::class)->names('alumnos');
+Route::get('graficosAlumnos',[AlumnoController::class,'graficosAlumnos'])->name('graficosAlumnos');
 Route::resource('cuotas', CuotaController::class)->names('cuotas');
 Route::resource('cuotas_base', CuotaBaseController::class)->names('cuotasbase');
 Route::get('cuotas/filtroalumno/{alumno}', [CuotaController::class, 'filtroalumno'])->name('cuotas.filtroalumno');
@@ -82,6 +83,7 @@ Route::get('asistencia_alumno/listadoalumno', [AsistenciaAlumnoController::class
 Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_datos'])->name('asistencia_alumno.guardar_datos');
 Route::put('asistencia_alumno/{id_alumno}/{fecha}', [AsistenciaAlumnoController::class, 'update'])->name('asistencia_alumno.update');
 Route::get('asistencia_alumno/{alumno}/detalleAsistencia', [AsistenciaAlumnoController::class, 'detalleAsistencia'])->name('asistencia_alumno.detalleAsistencia');
-
-// Registro Academico
+Route::get('grafico-asistencia',[AsistenciaAlumnoController::class,'graficosAsistencia'])->name('grafico-asistencia');
+Route::get('/alumnos-libres-pdf', [AsistenciaAlumnoController::class, 'alumnolibrePDF'])->name('alumnos-libres-pdf');
+Route::get('/alumnos-casilibres-pdf', [AsistenciaAlumnoController::class, 'alumnocasilibrePDF'])->name('alumnos-casilibres-pdf');// Registro Academico
 Route::get('registro_academico/listado_nota/{alumno}', [RegistroAcademicoController::class, 'listadoNotas'])->name('registro_academico.listadoNotas');

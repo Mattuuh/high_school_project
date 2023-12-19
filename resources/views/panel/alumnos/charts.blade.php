@@ -6,7 +6,7 @@
 @section('plugins.Chartjs', true)
 
 @section('content_header')
-    <h1>Datos Estadisticos de Alumnos por Curso</h1>
+    <h1>Datos Estadisticos de Productos por Categoria</h1>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         <div class="d-flex justify-content-between align-items-center">
-                            <strong>Cantidad de Alumnos por curso</strong>
+                            <strong>Bar Chart</strong>
                         </div>
                     </div>
                     <div class="card-body">
@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-header bg-danger text-white">
                         <div class="d-flex justify-content-between align-items-center">
-                            <strong>Distribucion de Alumnos</strong>
+                            <strong>Pie Chart</strong>
                         </div>
                     </div>
                     <div class="card-body h-50">
@@ -68,10 +68,10 @@
                     let count = response.data[1];
 
                     // Para Graficar el Diagrama de Barras (BarChart)
-                    graficar(barChart, 'bar', labels, count, 'Cantidad de Alumnos por Curso', configDataBarChart);
+                    graficar(barChart, 'bar', labels, count, 'Cantidad de Productos por Categoria', configDataBarChart);
 
                     // Para Graficar el Diagrama de Torta (PieChart)
-                    graficar(pieChart, 'pie', labels, count, 'Cantidad de Alumnos por Curso', configDataPieChart);
+                    graficar(pieChart, 'pie', labels, count, 'Cantidad de Productos por Categoria', configDataPieChart);
                 } else {
                     console.log(response.message);
                 }
@@ -93,35 +93,11 @@
                             "data": ${ JSON.stringify(count) },
                             "backgroundColor": [
                                 "rgba(255, 99, 132, 0.2)",
-                                "rgba(54, 162, 235, 0.2)",
-                                "rgba(53, 62, 135, 0.2)",
-                                "rgba(245, 40, 145, 0.8)",
-                                "rgba(39, 63, 245, 0.8)",
-                                "rgba(39, 245, 238, 0.8)",
-                                "rgba(118, 39, 245, 0.8)",
-                                "rgba(245, 158, 8, 0.9)",
-                                "rgba(245, 223, 8, 0.9)",
-                                "rgba(245, 25, 8, 0.9)",
-                                "rgba(157, 39, 245, 0.45)",
-                                "rgba(54, 64, 255, 0.49)",
-                                "rgba(39, 245, 45, 0.8)"
-
+                                "rgba(54, 162, 235, 0.2)"
                             ],
                             "borderColor": [
                                 "rgba(255, 99, 132, 1)",
-                                "rgba(54, 162, 235, 1)",
-                                "rgba(53, 62, 135, 0.2)",
-                                "rgba(245, 40, 145, 0.8)",
-                                "rgba(39, 63, 245, 0.8)",
-                                "rgba(39, 245, 238, 0.8)",
-                                "rgba(118, 39, 245, 0.8)",
-                                "rgba(245, 158, 8, 0.9)",
-                                "rgba(245, 223, 8, 0.9)",
-                                "rgba(245, 25, 8, 0.9)",
-                                "rgba(157, 39, 245, 0.45)",
-                                "rgba(54, 64, 255, 0.49)",
-                               "rgba(39, 245, 45, 0.8)" 
-
+                                "rgba(54, 162, 235, 1)"
                             ],
                             "borderWidth": 2
                         }]

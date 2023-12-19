@@ -11,7 +11,7 @@
         </div>
     @endif
         <a href="{{ route('cursos.create') }}" class="btn btn-success">Agregar nuevo curso</a>
-        <a href="{{ route('graficos-alumnos')}}" class="btn btn-primary" title="ChartJs">
+        <a href="{{ route('grafico-axc')}}" class="btn btn-primary" title="ChartJs">
             <i class="fas fa-chart-pie"></i>
         </a>
     @if ($cursos->count())

@@ -21,6 +21,7 @@
     @endcan
         
     </div>
+   
     
     @if ($alumnos->count())
     <div class="col-12">
