@@ -120,8 +120,9 @@ class AsistenciaAlumnoController extends Controller
     public function listadoalumno() {
         $alumnos = Alumno::select('id', 'nombre', 'apellido', 'dni')->get();
         $asistencias = Asistencia_alumno::all();
+        $cursos = Curso::all();
         //dd($asistencias);
-        return view('panel.asistencia_alumno.listadoalumno', compact('asistencias'));
+        return view('panel.asistencia_alumno.listadoalumno', compact('asistencias','cursos'));
     }
     public function detalleAsistencia(Alumno $alumno) {
         $alumno = Alumno::findOrFail($alumno->id);
@@ -153,14 +154,14 @@ class AsistenciaAlumnoController extends Controller
         return view('panel.asistencia_alumno.detalle-asistencia', compact('alumno', 'asistencias', 'presente', 'ausente', 'justificado', 'tarde','inasistencia'));
     }
 
-    public function graficosAsistencia() {
-
+    public function graficosAsistencia($curso) {
+        $curso = $curso != 0 ? Curso::findOrFail($curso) : null;
         // Si se hace una peticion AJAX
         if(request()->ajax()) {
             $labels = [];
             $counts = [];
 
-            $alumnos = Alumno::where();
+            $alumnos = $curso == null ? Alumno::all() : Alumno::where('id_curso', $curso->id)->get();
             $asistenciaAlumnos = [];
             foreach ($alumnos as $alumno) {
                 $presenteConsulta = Asistencia_alumno::where('id_alumno', $alumno->id)->where('id_estado', 1)->get();
@@ -198,8 +199,9 @@ class AsistenciaAlumnoController extends Controller
        }
        // En tu controlador
 // En tu controlador
-public function obtenerDatosAsistencia() {
-    $alumnos = Alumno::with('curso')->orderBy('id_curso')->get();
+public function obtenerDatosAsistencia($curso) {
+    $curso = $curso != 0 ? Curso::findOrFail($curso) : null;
+    $alumnos = $curso != null ? Alumno::where('id_curso', $curso->id)->with('curso')->orderBy('id_curso')->get() : Alumno::with('curso')->orderBy('id_curso')->get();
     $asistenciaAlumnos = [];
 
     foreach ($alumnos as $alumno) {
@@ -230,15 +232,19 @@ public function obtenerDatosAsistencia() {
 
 
 // Luego, en la función que genera el PDF
-public function alumnolibrePDF() {
+public function alumnolibrePDF($curso) {
     $fechaInforme = now();
-    $datosAsistencia = $this->obtenerDatosAsistencia();
+    $datosAsistencia = $this->obtenerDatosAsistencia($curso);
 
     $pdf = FacadePdf::loadView('panel.asistencia_alumno.pdf_alumnos_libres', compact('datosAsistencia', 'fechaInforme'));
-    return $pdf->download('alumnos_libres');
+    $pdf->render();
+    // visualizaremos el pdf en el navegador
+    return $pdf->stream('alumnos_libres.pdf');
+    //return $pdf->download('alumnos_libres');
 }
-public function obtenerDatosAsistencia2() {
-    $alumnos = Alumno::with('curso')->orderBy('id_curso')->get();
+public function obtenerDatosAsistencia2($curso) {
+    $curso = $curso != 0 ? Curso::findOrFail($curso) : null;
+    $alumnos = $curso != null ? Alumno::where('id_curso', $curso->id)->with('curso')->orderBy('id_curso')->get() : Alumno::with('curso')->orderBy('id_curso')->get();
     $asistenciaAlumnos = [];
 
     foreach ($alumnos as $alumno) {
@@ -268,12 +274,15 @@ public function obtenerDatosAsistencia2() {
 }
 
 
-public function alumnocasilibrePDF() {
+public function alumnocasilibrePDF($curso) {
     $fechaInforme = now();
-    $datosAsistencia = $this->obtenerDatosAsistencia2();
+    $datosAsistencia = $this->obtenerDatosAsistencia2($curso);
 
     $pdf = FacadePdf::loadView('panel.asistencia_alumno.pdf_alumnos_casilibres', compact('datosAsistencia', 'fechaInforme'));
-    return $pdf->download('alumnos_casi_libres');
+    $pdf->render();
+    // visualizaremos el pdf en el navegador
+    return $pdf->stream('alumnos_casi_libres.pdf');
+    //return $pdf->download('alumnos_casi_libres.pdf');
 }
 
 }

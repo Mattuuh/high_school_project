@@ -10,7 +10,9 @@
             {{ session('status') }}
         </div>
     @endif
-    <a href="{{ route('cuotasbase.create') }}" class="btn btn-success">Agregar nueva cuota</a>
+    @can('ver_admin')
+        <a href="{{ route('cuotasbase.create') }}" class="btn btn-success">Agregar nueva cuota</a>
+    @endcan
 
     @if ($cuotas->count())
         <div class="col-12">
@@ -23,7 +25,9 @@
                                 <th>Mes</th>
                                 <th>Monto</th>
                                 <th>Interes</th>
-                                <th>Acciones</th>
+                                @can('ver_admin')
+                                   <th>Acciones</th> 
+                                @endcan
                             </tr>    
                         </thead>
                         <tbody>
@@ -33,12 +37,15 @@
                                     <td>{{ $cuota->mes }}</td>
                                     <td>{{ $cuota->monto }}</td>
                                     <td>{{ $cuota->interes }}</td>
-                                    <td>
-                                        <a href="{{ route('cuotasbase.edit', $cuota->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $cuota->id }}" data-nombre="{{ $cuota->mes }}">
-                                            Eliminar
-                                        </button>
-                                    </td>
+                                    @can('ver_admin')
+                                       <td>
+                                            <a href="{{ route('cuotasbase.edit', $cuota->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $cuota->id }}" data-nombre="{{ $cuota->mes }}">
+                                                Eliminar
+                                            </button>
+                                        </td>
+                                    @endcan
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

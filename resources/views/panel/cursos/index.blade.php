@@ -40,18 +40,16 @@
                                     <td>{{ $curso->disponibilidad }}</td>
                                     <td>{{ $curso->periodo_lectivo->modalidad }}</td>
                                     
-                                    <td>@can('ver_secretario')
-                                        {{-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                            data-target="#showModal" data-bs-dato="{{ $curso }}">
-                                            Ver
-                                        </button> --}}
-                                            <a href="{{ route('cursos.edit', $curso->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                                            <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
-                                                data-target="#deleteModal" data-id="{{ $curso->id }}"
-                                                data-nombre="{{ $curso->nombre }}">
-                                                Eliminar
-                                            </button>@endcan
+                                    @can('ver_secretario')
+                                    <td>
+                                        <a href="{{ route('cursos.edit', $curso->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                                        <button type="button" class="btn btn-delete btn-sm btn-danger" data-toggle="modal"
+                                            data-target="#deleteModal" data-id="{{ $curso->id }}"
+                                            data-nombre="{{ $curso->nombre }}">
+                                            Eliminar
+                                        </button>
                                     </td>
+                                    @endcan
                                     
                                 </tr>
                             @endforeach

@@ -312,7 +312,7 @@ return [
             'text' =>  'Facturas',
             'route' =>  'facturasbase.index',
             'icon' =>  'fas fa-dollar-sign',
-            'can' =>  'registro_pago',
+            'can' =>  'ver_admin',
         ],
         [
             'text' =>  'Facturacion',
@@ -330,7 +330,7 @@ return [
             'text' =>  'Cuotas',
             'route' =>  'cuotasbase.index',
             'icon' =>  'fas fa-file-alt',
-            'can' =>  'ver_admin',
+            'can' =>  'registro_pago',
         ],
         [
             'text' =>  'Formas de pago',
@@ -372,7 +372,7 @@ return [
             'text' =>  'Registro Academico',
             'route' =>  'registro_academico.index',
             'icon' =>  'fas fa-file-signature',
-            'can' =>  'ver_admin',
+            'can' =>  'ver_alumno',
         ],
         [
             'text' =>  'Materias',

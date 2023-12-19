@@ -11,16 +11,10 @@
 
 @section('content')
     <div class="container-fluid">
-    <div class="col-2">
-                <label for="filtroSelect">Filtrar curso:</label>
-                <select id="filtroSelect" class="form-control">
-                    <option value="todos">Todos</option>
-                </select>
-            </div>
         <div class="row">
 
             <!-- BAR CHART -->
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         <div class="d-flex justify-content-between align-items-center">

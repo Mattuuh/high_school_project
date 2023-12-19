@@ -130,4 +130,24 @@ $(document).ready(function() {
             $('#monto_group').attr('hidden', 'hidden');
         }
     })
+
+    /* table.column(3).data().unique().sort().each(function(value, index) {
+        $('#filtroSelect').append('<option value="' + value + '">' + value + '</option>');
+    }); */
+
+    $('#filtroSelect2').on('change', function() {
+        var filtroValor = $(this).val();
+        table.column(3).search(filtroValor).draw();
+    });
+	
+	$('#botonFecha').on('click', function() {
+        var filtroValor = $('#filtroFecha').val();
+        table.column(5).search(filtroValor).draw();
+    });
+
+	$('#limpiarFiltros').on('click', function() {
+		$('#filtroSelect2').val('todos');
+		$('#filtroFecha').val('');
+		table.columns().search('').draw();
+    });
 });

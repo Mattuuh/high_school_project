@@ -13,6 +13,31 @@
     
     
     @if ($facturas->count())
+        <div class="row">
+            <div class="col-2">
+                <label for="filtroSelect2">Filtrar curso:</label>
+                <select id="filtroSelect2" class="form-control">
+                    <option value="0">Todos</option>
+                    @foreach ($cursos as $curso)
+                        <option value="{{ $curso->id }}">{{ $curso->nombre }} "{{ $curso->division }}" - Ciclo {{ $curso->periodo_lectivo->modalidad }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="filtroFecha">Filtrar fecha:</label>
+                <div class="row">
+                    <div class="col-8 pr-0">
+                        <input type="date" name="fecha" id="filtroFecha" class="form-control">
+                    </div>
+                    <div class="col-2 p-0">
+                        <button type="button" class="btn btn-success" id="botonFecha"><i class='fas fa-search'></i></button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger" id="limpiarFiltros" title="Limpiar filtros"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">

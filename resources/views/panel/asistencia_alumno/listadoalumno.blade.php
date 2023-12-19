@@ -14,13 +14,13 @@
         {{-- <a href="{{ route('alumnos.create') }}" class="btn btn-success text-uppercase">
             Nuevo alumno
         </a> --}}
-        <a href="{{ route('alumnos-libres-pdf')}}" class="btn btn-danger" title="PDF">
+        <a href="{{ route('alumnos-libres-pdf', 0) }}" class="btn btn-danger" id="alumnosLibres" title="PDF" target="_blank">
             <i class="fas fa-file-pdf"></i> Alumnos libres {{-- Curso, Alumnos libre, alumnos casi libres -> formulario -> alumnos con su falta y la condicion, Imprimir o informar('email') --}}
         </a>
-        <a href="{{ route('alumnos-casilibres-pdf')}}" class="btn btn-warning" title="PDF">
+        <a href="{{ route('alumnos-casilibres-pdf', 0) }}" class="btn btn-warning" id="alumnosCasiLibres" title="PDF" target="_blank">
             <i class="fas fa-file-pdf"></i> Alumnos proximos a quedar libres {{-- Curso, Alumnos libre, alumnos casi libres -> formulario -> alumnos con su falta y la condicion, Imprimir o informar('email') --}}
         </a>
-        <a href="{{ route('grafico-asistencia')}}" class="btn btn-primary" title="ChartJs">
+        <a href="{{ route('grafico-asistencia', 0) }}" class="btn btn-primary" id="alumnosInstancia" title="ChartJs">
             <i class="fas fa-chart-pie"></i> Inasistencias Alumnos {{-- Inasistencias de alumnos por curso (grafico) --}}
         </a>
     </div>
@@ -28,9 +28,12 @@
     @if ($asistencias->count())
         <div class="row">
             <div class="col-2">
-                <label for="filtroSelect">Filtrar curso:</label>
-                <select id="filtroSelect" class="form-control">
-                    <option value="todos">Todos</option>
+                <label for="filtroSelect2">Filtrar curso:</label>
+                <select id="filtroSelect2" class="form-control">
+                    <option value="0">Todos</option>
+                    @foreach ($cursos as $curso)
+                        <option value="{{ $curso->id }}">{{ $curso->nombre }} "{{ $curso->division }}" - Ciclo {{ $curso->periodo_lectivo->modalidad }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-3">
@@ -129,22 +132,6 @@
                 $('#id').val(data.id);
                 $('input[name="id_estado"]').filter(`[value="${id_estado}"]`).prop('checked', true);
 
-                /* var idEstado = $('input[name="id_estado"]:checked').val();
-
-                // Realizar una petición AJAX para enviar el valor al controlador de Laravel
-                $.ajax({
-                    url: '/tu/ruta/controlador',
-                    method: 'POST',
-                    data: { id_estado: idEstado },
-                    success: function(response) {
-                        // Manejar la respuesta del controlador si es necesario
-                        console.log(response);
-                    },
-                    error: function(error) {
-                        // Manejar errores si es necesario
-                        console.error(error);
-                    }
-                }); */
             });
         });
 
@@ -161,6 +148,14 @@
 
                 modal.find('.modal-body p#message').text(`¿Estás seguro de eliminar la alumno "${nombre}"?`)
             })
+
+            //cursoSeleccionado = $('#filtroSelect2 option').val();
+            $('#filtroSelect2').on('change', function() {
+                cursoSeleccionado = this.value;
+                $('#alumnosLibres').attr('href',`{{ env('APP_URL') }}/panel/alumnos-libres-pdf/${cursoSeleccionado}`);
+                $('#alumnosCasiLibres').attr('href',`{{ env('APP_URL') }}/panel/alumnos-casilibres-pdf/${cursoSeleccionado}`);
+                $('#alumnosInstancia').attr('href',`{{ env('APP_URL') }}/panel/grafico-asistencia/${cursoSeleccionado}`);
+            });
         });
 
     </script>

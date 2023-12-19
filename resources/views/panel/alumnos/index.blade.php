@@ -67,7 +67,7 @@
                                                             Eliminar
                                                         </button>
                                                     @endcan
-                                        </td>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

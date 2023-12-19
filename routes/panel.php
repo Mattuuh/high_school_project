@@ -83,7 +83,9 @@ Route::get('asistencia_alumno/listadoalumno', [AsistenciaAlumnoController::class
 Route::post('asistencia_alumno', [AsistenciaAlumnoController::class, 'guardar_datos'])->name('asistencia_alumno.guardar_datos');
 Route::put('asistencia_alumno/{id_alumno}/{fecha}', [AsistenciaAlumnoController::class, 'update'])->name('asistencia_alumno.update');
 Route::get('asistencia_alumno/{alumno}/detalleAsistencia', [AsistenciaAlumnoController::class, 'detalleAsistencia'])->name('asistencia_alumno.detalleAsistencia');
-Route::get('grafico-asistencia',[AsistenciaAlumnoController::class,'graficosAsistencia'])->name('grafico-asistencia');
-Route::get('/alumnos-libres-pdf', [AsistenciaAlumnoController::class, 'alumnolibrePDF'])->name('alumnos-libres-pdf');
-Route::get('/alumnos-casilibres-pdf', [AsistenciaAlumnoController::class, 'alumnocasilibrePDF'])->name('alumnos-casilibres-pdf');// Registro Academico
+Route::get('grafico-asistencia/{curso}',[AsistenciaAlumnoController::class,'graficosAsistencia'])->name('grafico-asistencia');
+Route::get('/alumnos-libres-pdf/{curso}', [AsistenciaAlumnoController::class, 'alumnolibrePDF'])->name('alumnos-libres-pdf');
+Route::get('/alumnos-casilibres-pdf/{curso}', [AsistenciaAlumnoController::class, 'alumnocasilibrePDF'])->name('alumnos-casilibres-pdf');
+
+// Registro Academico
 Route::get('registro_academico/listado_nota/{alumno}', [RegistroAcademicoController::class, 'listadoNotas'])->name('registro_academico.listadoNotas');
