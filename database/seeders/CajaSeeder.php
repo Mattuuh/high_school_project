@@ -154,7 +154,7 @@ class CajaSeeder extends Seeder
             'monto_inicial' =>4000 ,
             'monto_cierre' => 220000,
             'closed_at'=>'2023-05-28 12:00:00',
-            'created_at'=>''
+            'created_at'=>'2023-04-07 09:00:00'
         ]);
 
         Caja::create([
