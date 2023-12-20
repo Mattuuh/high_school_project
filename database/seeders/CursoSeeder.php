@@ -19,7 +19,6 @@ class CursoSeeder extends Seeder
             'cupos' => 26,
             'disponibilidad' => 26,
             'anio_lectivo' => 1,
-            'id_horario' => 2,
         ]);
         Curso::create([
             "nombre" => 1,
@@ -27,7 +26,6 @@ class CursoSeeder extends Seeder
             'cupos' => 22,
             'disponibilidad' => 22,
             'anio_lectivo' => 1,
-            'id_horario' => 2,
         ]);
         Curso::create([
             "nombre" => 1,
@@ -35,7 +33,6 @@ class CursoSeeder extends Seeder
             'cupos' => 25,
             'disponibilidad' => 25,
             'anio_lectivo' => 1,
-            'id_horario' => 6,
         ]);
         Curso::create([
             "nombre" => 2,
@@ -43,7 +40,6 @@ class CursoSeeder extends Seeder
             'cupos' => 28,
             'disponibilidad' => 28,
             'anio_lectivo' => 1,
-            'id_horario' => 1,
         ]);
         Curso::create([
             "nombre" => 2,
@@ -51,7 +47,6 @@ class CursoSeeder extends Seeder
             'cupos' => 28,
             'disponibilidad' => 28,
             'anio_lectivo' => 1,
-            'id_horario' => 1,
         ]);
         Curso::create([
             "nombre" => 3,
@@ -59,7 +54,6 @@ class CursoSeeder extends Seeder
             'cupos' => 25,
             'disponibilidad' => 25,
             'anio_lectivo' => 2,
-            'id_horario' => 8,
         ]);
         Curso::create([
             "nombre" => 3,
@@ -67,7 +61,6 @@ class CursoSeeder extends Seeder
             'cupos' => 26,
             'disponibilidad' => 26,
             'anio_lectivo' => 3,
-            'id_horario' => 2,
         ]);
         Curso::create([
             "nombre" => 3,
@@ -75,7 +68,6 @@ class CursoSeeder extends Seeder
             'cupos' => 28,
             'disponibilidad' => 28,
             'anio_lectivo' => 2,
-            'id_horario' => 8,
         ]);
         Curso::create([
             "nombre" => 3,
@@ -83,7 +75,6 @@ class CursoSeeder extends Seeder
             'cupos' => 28,
             'disponibilidad' => 28,
             'anio_lectivo' => 3,
-            'id_horario' => 8,
         ]);
         Curso::create([
             "nombre" => 4,
@@ -91,7 +82,6 @@ class CursoSeeder extends Seeder
             'cupos' => 21,
             'disponibilidad' => 21,
             'anio_lectivo' => 2,
-            'id_horario' => 1,
         ]);
         Curso::create([
             "nombre" => 4,
@@ -99,7 +89,6 @@ class CursoSeeder extends Seeder
             'cupos' => 21,
             'disponibilidad' => 21,
             'anio_lectivo' => 3,
-            'id_horario' => 1,
         ]);
         Curso::create([
             "nombre" => 5,
@@ -107,7 +96,6 @@ class CursoSeeder extends Seeder
             'cupos' => 20,
             'disponibilidad' => 20,
             'anio_lectivo' => 2,
-            'id_horario' => 8,
         ]);
         Curso::create([
             "nombre" => 5,
@@ -115,7 +103,6 @@ class CursoSeeder extends Seeder
             'cupos' => 20,
             'disponibilidad' => 20,
             'anio_lectivo' => 3,
-            'id_horario' => 8,
         ]);
     }
 }

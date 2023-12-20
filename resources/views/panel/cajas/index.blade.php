@@ -10,6 +10,9 @@
             {{ session('status') }}
         </div>
     @endif
+    <a href="{{ route('graficoCaja')}}" class="btn btn-primary" title="ChartJs">
+        <i class="fas fa-chart-pie"></i> GC
+    </a>
     @if ($cajas->count())
         <div class="col-12">
             <div class="card">

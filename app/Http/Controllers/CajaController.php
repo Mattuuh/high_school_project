@@ -104,4 +104,43 @@ class CajaController extends Controller
         $caja['monto_cierre'] = $monto_cierre + $caja->monto_inicial;
         return view('panel.cajas.close', ['caja'=>$caja]);
     }
+    public function graficoCaja() {
+        // Si se hace una peticion AJAX
+        if(request()->ajax()) {
+            $filtroMes = request()->input('mes', null);
+            $filtroAnio = request()->input('anio', null);
+
+            $query = Caja::query();
+
+            // Aplicar filtro por mes si se proporciona
+            if ($filtroMes !== null && $filtroMes != 0) {
+                $query->whereMonth('closed_at', $filtroMes);
+            }
+
+            // Aplicar filtro por año si se proporciona
+            if ($filtroAnio !== null && $filtroAnio != 0) {
+                if ($filtroMes === null || $filtroMes == 0) {
+                    // Solo aplicar filtro por año si no se proporciona el filtro de mes o es "Todos"
+                    $query->whereYear('closed_at', $filtroAnio);
+                }
+            }
+
+            $cajas = $query->get();
+
+            $labels = [];
+            $counts = [];
+
+            foreach($cajas as $caja) {
+                $labels[] = date('d/m/Y', strtotime($caja->closed_at));
+                $counts[] = $caja->monto_cierre;
+            }
+            array_multisort($labels, $counts);
+            $response = [
+                'success' => true,
+                'data' => [$labels, $counts]
+            ];
+            return json_encode($response);
+        }
+        return view('panel.cajas.grafico-caja');
+    }
 }

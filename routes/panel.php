@@ -89,3 +89,6 @@ Route::get('/alumnos-casilibres-pdf/{curso}', [AsistenciaAlumnoController::class
 
 // Registro Academico
 Route::get('registro_academico/listado_nota/{alumno}', [RegistroAcademicoController::class, 'listadoNotas'])->name('registro_academico.listadoNotas');
+
+// Cajas
+Route::get('graficoCaja',[CajaController::class,'graficoCaja'])->name('graficoCaja');

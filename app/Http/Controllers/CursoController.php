@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CursoRequest;
 use App\Models\Alumno;
 use App\Models\Curso;
 use App\Models\Periodos_lectivo;
@@ -31,10 +32,10 @@ class CursoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CursoRequest $request)
     {
         //Validacion de los datos
-        $validated = $request->all();
+        $validated = $request->validated();
 
         //Guardado de los datos
         Curso::create($validated);
@@ -64,13 +65,13 @@ class CursoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Curso $curso)
+    public function update(CursoRequest $request, Curso $curso)
     {
         //Busqueda del curso
         $curso = Curso::findOrFail($curso->id);
 
         //Validacion de los datos
-        $validated = $request->all();
+        $validated = $request->validated();
 
         //Actualizacion del curso
         $curso->update($validated);
