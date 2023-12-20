@@ -53,6 +53,8 @@ Route::resource('docentes_materia', DocentesMateriaController::class)->names('do
 
 // Facturas
 Route::get('/factura-pdf/{factura}', [FacturaController::class, 'facturaPDF'])->name('factura-pdf');
+Route::get('grafico-factura',[FacturaController::class,'graficosFacturasDia'])->name('grafico-factura');
+
 
 // Cuotas
 Route::get('/cuotas-pag-pdf/{alumno}', [CuotaController::class, 'cuotasPagPDF'])->name('cuotas-pag-pdf');

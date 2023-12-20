@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Alumno;
 use App\Models\Caja;
 use App\Models\Cuota;
+use App\Models\Curso;
 use App\Models\Detalles_factura;
 use App\Models\Factura;
 use App\Models\Formas_pago;
@@ -176,4 +177,27 @@ class FacturaController extends Controller
         //Redireccion con un mensaje flash de sesion
         return redirect()->route('facturas.create')->with('status','Alumno creado satisfactoriamente!');
     } */
+    public function graficosFacturasDia() {
+        // Si se hace una petición AJAX
+        $ingresos = Factura::all();
+    
+        // Agrupar por fecha y sumar los totales
+        $datosAgrupados = $ingresos->groupBy(function ($item) {
+            return $item->created_at->format('Y-m-d');
+        })->map(function ($group) {
+            return $group->sum('total');
+        });
+    
+        // Ordenar las fechas
+        $datosOrdenados = $datosAgrupados->sortKeys();
+    
+        // Extraer las fechas y montos para el gráfico
+        $fechas = $datosOrdenados->keys();
+        $montos = $datosOrdenados->values();
+    
+        return view('panel.facturas.grafico-factura', compact('fechas', 'montos'));
+    }
+    
+
+    
 }

@@ -17,6 +17,7 @@
             <a href="{{ route('cajas.create') }}" class="btn btn-success" hidden>Abrir caja</a>
             <a href="{{ route('facturas.create') }}" class="btn btn-success">Agregar nuevo pago</a>
             <a href="{{ route('cajas.close', $caja->id) }}" class="btn btn-danger">Cerrar caja</a>
+            
         @elseif ($caja->closed_at->format('Y-m-d') != '1900-01-01')
             <div class="alert alert-danger">
                 Caja cerrada!

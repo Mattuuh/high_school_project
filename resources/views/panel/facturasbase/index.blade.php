@@ -37,6 +37,17 @@
                     </div>
                 </div>
             </div>
+             <div class="col-3 ml-3">
+             <label for="filtroFecha">Ver Graficas:</label>
+                    <div class="row">
+                    
+                             <div class="col-2 ml-5">                                        
+                        <a href="{{ route('grafico-factura')}}" class="btn btn-primary" title="ChartJs">
+                        <i class="fas fa-chart-pie"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-12">
             <div class="card">

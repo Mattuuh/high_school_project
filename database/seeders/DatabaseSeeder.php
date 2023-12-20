@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(TiposEmpleadoSeeder::class);
         $this->call(InstanciaSeeder::class);
-        $this->call(EmpleadoSeeder::class);
+        $this->call(EmpleadoSeeder::class);        
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PeriodosLectivoSeeder::class);
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DocentesMateriaSeeder::class);
         $this->call(HorarioSeeder::class);
         $this->call(AsistenciaAlumnoSeeder::class);
-        $this->call(CajaSeeder::class);
+        
         
     }
 }
