@@ -14,7 +14,6 @@ class CajaSeeder extends Seeder
     public function run(): void
     {
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 31000,
@@ -23,7 +22,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 85000,
@@ -32,7 +30,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 220000,
@@ -41,7 +38,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 328000,
@@ -50,7 +46,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 544000,
@@ -59,7 +54,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 274000,
@@ -68,7 +62,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 193000,
@@ -77,7 +70,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 139000,
@@ -86,7 +78,6 @@ class CajaSeeder extends Seeder
         ]);
         
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 112000,
@@ -95,7 +86,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 247000,
@@ -104,7 +94,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 139000,
@@ -113,7 +102,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 301000,
@@ -122,7 +110,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 625000,
@@ -131,7 +118,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 760000,
@@ -140,7 +126,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 139000,
@@ -149,16 +134,14 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 220000,
             'closed_at'=>'2023-05-28 12:00:00',
-            'created_at'=>'2023-04-07 09:00:00'
+            'created_at'=>'2023-06-13 09:00:00'
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 328000,
@@ -167,7 +150,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 706000,
@@ -176,7 +158,6 @@ class CajaSeeder extends Seeder
         ]);
 
         Caja::create([
-            
             'legajo_emp' => 1,
             'monto_inicial' =>4000 ,
             'monto_cierre' => 814000,

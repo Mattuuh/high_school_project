@@ -12,7 +12,7 @@
     <tbody>
         @foreach ($horariosAgrupados as $hora => $dias)
             <tr>
-                <td>{{ $dataHora[$hora]['hora_inicio'] }} - {{ $dataHora[$hora]['hora_fin'] }}</td>
+                <td>{{ $dataHora[$hora-1]['hora_inicio'] }} - {{ $dataHora[$hora-1]['hora_fin'] }}</td>
                 @for ($i = 1; $i <= 5; $i++) 
                     <td>
                         @if (isset($dias[$i]))

@@ -34,7 +34,9 @@ class HoraController extends Controller
     {
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'hora' => 'required|string|max:20',
+            'hora_inicio' => 'requered|date_format:H:i',
+            'hora_fin' => 'required|date_format:H:i|after:hora_inicio',
         ]);
 
         //Guardado de los datos
@@ -72,11 +74,13 @@ class HoraController extends Controller
 
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'hora' => 'required|string|max:20',
+            'hora_inicio' => 'requered|date_format:H:i',
+            'hora_fin' => 'required|date_format:H:i|after:hora_inicio',
         ]);
 
         //Actualizacion del materia
-        $materia->update($request->all());
+        $materia->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
         return redirect()->route('horas.index')->with('status', 'Hora actualizada satisfactoriamente!');

@@ -20,17 +20,17 @@
         @csrf
 
         <label for="anio" class="form-label"> Año : </label>
-        <input type="number" name="anio" value="{{ old('-') }}" class="form-control">
+        <input type="number" name="anio" value="{{ old('anio') }}" class="form-control">
 
         <br>
 
-        <label for="plan_estudio_pl" class="form-label"> Plan de Estudio : </label><br>
-        <textarea name="plan_estudio_pl" cols="30" rows="4" class="form-control">{{ old('-') }}</textarea>
+        <label for="plan_estudio" class="form-label"> Plan de Estudio : </label><br>
+        <input type="text" name="plan_estudio" class="form-control" value="{{ old('plan_estudio') }}" >
 
         <br>
 
-        <label for="modalidad_pl" class="form-label"> Modalidad : </label>
-        <input type="text" name="modalidad_pl" value="{{ old('-') }}" class="form-control">
+        <label for="modalidad" class="form-label"> Modalidad : </label>
+        <input type="text" name="modalidad" value="{{ old('modalidad') }}" class="form-control">
 
         <br>
 

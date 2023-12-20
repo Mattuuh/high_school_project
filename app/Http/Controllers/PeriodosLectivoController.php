@@ -33,7 +33,9 @@ class PeriodosLectivoController extends Controller
     {
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'plan_estudio' => 'required|string|max:20',
+            'modalidad' => 'required|string|max:20',
+            'anio' => 'required|numeric',
         ]);
 
         //Guardado de los datos
@@ -67,15 +69,17 @@ class PeriodosLectivoController extends Controller
     public function update(Request $request, Periodos_lectivo $periodos_lectivo)
     {
         //Busqueda del periodo_lectivo
-        $periodo_lectivo = Periodos_lectivo::findOrFail($periodos_lectivo);
+        $periodo_lectivo = Periodos_lectivo::findOrFail($periodos_lectivo->id);
 
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'plan_estudio' => 'required|string|max:20',
+            'modalidad' => 'required|string|max:20',
+            'anio' => 'required|numeric',
         ]);
 
         //Actualizacion del periodo_lectivo
-        $periodo_lectivo->update($request->all());
+        $periodo_lectivo->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
         return redirect()->route('periodos_lectivo.index')->with('status', 'Periodo_lectivo actualizado satisfactoriamente!');
@@ -87,7 +91,7 @@ class PeriodosLectivoController extends Controller
     public function destroy(Periodos_lectivo $periodos_lectivo)
     {
         //Busqueda del periodo_lectivo
-        $periodo_lectivo = Periodos_lectivo::findOrFail($periodos_lectivo);
+        $periodo_lectivo = Periodos_lectivo::findOrFail($periodos_lectivo->id);
 
         //Eliminacion del periodo_lectivo
         $periodo_lectivo->delete();

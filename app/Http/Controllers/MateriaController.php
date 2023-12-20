@@ -33,7 +33,8 @@ class MateriaController extends Controller
     {
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'nom_materia' => 'required|string|max:20',
+            'anio_materia' => 'required|string',
         ]);
 
         //Guardado de los datos
@@ -71,11 +72,12 @@ class MateriaController extends Controller
 
         //Validacion de los datos
         $validated = $request->validate([
-            'name' => 'required|string|max:20',
+            'nom_materia' => 'required|string|max:20',
+            'anio_materia' => 'required|string',
         ]);
 
         //Actualizacion del materia
-        $materia->update($request->all());
+        $materia->update($validated);
 
         //  Redireccion con un mensaje flash de sesion
         return redirect()->route('materias.index')->with('status', 'Materia actualizado satisfactoriamente!');

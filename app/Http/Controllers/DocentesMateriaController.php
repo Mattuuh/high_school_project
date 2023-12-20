@@ -74,6 +74,12 @@ class DocentesMateriaController extends Controller
      */
     public function destroy(Docentes_materia $docentes_materia)
     {
-        //
+        $docentes_materia = Docentes_materia::findOrFail($docentes_materia->id);
+
+        //Eliminacion del empleado
+        $docentes_materia->delete();
+
+        //Redireccion con un mensaje flash de sesion
+        return redirect()->route('docentes_materia.index')->with('status', 'Docente eliminado satifactoriamente!');
     }
 }
